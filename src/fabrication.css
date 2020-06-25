@@ -1,0 +1,93 @@
+button,
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background: #6f7b61;
+    text-align: center;
+}
+
+div.fabrication {
+    background: #fff;
+    padding: 1em 3em;
+    margin: 3em;
+    display: inline-flex;
+    align-items: center;
+}
+
+#imgwrap {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+#imgwrap img {
+    width: 200px;
+    height: 200px;
+    transition: margin .3s ease-out;
+}
+
+.fabr-text {
+    width: 300px;
+    padding-left: 2em;
+    text-align: center;
+}
+
+#etape-count {
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: 900;
+    border-radius: 100%;
+    background: #6f7b6199;
+    color: white;
+    text-align: center;
+    line-height: 2em;
+    margin: .5em 0;
+}
+
+#etape-desc {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 1em;
+}
+
+#etape-desc p {
+    text-align: left;
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    z-index: 4;
+    transition: opacity .2s;
+}
+
+#etape-desc p:first-child {
+    opacity: 1;
+    z-index: 5;
+}
+
+#etape-dir {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 180px;
+}
+
+#etape-dir button {
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: .2em 1em;
+    font-weight: lighter;
+    color: #6f7b6199;
+    cursor: pointer;
+    transition: color .1s;
+}
+
+#etape-dir button:hover {
+    color: #6f7b61;
+    transition: color .1s;
+}

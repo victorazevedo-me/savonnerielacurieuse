@@ -1,0 +1,117 @@
+
+/* 
+    accent: #ffd79d
+    color: #333
+*/
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #ffd79d;
+    font-family: serif;
+
+}
+
+header {
+    height: 10em;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    white-space: nowrap;
+}
+nav a {
+    margin: 0;
+    padding: 1em 2em;
+    padding-top: 5em;
+    font-size: 1.2em;
+    color: #333;
+    text-decoration: none;
+    transition: all .1s;
+}
+
+nav a:hover,
+nav a.visiting {
+    background: #333;
+    color: #ffd79d;
+    transition: all .1s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#contact {
+    min-width: 100vh;
+
+}
+
+#map {
+    position: relative;
+    width: 80vw;
+    max-width: 800px;
+    height: 500px;
+    margin: 2em;
+    z-index: -1;
+    border: 6px solid #333;
+}
+.ol-viewport {
+    position: absolute!important;
+    top: 0!important;
+}
+#map:-webkit-full-screen {
+    height: 100%;
+    max-width: 100%;
+}
+#map:fullscreen {
+    height: 100%;
+    max-width: 100%;
+}
+.ol-rotate {
+    top: 3em;
+}
+
+
+
+.adresse {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.location {
+    position: relative;
+    display: inline-block;
+    border: 6px solid #ffd79d;
+    text-align: center;
+    padding: 1em;
+    margin-right: -15em;
+    font-size: 1.3em;
+    color: #333;
+    background-color: #fff;
+    transition: all .1s;
+}
+
+/*.location:hover {
+    background-color: #e77224;
+    border-color: #333;
+    color: #333;
+    transition: all .2s;
+}*/
