@@ -29,9 +29,15 @@ header {
     height: 100vh;
     background: #e77224;
 }
+
+header img,
+.accueil {
+    transition: opacity .5s;
+}
+
 .accueil {
   position: absolute;
-  bottom: 10em;
+  bottom: 15em;
   right: 10vw;
 	text-align: left;
   color: white;
@@ -74,6 +80,10 @@ nav {
     white-space: nowrap;
     background: #e77224;
 }
+
+
+
+
 nav a {
   margin: 0 2em;
   padding: 1em;
@@ -82,6 +92,15 @@ nav a {
   color: #fff;
   text-decoration: none;
   transition: all .1s;
+}
+
+nav.activated a {
+    margin: 0;
+    padding: 1em 1em .5em 1em;
+    font-size: 1em;
+    color: #fff;
+    text-decoration: none;
+    transition: all .1s;
 }
 
 nav a:hover {
