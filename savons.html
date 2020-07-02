@@ -143,6 +143,16 @@
             font-size: .8em;
             cursor: grab;
             transition: margin .2s linear;
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .savon .compo:active {
+            cursor: grabbing;
         }
 
         .savon .compo span {
@@ -489,28 +499,79 @@
 
 <script>
 
-    let scrollingInterval = 0;
 
-    document.querySelectorAll('.savon').forEach(bloc => {
+window.onload = function() {
+        
+    const slider = document.querySelector('.compo');
+    const maxVisibleWidth = slider.scrollWidth - slider.offsetWidth
+    let isDown = false;
+    let startX;
+    let hasScrolledTo = 0;
 
 
-        bloc.onmouseenter = function(e) {
+    slider.onmousedown = function(e) {
+        isDown = true;
+        startX =  e.x + hasScrolledTo;
+    }
 
-            function scroll() {
-                const margin = compo.style.marginLeft;
-                compo.style.marginLeft = (margin === "" ? "-20px" : `${parseInt(margin) - 20}px`)
-            }
+    slider.onmousemove = function(e) {
 
-            const compo = bloc.querySelector('.compo');
+        if(!isDown)return;
+        e.preventDefault();
 
-            scroll()
-            scrollingInterval = setInterval(scroll, 200)
+        let walk = e.x - startX;
+
+        if (walk > 0) {
+            walk = 0
         }
-
-        bloc.onmouseleave = function(e) {
-            clearInterval(scrollingInterval)
+        else if (walk < -maxVisibleWidth) {
+            walk = -maxVisibleWidth
         }
-    })
+        
+        hasScrolledTo = -walk
+        slider.style.transform = `matrix(1, 0, 0, 1, ${walk}, 0)`;
+    }
+
+    slider.onmouseup = function() {isDown = false}
+    slider.onmouseleave = function() {isDown = false}
+
+
+
+
+
+
+
+        let scrollingInterval = 0;
+
+        // document.querySelectorAll('.savon').forEach(bloc => {
+
+        //     bloc.onmouseenter = function(e) {
+
+        //         function scroll() {
+        //             const margin = compo.style.marginLeft;
+        //             compo.style.marginLeft = (margin === "" ? "-20px" : `${parseInt(margin) - 20}px`)
+        //         }
+
+        //         const compo = bloc.querySelector('.compo');
+
+        //         scroll()
+        //         scrollingInterval = setInterval(scroll, 200)
+        //     }
+
+        //     bloc.onmouseleave = function(e) {
+        //         clearInterval(scrollingInterval)
+        //     }
+        // })
+
+
+        // document.querySelectorAll('.compo').forEach(item => {
+
+        //     item.onmouseover = function(e) {
+        //         console.log(e)
+        //     }
+        // })
+
+}
 
 </script>
 
