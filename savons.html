@@ -35,10 +35,55 @@
             line-height: 1.6em;
         }
 
+
+
+
+
+        header {
+            margin-bottom: 7em;
+            display: grid;
+            grid-template-columns: 15% auto;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        header .logo {
+            font-size: 26px;
+            line-height: 26px;
+            border-right: 1px solid #2a2a2a;
+        }
+
+        header .logo h3 {
+            margin: .5em 1em; 
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        header nav a {
+            font-size: 26px;
+            color: #2a2a2a;
+            text-decoration: none;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         section {
             display: grid;
             grid-template-columns: auto auto;
-            max-width: 1500px;
+            max-width: 1600px;
             padding-top: 5em;
             padding-bottom: 10em;
             margin: auto;
@@ -239,6 +284,18 @@
 </head>
 
 <body>
+
+<header>
+    <div class="logo">
+        <h3>Savonnerie<br />La Curieuse</h3>
+    </div>
+    <nav>
+        <a href="#">Savons</a>
+        <a href="#">Où trouver</a>
+        <a href="#">La savonnerie</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
 
 <h2>Cheveux & Corps</h2>
 <section>
