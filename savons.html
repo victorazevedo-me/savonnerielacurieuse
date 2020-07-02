@@ -23,7 +23,7 @@
             color: #2a2a2a;
         }
 
-        content {
+        section {
             display: grid;
             grid-template-columns: auto auto;
             max-width: 1500px;
@@ -32,14 +32,26 @@
             margin: auto;
         }
 
-        content .savon:first-child {
+        section .savon:first-child {
             margin-top: 0;
         }
+
+
+
+
+        h2 {
+            font-size: 3em;
+            text-align: center;
+        }
+
+
+
+
 
         .savon {
             display: flex;
             width: 100%;
-            max-width: 40em;
+            max-width: 35em;
             padding: 1em;
             margin: 4em 2em 0 2em;
             background-color: white;
@@ -51,11 +63,17 @@
         }
 
         .savon img {
-            margin: 2em 2em 2em 1em;
+            margin: 1em 2em 1em 1em;
+            object-fit: contain;
+        }
+
+        .savon > div {
+            position: relative;
+            overflow-x: hidden;
         }
 
         .savon p {
-            margin: .2em;
+            margin: .5em 0;
         }
 
         .savon:nth-child(odd) {
@@ -63,7 +81,18 @@
         }
 
         .savon .compo {
+            margin-top: 2em;
+            white-space: nowrap;
             font-size: .8em;
+            cursor: grab;
+            transition: margin .2s linear;
+        }
+
+        .savon .compo span {
+            padding: .2em .5em;
+            margin-right: .5em;
+            border-radius: 8px;
+            border: 1px solid #ccc;
         }
 
 
@@ -74,6 +103,16 @@
             padding: 0 2em;
             font-size: 1em;
             max-width: 25em;
+        }
+        .conseils::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            border-radius: 100%;
+            padding: 4em;
+            top: -1em;
+            left: 9em;
+            background-color: white;
         }
 
         .conseils h3 {
@@ -103,13 +142,73 @@
 
 
         footer {
-            height: 20em;
-            background-color: #2a2a2a;
+            display: grid;
+            grid-template-columns: auto 25%;
+            border-top: 1px solid #2a2a2a;
+            min-height: 15em;
+        }
+
+
+
+
+
+
+        footer .navigation {
+            display: flex;
+        }
+
+        footer .navigation div {
+            padding: 1em 2em;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        footer .navigation h3 {
+            font-size: 1.5em;
+            margin: .75em 0;
+        }
+
+        footer .navigation li {
+            list-style-type: none;
+            line-height: 1em;
+            margin: .8em 0 0 -1em;
+        }
+
+        footer .navigation a {
+            font-size: 1em;
+            color: #2a2a2a;
+            text-decoration: none;
+            padding: .5em 1em;
+        }
+
+        footer .navigation a:hover {
+            background-color: #e77224;
             color: white;
         }
 
-        footer h3 {
+
+
+
+
+        footer .logo {
+            padding: 2em;
+            border-left: 1px solid #2a2a2a;
             margin: 0;
+        }
+
+        footer .logo h3,
+        footer .logo p {
+            margin: 0
+        }
+
+        footer .logo h3 {
+            line-height: .9em;
+            font-size: 2.5em;
+        }
+
+        footer .logo p {
+            margin-top: 1em;
+            font-size: .8em;
         }
 
     </style>
@@ -117,7 +216,8 @@
 
 <body>
 
-<content>
+<h2>Cheveux & Corps</h2>
+<section>
     <div>
         <div class="savon">
             <img src="https://savonnerielacurieuse.com/images/savons/muesli.jpg" />
@@ -230,9 +330,11 @@
             </ul>
         </div>
     </div>
-</content>
-<content>
+</section>
 
+
+<h2>Ménager</h2>
+<section>
     <div>
         <div class="conseils">
             <h3>La lessive liquide: simple, efficace et naturelle</h3>
@@ -250,7 +352,7 @@
         <div class="savon">
             <img src="https://savonnerielacurieuse.com/images/savons/cesar.jpg" />
              <div>
-                <h3>César - Savon ménager</h3>
+                <h3>César</h3>
                 <p>Nettoyant et dégraissant toutes surfaces, César est très apprécié pour faire la vaisselle, nettoyer la cuisinière et faire briller la robinetterie. Ce savon naturellement glycériné est idéal pour faire la lessive à la main et ses qualités détachantes préparent efficacement le linge avant son passage dans la machine à laver.</p>
                 <p class="compo">
                     <span>huile d'olive</span>
@@ -267,11 +369,69 @@
             </div>
         </div>
     </div>
-</content>
+</section>
 
 <footer>
-    <h3>Savonnerie La Curieuse</h3>
-    <p>Depuis 2016</p>
+
+    <div class="navigation">
+        <div>
+            <h3>Savons</h3>
+            <li><a href="#">Cheveux & Corps</a></li>
+            <li><a href="#">Ménager</a></li>
+        </div>
+        <div>
+            <h3>Où me trouver</h3>
+            <li><a href="#">Savonnerie</a></li>
+            <li><a href="#">Boutiques</a></li>
+            <li><a href="#">Marchés</a></li>
+            <li><a href="#">Evenements</a></li>
+        </div>
+        <div>
+            <h3>A propos</h3>
+            <li><a href="#">La Curieuse</a></li>
+            <li><a href="#">Foire aux questions</a></li>
+            <li><a href="#">Saponification à froid</a></li>
+        </div>
+        <div>
+            <h3>Contact</h3>
+            <li><a href="#">Contact</a></li>
+        </div>
+    </div>
+
+    <div class="logo">
+        <h3>Savonnerie<br />La Curieuse</h3>
+        <p>depuis 2016</p>
+    </div>
 </footer>
+
+
+
+<script>
+
+    let scrollingInterval = 0;
+
+    document.querySelectorAll('.savon').forEach(bloc => {
+
+
+        bloc.onmouseenter = function(e) {
+
+            function scroll() {
+                const margin = compo.style.marginLeft;
+                compo.style.marginLeft = (margin === "" ? "-20px" : `${parseInt(margin) - 20}px`)
+            }
+
+            const compo = bloc.querySelector('.compo');
+
+            scroll()
+            scrollingInterval = setInterval(scroll, 200)
+        }
+
+        bloc.onmouseleave = function(e) {
+            clearInterval(scrollingInterval)
+        }
+    })
+
+</script>
+
 </body>
 </html>

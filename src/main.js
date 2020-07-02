@@ -16,7 +16,7 @@ function map() {
 				anchor: [0.5, 46],
 				anchorXUnits: 'fraction',
 				anchorYUnits: 'pixels',
-				src: 'images/marker.png'
+				src: 'src/marker.png'
 			}))
 		});
 		iconFeature.setStyle(iconStyle);
