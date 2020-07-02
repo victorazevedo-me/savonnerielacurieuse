@@ -10,17 +10,29 @@
     <meta charset="utf-8">
     <meta name="msapplication-TileColor" content="#e77224">
     <meta name="theme-color" content="#e77224">
+    <link rel="preload" href="src/Novar.ttf" as="font" type="font/ttf" crossorigin="anonymous">
     <script type="application/ld+json">
         {"@context":"http://schema.org","@type":"HealthAndBeautyBusiness","name":"Savonnerie La Curieuse","address":{"@type":"PostalAddress","streetAddress":"rue du château","addressLocality":"Vollore-Ville","addressRegion":"Auvergne","postalCode":"63120"},"image":"https://savonnerielacurieuse.com/icons/android-chrome-512x512.png","telePhone":"0643693967","url":"https://savonnerielacurieuse.com","paymentAccepted":["cash","check"],"geo":{"@type":"GeoCoordinates","latitude":"45.78557","longitude":"3.59948"},"priceRange":"€€"}
     </script>
 
     <style>
 
+        @font-face {
+            font-family: "Novar";
+            src: url("/src/Novar.ttf") format("ttf"),
+            url("/src/Novar.ttf") format("ttf");
+        }
+
         body {
             margin: 0;
             background-color: #ffd6ae;
             font-size: 18px;
+            font-family: 'Novar', 'Times New Roman', Times, serif;
             color: #2a2a2a;
+        }
+
+        p, li {
+            line-height: 1.6em;
         }
 
         section {
@@ -117,7 +129,7 @@
 
         .conseils h3 {
             text-align: left;
-            font-size: 2.5em;
+            font-size: 2.3em;
             margin-top: 0;
         }
 
@@ -175,18 +187,30 @@
         }
 
         footer .navigation a {
+            position: relative;
             font-size: 1em;
             color: #2a2a2a;
             text-decoration: none;
             padding: .5em 1em;
         }
 
-        footer .navigation a:hover {
+        footer .navigation a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: .8em;
+            padding: 1em;
             background-color: #e77224;
-            color: white;
+            border-radius: 100%;
+            opacity: 0;
+            z-index: -1;
+            transition: left .2s, opacity .1s;
         }
 
-
+        footer .navigation a:hover::before {
+            left: .5em;
+            opacity: 1;
+        }
 
 
 
@@ -202,7 +226,7 @@
         }
 
         footer .logo h3 {
-            line-height: .9em;
+            line-height: .8em;
             font-size: 2.5em;
         }
 
