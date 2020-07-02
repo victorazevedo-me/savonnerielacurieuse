@@ -12,7 +12,7 @@
 body {
     margin: 0;
     color: #222;
-    font-family: 'Playfair Display', Georgia, "Book Antiqua", Palatino, serif;
+    font-family: 'Times New Roman', Times, serif;
     overflow-x: hidden;
     scroll-behavior: smooth;
     cursor: default;
@@ -27,7 +27,7 @@ header {
     font-family: serif;
     position: relative;
     height: 100vh;
-    background: #e77224;
+    background: #fd954d;
 }
 
 header img,
@@ -36,21 +36,22 @@ header img,
 }
 
 .accueil {
-  position: absolute;
-  bottom: 15em;
-  right: 10vw;
-	text-align: left;
-  color: white;
-  padding: 1em 2em;
-  background: #e77224;
+    position: absolute;
+    bottom: 25vh;
+    right: 10vw;
+    text-align: left;
+    padding: 2em;
+    background: #fd954d;
+    border-left: 1px solid #2a2a2a;
+    border-top: 1px solid #2a2a2a;
 }
 header h1 {
-	display: inline-block;
-  font-size: 2em;
-  line-height: 1.2em;
-  font-weight: bolder;
-  text-align: left;
-  margin: 0;
+    display: inline-block;
+    font-size: 3em;
+    line-height: 1.2em;
+    font-weight: bolder;
+    text-align: left;
+    margin: 0;
 }
 
 header img {
@@ -64,7 +65,7 @@ header img {
 
 header p {
 	display: block;
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: 400;
     line-height: 1em;
     margin: 0;
@@ -78,61 +79,38 @@ nav {
     flex-direction: row;
     justify-content: center;
     white-space: nowrap;
-    background: #e77224;
+    background: #fd954d;
 }
 
 
 
-
-nav a {
-  margin: 0 2em;
-  padding: 1em;
-  padding-top: 5em;
-  font-size: 1.2em;
-  color: #fff;
-  text-decoration: none;
-  transition: all .1s;
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 40vw;
+    margin: 4em 2em;
+    padding: 1em 2em;
+    border-bottom: 1px solid #2a2a2a;
+    border-right: 1px solid #2a2a2a;
 }
 
-nav.activated a {
-    margin: 0;
-    padding: 1em 1em .5em 1em;
-    font-size: 1em;
-    color: #fff;
+header nav a {
+    font-size: 26px;
+    color: #2a2a2a;
     text-decoration: none;
-    transition: all .1s;
+    font-weight: bold;
 }
 
-nav a:hover {
-  background: #fff;
-  color: #e77224;
-  transition: all .1s;
-}
 
-.top {
-    z-index: 9;
-    display: none;
-    position: fixed;
-    bottom: 2em;
-    right: 1em;
-    width: 2em;
-    height: 2em;
-}
-.top a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    opacity: .8;
-    background-color: #222;
-    border-radius: 100%;
-    outline: none;
-    line-height: 1.5em;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-}
+
+
+
+
+
+
+
+
 .content {
     width: 100%;
     margin: 2em 0;
