@@ -48,14 +48,44 @@
         }
 
         header .logo {
-            font-size: 26px;
-            line-height: 26px;
+            position: relative;
             border-right: 1px solid #2a2a2a;
+            overflow: hidden;
+            transition: padding .3s;
+        }
+        header .logo::before {
+            content: "";
+            position: absolute;
+            top: 1em;
+            left: 5.5em;
+            padding: 26px;
+            border-radius: 100%;
+            background-color: #e77224;
+            z-index: -1;
+            transition: transform .3s;
+            transform: scale(0)
+        }
+        header .logo:hover::before {
+            transform: scale(1)
+        }
+        header .logo:active::before {
+            transform: scale(5.2)
         }
 
         header .logo h3 {
+            font-size: 32px;
+            line-height: 26px;
             margin: .5em 1em;
         }
+
+        header .logo h3 a {
+            text-decoration: none;
+            color: #2a2a2a;
+        }
+
+        
+
+        
 
         header nav {
             display: flex;
@@ -116,6 +146,7 @@
 
         .savon {
             display: flex;
+            align-items: center;
             width: 100%;
             max-width: 35em;
             padding: 1em;
@@ -141,6 +172,7 @@
             margin: 1em 2em 1em 1em;
             object-fit: contain;
             width: 100%;
+            height: 100%;
         }
 
         .savon > div {
@@ -157,7 +189,7 @@
             white-space: nowrap;
             font-size: .8em;
             cursor: grab;
-            transition: transform .2s linear;
+            transition: transform 1s linear;
 
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -365,7 +397,9 @@
 
 <header>
     <div class="logo">
-        <h3>Savonnerie<br />La Curieuse</h3>
+        <h3>
+            <a href="#">Savonnerie<br />La Curieuse</a>
+        </h3>
     </div>
     <nav>
         <a href="#">Savons</a>
@@ -570,16 +604,25 @@
 
 window.onload = function() {
 
-    function scrollIngredients() {
+    function grabScroll() {
 
         document.querySelectorAll('.compo').forEach(compo => {
+
+            function autoScroll(item) {
+                scrollingInterval = setInterval(function() {
+                    hasScrolledTo += 15
+                    item.style.transform = `matrix(1, 0, 0, 1, -${hasScrolledTo}, 0)`
+                }, 1000)
+            }
 
             const maxVisibleWidth = compo.scrollWidth - compo.offsetWidth;
             let isDown = false;
             let startX;
             let hasScrolledTo = 0;
+            let scrollingInterval = 0;
 
             compo.onmousedown = function(e) {
+                clearInterval(scrollingInterval);
                 compo.style.transition = "transform 0s";
                 isDown = true;
                 startX =  e.x + hasScrolledTo;
@@ -604,17 +647,22 @@ window.onload = function() {
             }
 
             compo.onmouseup = function() {
-                compo.style.transition = "transform .2s";
+                compo.style.transition = "transform 1s linear";
                 isDown = false
             }
+            
             compo.onmouseleave = function() {
-                compo.style.transition = "transform .2s";
+                compo.style.transition = "transform 1s linear";
                 isDown = false
             }
+
+            autoScroll(compo)
         })
     }
+
+
         
-    scrollIngredients()
+    grabScroll()
 
 
 
@@ -622,7 +670,7 @@ window.onload = function() {
 
 
 
-        let scrollingInterval = 0;
+        
 
         // document.querySelectorAll('.savon').forEach(bloc => {
 
