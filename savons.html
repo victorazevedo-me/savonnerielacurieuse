@@ -19,8 +19,8 @@
 
         @font-face {
             font-family: "Novar";
-            src: url("/src/Novar.ttf") format("ttf"),
-            url("/src/Novar.ttf") format("ttf");
+            src: url("src/Novar.ttf") format('truetype'),
+            url("Novar.ttf") format('truetype');
         }
 
         body {
@@ -42,8 +42,9 @@
         header {
             margin-bottom: 7em;
             display: grid;
-            grid-template-columns: 15% auto;
+            grid-template-columns: 1fr 5fr;
             border-bottom: 1px solid #2a2a2a;
+            white-space: nowrap;
         }
 
         header .logo {
@@ -53,7 +54,7 @@
         }
 
         header .logo h3 {
-            margin: .5em 1em; 
+            margin: .5em 1em;
         }
 
         header nav {
@@ -74,7 +75,12 @@
 
 
 
+        body.animating .savon {
+            margin-left: 0;
+            opacity: 0;
 
+            transition: all .5s;
+        }
 
 
 
@@ -85,8 +91,11 @@
             grid-template-columns: auto auto;
             max-width: 1600px;
             padding-top: 5em;
-            padding-bottom: 10em;
             margin: auto;
+        }
+
+        section > div {
+            padding-bottom: 10em;
         }
 
         section .savon:first-child {
@@ -112,6 +121,15 @@
             padding: 1em;
             margin: 4em 2em 0 2em;
             background-color: white;
+            transition: all .8s;
+        }
+
+        .savon:nth-child(even) {
+            margin-left: 2em;
+        }
+
+        .savon:nth-child(odd) {
+            margin-left: 6em;
         }
 
         .savon h3 {
@@ -122,6 +140,7 @@
         .savon img {
             margin: 1em 2em 1em 1em;
             object-fit: contain;
+            width: 100%;
         }
 
         .savon > div {
@@ -133,16 +152,12 @@
             margin: .5em 0;
         }
 
-        .savon:nth-child(odd) {
-            margin-left: 6em;
-        }
-
         .savon .compo {
             margin-top: 2em;
             white-space: nowrap;
             font-size: .8em;
             cursor: grab;
-            transition: margin .2s linear;
+            transition: transform .2s linear;
 
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -157,7 +172,7 @@
 
         .savon .compo span {
             padding: .2em .5em;
-            margin-right: .5em;
+            margin-right: .2em;
             border-radius: 8px;
             border: 1px solid #ccc;
         }
@@ -208,17 +223,51 @@
 
 
 
-        footer {
-            display: grid;
-            grid-template-columns: auto 25%;
-            border-top: 1px solid #2a2a2a;
-            min-height: 15em;
+
+        @media screen and (max-width: 1300px) {
+            section {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #menager ~ section {
+                flex-wrap: wrap-reverse;
+            }
+
+            .conseils {
+                width: 40em;
+                max-width: 100%;
+                margin: auto;
+            }
+
+            .conseils::before {
+                left: 2em;
+            }
         }
 
 
 
 
 
+
+
+
+
+
+        
+
+
+
+
+        footer {
+            display: grid;
+            grid-template-columns: auto 25%;
+            border-top: 1px solid #2a2a2a;
+            min-height: 15em;
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
 
         footer .navigation {
             display: flex;
@@ -290,10 +339,29 @@
             font-size: .8em;
         }
 
+
+        @media screen and (max-width: 1300px) {
+            footer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            footer .logo {
+                padding-top: 4em;
+                border: none;
+            }
+        }
+
+
+
+
+
     </style>
 </head>
 
-<body>
+<body class="animating">
 
 <header>
     <div class="logo">
@@ -307,7 +375,7 @@
     </nav>
 </header>
 
-<h2>Cheveux & Corps</h2>
+<h2 id="cheveuxetcorps">Cheveux & Corps</h2>
 <section>
     <div>
         <div class="savon">
@@ -424,7 +492,7 @@
 </section>
 
 
-<h2>Ménager</h2>
+<h2 id="menager">Ménager</h2>
 <section>
     <div>
         <div class="conseils">
@@ -467,8 +535,8 @@
     <div class="navigation">
         <div>
             <h3>Savons</h3>
-            <li><a href="#">Cheveux & Corps</a></li>
-            <li><a href="#">Ménager</a></li>
+            <li><a href="#cheveuxetcorps">Cheveux & Corps</a></li>
+            <li><a href="#menager">Ménager</a></li>
         </div>
         <div>
             <h3>Où me trouver</h3>
@@ -501,39 +569,52 @@
 
 
 window.onload = function() {
-        
-    const slider = document.querySelector('.compo');
-    const maxVisibleWidth = slider.scrollWidth - slider.offsetWidth
-    let isDown = false;
-    let startX;
-    let hasScrolledTo = 0;
 
+    function scrollIngredients() {
 
-    slider.onmousedown = function(e) {
-        isDown = true;
-        startX =  e.x + hasScrolledTo;
+        document.querySelectorAll('.compo').forEach(compo => {
+
+            const maxVisibleWidth = compo.scrollWidth - compo.offsetWidth;
+            let isDown = false;
+            let startX;
+            let hasScrolledTo = 0;
+
+            compo.onmousedown = function(e) {
+                compo.style.transition = "transform 0s";
+                isDown = true;
+                startX =  e.x + hasScrolledTo;
+            }
+
+            compo.onmousemove = function(e) {
+
+                if(!isDown) return;
+                e.preventDefault();
+
+                let walk = e.x - startX;
+
+                if (walk > 0) {
+                    walk = 0
+                }
+                else if (walk < -maxVisibleWidth) {
+                    walk = -maxVisibleWidth
+                }
+                
+                hasScrolledTo = -walk
+                compo.style.transform = `matrix(1, 0, 0, 1, ${walk}, 0)`;
+            }
+
+            compo.onmouseup = function() {
+                compo.style.transition = "transform .2s";
+                isDown = false
+            }
+            compo.onmouseleave = function() {
+                compo.style.transition = "transform .2s";
+                isDown = false
+            }
+        })
     }
-
-    slider.onmousemove = function(e) {
-
-        if(!isDown)return;
-        e.preventDefault();
-
-        let walk = e.x - startX;
-
-        if (walk > 0) {
-            walk = 0
-        }
-        else if (walk < -maxVisibleWidth) {
-            walk = -maxVisibleWidth
-        }
         
-        hasScrolledTo = -walk
-        slider.style.transform = `matrix(1, 0, 0, 1, ${walk}, 0)`;
-    }
-
-    slider.onmouseup = function() {isDown = false}
-    slider.onmouseleave = function() {isDown = false}
+    scrollIngredients()
 
 
 
@@ -570,6 +651,9 @@ window.onload = function() {
         //         console.log(e)
         //     }
         // })
+
+
+        document.body.className = ""
 
 }
 
