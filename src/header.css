@@ -1,0 +1,60 @@
+header {
+    margin-bottom: 7em;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    border-bottom: 1px solid #2a2a2a;
+    white-space: nowrap;
+}
+
+header .logo {
+    position: relative;
+    border-right: 1px solid #2a2a2a;
+    overflow: hidden;
+    transition: padding .3s;
+    max-width: 14em;
+}
+header .logo::before {
+    content: "";
+    position: absolute;
+    top: 1em;
+    left: 5.5em;
+    padding: 26px;
+    border-radius: 100%;
+    background-color: #e77224;
+    z-index: -1;
+    transition: transform .3s;
+    transform: scale(0)
+}
+header .logo:hover::before {
+    transform: scale(1)
+}
+header .logo:active::before {
+    transform: scale(5.2)
+}
+
+header .logo h3 {
+    font-size: 32px;
+    line-height: 26px;
+    margin: .5em 1em;
+}
+
+header .logo h3 a {
+    text-decoration: none;
+    color: #2a2a2a;
+}
+
+
+
+
+
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header nav a {
+    font-size: 26px;
+    color: #2a2a2a;
+    text-decoration: none;
+}

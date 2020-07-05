@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta name="msapplication-TileColor" content="#e77224">
     <meta name="theme-color" content="#e77224">
+    <link rel="stylesheet" type="text/css" href="src/header.css">
+    <link rel="stylesheet" type="text/css" href="src/footer.css">
     <link rel="preload" href="src/Novar.ttf" as="font" type="font/ttf" crossorigin="anonymous">
     <script type="application/ld+json">
         {"@context":"http://schema.org","@type":"HealthAndBeautyBusiness","name":"Savonnerie La Curieuse","address":{"@type":"PostalAddress","streetAddress":"rue du château","addressLocality":"Vollore-Ville","addressRegion":"Auvergne","postalCode":"63120"},"image":"https://savonnerielacurieuse.com/icons/android-chrome-512x512.png","telePhone":"0643693967","url":"https://savonnerielacurieuse.com","paymentAccepted":["cash","check"],"geo":{"@type":"GeoCoordinates","latitude":"45.78557","longitude":"3.59948"},"priceRange":"€€"}
@@ -34,88 +36,6 @@
         p, li {
             line-height: 1.6em;
         }
-
-
-
-
-
-        header {
-            margin-bottom: 7em;
-            display: grid;
-            grid-template-columns: 1fr 5fr;
-            border-bottom: 1px solid #2a2a2a;
-            white-space: nowrap;
-        }
-
-        header .logo {
-            position: relative;
-            border-right: 1px solid #2a2a2a;
-            overflow: hidden;
-            transition: padding .3s;
-            max-width: 14em;
-        }
-        header .logo::before {
-            content: "";
-            position: absolute;
-            top: 1em;
-            left: 5.5em;
-            padding: 26px;
-            border-radius: 100%;
-            background-color: #e77224;
-            z-index: -1;
-            transition: transform .3s;
-            transform: scale(0)
-        }
-        header .logo:hover::before {
-            transform: scale(1)
-        }
-        header .logo:active::before {
-            transform: scale(5.2)
-        }
-
-        header .logo h3 {
-            font-size: 32px;
-            line-height: 26px;
-            margin: .5em 1em;
-        }
-
-        header .logo h3 a {
-            text-decoration: none;
-            color: #2a2a2a;
-        }
-
-        
-
-        
-
-        header nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-        }
-
-        header nav a {
-            font-size: 26px;
-            color: #2a2a2a;
-            text-decoration: none;
-        }
-
-
-
-
-
-
-
-        body.animating .savon {
-            margin-left: 0;
-            opacity: 0;
-
-            transition: all .5s;
-        }
-
-
-
-
 
         section {
             display: grid;
@@ -148,6 +68,7 @@
         .savon {
             display: flex;
             align-items: center;
+            opacity: 0;
             width: 100%;
             max-width: 35em;
             padding: 1em;
@@ -156,12 +77,15 @@
             transition: all .8s;
         }
 
-        .savon:nth-child(even) {
-            margin-left: 2em;
-        }
+        .savon:nth-child(even) {margin-right: 6em}
+        .savon:nth-child(odd) {margin-right: 2em}
+        .savon.in-view:nth-child(even) {margin-left: 2em}
+        .savon.in-view:nth-child(odd) {margin-left: 6em}
 
-        .savon:nth-child(odd) {
-            margin-left: 6em;
+        .savon.in-view {
+            margin-right: 0;
+            opacity: 1;
+            transition: all .5s;
         }
 
         .savon h3 {
@@ -279,122 +203,10 @@
             }
         }
 
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-        footer {
-            display: grid;
-            grid-template-columns: auto 25%;
-            border-top: 1px solid #2a2a2a;
-            min-height: 15em;
-            white-space: nowrap;
-            overflow-x: hidden;
-        }
-
-        footer .navigation {
-            display: flex;
-        }
-
-        footer .navigation div {
-            padding: 1em 2em;
-            width: 100%;
-            white-space: nowrap;
-        }
-
-        footer .navigation h3 {
-            font-size: 1.5em;
-            margin: .75em 0;
-        }
-
-        footer .navigation li {
-            list-style-type: none;
-            line-height: 1em;
-            margin: .8em 0 0 -1em;
-        }
-
-        footer .navigation a {
-            position: relative;
-            font-size: 1em;
-            color: #2a2a2a;
-            text-decoration: none;
-            padding: .5em 1em;
-        }
-
-        footer .navigation a::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: .8em;
-            padding: 1em;
-            background-color: #e77224;
-            border-radius: 100%;
-            opacity: 0;
-            z-index: -1;
-            transition: left .2s, opacity .1s;
-        }
-
-        footer .navigation a:hover::before {
-            left: .5em;
-            opacity: 1;
-        }
-
-
-
-        footer .logo {
-            padding: 2em;
-            border-left: 1px solid #2a2a2a;
-            margin: 0;
-        }
-
-        footer .logo h3,
-        footer .logo p {
-            margin: 0
-        }
-
-        footer .logo h3 {
-            line-height: .8em;
-            font-size: 2.5em;
-        }
-
-        footer .logo p {
-            margin-top: 1em;
-            font-size: .8em;
-        }
-
-
-        @media screen and (max-width: 1300px) {
-            footer {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            footer .logo {
-                padding-top: 4em;
-                border: none;
-            }
-        }
-
-
-
-
-
     </style>
 </head>
 
-<body class="animating">
+<body>
 
 <header>
     <div class="logo">
@@ -661,49 +473,28 @@ window.onload = function() {
         })
     }
 
+    function savonInView() {
 
-        
+        const savons = document.querySelectorAll('.savon')
+
+        savons.forEach(item => {
+            const bounding = item.getBoundingClientRect();
+            if (bounding.top >= 0 && bounding.top < window.innerHeight - (bounding.height / 2)) {
+                item.className = "savon in-view"
+            }
+        })
+    }
+
+
+
+
+
+
     grabScroll()
-
-
-
-
-
-
-
-        
-
-        // document.querySelectorAll('.savon').forEach(bloc => {
-
-        //     bloc.onmouseenter = function(e) {
-
-        //         function scroll() {
-        //             const margin = compo.style.marginLeft;
-        //             compo.style.marginLeft = (margin === "" ? "-20px" : `${parseInt(margin) - 20}px`)
-        //         }
-
-        //         const compo = bloc.querySelector('.compo');
-
-        //         scroll()
-        //         scrollingInterval = setInterval(scroll, 200)
-        //     }
-
-        //     bloc.onmouseleave = function(e) {
-        //         clearInterval(scrollingInterval)
-        //     }
-        // })
-
-
-        // document.querySelectorAll('.compo').forEach(item => {
-
-        //     item.onmouseover = function(e) {
-        //         console.log(e)
-        //     }
-        // })
-
-
-        document.body.className = ""
-
+    savonInView()
+    document.body.onscroll = function() {
+        savonInView()
+    }
 }
 
 </script>
