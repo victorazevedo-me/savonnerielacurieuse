@@ -16,503 +16,183 @@
     <link rel="shortcut icon" href="favicon.ico?v=rMJOo8Wqzp">
     <meta name="msapplication-TileColor" content="#e77224">
     <meta name="theme-color" content="#e77224">
-    <link rel="stylesheet" type="text/css" href="src/style.css">
-    <!-- <script src="src/main.js" defer></script> -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=IBM+Plex+Serif:ital,wght@0,300;1,300;1,700&display=swap');
+    
+    
+    
+            
+                
+        ::-moz-selection {
+            background-color: #e77224;
+            color: #ffffff;
+        }
+        ::selection {
+            background-color: #e77224;
+            color: #ffffff;
+        }
+
+        * {font-family: 'IBM Plex Serif', serif;}
+
+
+        body {
+            margin: 0;
+            color: #222;
+            
+
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            cursor: default;
+            text-align: justify;
+            font-size: 1.2em;
+        }
+        a {
+            text-decoration: none;
+            color: #222;
+        }
+        header {
+            font-family: serif;
+            position: relative;
+            height: 100vh;
+            background: #e68145;
+        }
+
+        header img,
+        .accueil {
+            transition: opacity .5s;
+        }
+
+        .accueil {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+            width: 60vw;
+            max-width: 45em;
+            top: 5vh;
+            margin: auto;
+            color: white;
+            letter-spacing: 3px;
+        }
+        header h1 {
+            display: inline-block;
+            font-size: 3.5em;
+            line-height: 1.2em;
+            font-weight: lighter;
+            text-align: left;
+            padding-top: .5em;
+            margin: 0;
+            white-space: nowrap;
+            transition: lett 1s;
+        }
+
+        header img {
+            width: 80%;
+            object-fit: cover;
+            height: 38vh;
+            padding: 2em 10%;
+        }
+
+        header p {
+            display: block;
+            font-size: 1.5em;
+            font-weight: 400;
+            line-height: 1em;
+            margin: 0;
+        }
+
+
+        header nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 1em;
+            margin: auto;
+        }
+
+        header nav a {
+            white-space: nowrap;
+            font-size: 1em;
+            padding: .5em 1em;
+            color: white;
+            text-decoration: none;
+            font-weight: lighter;
+        }
+
+        @media screen and (max-width: 900px) {
+
+
+            .accueil {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            header img {
+                width: 60vw;
+                height: 60vw;
+                max-width: 20em;
+                max-height: 20em;
+            }
+
+            header nav {
+                flex-direction: column;
+                align-items: baseline;
+            }
+
+            header nav a {
+                padding: .5em 1em;
+                font-size: .8em;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+
+            header h1 {
+                font-size: 1.2em;
+            }
+
+            header p {
+                font-size: .6em;
+            }
+
+            header nav a {
+                padding: .5em 1em;
+                font-size: .6em;
+            }
+        }
+ 
+    </style>
+
     <script type="application/ld+json">{"@context":"http://schema.org","@type":"HealthAndBeautyBusiness","name":"Savonnerie La Curieuse","address":{"@type":"PostalAddress","streetAddress":"rue du château","addressLocality":"Vollore-Ville","addressRegion":"Auvergne","postalCode":"63120"},"image":"https://savonnerielacurieuse.com/icons/android-chrome-512x512.png","telePhone":"0643693967","url":"https://savonnerielacurieuse.com","paymentAccepted":["cash","check"],"geo":{"@type":"GeoCoordinates","latitude":"45.78557","longitude":"3.59948"},"priceRange":"€€"}</script>
 </head>
 
 <body>
     <header id="apropos">
-
-      <img src="https://savonnerielacurieuse.com/images/categorie/suggestion.jpg" alt="rangée de savons">
-
-      <nav class="activated">
-        <a href="savons.html" class="trn">Savons</a>
-        <a href="#ouTrouver" class="trn">Où trouver</a>
-        <a href="#contact">La savonnerie</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-
       <div class="accueil">
-          <h1>Savonnerie La Curieuse</h1>
-          <p>création de savons écologiques</p>
+        <nav class="activated">
+            <a href="savons.html" class="trn">Savons</a>
+            <a href="#ouTrouver" class="trn">Où trouver</a>
+            <a href="#contact">La savonnerie</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+            <img src="https://savonnerielacurieuse.com/images/categorie/suggestion.jpg" alt="rangée de savons">
+            <i>
+                <h1>Savonnerie La Curieuse</h1>
+                <p>création de savons écologiques</p>
+            </i>
       </div>
-
     </header>
-
-    <!-- <div class="content">
-        <div class="wrapper">
-            <p class="intro"><span class="trn">C'est à Vollore-Ville au coeur du parc régional Livradois-Forez que j'ai choisi de créer des savons surgras à partir du procédé de saponification à froid.</span>
-                <br/><span class="trn">Motivée par le désir de faire partager au plus grand nombre les bienfaits d'un savon doux et écologique, je crée en mars 2016 la savonnerie <b>La Curieuse</b>.</span></p>
-        </div>
-        <div id="saf" class="categorie"></div>
-        <div class="wrapper">
-            <h2 class="trn">La saponification à froid</h2>
-            <p class="fabr_intro"><span class="trn">Cette méthode de fabrication artisanale garantit la présence de glycérine dans le savon et permet de conserver une grande partie des propriétés bienfaisantes des huiles, beurres et huiles essentielles utilisés.</span>
-                <br/><span class="trn">C'est une méthode écologique dont le procédé de fabrication est sobre en énergie.</span></p>
-            <div class="fabr_wrap">
-                <h3 class="trn">Création du savon Fanny</h3>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AYqUlQ4HDQsMDgMGA//7/ATw6OT5Chbr3t//CgYzNjUEBP/7E/LeSF9g/QEE+//+AkZBO8jfzYSLi9vd4v79/QLO1tfl9RkRIUSXq7MDAgbLVidc7J9B6gAAAABJRU5ErkJggg==" data-src="images/fabrication/bain_mari.jpg" alt="Bain marie de karité" />
-                    <p class="trn">1- Les beurres de coco et de karité fondent doucement au bain-marie. Température: 35°C - 40°C.</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AZCXnwkCAv7+/vj4+OPt2gIA8uAJCQsAAAAFFB+O2N4C7AYhAfvbBQf8CP3trVBMAj0uICEiNdrzC7G2uPD5+gL2AAr7AAFLMBvt+gMWFyHDJCKoyeKUuQAAAABJRU5ErkJggg==" data-src="images/fabrication/pesee.jpg" alt="Pesé des huiles" />
-                    <p class="trn">2- En attendant, je pèse les huiles essentielles et le macérât de calendula qui sera ajouté en surgraissage.</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AYaKk4zmzgsC9oIaJP4KDAQZ9cVCx9xEaVEIBAr/9A8EAQ4PUUIkDfgB/wDzBhoMAggvQnkRFLWppvQB9gEJEQIVEjFoAQ0oU20mM1YJAv+aUBofu7dCDwAAAABJRU5ErkJggg==" data-src="images/fabrication/melange.jpg" alt="Ajout de soude dans solution" />
-                    <p class="trn">3- J'incorpore la solution de soude préparée en amont avec les huiles et les beurres fondus. Le processus de saponification commence.</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXJaOBAPEtWqyD11Xu/y+QKSEyQPBgB9wcQHDBH9BAkCoSwvbxcUAwL+BwUHBgIAAl0OFiyyxJNzMMzKyf38AAOTR0BJQE7+DzdcYWrv8+887x0RuL5AeQAAAABJRU5ErkJggg==" data-src="images/fabrication/mixeur.jpg" alt="Mixage de pâte" />
-                    <p class="trn">4- Méthode ancestrale d'accord, mais avec mixeur.</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AQJZSAQ8OW3i3TAjM/P5+QL+GQGe79z88PYBAwQCAgQDby8x/QDiLiEF/PTS0+P/BCEpNOXl7+sFFP0C/S0sEAQPDxkjIy39/wYTDwsWGBdQFh9sdV2amgAAAABJRU5ErkJggg==" data-src="images/fabrication/surgraissage.jpg" alt="Rajout d'huile dans pate" />
-                    <p class="trn">5- La pâte épaissit et forme une trace. C'est le moment d'ajouter les huiles essentielles et le macérât.</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AZ+XgvsABDU3RsjCsvLy8gOxCepezK3S//fQybsrNEcCAikmyCEPCrGruScaHyIpBGzxAfgA/xlqP+QueRQFEAIeJjdIW6lOxxAACBICBAW6mx60tRUk8AAAAABJRU5ErkJggg==" data-src="images/fabrication/petales.jpg" alt="Rajout de pétales" />
-                    <p class="trn">6- Après un dernier tour de mixeur j'ajoute quelques pétales
-                        <br/>de calendula pour faire joli !</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AaaQZxAICw4SF+jw+QMEAgTm4OLhB/rju+RDSWMGBggEEgwNFR3iExJIBgYG+vv+AocG9e4BSBoTFf723wAMDwGwsLAA+O0HBQQLA/nN1sGtvB738yiaTwAAAABJRU5ErkJggg==" data-src="images/fabrication/coulee.jpg" alt="Coulage de pâte dans moule" />
-                    <p class="trn">7- La pâte est coulée dans le grand moule chemisé.</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AaaXeAP//evu9QsPDw8MBwIBAP3/AQgFBARnwr/k5eoEyczO+vDwnwcGo0ZWFBseBB0dHSkh7GIxY0mQlfkA8wQSCv/o9CgC9fqziJzRwK5jfyQD9mwungAAAABJRU5ErkJggg==" data-src="images/fabrication/deco.jpg" alt="Rajout de pétales sur moule" />
-                    <p class="trn">8- Quelques pétales de plus !
-                        <br/>Le moule sera ensuite isolé thermiquement pendant 24 à 48h.</p>
-                </div>
-                <div class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AWFjVQLm2z5ba73AmVROfgJWD7VhbEzesI62GSoICQQCwPI6Du0AOTvasRweCQQGA89GJ57s7gnO8SBENb6nowT+BBAA2tZBQ1mYhJ0OBw4CAB9LtctiAQAAAABJRU5ErkJggg==" data-src="images/fabrication/decoupe.jpg" alt="Decoupe de savon" />
-                    <p class="trn">9- Le pain de savon est démoulé puis coupé en tranches.</p>
-                </div>
-                <div id="hat" class="fabr_desc"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A3d4fUoxF////fz7+gQICgPk+AtFJxNMVV8P/vPV2tgDpJ2c69zSdAslRQ4iKSADAvkEEh1FaVHArw0A+ZanywGjs8rq4NkUGR2YkW8oIzbRAiOjmFvm5wAAAABJRU5ErkJggg==" data-src="images/fabrication/armoire.jpg" alt="Savonnière range dans l'armoire" />
-                    <p class="trn">10- Ils sècheront durant 4 à 6 semaines dans l'armoire de cure.</p>
-                </div>
-            </div>
-            <div class="info_wrap">
-                <div class="info_box">
-                    <h3 class="trn">La saponification</h3>
-                    <p><span class="trn">La saponification est la réaction chimique qui transforme le mélange huile + soude en savon + glycérine.</span>
-                        <br/>
-                        <br/><span class="trn">Il ne reste aucune trace de soude dans un savon "fini".</span></p>
-                </div>
-                <div class="info_box">
-                    <h3 class="trn">Le surgras</h3>
-                    <p><span class="trn">En cours de fabrication, j'enrichis mes savons d'huiles aux vertus apaisantes, régénérantes, et nourrissantes. Ces huiles, ajoutées aux corps gras déjà saponifiés viennent sur-graisser le savon.</span>
-                        <br/><span class="trn">Un savon surgras est un savon qui ne se contente pas de laver, il permet aussi au film hydrolipidique de la peau de se restaurer plus rapidement.</span></p>
-                </div>
-            </div>
-        </div>
-        <div id="savons" class="categorie"></div>
-        <div class="wrapper">
-            <h2 class="trn">Les savons</h2>
-            <div class="savon_wrap">
-                <div class="savon" id="muesli">
-                    <div class="inner"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXN8KeDo6xEREw0MG9razgHUx5ICAvPo490AAwgVEwoE6fLgAff3/fwE6+LkBgIeBBQRJPQG7wAP/CEQDxUXIwTz394CBAMICQMICxP17etZ/h/Y1kq81wAAAABJRU5ErkJggg==" data-src="images/savons/muesli.jpg" alt="Savon Muesli">
-                        <div>
-                            <h3>Müesli</h3>
-                            <p><span class="trn">Gourmand et nourrissant, cet exfoliant aux fruits secs au léger parfum d'orange est enrichi au beurre de karité hydratant.</span>
-                            <br/><span class="trn">Surgras 8%</span></p>
-                        </div>
-                    </div>
-                    <div class="compo">
-                      <li>huile d'olive</li>
-                      <li>huile de coco</li>
-                      <li>beurre de karité</li>
-                      <li>huile de tournesol partiellement saponifiés</li>
-                      <li>eau</li>
-                      <li>glycérine</li>
-                      <li>amandes</li>
-                      <li>flocons d'avoine</li>
-                      <li>baies de goji</li>
-                      <li class="huileessentielle">huiles essentielles d'orange et de sauge sclarée</li>
-                    </div>
-                </div>
-                <div class="savon" id="delice">
-                    <div class="inner"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AX6MN+ny7xwUGc3Y0h0TFAQ4Ez8RKiTmxrc2I0vQ2OUD9+jnB/Ts/fz+9/b9IRAGAmBXPMPQ2vUCBwYD/B8mHwHJt4kVDw369/j/Bf0BAAbxZiVPFqVvFQAAAABJRU5ErkJggg==" data-src="images/savons/delice.jpg" alt="Savon Délice">
-                        <div>
-                            <h3>Délice</h3>
-                            <p><span class="trn">5 huiles végétales, de la glycérine, du cacao, de l'eau et c'est tout ! Délice ne contient pas d'huiles essentielles. Hypoallergénique.</span>
-                                <br><span class="trn">Surgras 8%</span></p>
-                        </div>
-                    </div>
-                    <div class="compo">
-                      <li>huile d'olive</li>
-                      <li>huile de coco</li>
-                      <li>huile d'olive</li>
-                      <li>beurre de karité</li>
-                      <li>huile de tournesol partiellement saponifiés</li>
-                      <li>eau</li>
-                      <li>glycérine</li>
-                      <li>beurre de cacao</li>
-                    </div>
-                </div>
-                <div class="savon" id="fanny">
-                    <div class="inner"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXiFLc7P6igK/AolFN3i9wHLxZUC9toACiUCAQcEBf8C8/r++gAS+fbv/QEEAgELAuHOzAYOGw0PIAkFBggICAMfFxJAKvz07O/48+fu6eJF7CIZceO+kwAAAABJRU5ErkJggg==" data-src="images/savons/fanny.jpg" alt="Savon Fanny">
-                        <div>
-                            <h3>Fanny</h3>
-                            <p><span class="trn">Tout en douceur avec son macérât de calendula apaisant et son discret parfum de lavande. Pétales de calendula du jardin.</span>
-                                <br/><span class="trn">Surgras 8%</span></p>
-                        </div>
-                    </div>
-                    <div class="compo">
-                      <li>huile d'olive</li>
-                      <li>huile de coco</li>
-                      <li>huile d'olive</li>
-                      <li>beurre de karité</li>
-                      <li>huile de tournesol partiellement saponifiés</li>
-                      <li>eau</li>
-                      <li>glycérine</li>
-                      <li>macérât de calendula</li>
-                      <li class="huileessentielle">huiles essentielles de lavandin et de litsée</li>
-                    </div>
-                </div>
-                <div class="savon" id="thecitron">
-                    <div class="inner"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AUtYCAMCCikiKsPL0x0NAgHd2rkC/vX38NEBAQMBAAQE5uPGCQD7AP8EAAD8AgL+BO3k4QsGCgcHBwIGCP8A9gLr2uj/+/wG/vwC+vkNCBCWAiAonBmkNAAAAABJRU5ErkJggg==" data-src="images/savons/thecitron.jpg" alt="Savon Thé Citron">
-                        <div>
-                            <h3>Thé citron</h3>
-                            <p><span class="trn">Le savon shampoing au parfum vitaminé ! Enrichi à l'huile de jojoba et à l'argile ghassoul, il nettoie délicatement votre peau et offre vigueur et brillance à vos cheveux. Surgras 5%</span></p>
-                        </div>
-                    </div>
-                    <div class="compo">
-                      <li>huile d'olive</li>
-                      <li>huile de coco</li>
-                      <li>huile d'olive</li>
-                      <li>beurre de karité</li>
-                      <li>huile de ricin partiellement saponifiés</li>
-                      <li>eau</li>
-                      <li>glycérine</li>
-                      <li>huile de jojoba</li>
-                      <li>argile ghassoul</li>
-                      <li class="huileessentielle">huiles essentielles de romarin et de litsée</li>
-                    </div>
-                </div>
-                <div class="savon romarin" id="theromarin">
-                    <div class="inner"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A4iHjEFZPAME/1tyb+oD7wOvnFoL68clD/0wDejF1+8DXj0AhZW+ChAW3+f0qrLMBPQECU5PSgICAurq6sOeyQHYzLz7/fTk5OQSEhK6taW2KCd+KAgF6AAAAABJRU5ErkJggg==" data-src="images/savons/theromarin.jpg" alt="Savon Thé Romarin">
-                        <div>
-                            <h3>Thé romarin</h3>
-                            <p><span class="trn">Comme son frère citronné, Thé romarin est enrichi à l'huile de jojoba et à l'argile ghassoul. Son parfum vif et frais promet quelques shampoings stimulants ! Surgras 5%</span></p>
-                        </div>
-                    </div>
-                    <div class="compo">
-                      <li>huile d'olive</li>
-                      <li>huile de coco</li>
-                      <li>huile de ricin</li>
-                      <li>beurre de karité partiellement saponifiés</li>
-                      <li>eau</li>
-                      <li>glycérine</li>
-                      <li>huile de jojoba</li>
-                      <li>argile ghassoul</li>
-                      <li class="huileessentielle">huile essentielle de romarin</li>
-                    </div>
-                </div>
-                <div class="info_box conseil">
-                    <h3 class="trn">Conseils de savonnière pour une peau apaisée.</h3>
-                    <div>
-                        <p class="trn">• Ecourtez vos longues, longues, douches trop chaudes.</p>
-                        <p class="trn">• Oubliez les vigoureuses et décapantes frictions à la serviette au sortir de la douche et préferez les gestes doux, tapotant et tout autant séchant.</p>
-                        <p class="trn">• Soyez curieux ! Sans tout à fait abandonner votre gel douche (ça viendra), essayez le savon surgras saponifié à froid et faites la différence.</p>
-                    </div>
-                </div>
-                <hr/>
-                <div class="savon cesar" id="cesar">
-                    <div class="inner"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A8fDphUg+UJFK5OVkf3/0QMZE/JVTkk3M0vIrnpARE4EMiQi7O3m7u/oCQciAgICAs7U5AcHBwMDAxkuJw4ODgTv8OoBBgT22t8OCAro5+k6ax/zaOz8cAAAAABJRU5ErkJggg==" data-src="images/savons/cesar.jpg" alt="Savon César">
-                        <div>
-                            <h3 class="trn">César - Savon ménager</h3>
-                            <p class="trn">Nettoyant et dégraissant toutes surfaces, César est très apprécié pour faire la vaisselle, nettoyer la cuisinière et faire briller la robinetterie. Ce savon naturellement glycériné est idéal pour faire la lessive à la main et ses qualités détachantes préparent efficacement le linge avant son passage dans la machine à laver.</p>
-                        </div>
-                    </div>
-                    <div class="compo">
-                      <li>huile d'olive</li>
-                      <li>huile de coco saponifiées</li>
-                      <li>eau</li>
-                      <li>glycérine</li>
-                      <li>...c'est tout !</li>
-                    </div>
-                </div>
-                <div class="info_box">
-                    <h3 class="trn">La lessive liquide: simple, efficace et naturelle</h3>
-                    <div>
-                        <p class="trn">• 50g de César râpé dans un saladier avec la râpe à fromage</p>
-                        <p class="trn">• 1L d'eau très chaude (la bouilloire fera le travail) à verser sur les copeaux de César. Il est possible d'allonger la lessive de 0.5L supplémentaire sans nuire à son efficacité.</p>
-                        <p class="trn">• 2 cuillères arasées de Cristaux de soude (carbonate de sodium, vendu au rayon droguerie ou lessive) à ajouter au mélange avant qu'il ne refroidisse. On pense à mettre ses gants de vaiselle pour manipuler les Cristaux de soude.</p>
-                        <p class="trn">Anticalcaire et dégraissant, les Cristaux de soude augmenteront le pouvoir nettoyant du savon César et participeront à l'entretien de la machine à laver au cours du cycle de lavage.</p>
-                        <p class="trn">Et pour les textiles délicats (laine, soie, etc.), il suffira de réaliser cette lessive sans les cristeaux de soude.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="ouTrouver" class="categorie"></div>
-        <div class="wrapper">
-            <h2 class="trn">Où les trouver ?</h2>
-            <div class="trouver_wrap">
-              <h3 class="trn">A la savonnerie</h3>
-              <div class="boutique_wrap">
-                <div>
-                  <p class="trn">Directement à la savonnerie. S'assurer de la disponibilité de la savonnière par un appel ou un SMS.</p>
-                </div>
-                <div>
-                  <p class="trn">Sur commande via l'adresse email de la savonnerie.</p>
-                </div>
-              </div>
-              <h3 class="trn">En Boutique</h3>
-              <div class="boutique_wrap">
-                <div>
-                  <p>Henne Indigo et Compagnie</p>
-                  <li>Boutique en ligne</li>
-                  <li><a href="http://www.henneindigoetcompagnie.fr/boutique/" rel="noopener">henneindigoetcompagnie.fr/boutique</a></li>
-                </div>
-                <div>
-                  <p>Épicerie Proxy Vollore-Ville</p>
-                  <li><a href="https://www.facebook.com/epicerieproxivolloreville/" rel="noopener">facebook.com/epicerieproxivolloreville</a></li>
-                  <li>Place de l'Église 63120 Vollore-Ville</li>
-                  <li>09 67 15 02 16</li>
-                </div>
-                <div>
-                  <p>Magasin de producteurs Aux Champs</p>
-                  <li>19 route de Clermont 63300 Thiers</li>
-                  <li>04 73 53 21 88</li>
-                  <li><a href="https://www.facebook.com/auxchampsthiers/" rel="noopener">facebook.com/auxchampsthiers/</a></li>
-                </div>
-                <div>
-                    <p>Pharmacie de La Monnerie</p>
-                    <li>43 Rue de la Gare 63650 La Monnerie-le-Montel</li>
-                    <li>04 73 51 43 17</li>
-                  </div>
-                <div>
-                  <p>Le Bio Sens</p>
-                  <li>25 rue Fileterie 63600 Ambert</li>
-                  <li>04 73 82 15 14</li>
-                  <li><a href="https://www.le-bio-sens.fr/" rel="noopener">le-bio-sens.fr</a></li>
-                  <li>Savon ménager césar uniquement</li>
-                </div>
-                <div>
-                  <p>L'auvergne en Vrac</p>
-                  <li>lauvergne.envrac@gmail.com</li>
-                  <li>06 10 08 07 03</li>
-                  <li><a href="https://www.facebook.com/lauvergne.envrac" rel="noopener">facebook.com/lauvergne.envrac</a></li>
-                  <li>Savon ménager césar uniquement</li>
-                </div>
-                <div>
-                    <p>L'Orange Bleue (Boutique associative & bio-équitable)</p>
-                    <li>3 rue de la gravière 63160 Billom</li>
-                    <li>06 33 29 10 19</li>
-                </div>
-              </div>
-              <h3 class="trn">Aux marchés</h3>
-              <div class="boutique_wrap">
-                <div>
-                  <p>Billom</p>
-                  <li>place de la Halle, un lundi sur deux</li>
-                  <li><b>Temporairement Place Alfred Thomas</b><li>
-                </div>
-                <div>
-                  <p>Montferrand</p>
-                  <li>place de la Fontaine, 1er samedi du mois</li>
-                  <li><b>De retour le 6 juin</b><li>
-                </div>
-                <div>
-                  <p>Olliergues</p>
-                  <li>place de la mairie, les dimanches matin, du 1er juillet au 26 août</li>
-                  <li><b>De retour le 1er février</b><li>
-                </div>
-              </div>
-            </div>
-            <div class="wrapper"><span id="events" class="anchor"></span>
-                <h2 class="trn">Evènements 2020</h2>
-                <div class="table_wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <td class="trn">Mars</td>
-                                <td class="trn">Avril</td>
-                                <td class="trn">Mai</td>
-                                <td class="trn">Juin</td>
-                                <td class="trn">Juillet</td>
-                                <td class="trn">Août</td>
-                                <td class="trn">Septembre</td>
-                                <td class="trn">Octobre</td>
-                                <td class="trn">Novembre</td>
-                                <td class="trn">Décembre</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                mars
-                                <td></td>
-                                avril
-                                <td class="annule">
-                                  <small><b>Annulé</b></small><br>
-                                  <span class="trn">samedi</span> 18
-                                    <br><span class="trn">dimanche</span> 19
-                                    <br><strong>Ambert Côté Jardin</strong>
-                                    <br><small>place Charles de Gaulles, Ambert 63600</small>
-                                </td>
-                                mai
-                                <td class="annule">
-                                  <small><b>Annulé</b></small><br>
-                                  <span class="trn">samedi</span> 2
-                                    <br><span class="trn">dimanche</span> 3
-                                    <br><strong>Foire Ecobiologique HUMUS</strong>
-                                    <br><small>Chateldon 63102</small>
-                                </td>
-                                juin
-                                <td class="annule">
-                                  <small><b>Annulé</b></small><br>
-                                  <span class="trn">samedi</span> 20
-                                    <br><span class="trn">de 10h à 18h</span>
-                                    <br><strong>L'art dans tout ses états</strong>
-                                    <br><small>place François Seguin, Maringues 63350</small>
-                                </td>
-                                juillet
-                                <td>
-                                  <span class="trn">Les dimanches</span>
-                                    <br><span class="trn">de 9h à 12h</span>
-                                    <br><strong>marché de producteurs "Les Terroirs du pays d'Olliergues"</strong>
-                                    <br><small>place de la mairie, Olliergues 63880</small>
-                                </td>
-                                Aout
-                                <td>
-                                  <span class="trn">Les dimanches</span>
-                                    <br><span class="trn">de 9h à 12h</span>
-                                    <br><strong>marché de producteurs "Les Terroirs du pays d'Olliergues"</strong>
-                                    <br><small>place de la mairie, Olliergues 63880</small>
-                                </td>
-                                septembre
-                                <td></td>
-                                octobre
-                                <td><span class="trn">Dimanche</span> 20
-                                    <br><span class="trn">de 10h à 18h</span>
-                                    <br><strong>Fête de la Pomme</strong>
-                                    <br><small>Marsat 63200</small>
-                                </td>
-                                novembre
-                                <td><strong>Marché de Noël</strong>
-                                    <br><small>Salle des fêtes, rue du Stade, La Monnerie Le Montel 63650</small>
-                                </td>
-                                decembre
-                                <td><span class="trn">samedi</span> 14
-                                    <br><span class="trn">à partir de 15h</span>
-                                    <br/><strong>Marché de Noël</strong>
-                                    <br><small>Escoutoux 63300</small>
-                                </td>
-                            </tr>
-
-                            2e
-                            <tr>
-                                mars
-                                <td></td>
-                                avril
-                                <td></td>
-                                mai
-                                <td></td>
-                                juin
-                                <td></td>
-                                 juillet
-                                <td class="annule"><small><b>Annulé</b></small><br><span class="trn">mardi</span> 14
-                                    <br><strong>Les concerts de Vollore et son marché de producteur</strong>
-                                    <br><small>Vollore-Ville 63120</small></td>
-                                aout
-                                <td><span class="trn">samedi</span> 20
-                                    <br><strong>Festival des insectes</strong>
-                                    <br><small>La cité de l'abeille,<br> Viscontat sur la terre 63250</small></td>
-                                septembre
-                                <td></td>
-                                octobre
-                                <td></td>
-                                novembre
-                                <td></td>
-                                decembre
-                                <td></td>
-                            </tr>
-
-                            2e
-                            <tr>
-                                mars
-                                <td></td>
-                                avril
-                                <td></td>
-                                mai
-                                <td></td>
-                                juin
-                                <td></td>
-                                 juillet
-                                <td class="annule"><small><b>Annulé</b></small><br>
-                                  <span class="trn">samedi</span> 25
-                                    <br><span class="trn">dimanche</span> 26
-                                    <br><strong>Fêtes médiévales au château de la Faye</strong>
-                                    <br><small>Olmet 63880</small></td>
-                                aout
-                                <td></td>
-                                septembre
-                                <td></td>
-                                octobre
-                                <td></td>
-                                novembre
-                                <td></td>
-                                decembre
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-          </div>
-        <div id="contact" class="categorie"></div>
-        <div class="wrapper">
-            <h2 class="trn">Me contacter</h2>
-            <div class="adresse">
-                <div class="location">
-                    <p>Valérie Cartailler
-                        <br/>Rue du Château
-                        <br/>63120 Vollore-Ville</p>
-                    <p>06 43 69 39 67
-                        <br/><span id="mail"></span></p>
-                </div>
-                <div id="map">
-                    <p id="mapText">Afficher sur la carte
-                        <noscript>La carte n'est pas disponible</noscript>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="wrapper">
-            <h2 class="trn">Sites amis</h2>
-            <div id="amis" class="site_wrap"><a hreflang="fr" href="http://www.rocandwall.fr/">Rocandwall</a><a hreflang="fr" href="https://www.facebook.com/auxchampsthiers/" rel="noopener">Aux Champs</a><a hreflang="fr" href="http://www.henneindigoetcompagnie.fr/">Henné Indigo et Compagnie</a><a hreflang="fr" href="https://www.facebook.com/epicerieproxivolloreville/">Épicerie Proxy Vollore-Ville</a><a hreflang="fr" href="http://www.amap-maringues.fr">AMAP de Maringues</a><a hreflang="fr" href="http://lemanoirdalice.com">Le Manoir d'Alice</a><a hreflang="fr" href="http:creakai.fr/">Créakai</a></div>
-        </div>
-        <div id="faq" class="wrapper">
-            <h2 class="trn">Foire Aux Questions</h2>
-            <div class="question">
-                <h3 class="trn">Vos savons sont-ils bio ?</h3>
-                <p><span class="trn">L'huile d'olive, de ricin, de jojoba, de coco, le beurre de karité, le beurre de cacao ainsi que toutes les huiles essentielles sont issus de l'agriculture biologique. L'huile de tournesol est produite sous mention Nature &amp; Progrès à Moissat, à moins de 30km de la savonnerie par le GAEC Dou Chonlai.</span>
-                    <br><span class="trn">Les savons sont emballés dans des sachets de cellophane végétale compostable.</span></p>
-            </div>
-            <div class="question">
-                <h3 class="trn">J'ai les cheveux secs, le savon shampooing Thé Citron me convient-il ?</h3>
-                <p><span class="trn">Le savon shampooing Thé Citron convient bien aux cheveux normaux et/ou mixtes. Si vos cheveux sont secs, préférez lui le savon Délice enrichi au beurre de cacao nourrissant. De plus, Délice est hypoallergénique et convient bien aux jeunes enfants.</span></p>
-            </div>
-            <div class="question">
-                <h3 class="trn">Curieuse, d'accord, mais cette savonnerie est elle sérieuse ?</h3>
-                <p><span class="trn">La savonnerie La Curieuse est enregistrée en temps qu'établissement cosmétique auprès de l'ANSM (Agence Nationale de Sécurité des Médicaments et des produits de santé) et chaque formule de savons est validée par un expert cosmétique.</span></p>
-            </div>
-            <div class="question">
-                <h3 class="trn">Est-ce qu'il y a des ingrédients d'origine animale dans vos savons ?</h3>
-                <p><span class="trn">Non. Les ingrédients utilisés dans la confection des savons La Curieuse sont d'origine végétale (huile d'olive, de coco, de tournesol, etc.) et minérale (argile ghassoul).</span></p>
-            </div>
-            <div class="question">
-                <h3 class="trn">Vous avez du savon au lait d'ânesse ?</h3>
-                <p><span class="trn">Non.</span></p>
-            </div>
-        </div>
-    </div>
-    <footer>
-        <div class="foot_wrap">
-            <div class="index">
-                <h2 class="trn">Retourner</h2><a class="trn" href="#apropos">à propos</a><a class="trn" href="#saf">la SAF</a><a class="trn" href="#savons">les savons</a><a class="trn" href="#ouTrouver">ou les trouver</a><a class="trn" href="#contact">me contacter</a><a class="trn" href="#amis">sites amis</a><a class="trn" href="#faq">F.A.Q.</a></div>
-            <div class="logo">
-                <p>Savonnerie
-                    <br/><strong>La<br/>Curieuse</strong>
-                    <br/><small class="trn">depuis 2016</small></p>
-                <p id="by"><small><a href="https://victor-azevedo.me">Victor Azevedo</a> · 2018</small></p>
-            </div>
-        </div>
-    </footer> -->
 </body>
-
 </html>

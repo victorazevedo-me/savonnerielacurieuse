@@ -21,11 +21,18 @@
             color: #333
         */
 
+        @font-face {
+            font-family: "Novar";
+            src: url("src/Novar.ttf") format('truetype'),
+            url("Novar.ttf") format('truetype');
+        }
+
         body {
             margin: 0;
             overflow-x: hidden;
             background-color: #ffd79d;
-            font-family: serif;
+            font-family: 'Novar', serif;
+            color: #2a2a2a;
 
         }
 
@@ -42,8 +49,9 @@
 
         #map {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            width: 50vw;
+            height: 50vh;
+            margin: 25vh auto;
             z-index: -1;
         }
         .ol-viewport {
