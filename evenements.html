@@ -16,6 +16,22 @@
         table td.annule {
             border: 2px dashed red;
         }
+
+        #prochain {
+            display: flex;
+        }
+
+        #prochain .bloc {
+
+            border: 1px solid #ccc;
+            padding: 1em;
+            margin: 1em 2em;
+
+        }
+
+        #prochain .bloc * {
+            margin: .5em 0;
+        }
     </style>
 </head>
 <body>
@@ -108,6 +124,12 @@
             date: [[20, 08]],
             nom: "Festival des insectes",
             coord: "La cité de l'abeille, Viscontat sur la terre 63250",
+            cancelled: false
+        },
+        {
+            date: [[15, 12]],
+            nom: "Marché de noel",
+            coord: "Escoutoux 63520",
             cancelled: false
         }]
 
@@ -219,32 +241,82 @@
 
     function prochaineRencontre() {
 
-        let d = new Date()
-        let ajdJour = d.getDate()
-        let ajdMois = d.getMonth() + 1
+        function joursRestant(elem) {
 
-        events.forEach(elem => {
+            const getDaysInMonth = function(month) {
+                return new Date(2020, month, 0).getDate();
+            }
+
+            let d = new Date()
+            let ajdJour = d.getDate()
+            let ajdMois = d.getMonth() + 1
 
             let eventMois = elem.date[0][1]
             let eventJour = elem.date[0][0]
+            let response = ""
 
-            if (elem.cancelled) return false
+            if (elem.cancelled) {
+                return false
+            }
 
             //meme mois
             if (eventMois === ajdMois) {
 
                 //jour superieur
                 if (typeof(eventJour) !== "string" && eventJour >= ajdJour) {
-                    console.log("Nom: ", elem.nom)
-                    console.log(`dans ${eventJour - ajdJour} jours`)
+                    response = `dans ${eventJour - ajdJour} jours`
+                }
+
+                //meme jour
+                else if (eventJour === ajdJour) {
+                    response = `aujourd'hui`
                 }
             }
 
-            //mois plus tard
-            else if (eventMois > ajdMois) {
-                console.log("Nom: ", elem.nom)
-                console.log(`dans ${eventMois - ajdMois} mois`)
+            //un mois plus tard
+            else if (eventMois - ajdMois === 1) {
+
+                let calcul = 0
+
+                if (eventJour < ajdJour) {
+                    calcul = (getDaysInMonth(ajdMois) - ajdJour) + eventJour
+                    response = `dans ${calcul} jours`
+                } else {
+                    calcul = eventJour - ajdJour
+                    response = `dans 1 mois et ${calcul} jours`
+                }
             }
+
+            //plusieurs mois plus tard
+            else if (eventMois - ajdMois > 1) {
+
+                let diffMois = eventMois - ajdMois
+                response = `dans ${diffMois} mois et ${eventJour} jours`
+            }
+
+            return response
+        }
+
+        events.forEach(elem => {
+
+            const restant = joursRestant(elem)
+
+            if (restant) {
+
+                const domprochain = document.getElementById('prochain');
+                const domWrap = document.createElement("div");
+                const domTitre = document.createElement("h4");
+                const domRestant = document.createElement("p");
+                
+                domTitre.innerText = elem.nom;
+                domRestant.innerText = restant;
+
+                domWrap.appendChild(domTitre);
+                domWrap.appendChild(domRestant);
+                domWrap.className = "bloc";
+
+                domprochain.appendChild(domWrap);
+            } 
         })
     }
     
