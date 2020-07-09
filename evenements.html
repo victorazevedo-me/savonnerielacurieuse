@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evenements</title>
+
+    <style>
+        table td {
+            height: 5em;
+            min-width: 10em;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <table id="evenements">
+        <thead>
+            <tr>
+                <td>Janvier</td>
+                <td>Fevrier</td>
+                <td>Mars</td>
+                <td>Avril</td>
+                <td>Mai</td>
+                <td>Juin</td>
+                <td>Juillet</td>
+                <td>Aout</td>
+                <td>Septembre</td>
+                <td>Octobre</td>
+                <td>Novembre</td>
+                <td>Decembre</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+        
+
+    <script>
+
+        let countArray = new Array(12).fill(0);
+        const events = [{
+                date: [[25, 07], [26, 07]],
+                nom: "Fêtes médiévales au château de la Faye",
+                coord: "Olmet 63880",
+                cancelled: true
+            },{
+                date: [[14, 07]],
+                nom: "Les concerts de Vollore et son marché de producteur",
+                coord: "Vollore-Ville 63120",
+                cancelled: true
+            },{
+                date: [[24, 07]],
+                nom: "Marché de producteurs",
+                coord: "Vollore-Ville 63120",
+                cancelled: false
+            },{
+                date: [[20, 08]],
+                nom: "Festival des insectes",
+                coord: "La cité de l'abeille, Viscontat sur la terre 63250",
+                cancelled: false
+            },{
+                date: [[18, 04], [19, 04]],
+                nom: "Ambert Côté Jardin",
+                coord: "place Charles de Gaulles, Ambert 63600",
+                cancelled: true
+            },{
+                date: [[02, 05], [03, 05]],
+                nom: "Marché de producteurs",
+                coord: "Vollore-Ville 63120",
+                cancelled: true
+            },{
+                date: [[20, 06, 10], [20, 06, 18]],
+                nom: "L'art dans tout ses états",
+                coord: "place François Seguin, Maringues 63350",
+                cancelled: true
+            },{
+                date: [["Les dimanches", 07, 9], ["Les dimanches", 07, 12]],
+                nom: 'Marché de producteurs "Les Terroirs du pays d\'Olliergues"',
+                coord: "place de la mairie, Olliergues 63880",
+                cancelled: false
+            },{
+                date: [["Les dimanches", 08]],
+                nom: 'Marché de producteurs "Les Terroirs du pays d\'Olliergues"',
+                coord: "Vollore-Ville 63120",
+                cancelled: false
+            }]
+
+            function dateControl(elem) {
+
+
+
+
+
+
+            }
+
+            function createTable(rows) {
+
+                const tbody = document.getElementById('evenements').querySelector('tbody');
+                
+                for (let i = 0; i < rows; i++) {
+
+                    const row = document.createElement("tr");
+                    tbody.appendChild(row);
+
+                    for (let j = 0; j < countArray.length; j++) {
+                        const col = document.createElement("td");
+                        row.appendChild(col);
+                    }
+                }
+            }
+
+            function addEventToTable(elem) {
+
+                const tbody = document.getElementById('evenements').querySelector('tbody');
+                const mois = elem.date[0][1] - 1
+                let isFilled = false;
+                let rowIndex = 0;
+                
+
+                while (isFilled === false) {
+
+                    let tdtext = tbody.children[rowIndex].children[mois].innerText
+
+                    //cell is empty
+                    if (tdtext === "") {
+
+                        const cell = tbody.children[rowIndex].children[mois]
+
+
+                        const domDate = document.createElement("p")
+                        const domNom = document.createElement("h4")
+                        const domCoord = document.createElement("p")
+
+                        domNom.innerText = elem.nom
+                        domCoord.innerText = elem.coord
+
+                        cell.appendChild(domNom)
+                        cell.appendChild(domCoord)
+
+                        if (elem.cancelled) cell.className = "annule"
+
+                        isFilled = true
+                    
+                    //if not, go to next row
+                    } else {
+                        rowIndex += 1
+                    }
+                }
+            }   
+
+
+            window.onload = function() {
+
+                events.forEach(item => {
+
+                    let mois = item.date[0][1]
+                    countArray[mois - 1] += 1
+
+                    // console.log("Mois départ: ", mois)
+                    // console.log("Nom: ", item.nom)
+                    // console.log("Coordonnées: ", item.coord)
+                    // console.log("Annulé: ", item.cancelled)
+                    // console.log(" ")
+                })
+
+                createTable(Math.max(...countArray))
+
+                events.forEach(item => {
+                    addEventToTable(item)
+                })
+            }
+
+    </script>
+</body>
+</html>

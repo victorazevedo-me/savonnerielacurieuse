@@ -24,155 +24,155 @@
     
             
                 
-        ::-moz-selection {
-            background-color: #e77224;
-            color: #ffffff;
-        }
-        ::selection {
-            background-color: #e77224;
-            color: #ffffff;
-        }
+    ::-moz-selection {
+        background-color: #e77224;
+        color: #ffffff;
+    }
+    ::selection {
+        background-color: #e77224;
+        color: #ffffff;
+    }
 
-        * {font-family: 'IBM Plex Serif', serif;}
+    * {font-family: 'IBM Plex Serif', serif;}
 
 
-        body {
+    body {
+        margin: 0;
+        color: #222;
+        
+
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        cursor: default;
+        text-align: justify;
+        font-size: 1.2em;
+    }
+    a {
+        text-decoration: none;
+        color: #222;
+    }
+    header {
+        font-family: serif;
+        position: relative;
+        height: 100vh;
+        background: #e68145;
+    }
+
+    header img,
+    .accueil {
+        transition: opacity .5s;
+    }
+
+    .accueil {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2em;
+        width: 60vw;
+        max-width: 45em;
+        top: 5vh;
+        margin: auto;
+        color: white;
+        letter-spacing: 3px;
+    }
+    header h1 {
+        display: inline-block;
+        font-size: 3.5em;
+        line-height: 1.2em;
+        font-weight: lighter;
+        text-align: left;
+        padding-top: .5em;
+        margin: 0;
+        white-space: nowrap;
+        transition: lett 1s;
+    }
+
+    header img {
+        width: 80%;
+        object-fit: cover;
+        height: 38vh;
+        padding: 2em 10%;
+    }
+
+    header p {
+        display: block;
+        font-size: 1.5em;
+        font-weight: 400;
+        line-height: 1em;
+        margin: 0;
+    }
+
+
+    header nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 1em;
+        margin: auto;
+    }
+
+    header nav a {
+        white-space: nowrap;
+        font-size: 1em;
+        padding: .5em 1em;
+        color: white;
+        text-decoration: none;
+        font-weight: lighter;
+    }
+
+    @media screen and (max-width: 900px) {
+
+
+        .accueil {
+            width: 100%;
+            padding: 0;
             margin: 0;
-            color: #222;
-            
-
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            cursor: default;
-            text-align: justify;
-            font-size: 1.2em;
-        }
-        a {
-            text-decoration: none;
-            color: #222;
-        }
-        header {
-            font-family: serif;
-            position: relative;
-            height: 100vh;
-            background: #e68145;
         }
 
-        header img,
-        .accueil {
-            transition: opacity .5s;
-        }
-
-        .accueil {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2em;
-            width: 60vw;
-            max-width: 45em;
-            top: 5vh;
-            margin: auto;
-            color: white;
-            letter-spacing: 3px;
-        }
         header h1 {
-            display: inline-block;
-            font-size: 3.5em;
-            line-height: 1.2em;
-            font-weight: lighter;
-            text-align: left;
-            padding-top: .5em;
-            margin: 0;
-            white-space: nowrap;
-            transition: lett 1s;
-        }
-
-        header img {
-            width: 80%;
-            object-fit: cover;
-            height: 38vh;
-            padding: 2em 10%;
+            font-size: 2em;
         }
 
         header p {
-            display: block;
-            font-size: 1.5em;
-            font-weight: 400;
-            line-height: 1em;
-            margin: 0;
+            font-size: 1em;
         }
 
+        header img {
+            width: 60vw;
+            height: 60vw;
+            max-width: 20em;
+            max-height: 20em;
+        }
 
         header nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 1em;
-            margin: auto;
+            flex-direction: column;
+            align-items: baseline;
         }
 
         header nav a {
-            white-space: nowrap;
-            font-size: 1em;
             padding: .5em 1em;
-            color: white;
-            text-decoration: none;
-            font-weight: lighter;
+            font-size: .8em;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+
+        header h1 {
+            font-size: 1.2em;
         }
 
-        @media screen and (max-width: 900px) {
-
-
-            .accueil {
-                width: 100%;
-                padding: 0;
-                margin: 0;
-            }
-
-            header h1 {
-                font-size: 2em;
-            }
-
-            header p {
-                font-size: 1em;
-            }
-
-            header img {
-                width: 60vw;
-                height: 60vw;
-                max-width: 20em;
-                max-height: 20em;
-            }
-
-            header nav {
-                flex-direction: column;
-                align-items: baseline;
-            }
-
-            header nav a {
-                padding: .5em 1em;
-                font-size: .8em;
-            }
+        header p {
+            font-size: .6em;
         }
 
-        @media screen and (max-width: 600px) {
-
-            header h1 {
-                font-size: 1.2em;
-            }
-
-            header p {
-                font-size: .6em;
-            }
-
-            header nav a {
-                padding: .5em 1em;
-                font-size: .6em;
-            }
+        header nav a {
+            padding: .5em 1em;
+            font-size: .6em;
         }
- 
+    }
+
     </style>
 
     <script type="application/ld+json">{"@context":"http://schema.org","@type":"HealthAndBeautyBusiness","name":"Savonnerie La Curieuse","address":{"@type":"PostalAddress","streetAddress":"rue du château","addressLocality":"Vollore-Ville","addressRegion":"Auvergne","postalCode":"63120"},"image":"https://savonnerielacurieuse.com/icons/android-chrome-512x512.png","telePhone":"0643693967","url":"https://savonnerielacurieuse.com","paymentAccepted":["cash","check"],"geo":{"@type":"GeoCoordinates","latitude":"45.78557","longitude":"3.59948"},"priceRange":"€€"}</script>
@@ -184,8 +184,8 @@
         <nav class="activated">
             <a href="savons.html" class="trn">Savons</a>
             <a href="#ouTrouver" class="trn">Où trouver</a>
-            <a href="#contact">La savonnerie</a>
-            <a href="contact.html">Contact</a>
+            <a href="#contact">Contact</a>
+            <a href="contact.html">FAQ</a>
           </nav>
             <img src="https://savonnerielacurieuse.com/images/categorie/suggestion.jpg" alt="rangée de savons">
             <i>
