@@ -25,7 +25,7 @@
 
             border: 1px solid #ccc;
             padding: 1em;
-            margin: 1em 2em;
+            margin: 1em;
 
         }
 
@@ -117,7 +117,7 @@
         {
             date: [["Les dimanches", 08]],
             nom: 'Marché de producteurs "Les Terroirs du pays d\'Olliergues"',
-            coord: "Vollore-Ville 63120",
+            coord: "place de la mairie, Olliergues 63880",
             cancelled: false
         },
         {
@@ -150,7 +150,12 @@
         note: ""
     }]
 
+    //
+    // FONCTIONS
+    //
+
     function calendrier() {
+
         let countArray = new Array(12).fill(0);
 
         function createTable(rows) {
@@ -173,16 +178,34 @@
 
             function dateControl(eventDate) {
 
-                const options = {weekday: "long", day: "numeric"}
                 let mainDate = new Date(2020, mois)
+                let string = ""
 
-
+                //premier jour
                 if (typeof(eventDate[0][0]) !== "string") {
                     mainDate.setDate(eventDate[0][0])
-                    return mainDate.toLocaleDateString("fr-FR", options)
+                    string = mainDate.toLocaleDateString("fr-FR", {weekday: "long", day: "numeric"})
                 } else {
-                    return eventDate[0][0]
-                }            
+                    string = eventDate[0][0]
+                }
+
+                //deuxieme jour
+                if (eventDate[1] && typeof(eventDate[1][0]) !== "string") {
+                    mainDate.setDate(eventDate[1][0])
+                    string += " & " + mainDate.toLocaleDateString("fr-FR", {weekday: "long", day: "numeric"})
+                }
+
+                //1ere heure
+                if (eventDate[0][2]) {
+                    string += `, ${eventDate[0][2]}h`
+                }
+
+                //2eme heure
+                if (eventDate[1] && eventDate[1][2]) {
+                    string += `- ${eventDate[1][2]}h`
+                }
+
+                return string
             }
 
             const tbody = document.getElementById('evenements').querySelector('tbody');
@@ -243,6 +266,21 @@
 
         function joursRestant(elem) {
 
+            function decodeStringDate(date, string) {
+
+                let jour = 0
+                let joursDansMois = getDaysInMonth(d.getMonth() + 1)
+                
+                if (string === "Les dimanches") {
+                    jour = 7
+
+                    let ecart = jour - date.getDay()
+                    ecart = (ecart > 0 ? 7 - ecart : ecart)
+
+                    return ecart
+                }
+            }
+
             const getDaysInMonth = function(month) {
                 return new Date(2020, month, 0).getDate();
             }
@@ -255,6 +293,11 @@
             let eventJour = elem.date[0][0]
             let response = ""
 
+            //
+            if (typeof(eventJour) === "string") {
+                eventJour = decodeStringDate(d, eventJour)
+            }
+
             if (elem.cancelled) {
                 return false
             }
@@ -263,7 +306,7 @@
             if (eventMois === ajdMois) {
 
                 //jour superieur
-                if (typeof(eventJour) !== "string" && eventJour >= ajdJour) {
+                if (eventJour >= ajdJour) {
                     response = `dans ${eventJour - ajdJour} jours`
                 }
 
@@ -320,6 +363,9 @@
         })
     }
     
+    //
+    // AU LANCEMENT
+    //
 
     window.onload = function() {
         calendrier()
