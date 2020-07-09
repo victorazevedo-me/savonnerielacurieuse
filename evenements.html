@@ -10,10 +10,23 @@
             height: 5em;
             min-width: 10em;
             background-color: #ddd;
+            padding: 0 1em;
+        }
+
+        table td.annule {
+            border: 2px dashed red;
         }
     </style>
 </head>
 <body>
+
+    <div>
+        <h3>Prochain evenements</h3>
+        <div id="prochain">
+
+        </div>
+    </div>
+
     <table id="evenements">
         <thead>
             <tr>
@@ -37,142 +50,210 @@
     </table>
         
 
-    <script>
+<script>
 
+    //
+    // DOIT ETRE SORTED
+    // 
+
+    const events = [{
+            date: [[18, 04], [19, 04]],
+            nom: "Ambert Côté Jardin",
+            coord: "place Charles de Gaulles, Ambert 63600",
+            cancelled: true
+        },
+        {
+            date: [[02, 05], [03, 05]],
+            nom: "Marché de producteurs",
+            coord: "Vollore-Ville 63120",
+            cancelled: true
+        },
+        {
+            date: [[20, 06, 10], [20, 06, 18]],
+            nom: "L'art dans tout ses états",
+            coord: "place François Seguin, Maringues 63350",
+            cancelled: true
+        },
+        {
+            date: [["Les dimanches", 07, 9], ["Les dimanches", 07, 12]],
+            nom: 'Marché de producteurs "Les Terroirs du pays d\'Olliergues"',
+            coord: "place de la mairie, Olliergues 63880",
+            cancelled: false
+        },
+        {
+            date: [[14, 07]],
+            nom: "Les concerts de Vollore et son marché de producteur",
+            coord: "Vollore-Ville 63120",
+            cancelled: true
+        },
+        {
+            date: [[24, 07]],
+            nom: "Marché de producteurs",
+            coord: "Vollore-Ville 63120",
+            cancelled: false
+        },
+        {
+            date: [[25, 07], [26, 07]],
+            nom: "Fêtes médiévales au château de la Faye",
+            coord: "Olmet 63880",
+            cancelled: true
+        },
+        {
+            date: [["Les dimanches", 08]],
+            nom: 'Marché de producteurs "Les Terroirs du pays d\'Olliergues"',
+            coord: "Vollore-Ville 63120",
+            cancelled: false
+        },
+        {
+            date: [[20, 08]],
+            nom: "Festival des insectes",
+            coord: "La cité de l'abeille, Viscontat sur la terre 63250",
+            cancelled: false
+        }]
+
+    const marches = [{
+        nom: "Billom",
+        date: "un lundi sur deux",
+        coord: "place de la Halle",
+        note: "Temporairement Place Alfred Thomas"
+    },{
+        nom: "Montferrand",
+        date: "1er samedi du mois",
+        coord: "place de la Fontaine",
+        note: ""
+    },{
+        nom: "Olliergues",
+        date: "les dimanches matin, du 1er juillet au 26 août",
+        coord: "place de la mairie",
+        note: ""
+    }]
+
+    function calendrier() {
         let countArray = new Array(12).fill(0);
-        const events = [{
-                date: [[25, 07], [26, 07]],
-                nom: "Fêtes médiévales au château de la Faye",
-                coord: "Olmet 63880",
-                cancelled: true
-            },{
-                date: [[14, 07]],
-                nom: "Les concerts de Vollore et son marché de producteur",
-                coord: "Vollore-Ville 63120",
-                cancelled: true
-            },{
-                date: [[24, 07]],
-                nom: "Marché de producteurs",
-                coord: "Vollore-Ville 63120",
-                cancelled: false
-            },{
-                date: [[20, 08]],
-                nom: "Festival des insectes",
-                coord: "La cité de l'abeille, Viscontat sur la terre 63250",
-                cancelled: false
-            },{
-                date: [[18, 04], [19, 04]],
-                nom: "Ambert Côté Jardin",
-                coord: "place Charles de Gaulles, Ambert 63600",
-                cancelled: true
-            },{
-                date: [[02, 05], [03, 05]],
-                nom: "Marché de producteurs",
-                coord: "Vollore-Ville 63120",
-                cancelled: true
-            },{
-                date: [[20, 06, 10], [20, 06, 18]],
-                nom: "L'art dans tout ses états",
-                coord: "place François Seguin, Maringues 63350",
-                cancelled: true
-            },{
-                date: [["Les dimanches", 07, 9], ["Les dimanches", 07, 12]],
-                nom: 'Marché de producteurs "Les Terroirs du pays d\'Olliergues"',
-                coord: "place de la mairie, Olliergues 63880",
-                cancelled: false
-            },{
-                date: [["Les dimanches", 08]],
-                nom: 'Marché de producteurs "Les Terroirs du pays d\'Olliergues"',
-                coord: "Vollore-Ville 63120",
-                cancelled: false
-            }]
 
-            function dateControl(elem) {
+        function createTable(rows) {
 
+            const tbody = document.getElementById('evenements').querySelector('tbody');
 
+            for (let i = 0; i < rows; i++) {
 
+                const row = document.createElement("tr");
+                tbody.appendChild(row);
 
-
-
-            }
-
-            function createTable(rows) {
-
-                const tbody = document.getElementById('evenements').querySelector('tbody');
-                
-                for (let i = 0; i < rows; i++) {
-
-                    const row = document.createElement("tr");
-                    tbody.appendChild(row);
-
-                    for (let j = 0; j < countArray.length; j++) {
-                        const col = document.createElement("td");
-                        row.appendChild(col);
-                    }
+                for (let j = 0; j < countArray.length; j++) {
+                    const col = document.createElement("td");
+                    row.appendChild(col);
                 }
             }
+        }
 
-            function addEventToTable(elem) {
+        function addEventToTable(elem) {
 
-                const tbody = document.getElementById('evenements').querySelector('tbody');
-                const mois = elem.date[0][1] - 1
-                let isFilled = false;
-                let rowIndex = 0;
-                
+            function dateControl(eventDate) {
 
-                while (isFilled === false) {
-
-                    let tdtext = tbody.children[rowIndex].children[mois].innerText
-
-                    //cell is empty
-                    if (tdtext === "") {
-
-                        const cell = tbody.children[rowIndex].children[mois]
+                const options = {weekday: "long", day: "numeric"}
+                let mainDate = new Date(2020, mois)
 
 
-                        const domDate = document.createElement("p")
-                        const domNom = document.createElement("h4")
-                        const domCoord = document.createElement("p")
+                if (typeof(eventDate[0][0]) !== "string") {
+                    mainDate.setDate(eventDate[0][0])
+                    return mainDate.toLocaleDateString("fr-FR", options)
+                } else {
+                    return eventDate[0][0]
+                }            
+            }
 
-                        domNom.innerText = elem.nom
-                        domCoord.innerText = elem.coord
+            const tbody = document.getElementById('evenements').querySelector('tbody');
+            const mois = elem.date[0][1] - 1
+            let isFilled = false;
+            let rowIndex = 0;   
 
-                        cell.appendChild(domNom)
-                        cell.appendChild(domCoord)
+            while (isFilled === false) {
 
-                        if (elem.cancelled) cell.className = "annule"
+                let tdtext = tbody.children[rowIndex].children[mois].innerText
 
-                        isFilled = true
+                //cell is empty
+                if (tdtext === "") {
+
+                    //dom addition
+                    const cell = tbody.children[rowIndex].children[mois]
+                    const domDate = document.createElement("p")
+                    const domNom = document.createElement("h4")
+                    const domCoord = document.createElement("p")
+
+                    domDate.innerText = dateControl(elem.date)
+                    domNom.innerText = elem.nom
+                    domCoord.innerText = elem.coord
                     
-                    //if not, go to next row
-                    } else {
-                        rowIndex += 1
-                    }
+                    cell.appendChild(domDate)
+                    cell.appendChild(domNom)
+                    cell.appendChild(domCoord)
+
+
+                    //cancelled
+                    if (elem.cancelled) cell.className = "annule"
+
+                    //stops loop
+                    isFilled = true
+                
+                //if not, go to next row
+                } else {
+                    rowIndex += 1
                 }
-            }   
+            }
+        }   
+    
+        events.forEach((item, i) => {
 
+        let mois = item.date[0][1]
+        countArray[mois - 1] += 1
 
-            window.onload = function() {
+        })
 
-                events.forEach(item => {
+        createTable(Math.max(...countArray))
 
-                    let mois = item.date[0][1]
-                    countArray[mois - 1] += 1
+        events.forEach(item => {
+        addEventToTable(item)
+        })
+    }
 
-                    // console.log("Mois départ: ", mois)
-                    // console.log("Nom: ", item.nom)
-                    // console.log("Coordonnées: ", item.coord)
-                    // console.log("Annulé: ", item.cancelled)
-                    // console.log(" ")
-                })
+    function prochaineRencontre() {
 
-                createTable(Math.max(...countArray))
+        let d = new Date()
+        let ajdJour = d.getDate()
+        let ajdMois = d.getMonth() + 1
 
-                events.forEach(item => {
-                    addEventToTable(item)
-                })
+        events.forEach(elem => {
+
+            let eventMois = elem.date[0][1]
+            let eventJour = elem.date[0][0]
+
+            if (elem.cancelled) return false
+
+            //meme mois
+            if (eventMois === ajdMois) {
+
+                //jour superieur
+                if (typeof(eventJour) !== "string" && eventJour >= ajdJour) {
+                    console.log("Nom: ", elem.nom)
+                    console.log(`dans ${eventJour - ajdJour} jours`)
+                }
             }
 
-    </script>
+            //mois plus tard
+            else if (eventMois > ajdMois) {
+                console.log("Nom: ", elem.nom)
+                console.log(`dans ${eventMois - ajdMois} mois`)
+            }
+        })
+    }
+    
+
+    window.onload = function() {
+        calendrier()
+        prochaineRencontre()
+    }
+
+</script>
 </body>
 </html>
