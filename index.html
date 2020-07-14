@@ -56,8 +56,8 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        padding: 2em 0;
         opacity: 0;
+        padding-top: 2em;
 
         transition: opacity .6s;
     }
@@ -72,9 +72,7 @@
         
         line-height: .9em;
         text-align: left;
-        padding-top: .5em;
         margin: 0;
-        transition: left 1s;
 
         font-size: 3.5em;
         font-weight: lighter;
@@ -89,7 +87,7 @@
         background-color: #e6804586;
         border-radius: 100%;
         z-index: -1;
-        top: 40%;
+        top: 25%;
         left: 40%;
         transform: scale(0);
         transition: all 1s 1s;
@@ -112,7 +110,7 @@
         display: block;
         font-size: 1.2em;
         line-height: 1em;
-        margin-top: .5em;
+        margin: .5em 0 0 0;
 
         font-weight: lighter;
         white-space: nowrap;
@@ -171,56 +169,135 @@
     header.loaded nav a:nth-child(4) {transition-delay: .8s}
 
     @media screen and (max-width: 900px) {
+        header nav {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        header nav a {
+            margin: .4em;
+        }
     }
 
+    #mobilemenu {
+        display: none;
+    }
+
+    #mobilemenu .open {
+        cursor: pointer;
+    }
+
+    #mobilemenu .close {
+        font-size: 2em;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    #mobilemenu .overlay {
+        position: fixed;
+        top: -100vw;
+        left: 0;
+        height: 0;
+        padding-top: 100vw;
+        width: 100%;
+        background-color: #e68145;
+        border-bottom-left-radius: 100vw;
+        border-bottom-right-radius: 100vw;
+        z-index: 2;
+        overflow: hidden;
+
+        transition: height 1s;
+    }
+
+    #mobilemenu.opened .overlay {
+        visibility: visible;
+        height: calc(100vh + 100vw);
+    }
+
+    #mobilemenu .overlay > div {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+    }
+
+    #mobilemenu .overlay > div a {
+        margin: .2em 0 0 0;
+    }
+    
+    #mobilemenu .overlay > div h3 {
+        margin: 1.5em 0 .5em 0;
+    }
+
+
+
     @media screen and (max-width: 600px) {
+
+        header {
+            flex-direction: column;
+        }
+
+        header nav {display: none;}
+        header nav#mobilemenu {display: flex;}
+
+        header .logo {
+            font-size: 16px;
+            padding-top: 3em;
+        }
+
     }
 
 
 
 
     .spacer {
-        height: 100vh;
+        height: 200vh;
     }
 
-
-
-
-    footer {
-        height: 323px;
-        padding: 5em 0;
-        background-color: #111;
-        color: white;
-        text-align: center;
-    }
-
-    footer div {
-        position: fixed;
-        bottom: 0
-    }
-
-    footer span {
-        font-size: .7em;
-        opacity: .6;
-    }
-
-    footer p {
-        margin-top: 0;
-        font-size: 2.5em;
-        line-height: 1em;
-    }
 
     </style>
 </head>
 
 <body>
     <header id="apropos">
-    <!-- <div class="accueil">
-        <img src="https://savonnerielacurieuse.com/images/categorie/suggestion.jpg" alt="rangée de savons">
-    </div> -->
 
-        <div>
-            <h1>Savonnerie<br />La Curieuse</h1>
+        <nav id="mobilemenu">
+            <span class="open">menu</span>
+            <div class="overlay">
+
+                <p class="close">&times;</p>
+                
+                <div>
+                    <h3>Savons</h3>
+                    <a href="">Cheveux & Corps</a>
+                    <a href="">Ménager</a>
+                    <a href="">Conseils</a>
+                    <a href="">Fabbrication</a>
+                </div>
+                
+                <div>
+                    <h3>Disponibilités</h3>
+                    <a href="">Boutiques</a>
+                    <a href="">Marchés</a>
+                    <a href="">Evénements</a>
+                </div>
+                
+                <div>
+                    <h3>Contact</h3>
+                    <a href="">A propos</a>
+                    <a href="">Contact</a>
+                    <a href="">Foire aux Questions</a>
+                </div>
+                 
+            </div>
+        </nav>
+
+        <div class="logo">
+            <h1>
+                <span>Savonnerie</span>
+                <br />
+                <span>La Curieuse</span>
+            </h1>
             <p>création de savons écologiques</p>
         </div>
         
@@ -228,37 +305,33 @@
             <a href="">Savons</a>
             <a href="">Disponibilités</a>
             <a href="">Contact</a>
-            <a href="">FAQ</a>
         </nav>
     </header>
 
     <div class="spacer"></div>
 
-    <footer>
-
-        <div>
-            <span class="adresse">Valérie Cartailler<br />Rue du Château<br />63120 Vollore-Ville</span>
-            <p>savonnerielacurieuse@gmail.com</p>
-            <br>
-            <span>Ou bien par téléphone</span>
-            <p>06 49 56 23 16 76</p>
-        </div>
-    </footer>
-
     <script>
 
         window.onload = function() {
-            const header = document.querySelector('header')
+            const header = document.querySelector('header');
+            const logo = header.querySelector('.logo');
             
-            console.log()
-            header.className = "loaded"
+            header.className = "loaded";
 
             document.onscroll = function(e) {
+                logo.style.transform = `translate(0, ${parseInt(window.scrollY / 3)}px)`
+            }
 
-                const windowY = window.scrollY
-                const ratio = 1 / header.offsetHeight
+            const mobilenav = document.getElementById('mobilemenu');
+            const mobileopen = mobilenav.querySelector('.open');
+            const mobileclose = mobilenav.querySelector('.close');
 
-                header.style.paddingTop = windowY
+            mobileopen.onclick = function() {
+                mobilenav.className = "opened"
+            }
+
+            mobileclose.onclick = function() {
+                mobilenav.className = ""
             }
         }
     </script>
