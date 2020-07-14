@@ -18,12 +18,8 @@
     <meta name="theme-color" content="#e77224">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=IBM+Plex+Serif:ital,wght@0,300;1,300;1,700&display=swap');
-    
-    
-    
+        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
             
-                
     ::-moz-selection {
         background-color: #e77224;
         color: #ffffff;
@@ -33,14 +29,12 @@
         color: #ffffff;
     }
 
-    * {font-family: 'IBM Plex Serif', serif;}
+    * {font-family: 'Abril Fatface', serif;}
 
 
     body {
         margin: 0;
         color: #222;
-        
-
         overflow-x: hidden;
         scroll-behavior: smooth;
         cursor: default;
@@ -51,57 +45,77 @@
         text-decoration: none;
         color: #222;
     }
+
+    header, header a {
+        color: #111;
+    }
+
     header {
         font-family: serif;
         position: relative;
-        height: 100vh;
-        background: #e68145;
-    }
-
-    header img,
-    .accueil {
-        transition: opacity .5s;
-    }
-
-    .accueil {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        text-align: center;
-        padding: 2em;
-        width: 60vw;
-        max-width: 45em;
-        top: 5vh;
-        margin: auto;
-        color: white;
-        letter-spacing: 3px;
+        justify-content: space-around;
+        padding: 2em 0;
+        opacity: 0;
+
+        transition: opacity .6s;
     }
+
+    header.loaded {
+        opacity: 1;
+    }
+
     header h1 {
+        position: relative;
         display: inline-block;
-        font-size: 3.5em;
-        line-height: 1.2em;
-        font-weight: lighter;
+        
+        line-height: .9em;
         text-align: left;
         padding-top: .5em;
         margin: 0;
+        transition: left 1s;
+
+        font-size: 3.5em;
+        font-weight: lighter;
         white-space: nowrap;
-        transition: lett 1s;
+        letter-spacing: 2px;
+    }
+
+    header h1::before {
+        position: absolute;
+        content: "";
+        padding: 10%;
+        background-color: #e6804586;
+        border-radius: 100%;
+        z-index: -1;
+        top: 40%;
+        left: 40%;
+        transform: scale(0);
+        transition: all 1s 1s;
+    }
+
+    header.loaded h1::before {
+        background-color: #e68145;
+        transform: scale(.8);
     }
 
     header img {
-        width: 80%;
         object-fit: cover;
-        height: 38vh;
-        padding: 2em 10%;
+        height: 35vh;
+        width: 35vh;
+        padding: 2em;
+        transition: transform 1s;
     }
 
     header p {
         display: block;
-        font-size: 1.5em;
-        font-weight: 400;
+        font-size: 1.2em;
         line-height: 1em;
-        margin: 0;
+        margin-top: .5em;
+
+        font-weight: lighter;
+        white-space: nowrap;
     }
 
 
@@ -109,90 +123,144 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        padding: 1em;
-        margin: auto;
+        margin: 0;
     }
 
     header nav a {
+        position: relative;
+        opacity: 0;
         white-space: nowrap;
-        font-size: 1em;
-        padding: .5em 1em;
-        color: white;
+        padding: 0 1em;
+        font-size: .9em;
         text-decoration: none;
-        font-weight: lighter;
     }
 
+    header nav a::before {
+        position: absolute;
+        content: "";
+        padding: 1em;
+        background-color: #e68145;
+        /* border: 2px solid #e68145; */
+        border-radius: 100%;
+        z-index: -1;
+        top: -0.35em;
+        left: .5em;
+        transform: scale(0);
+        transition: transform .5s;
+    }
+
+    header nav a:hover::before,
+    header nav a:focus::before {
+        transform: scale(1);
+        transition: transform .2s;
+    }
+
+    header nav a:focus::before {
+        transform: scale(1.5);
+        transition: transform .2s;
+    }
+
+    header.loaded nav a {
+        opacity: 1;
+        transition: opacity .5s;
+    }
+
+    header.loaded nav a:nth-child(1) {transition-delay: .2s}
+    header.loaded nav a:nth-child(2) {transition-delay: .4s}
+    header.loaded nav a:nth-child(3) {transition-delay: .6s}
+    header.loaded nav a:nth-child(4) {transition-delay: .8s}
+
     @media screen and (max-width: 900px) {
-
-
-        .accueil {
-            width: 100%;
-            padding: 0;
-            margin: 0;
-        }
-
-        header h1 {
-            font-size: 2em;
-        }
-
-        header p {
-            font-size: 1em;
-        }
-
-        header img {
-            width: 60vw;
-            height: 60vw;
-            max-width: 20em;
-            max-height: 20em;
-        }
-
-        header nav {
-            flex-direction: column;
-            align-items: baseline;
-        }
-
-        header nav a {
-            padding: .5em 1em;
-            font-size: .8em;
-        }
     }
 
     @media screen and (max-width: 600px) {
+    }
 
-        header h1 {
-            font-size: 1.2em;
-        }
 
-        header p {
-            font-size: .6em;
-        }
 
-        header nav a {
-            padding: .5em 1em;
-            font-size: .6em;
-        }
+
+    .spacer {
+        height: 100vh;
+    }
+
+
+
+
+    footer {
+        height: 323px;
+        padding: 5em 0;
+        background-color: #111;
+        color: white;
+        text-align: center;
+    }
+
+    footer div {
+        position: fixed;
+        bottom: 0
+    }
+
+    footer span {
+        font-size: .7em;
+        opacity: .6;
+    }
+
+    footer p {
+        margin-top: 0;
+        font-size: 2.5em;
+        line-height: 1em;
     }
 
     </style>
-
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"HealthAndBeautyBusiness","name":"Savonnerie La Curieuse","address":{"@type":"PostalAddress","streetAddress":"rue du château","addressLocality":"Vollore-Ville","addressRegion":"Auvergne","postalCode":"63120"},"image":"https://savonnerielacurieuse.com/icons/android-chrome-512x512.png","telePhone":"0643693967","url":"https://savonnerielacurieuse.com","paymentAccepted":["cash","check"],"geo":{"@type":"GeoCoordinates","latitude":"45.78557","longitude":"3.59948"},"priceRange":"€€"}</script>
 </head>
 
 <body>
     <header id="apropos">
-      <div class="accueil">
-        <nav class="activated">
-            <a href="savons.html" class="trn">Savons</a>
-            <a href="#ouTrouver" class="trn">Où trouver</a>
-            <a href="#contact">Contact</a>
-            <a href="contact.html">FAQ</a>
-          </nav>
-            <img src="https://savonnerielacurieuse.com/images/categorie/suggestion.jpg" alt="rangée de savons">
-            <i>
-                <h1>Savonnerie La Curieuse</h1>
-                <p>création de savons écologiques</p>
-            </i>
-      </div>
+    <!-- <div class="accueil">
+        <img src="https://savonnerielacurieuse.com/images/categorie/suggestion.jpg" alt="rangée de savons">
+    </div> -->
+
+        <div>
+            <h1>Savonnerie<br />La Curieuse</h1>
+            <p>création de savons écologiques</p>
+        </div>
+        
+        <nav>
+            <a href="">Savons</a>
+            <a href="">Disponibilités</a>
+            <a href="">Contact</a>
+            <a href="">FAQ</a>
+        </nav>
     </header>
+
+    <div class="spacer"></div>
+
+    <footer>
+
+        <div>
+            <span class="adresse">Valérie Cartailler<br />Rue du Château<br />63120 Vollore-Ville</span>
+            <p>savonnerielacurieuse@gmail.com</p>
+            <br>
+            <span>Ou bien par téléphone</span>
+            <p>06 49 56 23 16 76</p>
+        </div>
+    </footer>
+
+    <script>
+
+        window.onload = function() {
+            const header = document.querySelector('header')
+            
+            console.log()
+            header.className = "loaded"
+
+            document.onscroll = function(e) {
+
+                const windowY = window.scrollY
+                const ratio = 1 / header.offsetHeight
+
+                header.style.paddingTop = windowY
+            }
+        }
+    </script>
 </body>
 </html>
