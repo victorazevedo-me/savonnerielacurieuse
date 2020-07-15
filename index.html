@@ -3,256 +3,73 @@
 
 <head>
     <title class="trn">Savonnerie La Curieuse - Création de savons écologiques</title>
-    <meta name="keywords" content="savon, Vollore-Ville, ecologique,cosmetique, soin">
-    <meta name="description" content="Des savons 100% fait main crées à Vollore-Ville (Auvergne) selon la méthode ancestrale de saponification à froid.">
-    <meta name="author" content="Valérie Cartailler">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=rMJOo8Wqzp">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=rMJOo8Wqzp">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=rMJOo8Wqzp">
-    <link rel="manifest" href="site.webmanifest?v=rMJOo8Wqzp">
-    <link rel="mask-icon" href="safari-pinned-tab.svg?v=rMJOo8Wqzp" color="#e77224">
-    <link rel="shortcut icon" href="favicon.ico?v=rMJOo8Wqzp">
-    <meta name="msapplication-TileColor" content="#e77224">
-    <meta name="theme-color" content="#e77224">
+    <link href="src/header/header.css" rel="stylesheet">
+    <script src="src/header/header.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-            
-    ::-moz-selection {
-        background-color: #e77224;
-        color: #ffffff;
-    }
-    ::selection {
-        background-color: #e77224;
-        color: #ffffff;
-    }
-
-    * {font-family: 'Abril Fatface', serif;}
+        .spacer {
+            height: 60vh;
+        }
 
 
-    body {
-        margin: 0;
-        color: #222;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        cursor: default;
-        text-align: justify;
-        font-size: 1.2em;
-    }
-    a {
-        text-decoration: none;
-        color: #222;
-    }
+        #savons {
+            position: relative;
 
-    header, header a {
-        color: #111;
-    }
+        }
 
-    header {
-        font-family: serif;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        opacity: 0;
-        padding-top: 2em;
+        #savons h2 {
+            text-align: center;
+            font-size: 3em;
+        }
 
-        transition: opacity .6s;
-    }
+        #savons #menager {
+            margin-top: 2em;
+        }
 
-    header.loaded {
-        opacity: 1;
-    }
+        #savons .overlay {
+            position: absolute;
+            left: 45vw;
+            top: 20vw;
+            padding: 10em;
+            background-color: #ffa75e;
+            border-radius: 100vw;
+            transform: scale(0) rotate(00deg);
+            transition: transform .4s;
+        }
 
-    header h1 {
-        position: relative;
-        display: inline-block;
+        #savons .overlay.onview {
+            transform: scale(1) rotate(30deg);
+        }
+
+
+        .savon-wrap {
+            display: grid;
+            grid-template-columns: 22vw 22vw 22vw;
+            justify-content: center;
+            align-items: center;
+
+        }
         
-        line-height: .9em;
-        text-align: left;
-        margin: 0;
-
-        font-size: 3.5em;
-        font-weight: lighter;
-        white-space: nowrap;
-        letter-spacing: 2px;
-    }
-
-    header h1::before {
-        position: absolute;
-        content: "";
-        padding: 10%;
-        background-color: #e6804586;
-        border-radius: 100%;
-        z-index: -1;
-        top: 25%;
-        left: 40%;
-        transform: scale(0);
-        transition: all 1s 1s;
-    }
-
-    header.loaded h1::before {
-        background-color: #e68145;
-        transform: scale(.8);
-    }
-
-    header img {
-        object-fit: cover;
-        height: 35vh;
-        width: 35vh;
-        padding: 2em;
-        transition: transform 1s;
-    }
-
-    header p {
-        display: block;
-        font-size: 1.2em;
-        line-height: 1em;
-        margin: .5em 0 0 0;
-
-        font-weight: lighter;
-        white-space: nowrap;
-    }
-
-
-    header nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        margin: 0;
-    }
-
-    header nav a {
-        position: relative;
-        opacity: 0;
-        white-space: nowrap;
-        padding: 0 1em;
-        font-size: .9em;
-        text-decoration: none;
-    }
-
-    header nav a::before {
-        position: absolute;
-        content: "";
-        padding: 1em;
-        background-color: #e68145;
-        /* border: 2px solid #e68145; */
-        border-radius: 100%;
-        z-index: -1;
-        top: -0.35em;
-        left: .5em;
-        transform: scale(0);
-        transition: transform .5s;
-    }
-
-    header nav a:hover::before,
-    header nav a:focus::before {
-        transform: scale(1);
-        transition: transform .2s;
-    }
-
-    header nav a:focus::before {
-        transform: scale(1.5);
-        transition: transform .2s;
-    }
-
-    header.loaded nav a {
-        opacity: 1;
-        transition: opacity .5s;
-    }
-
-    header.loaded nav a:nth-child(1) {transition-delay: .2s}
-    header.loaded nav a:nth-child(2) {transition-delay: .4s}
-    header.loaded nav a:nth-child(3) {transition-delay: .6s}
-    header.loaded nav a:nth-child(4) {transition-delay: .8s}
-
-    @media screen and (max-width: 900px) {
-        header nav {
-            flex-direction: column;
-            align-items: flex-start;
+        .savon-wrap .savon img {
+            background-color: white;
+            width: 20vw;
+            height: 20vw;
+            border: 3px solid #2a2a2a;
         }
 
-        header nav a {
-            margin: .4em;
-        }
-    }
-
-    #mobilemenu {
-        display: none;
-    }
-
-    #mobilemenu .open {
-        cursor: pointer;
-    }
-
-    #mobilemenu .close {
-        font-size: 2em;
-        text-align: center;
-        margin-top: 2rem;
-    }
-
-    #mobilemenu .overlay {
-        position: fixed;
-        top: -100vw;
-        left: 0;
-        height: 0;
-        padding-top: 100vw;
-        width: 100%;
-        background-color: #e68145;
-        border-bottom-left-radius: 100vw;
-        border-bottom-right-radius: 100vw;
-        z-index: 2;
-        overflow: hidden;
-
-        transition: height 1s;
-    }
-
-    #mobilemenu.opened .overlay {
-        visibility: visible;
-        height: calc(100vh + 100vw);
-    }
-
-    #mobilemenu .overlay > div {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        margin: auto;
-    }
-
-    #mobilemenu .overlay > div a {
-        margin: .2em 0 0 0;
-    }
-    
-    #mobilemenu .overlay > div h3 {
-        margin: 1.5em 0 .5em 0;
-    }
-
-
-
-    @media screen and (max-width: 600px) {
-
-        header {
-            flex-direction: column;
+        .savon-wrap .savon h3 {
+            margin: .5em 0 2em 0;
+            text-align: center;
+            font-size: 1.5em;
         }
 
-        header nav {display: none;}
-        header nav#mobilemenu {display: flex;}
-
-        header .logo {
-            font-size: 16px;
-            padding-top: 3em;
+        .savon-wrap .savon.cetc:nth-child(1),
+        .savon-wrap .savon.cetc:nth-child(3),
+        .savon-wrap .savon.cetc:nth-child(4) {
+            transform: translateY(300px);
         }
-
-    }
-
-
-
-
-    .spacer {
-        height: 200vh;
-    }
 
 
     </style>
@@ -272,7 +89,7 @@
                     <a href="">Cheveux & Corps</a>
                     <a href="">Ménager</a>
                     <a href="">Conseils</a>
-                    <a href="">Fabbrication</a>
+                    <a href="">Fabrication</a>
                 </div>
                 
                 <div>
@@ -293,6 +110,7 @@
         </nav>
 
         <div class="logo">
+            <div class="ball"></div>
             <h1>
                 <span>Savonnerie</span>
                 <br />
@@ -310,21 +128,101 @@
 
     <div class="spacer"></div>
 
+    <content id="savons">
+
+        <div class="overlay"></div>
+
+        <h2>Cheveux & Corps</h2>
+
+        <div class="savon-wrap cetc">
+            <div class="savon">
+                <img />
+                <h3>Muesli</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Delice</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Thé Romarin</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Thé Citron</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Fanny</h3>
+            </div>
+        </div>
+
+        <h2 id="menager">Ménager</h2>
+
+        <div class="savon-wrap">
+            <div class="savon">
+                <img />
+                <h3>César</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>César lessive</h3>
+            </div>
+        </div>
+
+    </content>
+
+    <div class="spacer"></div>
+
     <script>
 
         window.onload = function() {
+
             const header = document.querySelector('header');
             const logo = header.querySelector('.logo');
-            
-            header.className = "loaded";
-
-            document.onscroll = function(e) {
-                logo.style.transform = `translate(0, ${parseInt(window.scrollY / 3)}px)`
-            }
+            const logoH = logo.querySelector('h1');
+            const logoP = logo.querySelector('p');
 
             const mobilenav = document.getElementById('mobilemenu');
             const mobileopen = mobilenav.querySelector('.open');
             const mobileclose = mobilenav.querySelector('.close');
+
+            const wrap = document.getElementById('savons');
+            const savons = wrap.querySelectorAll('.savon');
+            const savonOverlay = wrap.querySelector('.overlay')
+
+
+
+            
+            header.className = "loaded";
+
+            document.onscroll = function(e) {
+
+                logoH.style.transform = `translate(0, ${parseInt(window.scrollY / 3)}px)`
+                logoP.style.transform = `translate(0, ${parseInt(window.scrollY / 3)}px)`
+
+                savons.forEach((elem, i) => {
+
+                    if (i === 0 || i === 2 || i === 3 || i === 5 || i === 6) {
+
+                        const topOfSavons = elem.offsetHeight + window.innerHeight - 200
+                        const toTopRatio = 300 * (window.scrollY / topOfSavons)
+
+                        if (window.scrollY < topOfSavons) {
+
+                            console.log(parseFloat(toTopRatio));
+                            elem.style.transform = `translate(0, ${300 - toTopRatio}px)`;
+                            savonOverlay.className = "overlay";
+
+                        } else {
+
+                            console.log(true);
+                            elem.style.transform = `translate(0, 0px)`;
+                            savonOverlay.className = "overlay onview";
+                        }
+                    }
+                })
+            }
 
             mobileopen.onclick = function() {
                 mobilenav.className = "opened"
@@ -334,6 +232,7 @@
                 mobilenav.className = ""
             }
         }
+
     </script>
 </body>
 </html>
