@@ -5,14 +5,14 @@
     <title>Fabrication</title>
     <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js" data-auto-a11y="true"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="src/fabrication.css" rel="stylesheet">
-    <script src="src/fabrication.js" defer></script>
+    <link href="src/fabrication/fabrication.css" rel="stylesheet">
+    <script src="src/fabrication/fabrication.js" defer></script>
   </head>
   <body>
     <div class="fabrication">
 
       <div id="imgwrap">
-        <img src="https://savonnerielacurieuse.com/images/fabrication/bain_mari.jpg" alt="bain mari" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/bain_mari.jpg" alt="bain mari" draggable="false" class="focused">
         <img src="https://savonnerielacurieuse.com/images/fabrication/pesee.jpg" alt="pesee" draggable="false">
         <img src="https://savonnerielacurieuse.com/images/fabrication/melange.jpg" alt="melange" draggable="false">
         <img src="https://savonnerielacurieuse.com/images/fabrication/surgraissage.jpg" alt="surgraissage" draggable="false">
@@ -25,7 +25,6 @@
       </div>
 
       <div class="fabr-text">
-        <p id="etape-count">1</p>
         <div id="etape-desc">
           <p>Les beurres de coco et de karité fondent doucement au bain-marie. Température: 35°C - 40°C.</p>
           <p>En attendant, je pèse les huiles essentielles et le macérât de calendula qui sera ajouté en surgraissage.</p>
@@ -38,14 +37,6 @@
           <p>Le pain de savon est démoulé puis coupé en tranches.</p>
           <p>Ils sècheront durant 4 à 6 semaines dans l'armoire de cure.</p>
         </div>
-        <p id="etape-dir">
-          <button type="button" name="prev" id="fabr-prev">
-            <i class="fas fa-arrow-left"></i>
-          </button>
-          <button type="button" name="next" id="fabr-next">
-            <i class="fas fa-arrow-right"></i>
-          </button>
-        </p>
       </div>
     </div>
   </body>
