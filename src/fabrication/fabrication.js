@@ -13,8 +13,9 @@ function fabricationScroll() {
 
     function imgscroll() {
 
-        let width = 225
-        let toscroll = width * count
+        let width = imgwrap.children[0].offsetWidth
+        let margin = imgwrap.offsetWidth * .06 // a changer si la marge des img change
+        let toscroll = (width + margin) * count
 
         //scroll
         imgwrap.style.transform = `translateX(${-toscroll}px)`;
@@ -46,19 +47,21 @@ function fabricationScroll() {
         parafs[count].style.zIndex = 5
     }
 
+    //a factoriser
     function doEvent(is) {
 
         lastcount = count
 
         if (is === "next" && count < maxcount - 1) {
             count += 1
+            imgscroll()
+            descScroll()
         }
         else if (is === "previous" && count > 0) {
             count -= 1
+            imgscroll()
+            descScroll()
         }
-
-        imgscroll()
-        descScroll()
     }
 
     //events
@@ -67,7 +70,7 @@ function fabricationScroll() {
 
         item.onclick = function() {
 
-            if (this.nextElementSibling.className === "focused") {
+            if (this.nextElementSibling && this.nextElementSibling.className === "focused") {
                 doEvent('previous') 
             }
             else {
