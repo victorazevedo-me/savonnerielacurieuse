@@ -1,0 +1,21 @@
+
+Accueil:
+
+    Page accueil titre en haut
+    Video pour background accueil
+
+
+
+Savons:
+
+    2 categories
+    - savons doux
+    - savons menager avec: 
+        - cesar
+        - cesar lessive
+
+    Video pour vaisselle cesar
+    pour chaque savons une photo avec tout les ingredients
+
+
+

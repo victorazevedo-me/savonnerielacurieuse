@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fabrication</title>
+    <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js" data-auto-a11y="true"></script>
+    <style media="screen">
+
+      button, body {font-family: 'Open Sans', sans-serif;}
+
+      body {
+        background: #6f7b61;
+        text-align: center;
+      }
+
+      div.fabrication {
+        background: #fff;
+        padding: 1em 3em;
+        margin: 3em;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      #imgwrap {
+        display: flex;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      #imgwrap img {
+        width: 200px;
+        height: 200px;
+
+        transition: margin .3s ease-out;
+      }
+
+      .fabr-text {
+        width: 300px;
+        padding-left: 2em;
+        text-align: center;
+      }
+
+      #etape-count {
+        width: 2em;
+        height: 2em;
+        display: inline-block;
+        font-size: 1.5em;
+        font-weight: 900;
+        border-radius: 100%;
+        background: #6f7b6199;
+        color: white;
+        text-align: center;
+        line-height: 2em;
+        margin: .5em 0;
+      }
+
+      #etape-desc {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: 1em;
+      }
+
+      #etape-desc p {
+        text-align: left;
+        position: absolute;
+        opacity: 0;
+        margin: 0;
+        z-index: 4;
+        transition: opacity .2s;
+      }
+
+      #etape-desc p:first-child {opacity: 1;z-index: 5;}
+
+      #etape-dir {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 180px;
+      }
+
+      #etape-dir button {
+        background: transparent;
+        border: none;
+        font-size: 1.2em;
+        padding: .2em 1em;
+        font-weight: lighter;
+        color: #6f7b6199;
+        cursor: pointer;
+
+        transition: color .1s;
+      }
+
+      #etape-dir button:hover {
+        color: #6f7b61;
+        transition: color .1s;
+      }
+
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="fabrication">
+
+      <div id="imgwrap">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/bain_mari.jpg" alt="bain mari" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/pesee.jpg" alt="pesee" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/melange.jpg" alt="melange" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/surgraissage.jpg" alt="surgraissage" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/mixeur.jpg" alt="mixeur" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/petales.jpg" alt="petales" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/coulee.jpg" alt="coulee" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/deco.jpg" alt="deco" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/decoupe.jpg" alt="decoupe" draggable="false">
+        <img src="https://savonnerielacurieuse.com/images/fabrication/armoire.jpg" alt="armoire" draggable="false">
+      </div>
+
+      <div class="fabr-text">
+        <p id="etape-count">1</p>
+        <div id="etape-desc">
+          <p>Les beurres de coco et de karité fondent doucement au bain-marie. Température: 35°C - 40°C.</p>
+          <p>En attendant, je pèse les huiles essentielles et le macérât de calendula qui sera ajouté en surgraissage.</p>
+          <p>J'incorpore la solution de soude préparée en amont avec les huiles et les beurres fondus. Le processus de saponification commence.</p>
+          <p>Méthode ancestrale d'accord, mais avec mixeur.</p>
+          <p>La pâte épaissit et forme une trace. C'est le moment d'ajouter les huiles essentielles et le macérât.</p>
+          <p>Après un dernier tour de mixeur j'ajoute quelques pétales de calendula pour faire joli !</p>
+          <p>La pâte est coulée dans le grand moule chemisé.</p>
+          <p>Quelques pétales de plus ! Le moule sera ensuite isolé thermiquement pendant 24 à 48h.</p>
+          <p>Le pain de savon est démoulé puis coupé en tranches.</p>
+          <p>Ils sècheront durant 4 à 6 semaines dans l'armoire de cure.</p>
+        </div>
+        <p id="etape-dir">
+          <button type="button" name="prev" id="fabr-prev">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <button type="button" name="next" id="fabr-next">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      const id = elem => document.getElementById(elem)
+
+      //toute les fct pour fabrication
+      function fabricationScroll() {
+
+        //init consts
+        const firstimg = id('imgwrap').querySelector('img')
+        const maxcount = id('imgwrap').querySelectorAll('img').length
+        let count = 0
+
+        //scroll les images suivant leur res
+        function imgscroll(is) {
+
+          const margin = parseInt(firstimg.style.marginLeft) || 0
+          let width = firstimg.offsetWidth
+
+          if (is === "next") width = -width
+
+          firstimg.style.marginLeft = (margin + width) + "px"
+        }
+
+        function setMaxDescHeight() {
+
+          let maxHeight = 0
+
+          id('etape-desc').querySelectorAll('p').forEach(item => {
+            if (item.offsetHeight > maxHeight)
+              maxHeight = item.offsetHeight
+          })
+
+          id('etape-desc').style.height = maxHeight + "px"
+        }
+
+        function descScroll(is) {
+
+          //in/decrement displayed counter
+          id('etape-count').innerText = count + 1
+
+          const parafs = id('etape-desc').querySelectorAll('p')
+          const lastcount = (is === "next" ? count - 1 : count + 1)
+
+          parafs[lastcount].style.opacity = 0
+          parafs[lastcount].style.zIndex = 4
+          parafs[count].style.opacity = 1
+          parafs[count].style.zIndex = 5
+        }
+
+        //next
+        id('fabr-next').onclick = function() {
+
+          if (count < maxcount - 1) {
+            count += 1
+            imgscroll('next')
+            descScroll('next')
+          }
+        }
+
+        //previous
+        id('fabr-prev').onclick = function() {
+
+          if (count > 0) {
+            count -= 1
+            imgscroll('previous')
+            descScroll('previous')
+          }
+        }
+
+        //initial functions
+        setMaxDescHeight()
+      }
+
+
+      window.onload = function() {
+        fabricationScroll()
+      }
+
+    </script>
+  </body>
+</html>
