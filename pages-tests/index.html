@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title class="trn">Savonnerie La Curieuse - Création de savons écologiques</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link href="src/header/header.css" rel="stylesheet">
+    <link href="src/savons/savons.css" rel="stylesheet">
+
+    <style>
+        .spacer {
+            height: 60vh;
+        }
+
+        body {
+            color: #111
+        }
+
+
+        #outrouver {
+            position: relative;
+        }
+
+        #outrouver h2 {
+            text-align: center;
+            font-size: 3em;
+        }
+
+        #outrouver .overlay {
+            position: absolute;
+            top: -2em;
+            left: 0;
+            width: 80vw;
+            height: 15em;
+            border-top-right-radius: 100vw;
+            border-bottom-right-radius: 100vw;
+            background: #D8D86F;
+        }
+
+        #outrouver .wrap {
+            width: 80%;
+            margin: auto;
+        }
+
+        #outrouver .wrap > div {
+            width: 100%;
+            margin: 2em 0;
+            background-color: white;
+            border: 3px solid #111;
+            overflow: hidden;
+        }
+
+        #outrouver .wrap > div h3 {
+            font-size: 2em;
+            margin: 1em;
+        }
+
+        #outrouver .list {
+            display: flex;
+            transition: transform .6s;
+        }
+
+        #outrouver .list > div {
+            position: relative;
+            min-width: 350px;
+            max-width: 350px;
+            margin: 20px;
+            padding: 1em;
+            /* border: 3px solid #111; */
+        }
+
+        #outrouver .list > div:before {
+            content: "";
+            position: absolute;
+            top: 1em;
+            left: calc(50% - 2em);
+            padding: 2em;
+            background-color: lightsalmon;
+            z-index: -1;
+            border-radius: 100vw;
+            transform: scale(0);
+            transition: transform .4s .6s;
+        }
+
+        #outrouver .list > div.focused:before {
+            transform: scale(1);
+        }
+
+        #outrouver .list > div h4,
+        #outrouver .list > div p {
+            margin: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header id="apropos">
+
+        <nav id="mobilemenu">
+            <span class="open">menu</span>
+            <div class="overlay">
+
+                <p class="close">&times;</p>
+                
+                <div>
+                    <h3>Savons</h3>
+                    <a href="">Cheveux & Corps</a>
+                    <a href="">Ménager</a>
+                    <a href="">Conseils</a>
+                    <a href="">Fabrication</a>
+                </div>
+                
+                <div>
+                    <h3>Disponibilités</h3>
+                    <a href="">Boutiques</a>
+                    <a href="">Marchés</a>
+                    <a href="">Evénements</a>
+                </div>
+                
+                <div>
+                    <h3>Contact</h3>
+                    <a href="">A propos</a>
+                    <a href="">Contact</a>
+                    <a href="">Foire aux Questions</a>
+                </div>
+                 
+            </div>
+        </nav>
+
+        <div class="logo">
+            <div class="ball"></div>
+            <h1>
+                <span>Savonnerie</span>
+                <br />
+                <span>La Curieuse</span>
+            </h1>
+            <p>création de savons écologiques</p>
+        </div>
+        
+        <nav>
+            <a href="">Savons</a>
+            <a href="">Disponibilités</a>
+            <a href="">Contact</a>
+        </nav>
+    </header>
+
+    <div class="spacer"></div>
+
+    <content id="savons">
+
+        <div class="overlay"></div>
+        <div class="overlay"></div>
+
+        <h2>Cheveux & Corps</h2>
+
+        <div class="savon-wrap cetc">
+            <div class="savon">
+                <img />
+                <h3>Muesli</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Delice</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Thé Romarin</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Thé Citron</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>Fanny</h3>
+            </div>
+        </div>
+
+        <h2 id="menager">Ménager</h2>
+
+        <div class="savon-wrap">
+            <div class="savon">
+                <img />
+                <h3>César</h3>
+            </div>
+            <div class="savon">
+                <img />
+                <h3>César lessive</h3>
+            </div>
+        </div>
+
+    </content>
+
+    <div class="spacer"></div>
+
+    <content id="outrouver">
+
+        <div class="overlay"></div>
+
+        <h2>Ou les trouver ?</h2>
+
+        <div class="wrap">
+            <div class="boutique">
+                <h3>En Boutique</h3>
+                <div class="list">
+                    <div>
+                        <h4>Henne Indigo et Compagnie</h4>
+                        <p>Boutique en ligne</p>
+                    </div>
+                    <div>
+                        <h4>Épicerie Proxy Vollore-Ville</h4>
+                        <p>Place de l'Église 63120 Vollore-Ville</p>
+                    </div>
+                    <div>
+                        <h4>Pharmacie de La Monnerie</h4>
+                        <p>43 Rue de la Gare 63650 La Monnerie-le-Montel</p>
+                    </div>
+                    <div>
+                        <h4>Magasin de producteurs Aux Champs</h4>
+                        <p>19 route de Clermont 63300 Thiers</p>
+                    </div>
+                    <div>
+                        <h4>L'auvergne en Vrac</h4>
+                        <p>lauvergne.envrac@gmail.com</p>
+                    </div>
+                    <div>
+                        <h4>L'Orange Bleue (Boutique associative & bio-équitable)</h4>
+                        <p>3 rue de la gravière 63160 Billom</p>
+                    </div>
+                </div>
+            </div>
+            <div class="marches">
+                <h3>Aux Marchés</h3>
+                <div class="list">
+                    <div>
+                        <h4>Billom</h4>
+                        <p>place de la Halle, un lundi sur deux</p>
+                    </div>
+                    <div>
+                        <h4>Montferrand</h4>
+                        <p>place de la Fontaine, 1er samedi du mois</p>
+                    </div>
+                    <div>
+                        <h4>Olliergues</h4>
+                        <p>place de la mairie, les dimanches matin, du 1er juillet au 26 août</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </content>
+
+    <div class="spacer"></div>
+
+    <script>
+
+        window.onload = function() {
+
+            const header = document.querySelector('header');
+            const logo = header.querySelector('.logo');
+            const logoH = logo.querySelector('h1');
+            const logoP = logo.querySelector('p');
+
+            const mobilenav = document.getElementById('mobilemenu');
+            const mobileopen = mobilenav.querySelector('.open');
+            const mobileclose = mobilenav.querySelector('.close');
+
+            const wrap = document.getElementById('savons');
+            const savons = wrap.querySelectorAll('.savon');
+            const savonOverlay = wrap.querySelectorAll('.overlay')
+
+
+
+            
+            header.className = "loaded";
+
+            document.onscroll = function(e) {
+
+                logoH.style.transform = `translate(0, ${parseInt(window.scrollY / 3)}px)`
+                logoP.style.transform = `translate(0, ${parseInt(window.scrollY / 3)}px)`
+
+                savons.forEach((elem, i) => {
+
+                    if (i === 0 || i === 2 || i === 3 || i === 5 || i === 6) {
+
+                        const topOfSavons = elem.offsetHeight + window.innerHeight - 200
+                        const toTopRatio = 300 * (window.scrollY / topOfSavons)
+
+                        if (window.scrollY < topOfSavons) {
+
+                            console.log(parseFloat(toTopRatio));
+                            elem.style.transform = `translate(0, ${300 - toTopRatio}px)`;
+                            savonOverlay.forEach(elem => {elem.className = "overlay"})
+
+                        } else {
+
+                            console.log(true);
+                            elem.style.transform = `translate(0, 0px)`;
+                            savonOverlay.forEach(elem => {elem.className = "overlay onview"})
+                        }
+                    }
+                })
+            }
+
+            mobileopen.onclick = function() {
+                mobilenav.className = "opened"
+            }
+
+            mobileclose.onclick = function() {
+                mobilenav.className = ""
+            }
+
+
+
+
+
+
+
+
+            let outrouverInterval = 0
+            const trouver = document.getElementById('outrouver');
+            const listBoutique = trouver.querySelectorAll('.list')[0];
+            
+            const boutiqueLength = listBoutique.children.length
+            let boutiqueIndex = 0
+            let child
+
+            outrouverInterval = setInterval(function() {
+
+                child = listBoutique.children[boutiqueIndex]
+                child.className = 'focused'
+
+                setTimeout(function() {
+                    child.className = ''
+
+                    if (boutiqueIndex === 5) boutiqueIndex = 0
+                    else boutiqueIndex += 1
+                }, 3600)
+
+                listBoutique.style.transform = `translateX(-${boutiqueIndex * 350}px`
+
+            }, 4000)
+        }
+
+    </script>
+</body>
+</html>
