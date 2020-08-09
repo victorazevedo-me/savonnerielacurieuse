@@ -186,12 +186,17 @@ window.onload = function() {
 
 
 
-	const vitrine = document.getElementsByClassName('vitrine')[0]
+	const vitrine = document.getElementsByClassName('vitrine')[0];
+	const vitrineOverlay = vitrine.querySelector('.overlay');
 	const savons = document.body.querySelectorAll('.savon');
 
 	savons.forEach(item => {
-		item.onclick = function() {
-			vitrine.className = 'vitrine active'
+
+		item.onmouseup = function(e) {
+
+			vitrineOverlay.style.top = e.clientY + "px"
+			vitrineOverlay.style.left = e.clientX + "px"
+			vitrine.className = "vitrine active"
 			changeVitrine(item.id)
 		}
 	})
@@ -199,4 +204,18 @@ window.onload = function() {
 	vitrine.querySelector('button').onclick = function() {
 		vitrine.className = 'vitrine'
 	}
+
+
+	const strip = document.getElementsByClassName('strip')[0]
+
+	strip.querySelectorAll('div').forEach(item => {
+		item.onclick = function() {
+
+			if (this.className === "active") {
+				this.className = ""
+			} else {
+				this.className = "active"
+			}
+		}
+	})
 }
