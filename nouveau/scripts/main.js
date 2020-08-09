@@ -194,8 +194,10 @@ window.onload = function() {
 
 		item.onmouseup = function(e) {
 
-			vitrineOverlay.style.top = (e.clientY - 100) + "px"
-			vitrineOverlay.style.left = (e.clientX - 100) + "px"
+			console.log(e)
+
+			vitrineOverlay.style.top = `calc(${e.screenY}px -  27vh)`
+			vitrineOverlay.style.left = `calc(${e.screenX}px - 33vw)`
 			vitrine.className = "vitrine active"
 			changeVitrine(item.id)
 		}
