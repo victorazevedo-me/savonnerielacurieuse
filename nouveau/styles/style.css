@@ -177,7 +177,7 @@ main {
 }
 
 section {
-    padding: 5em 0;
+    padding: 2em 0;
     display: block;
 }
 
@@ -204,7 +204,7 @@ section {
 
 h2 {
     text-align: center;
-    margin: .5em 0 1em 0;
+    margin: 3em 0 1em 0;
     font-size: 3em;
     line-height: .8em;
 }
@@ -341,7 +341,7 @@ section:nth-child(2) h2 {
     height: 100px;
     transform: scale(0);
     transition: transform 1s;
-    background-color: white;
+    background-color: #fff7ec;
     border-radius: 100%;
     z-index: -1;
 }
@@ -356,10 +356,11 @@ section:nth-child(2) h2 {
     position: fixed;
     overflow: hidden;
     top: 5vh;
-    left: 10vh;
-    width: calc(100vw - 20vh);
-    height: 90vh;
+    left: 25vw;
+    width: 50vw;
+    min-width: 500px;
     z-index: 99;
+    border-radius: 10px;
     transition: visibility 0s 1s;
 }
 
@@ -371,8 +372,8 @@ section:nth-child(2) h2 {
 
 .vitrine button {
     position: fixed;
-    top: 2em;
-    right: 2em;
+    top: 1em;
+    right: 28vw;
     border: none;
     background-color: transparent;
     font-size: 3em;
@@ -385,12 +386,12 @@ section:nth-child(2) h2 {
 .vitrine button,
 .vitrine #savonToDisplay {
     opacity: 0;
-    transition: opacity .2s 0s;
+    transition: opacity .3s 0s;
 }
 .vitrine.active button,
 .vitrine.active #savonToDisplay {
     opacity: 1;
-    transition: opacity .2s .8s;
+    transition: opacity .5s .5s;
 }
 
 
@@ -404,7 +405,7 @@ section:nth-child(2) h2 {
 #savonToDisplay {
     max-width: 900px;
     margin: auto;
-    padding: 2em;
+    padding: 4em 2em;
     text-align: left;
     z-index: 10;
 }
@@ -435,7 +436,7 @@ section:nth-child(2) h2 {
 
 #savonToDisplay h3 {
     font-size: 4em;
-    margin: -0.6em 0 0 3em;
+    margin: -0.6em 0 0 .6em;
     line-height: 1em;
 }
 
@@ -461,12 +462,27 @@ section:nth-child(2) h2 {
 
 
 #ouTrouver h3 {
-    margin: 3em 0 1em 5em;
+    margin: 0;
+    text-align: right;
+    transform: rotateZ(-90deg) translate3d(-19vw, -9vw, 0);
+    display: inline-block;
+    font-size: 5vw;
+    font-weight: 100;
+    font-style: italic;
+}
+
+#ouTrouver > div {
+    width: 75vw;
+    margin: auto;
 }
 
 .strip {
     text-align: left;
-    margin: 5vw;
+    margin: 0 0 0 10vw;
+    min-height: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .strip h4 {
@@ -481,14 +497,14 @@ section:nth-child(2) h2 {
 
 .strip div p {
     font-size: 2vw;
+    line-height: 1.3em;
     overflow: hidden;
-    margin: 0;
+    margin: 0 0 0 1em;
     max-height: 0;
-    transition: max-height 1s;
+    transition: max-height .8s;
 }
-
 .strip .active p {
-    max-height: 2em;
+    max-height: 1.3em;
 }
 
 .strip .active h4,
@@ -497,7 +513,9 @@ section:nth-child(2) h2 {
     opacity: 1;
 }
 
-
+.strip.marche > div {
+    padding: .5em 0;
+}
 
 
 

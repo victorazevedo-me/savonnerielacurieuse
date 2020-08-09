@@ -194,8 +194,8 @@ window.onload = function() {
 
 		item.onmouseup = function(e) {
 
-			vitrineOverlay.style.top = e.clientY + "px"
-			vitrineOverlay.style.left = e.clientX + "px"
+			vitrineOverlay.style.top = (e.clientY - 100) + "px"
+			vitrineOverlay.style.left = (e.clientX - 100) + "px"
 			vitrine.className = "vitrine active"
 			changeVitrine(item.id)
 		}
@@ -207,13 +207,15 @@ window.onload = function() {
 
 
 	const strip = document.getElementsByClassName('strip')[0]
+	const stripContent = strip.querySelectorAll('div')
 
-	strip.querySelectorAll('div').forEach(item => {
+	stripContent.forEach(item => {
 		item.onclick = function() {
 
 			if (this.className === "active") {
 				this.className = ""
 			} else {
+				stripContent.forEach(e => {e.className = ""})
 				this.className = "active"
 			}
 		}
