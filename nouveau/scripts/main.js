@@ -208,8 +208,7 @@ window.onload = function() {
 	}
 
 
-	const strip = document.getElementsByClassName('strip')[0]
-	const stripContent = strip.querySelectorAll('div')
+	const stripContent = document.querySelectorAll('.strip div')
 
 	stripContent.forEach(item => {
 		item.onclick = function() {
