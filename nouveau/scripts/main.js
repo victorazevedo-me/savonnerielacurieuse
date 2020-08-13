@@ -184,8 +184,6 @@ window.onload = function() {
 	parallax()
 	displaySections()
 
-
-
 	const vitrine = document.getElementsByClassName('vitrine')[0];
 	const vitrineOverlay = vitrine.querySelector('.overlay');
 	const savons = document.body.querySelectorAll('.savon');
@@ -193,8 +191,6 @@ window.onload = function() {
 	savons.forEach(item => {
 
 		item.onmouseup = function(e) {
-
-			console.log(e)
 
 			vitrineOverlay.style.top = `calc(${e.screenY}px -  27vh)`
 			vitrineOverlay.style.left = `calc(${e.screenX}px - 33vw)`
@@ -216,9 +212,101 @@ window.onload = function() {
 			if (this.className === "active") {
 				this.className = ""
 			} else {
-				stripContent.forEach(e => {e.className = ""})
+				stripContent.forEach((e, i) => {
+					if (i !== stripContent.length - 1) e.className = ""
+				})
 				this.className = "active"
 			}
 		}
 	})
+
+	//header scroll
+	document.onwheel = function(e) {
+	}
+
+	function headerControl() {
+
+		const headerTitle = document.querySelector('header h2'),
+			higherButtons = document.querySelectorAll('header .higher button'),
+			lowerButtons = document.querySelectorAll('header .menu .lower button'),
+			sousSections = document.querySelectorAll('section .sous-section'),
+			sections = document.querySelectorAll('section')
+
+		const applyClass = dom => document.querySelector(`section .sous-section#${dom}`).className = "sous-section clicked"
+		const buttonText = arr => {for (let i in lowerButtons) lowerButtons[i].innerText = arr[i]}
+
+		higherButtons.forEach(button => {
+
+			button.onclick = function() {
+
+				let text = button.innerText
+				button.innerText = headerTitle.innerText
+				headerTitle.innerText = text
+
+				sections.forEach(e => e.style.display = "none")
+
+				if (text === "Les savons") {
+					buttonText(["Doux", "Ménager", "Saponification"])
+					document.querySelector('#savons').style.display = "block"
+				}
+
+				if (text === "Où les trouver") {
+					buttonText(["Boutiques", "Marchés", "Evenements"])
+					document.querySelector('#ouTrouver').style.display = "block"
+				}
+
+				if (text === "Me contacter") {
+					buttonText(["A propos", "Contact", "FAQ"])
+					document.querySelector('#contact').style.display = "block"
+				}
+
+				lowerButtons[0].click()
+				lowerButtons[0].focus()
+			}
+		})
+
+		lowerButtons.forEach(button => {
+
+			button.onclick = function() {
+
+				sousSections.forEach(e => e.className = "sous-section")
+
+				switch (button.innerText) {
+					case "Doux":
+						applyClass('savon_doux');
+						break;
+					case "Ménager":
+						applyClass('savon_menager');
+						break;
+					case "Saponification":
+						applyClass('saponification');
+						break;
+					case "Boutiques":
+						applyClass('boutiques');
+						break;
+					case "Marchés":
+						applyClass('marches');
+						break;
+					case "Evenements":
+						applyClass('evenements');
+						break;
+					case "Doux":
+						applyClass('savon_doux');
+						break;
+					case "Ménager":
+						applyClass('savon_menager');
+						break;
+					case "Saponification":
+						applyClass('saponification');
+						break;
+				}
+			}
+		})
+
+		id('backtohome').onclick = function() {
+			document.querySelector('main').style.display = "none"
+		}
+	}
+
+	headerControl()
 }

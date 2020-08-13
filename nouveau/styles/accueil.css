@@ -1,0 +1,128 @@
+.accueil {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 500px;
+    background: white;
+    font-family: 'Amiri', serif;
+    z-index: 1;
+}
+
+.accueil img,
+.accueil {
+    transition: opacity .5s;
+}
+
+.titre {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 15rem);
+    margin: 5rem;
+}
+
+
+.titre h1, .titre p {
+    font-style: italic;
+    letter-spacing: .5rem;
+    font-weight: 400;
+}
+
+.titre h1 {
+    font-size: 8em;
+    margin: 0;   
+}
+
+.titre h1 span {
+    display: block;
+    overflow: hidden;
+    line-height: .8em;
+}
+
+@keyframes slideDown {
+    from {transform: translateY(1em)}
+    to {transform: translateY(0);}
+}
+
+.titre h1 .titre_anim {
+    transform: translateY(1em);
+    animation: slideDown 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .2s forwards;}
+
+.titre p {
+    font-size: 2em;
+    margin: 0;
+}
+
+
+
+
+.accueil img {
+    position: absolute;
+    top: 10vh;
+    right: 10vh;
+    min-width: 400px;
+    width: 80vh;
+    min-height: 400px;
+    height: 80vh;
+    z-index: -1;
+}
+
+.accueil nav {
+    margin: 0;
+}
+
+
+.accueil nav button {
+    border: 0;
+    background-color: transparent;
+    font-family: 'Amiri', serif;
+
+}
+
+.accueil nav .nav_meat {
+    display: inline-flex;
+    font-size: 20px;
+    max-width: calc(100vw - 100vh);
+    flex-wrap: wrap;
+}
+
+.accueil nav .nav_meat > div {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 3em 1em 0;
+    white-space: nowrap;
+}
+
+.accueil nav .nav_meat h4 {
+    margin: 0;
+}
+
+.accueil nav .nav_meat a {
+    position: relative;
+    line-height: 1.2em;
+}
+
+.accueil nav .nav_meat a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -.5em;
+    padding: .5em;
+    background-color: #e77224;
+    border-radius: 100%;
+    opacity: .7;
+    transform: scale(0);
+    transition: transform .2s;
+}
+
+.accueil nav .nav_meat a:hover::before {
+    transform: scale(1);
+}
+
+.accueil nav .nav_meat a:active::before {
+    transform: scale(2);
+    transition: transform .4s;
+}
+
