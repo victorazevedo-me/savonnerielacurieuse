@@ -24,6 +24,7 @@ body {
     font-size: 21px;
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
+    overflow-y: scroll;
 }
 a {
     text-decoration: none;
@@ -40,7 +41,6 @@ main {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    overflow: hidden;
     z-index: 3;
     background-color: white;
 }
@@ -80,18 +80,19 @@ h3 {
 #backtohome {
     position: absolute;
     padding: 1em;
-    top: -1em;
+    top: 1em;
     left: calc(50% - 1em);
     border-radius: 100%;
-    background-color: #ffe0b2;
+    background-color: #eee;
     z-index: 999;
     transform: scale(1);
-    transition: transform .5s;
+    transition: transform .5s, background-color .5s;
     cursor: pointer;
 }
 
 #backtohome:hover {
     transform: scale(3);
+    background-color: #fcdaa8;
 }
 
 
@@ -206,11 +207,12 @@ header .menu .lower button::before {
     z-index: -1;
 }
 
-header > div .lower button:focus {
+header .higher button:hover,
+header .lower button.focused {
     opacity: 1;
 }
 
-header > div .lower button:focus::before {
+header > div .lower button.focused::before {
     transform: scale(1);
 }
 
@@ -480,14 +482,13 @@ section .sous-section.clicked {
 }
 
 .strip_wrap > div {
-    display: flex;
-    align-items: center;
-    margin: 3em;
+    margin: 0 3em;
+    text-align: center;
 }
 
 .strip {
     text-align: left;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     justify-content: center;
 }
@@ -514,8 +515,11 @@ section .sous-section.clicked {
     max-height: 1.3em;
 }
 
+.strip h4:hover {
+    opacity: .7;
+}
+
 .strip .active h4,
-.strip h4:hover,
 .strip h4:focus {
     opacity: 1;
 }
@@ -562,7 +566,7 @@ section .sous-section.clicked {
 
 
 footer {
-    display: block;
+    display: none;
     width: 100%;
     min-height: 50vh;
     background-color: #111;

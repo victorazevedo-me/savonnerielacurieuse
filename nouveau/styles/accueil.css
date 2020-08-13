@@ -41,15 +41,6 @@
     line-height: .8em;
 }
 
-@keyframes slideDown {
-    from {transform: translateY(1em)}
-    to {transform: translateY(0);}
-}
-
-.titre h1 .titre_anim {
-    transform: translateY(1em);
-    animation: slideDown 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) .2s forwards;}
-
 .titre p {
     font-size: 2em;
     margin: 0;

@@ -227,79 +227,123 @@ window.onload = function() {
 	function headerControl() {
 
 		const headerTitle = document.querySelector('header h2'),
+			accueilNavButtons = document.querySelectorAll('.accueil nav a'),
 			higherButtons = document.querySelectorAll('header .higher button'),
 			lowerButtons = document.querySelectorAll('header .menu .lower button'),
 			sousSections = document.querySelectorAll('section .sous-section'),
 			sections = document.querySelectorAll('section')
 
 		const applyClass = dom => document.querySelector(`section .sous-section#${dom}`).className = "sous-section clicked"
-		const buttonText = arr => {for (let i in lowerButtons) lowerButtons[i].innerText = arr[i]}
+		const buttonText = arr => {for (let i in arr) lowerButtons[i].innerText = arr[i]}
 
-		higherButtons.forEach(button => {
+		function sectionChange(elem, fromMain) {
 
-			button.onclick = function() {
+			let text = elem.innerText
 
-				let text = button.innerText
-				button.innerText = headerTitle.innerText
-				headerTitle.innerText = text
+			if (fromMain) {
+				elem.innerText = headerTitle.innerText
+			} else {
+				higherButtons.forEach(e => {
+					if (e.innerText === elem.innerText) {
+						e.innerText = headerTitle.innerText
+					}
+				})
+			}
 
-				sections.forEach(e => e.style.display = "none")
+			headerTitle.innerText = text
 
-				if (text === "Les savons") {
-					buttonText(["Doux", "Ménager", "Saponification"])
-					document.querySelector('#savons').style.display = "block"
-				}
+			sections.forEach(e => e.style.display = "none")
 
-				if (text === "Où les trouver") {
-					buttonText(["Boutiques", "Marchés", "Evenements"])
-					document.querySelector('#ouTrouver').style.display = "block"
-				}
+			if (text === "Les savons") {
+				buttonText(["Doux", "Ménager", "Saponification"])
+				document.querySelector('#savons').style.display = "block"
+			}
 
-				if (text === "Me contacter") {
-					buttonText(["A propos", "Contact", "FAQ"])
-					document.querySelector('#contact').style.display = "block"
-				}
+			if (text === "Où les trouver") {
+				buttonText(["Boutiques", "Marchés", "Evenements"])
+				document.querySelector('#ouTrouver').style.display = "block"
+			}
 
+			if (text === "Me contacter") {
+				buttonText(["A propos", "Contact", "Foire aux questions"])
+				document.querySelector('#contact').style.display = "block"
+			}
+
+			if (fromMain) {
 				lowerButtons[0].click()
 				lowerButtons[0].focus()
+			} else {
+
+			}
+
+			
+		} 
+
+		function sousSectionChange(elem, fromMain) {
+
+			sousSections.forEach(e => e.className = "sous-section")
+			lowerButtons.forEach(e => e.className = "")
+
+			if (fromMain) {
+				elem.className = "focused"
+			} else {
+				lowerButtons.forEach(e => {
+					if (e.innerText === elem.innerText) {
+						e.className = "focused"
+					}
+				})
+			}
+			
+
+			switch (elem.innerText) {
+				case "Doux":
+					applyClass('savon_doux');
+					break;
+				case "Ménager":
+					applyClass('savon_menager');
+					break;
+				case "Saponification":
+					applyClass('saponification');
+					break;
+				case "Boutiques":
+					applyClass('boutiques');
+					break;
+				case "Marchés":
+					applyClass('marches');
+					break;
+				case "Evenements":
+					applyClass('evenements');
+					break;
+				case "A propos":
+					applyClass('a-propos');
+					break;
+				case "Contact":
+					applyClass('contact');
+					break;
+				case "Foire aux questions":
+					applyClass('faq');
+					break;
+			}
+		}
+
+		higherButtons.forEach(button => {
+			button.onclick = function() {
+				sectionChange(button, true)
 			}
 		})
 
 		lowerButtons.forEach(button => {
+			button.onclick = function() {
+				sousSectionChange(button, true)
+			}
+		})
+
+		accueilNavButtons.forEach(button => {
 
 			button.onclick = function() {
-
-				sousSections.forEach(e => e.className = "sous-section")
-
-				switch (button.innerText) {
-					case "Doux":
-						applyClass('savon_doux');
-						break;
-					case "Ménager":
-						applyClass('savon_menager');
-						break;
-					case "Saponification":
-						applyClass('saponification');
-						break;
-					case "Boutiques":
-						applyClass('boutiques');
-						break;
-					case "Marchés":
-						applyClass('marches');
-						break;
-					case "Evenements":
-						applyClass('evenements');
-						break;
-					case "Doux":
-						applyClass('savon_doux');
-						break;
-					case "Ménager":
-						applyClass('savon_menager');
-						break;
-					case "Saponification":
-						applyClass('saponification');
-						break;
-				}
+				document.querySelector('main').style.display = 'block'
+				sectionChange(button.parentElement.querySelector('h4'))
+				sousSectionChange(button)
 			}
 		})
 
