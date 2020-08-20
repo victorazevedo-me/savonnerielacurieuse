@@ -1,440 +1,236 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
-    <title class="trn">Savonnerie La Curieuse - Création de savons écologiques</title>
-    <meta name="keywords" content="savon, Vollore-Ville, ecologique,cosmetique, soin">
-    <meta name="description" content="Des savons 100% fait main crées à Vollore-Ville (Auvergne) selon la méthode ancestrale de saponification à froid.">
-    <meta name="author" content="Valérie Cartailler">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=rMJOo8Wqzp">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=rMJOo8Wqzp">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=rMJOo8Wqzp">
-    <link rel="manifest" href="site.webmanifest?v=rMJOo8Wqzp">
-    <link rel="mask-icon" href="safari-pinned-tab.svg?v=rMJOo8Wqzp" color="#e77224">
-    <link rel="shortcut icon" href="favicon.ico?v=rMJOo8Wqzp">
-    <meta name="msapplication-TileColor" content="#e77224">
-    <meta name="theme-color" content="#e77224">
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"HealthAndBeautyBusiness","name":"Savonnerie La Curieuse","address":{"@type":"PostalAddress","streetAddress":"rue du château","addressLocality":"Vollore-Ville","addressRegion":"Auvergne","postalCode":"63120"},"image":"https://savonnerielacurieuse.com/icons/android-chrome-512x512.png","telePhone":"0643693967","url":"https://savonnerielacurieuse.com","paymentAccepted":["cash","check"],"geo":{"@type":"GeoCoordinates","latitude":"45.78557","longitude":"3.59948"},"priceRange":"€€"}</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <title>Document</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
 
-    <link rel="stylesheet" type="text/css" href="styles/accueil.css">
-    <link rel="stylesheet" type="text/css" href="styles/style.css?v=203">
-    <link rel="stylesheet" type="text/css" href="styles/fabrication.css?v=203">
+        body section {
+            display: flex;
+            width: 300%;
+            transition: transform .7s;
+        }
 
-    <script src="scripts/fabrication.js?v=203"></script>
-    <script src="scripts/main.js?v=203"></script>
+        body section .container.inner {
+            min-height: 100vh;
+        }
+
+        nav.from-section {
+            position: sticky;
+            top: 2em;
+        }
+
+        footer {
+            padding: 3em;
+            background-color: #111;
+        }
+
+    </style>
 </head>
-
 <body>
-    <div class="accueil">
-        <div class="titre">
-            <div>
-                <h1>
-                    <span>
-                        <span class="titre_anim">Savonnerie</span>
-                    </span>
-                    <span>
-                        <span class="titre_anim">La Curieuse</span>
-                    </span>
-                </h1>
-                <p>création de savons écologiques</p>
+    
+    <section>
+
+        <div class="container">
+
+            <div class="hero is-large">
+                <div class="hero-body">
+                    <div>
+                        <h1 class="title is-1">Savonnerie<br />La Curieuse</h1>
+                        <p class="subtitle is-3">création de savons écologiques</p>    
+                    </div>
+                </div>
             </div>
-            
-            <nav>
-                <div class="nav_meat">
-                    <div>
-                        <h4>Les savons</h4>
-                        <a href="#">Doux</a>
-                        <a href="#">Ménager</a>
-                        <a href="#">Saponification à froid</a>
+    
+            <nav class="navbar is-transparent from-section">
+                <div class="navbar-brand">
+                    <a class="navbar-item back-to-home">
+                        <img src="favicon.ico">
+                    </a>
+    
+                    <div class="navbar-burger burger" data-target="navbar-section-un">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                </div>
+                <div id="navbar-section-un" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="#la-savonnerie">La savonnerie</a>
+                        <a class="navbar-item" href="#la-methode">La méthode</a>
+                        <a class="navbar-item" href="#les-ingredients">Les ingrédients</a>
                     </div>
-                    <div>
-                        <h4>Où les trouver</h4>
-                        <a href="#">Boutiques</a>
-                        <a href="#">Marchés</a>
-                        <a href="#">Evenements</a>
-                    </div>
-                    <div>
-                        <h4>Me contacter</h4>
-                        <a href="#">Contact</a>
-                        <a href="#">A propos</a>
-                        <a href="#">Foire aux questions</a>
+                    <div class="navbar-end">
+                        <a class="navbar-item" id="vers-les-savons">Les savons ></a>
                     </div>
                 </div>
             </nav>
+    
+            <div class="container inner" id="la-savonnerie">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">La savonnerie</h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container inner" id="la-methode">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">La méthode</h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container inner" id="les-ingredients">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">Les ingrédients</h2>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <div class="container" id="les-savons">
+
+            <div class="hero is-large">
+                <div class="hero-body">
+                    <div>
+                        <h1 class="title is-1">Enorme image de savons</h1>   
+                        <p class="subtitle is-3">Avec un sous-titre pk pas</p>
+                    </div>
+                </div>
+            </div>
+    
+            <nav class="navbar is-transparent from-section">
+                <div class="navbar-brand">
+                    <a class="navbar-item back-to-home">
+                        <img src="favicon.ico">
+                    </a>
+    
+                    <div class="navbar-burger burger" data-target="navbar-section-un">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                </div>
+                <div id="navbar-section-un" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="#liste-savons">Les savons</a>
+                        <a class="navbar-item" href="#les-recettes">La recettes</a>
+                        <a class="navbar-item" href="#foire-aux-questions">Foire aux questions</a>
+                    </div>
+                    <div class="navbar-end">
+                        <a class="navbar-item" id="vers-ou-les-trouver">Où les trouver ></a>
+                    </div>
+                </div>
+            </nav>
+    
+            <div class="container inner" id="liste-savons">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">Les Savons</h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container inner" id="les-recettes">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">Les recettes</h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container inner" id="foire-aux-questions">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">Foire aux questions</h2>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+        <div class="container" id="ou-les-trouver">
         
-
-        <img src="carre.jpg" alt="image accueil" />
-        <!-- <video autoplay="autoplay" loop="loop" controls="controls">
-            <source src="carre.mp4" type="video/mp4">
-        </video> -->
-    </div>
-
-    
-      
-    <main>
-
-        <div id="backtohome"></div>
-
-        <header>
-
-            <div class="logo">
-                <!-- <div class="bubble"></div>
-                <h1>
-                    <span>Savonnerie</span>
-                    <span>La Curieuse</span>
-                </h1> -->
-            </div>
-
-            <div class="menu">
-                <div class="higher">
-                    <h2>Les savons</h2>
+            <div class="hero is-large">
+                <div class="hero-body">
                     <div>
-                        <button>Où les trouver</button>
-                        <button>Me contacter</button>
-                    </div>
-                </div>
-                
-                <div class="lower">
-                    <button>Doux</button>
-                    <button>Ménager</button>
-                    <button>Saponification</button>
-                    <button></button>
-                </div>
-            </div>
-                
-        </header>
-
-        <section id="savons">
-
-            <div class="vitrine">
-
-                <div class="overlay"></div>
-
-                <button>&times;</button>
-
-                <div id="savonToDisplay">
-                    <div>
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXN8KeDo6xEREw0MG9razgHUx5ICAvPo490AAwgVEwoE6fLgAff3/fwE6+LkBgIeBBQRJPQG7wAP/CEQDxUXIwTz394CBAMICQMICxP17etZ/h/Y1kq81wAAAABJRU5ErkJggg==" data-src="images/savons/muesli.jpg" alt="Savon Muesli">
-                        <div class="image-preview">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXN8KeDo6xEREw0MG9razgHUx5ICAvPo490AAwgVEwoE6fLgAff3/fwE6+LkBgIeBBQRJPQG7wAP/CEQDxUXIwTz394CBAMICQMICxP17etZ/h/Y1kq81wAAAABJRU5ErkJggg==" />
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXiFLc7P6igK/AolFN3i9wHLxZUC9toACiUCAQcEBf8C8/r++gAS+fbv/QEEAgELAuHOzAYOGw0PIAkFBggICAMfFxJAKvz07O/48+fu6eJF7CIZceO+kwAAAABJRU5ErkJggg==" />
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A4iHjEFZPAME/1tyb+oD7wOvnFoL68clD/0wDejF1+8DXj0AhZW+ChAW3+f0qrLMBPQECU5PSgICAurq6sOeyQHYzLz7/fTk5OQSEhK6taW2KCd+KAgF6AAAAABJRU5ErkJggg==" />
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A8fDphUg+UJFK5OVkf3/0QMZE/JVTkk3M0vIrnpARE4EMiQi7O3m7u/oCQciAgICAs7U5AcHBwMDAxkuJw4ODgTv8OoBBgT22t8OCAro5+k6ax/zaOz8cAAAAABJRU5ErkJggg==" />
-                        </div>
-                    </div>
-                    <div>
-                        <h3>Müesli</h3>
-                    </div>
-                    <div>     
-                        <p class="desc">Gourmand et nourrissant, cet exfoliant aux fruits secs au léger parfum d'orange est enrichi au beurre de karité hydratant.</p>
-                        <p class="compo">Composition: huile d'olive, huile de coco, beurre de karité, huile de tournesol partiellement saponifiés, eau, glycérine, amandes, flocons d'avoine, baies de goji, huiles essentielles d'orange et de sauge sclarée</p>
+                        <h1 class="title is-1">Enorme image de marché</h1>   
+                        <p class="subtitle is-3">Avec un sous-titre pk pas</p>
                     </div>
                 </div>
             </div>
-
-            <div class="sous-section" id="savon_doux">
-
-                <!-- <p><small>Pour le corps et les cheveux</small></p> -->
-
-                <div class="savon_wrap">
-
-                    <div class="savon" id="muesli">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXN8KeDo6xEREw0MG9razgHUx5ICAvPo490AAwgVEwoE6fLgAff3/fwE6+LkBgIeBBQRJPQG7wAP/CEQDxUXIwTz394CBAMICQMICxP17etZ/h/Y1kq81wAAAABJRU5ErkJggg==" data-src="images/savons/muesli.jpg" alt="Savon Muesli">
-                        <div>
-                            <h3>Müesli</h3>
-                            <p>Exfoliant</p>
-                        </div>
-                    </div>
-                    <div class="savon" id="delice">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AX6MN+ny7xwUGc3Y0h0TFAQ4Ez8RKiTmxrc2I0vQ2OUD9+jnB/Ts/fz+9/b9IRAGAmBXPMPQ2vUCBwYD/B8mHwHJt4kVDw369/j/Bf0BAAbxZiVPFqVvFQAAAABJRU5ErkJggg==" data-src="images/savons/delice.jpg" alt="Savon Délice">
-                        <div>
-                            <h3>Délice</h3>
-                            <p>Hypoallergénique</p>
-                        </div>
-                    </div>
-                    <div class="savon" id="fanny">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AXiFLc7P6igK/AolFN3i9wHLxZUC9toACiUCAQcEBf8C8/r++gAS+fbv/QEEAgELAuHOzAYOGw0PIAkFBggICAMfFxJAKvz07O/48+fu6eJF7CIZceO+kwAAAABJRU5ErkJggg==" data-src="images/savons/fanny.jpg" alt="Savon Fanny">
-                        <div>
-                            <h3>Fanny</h3>
-                            <p>Tout en douceur</p>
-                        </div>
-                    </div>
-                    <div class="savon" id="thecitron">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//AUtYCAMCCikiKsPL0x0NAgHd2rkC/vX38NEBAQMBAAQE5uPGCQD7AP8EAAD8AgL+BO3k4QsGCgcHBwIGCP8A9gLr2uj/+/wG/vwC+vkNCBCWAiAonBmkNAAAAABJRU5ErkJggg==" data-src="images/savons/thecitron.jpg" alt="Savon Thé Citron">
-                        <div>
-                            <h3>Thé citron</h3>
-                            <p>Le savon shampoing</p>
-                        </div>
-                    </div>
-                    <div class="savon" id="theromarin">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A4iHjEFZPAME/1tyb+oD7wOvnFoL68clD/0wDejF1+8DXj0AhZW+ChAW3+f0qrLMBPQECU5PSgICAurq6sOeyQHYzLz7/fTk5OQSEhK6taW2KCd+KAgF6AAAAABJRU5ErkJggg==" data-src="images/savons/theromarin.jpg" alt="Savon Thé Romarin">
-                        <div>
-                            <h3>Thé romarin</h3>
-                            <p>Et son parfum vif</p>
-                        </div>
+    
+            <nav class="navbar is-transparent from-section">
+                <div class="navbar-brand">
+                    <a class="navbar-item back-to-home">
+                        <img src="favicon.ico">
+                    </a>
+    
+                    <div class="navbar-burger burger" data-target="navbar-section-un">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                </div>
+                <div id="navbar-section-un" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="#marches-boutiques">Marchés & boutiques</a>
+                        <a class="navbar-item" href="#evenements">Evénements</a>
+                        <a class="navbar-item" href="#contact">Contact</a>
                     </div>
                 </div>
-
-            </div>
-
-            <div class="sous-section" id="savon_menager">
-
-                <!-- <h2>
-                    <span>Savons ménager</span>
-                    <small>Pour tout le reste</small>
-                </h2> -->
+            </nav>
     
-                <div class="savon_wrap">
-     
-                    <div class="savon cesar" id="cesar">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A8fDphUg+UJFK5OVkf3/0QMZE/JVTkk3M0vIrnpARE4EMiQi7O3m7u/oCQciAgICAs7U5AcHBwMDAxkuJw4ODgTv8OoBBgT22t8OCAro5+k6ax/zaOz8cAAAAABJRU5ErkJggg==" data-src="images/savons/cesar.jpg" alt="Savon César">
-                        <div>
-                            <h3>César</h3>
-                            <p>Savon ménager</p>
-                        </div>
-                    </div>
-    
-                    <div class="savon cesar" id="cesarlessive">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAW0lEQVQI1wFQAK//A8fDphUg+UJFK5OVkf3/0QMZE/JVTkk3M0vIrnpARE4EMiQi7O3m7u/oCQciAgICAs7U5AcHBwMDAxkuJw4ODgTv8OoBBgT22t8OCAro5+k6ax/zaOz8cAAAAABJRU5ErkJggg==" data-src="images/savons/cesar.jpg" alt="Savon César">
-                        <div>
-                            <h3>César lessive</h3>
-                            <p>César, en copeaux</p>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
-
-            <div class="sous-section" id="saponification">
-
-                <p class="fabr_intro">
-                    Cette méthode de fabrication artisanale garantit la présence de glycérine dans le savon et permet de conserver une grande partie des propriétés bienfaisantes des huiles, beurres et huiles essentielles utilisés. C'est une méthode écologique dont le procédé de fabrication est sobre en énergie.
-                </p>
-    
-                <div class="fabr_wrap">
-    
-                    <div class="fabrication">
-    
-                        <h3>Création du savon Fanny</h3>
-    
-                        <div id="imgwrap">
-                          <img src="fabrication/images/bain_mari.jpg" alt="bain mari" draggable="false" class="focused">
-                          <img src="fabrication/images/pesee.jpg" alt="pesee" draggable="false">
-                          <img src="fabrication/images/melange.jpg" alt="melange" draggable="false">
-                          <img src="fabrication/images/surgraissage.jpg" alt="surgraissage" draggable="false">
-                          <img src="fabrication/images/mixeur.jpg" alt="mixeur" draggable="false">
-                          <img src="fabrication/images/petales.jpg" alt="petales" draggable="false">
-                          <img src="fabrication/images/coulee.jpg" alt="coulee" draggable="false">
-                          <img src="fabrication/images/deco.jpg" alt="deco" draggable="false">
-                          <img src="fabrication/images/decoupe.jpg" alt="decoupe" draggable="false">
-                          <img src="fabrication/images/armoire.jpg" alt="armoire" draggable="false">
-                        </div>
-                  
-                        <div class="fabr-text">
-                            <div id="etape-desc">
-                                <p>Les beurres de coco et de karité fondent doucement au bain-marie. Température: 35°C - 40°C.</p>
-                                <p>En attendant, je pèse les huiles essentielles et le macérât de calendula qui sera ajouté en surgraissage.</p>
-                                <p>J'incorpore la solution de soude préparée en amont avec les huiles et les beurres fondus. Le processus de saponification commence.</p>
-                                <p>Méthode ancestrale d'accord, mais avec mixeur.</p>
-                                <p>La pâte épaissit et forme une trace. C'est le moment d'ajouter les huiles essentielles et le macérât.</p>
-                                <p>Après un dernier tour de mixeur j'ajoute quelques pétales de calendula pour faire joli !</p>
-                                <p>La pâte est coulée dans le grand moule chemisé.</p>
-                                <p>Quelques pétales de plus ! Le moule sera ensuite isolé thermiquement pendant 24 à 48h.</p>
-                                <p>Le pain de savon est démoulé puis coupé en tranches.</p>
-                                <p>Ils sècheront durant 4 à 6 semaines dans l'armoire de cure.</p>
-                            </div>
-                        </div>
-                    </div>
-    
-                      <div class="info_wrap">
-                        <div class="info_box">
-                            <h3>La saponification</h3>
-                            <p>La saponification est la réaction chimique qui transforme :</p>
-                            <div class="formule">
-                                <p>
-                                    huile + soude => savon + glycérine
-                                </p>
-                            </div>
-                            <p>Il ne reste aucune trace de soude dans un savon "fini".</p>
-                        </div>
-                        <div class="info_box">
-                            <h3>Le surgras</h3>
-                            <p><span>En cours de fabrication, j'enrichis mes savons d'huiles aux vertus apaisantes, régénérantes, et nourrissantes. Ces huiles, ajoutées aux corps gras déjà saponifiés viennent sur-graisser le savon.</span>
-                                <br/><span>Un savon surgras est un savon qui ne se contente pas de laver, il permet aussi au film hydrolipidique de la peau de se restaurer plus rapidement.</span></p>
-                        </div>
+            <div class="container inner" id="marches-boutiques">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">Marchés & boutiques</h2>
                     </div>
                 </div>
             </div>
-
-        </section>
-
-        <section id="ouTrouver">
+    
+            <div class="container inner" id="evenements">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">Evénements</h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container inner" id="contact">
+                <div class="hero is-medium">
+                    <div class="hero-body has-text-centered">
+                        <h2 class="title is-2">Contact</h2>
+                    </div>
+                </div>
+            </div>
             
-            <div class="strip_wrap">
+        </div>
 
-                <div class="sous-section" id="boutiques">
-
-                    <!-- <h3>En Boutique</h3> -->
-
-                    <div class="strip">
-                        <div>
-                            <h4>Henne Indigo et Compagnie</h4>
-                            <p>henneindigoetcompagnie.fr/boutique</p>
-                        </div>
-                        <div>
-                            <h4>Épicerie Proxy Vollore-Ville</h4>
-                            <p>Place de l'Église 63120 Vollore-Ville</p>
-                        </div>
-                        <div>
-                            <h4>Aux Champs</h4>
-                            <p>19 route de Clermont 63300 Thiers</p>
-                        </div>
-                        <div>
-                            <h4>Pharmacie de La Monnerie</h4>
-                            <p>43 Rue de la Gare 63650 La Monnerie-le-Montel</p>
-                        </div>
-                        <div>
-                            <h4>Le Bio Sens</h4>
-                            <p>le-bio-sens.fr</p>
-                            <p>25 rue Fileterie 63600 Ambert</p>
-                            <p>Savon ménager césar uniquement</p>
-                        </div>
-                        <div>
-                            <h4>L'auvergne en Vrac</h4>
-                            <p>facebook.com/lauvergne.envrac</p>
-                            <p>Savon ménager césar uniquement</p>
-                        </div>
-                        <div>
-                            <h4>L'Orange Bleue</h4>
-                            <p>3 rue de la gravière 63160 Billom</p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="sous-section" id="marches">
-
-                    <!-- <h3>Aux marchés</h3> -->
-
-                    <div class="strip marche">
-                        <div>
-                            <h4>Biliom</h4>
-                            <p>Place de la Halle, un lundi sur deux</p>
-                        </div>
-                        <div>
-                            <h4>Montferrand</h4>
-                            <p>place de la Fontaine, 1er samedi du mois</p>
-                        </div>
-                        <div>
-                            <h4>Olliergues</h4>
-                            <p>place de la mairie, les dimanches matin, du 1er juillet au 26 août</p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="sous-section" id="evenements">
-
-                    <!-- <h3>Ou bien</h3> -->
-
-                    <div class="strip">
-                        <div class="active">
-                            <h4>Au laboratoire</h4>
-                            <p>Sur rendez-vous 24h à l'avance</p>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-        </section>
-
-        <section id="contact">
-
-            <div class="sous-section" id="a-propos">
-            </div>
-
-            <div class="sous-section" id="contact">
-                <div class="adresse">
-                    <div class="location">
-                        <p>Valérie Cartailler
-                            <br/>Rue du Château
-                            <br/>63120 Vollore-Ville</p>
-                        <p>06 43 69 39 67
-                            <br/><span id="mail"></span></p>
-                    </div>
-                    <div id="map">
-                        <p id="mapText">Afficher sur la carte
-                            <noscript>La carte n'est pas disponible</noscript>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sous-section" id="faq">
-                <div class="question">
-                    <h3 class="trn">Vos savons sont-ils bio ?</h3>
-                    <p><span class="trn">L'huile d'olive, de ricin, de jojoba, de coco, le beurre de karité, le beurre de cacao ainsi que toutes les huiles essentielles sont issus de l'agriculture biologique. L'huile de tournesol est produite sous mention Nature &amp; Progrès à Moissat, à moins de 30km de la savonnerie par le GAEC Dou Chonlai.</span>
-                        <br><span class="trn">Les savons sont emballés dans des sachets de cellophane végétale compostable.</span></p>
-                </div>
-                <div class="question">
-                    <h3 class="trn">J'ai les cheveux secs, le savon shampooing Thé Citron me convient-il ?</h3>
-                    <p><span class="trn">Le savon shampooing Thé Citron convient bien aux cheveux normaux et/ou mixtes. Si vos cheveux sont secs, préférez lui le savon Délice enrichi au beurre de cacao nourrissant. De plus, Délice est hypoallergénique et convient bien aux jeunes enfants.</span></p>
-                </div>
-                <div class="question">
-                    <h3 class="trn">Curieuse, d'accord, mais cette savonnerie est elle sérieuse ?</h3>
-                    <p><span class="trn">La savonnerie La Curieuse est enregistrée en temps qu'établissement cosmétique auprès de l'ANSM (Agence Nationale de Sécurité des Médicaments et des produits de santé) et chaque formule de savons est validée par un expert cosmétique.</span></p>
-                </div>
-                <div class="question">
-                    <h3 class="trn">Est-ce qu'il y a des ingrédients d'origine animale dans vos savons ?</h3>
-                    <p><span class="trn">Non. Les ingrédients utilisés dans la confection des savons La Curieuse sont d'origine végétale (huile d'olive, de coco, de tournesol, etc.) et minérale (argile ghassoul).</span></p>
-                </div>
-                <div class="question">
-                    <h3 class="trn">Vous avez du savon au lait d'ânesse ?</h3>
-                    <p><span class="trn">Non.</span></p>
-                </div>
-            </div>
-
-        </section>
-
-    </main>
+    </section>
 
     <footer>
-        <div class="footerwrap">
-            <div class="nav">
-                <div>
-                    <h3>Savons</h3>
-                    <a href="">Produits</a>
-                    <a href="">Fabrication</a>
-                    <a href="">Conseils</a>
-                </div>
-    
-                <div>
-                    <h3>Où trouver</h3>
-                    <a href="">Boutiques</a>
-                    <a href="">Marchés</a>
-                    <a href="">Evénements</a>
-                </div>
-    
-                <div>
-                    <h3>Contact</h3>
-                    <a href="">A propos</a>
-                    <a href="">Contact</a>
-                    <a href="">FAQ</a>
-                </div>
-            </div>
-    
-            <div class="contact">
-                <p>savonnerielacurieuse@gmail.com</p>
-                <p>06 59 86 74 12</p>
-            </div>
+        <div class="container">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, quisquam beatae maxime magni, repudiandae illum assumenda quaerat voluptatum veniam vel odit asperiores provident dolorem ab at quidem id corrupti fuga!</p>
         </div>
     </footer>
 
-    
-</body>
+    <script>
 
+        const transformSection = val => document.querySelector('section').style.transform = `translateX(-${val}%)`
+
+        document.getElementById('vers-les-savons').onclick = () => transformSection(33.333333)
+        document.getElementById('vers-ou-les-trouver').onclick = () => transformSection(66.666666)
+        document.querySelectorAll('.back-to-home').forEach(elem => {
+            elem.onclick = () => transformSection(0.000000)
+        })
+
+    </script>
+</body>
 </html>
