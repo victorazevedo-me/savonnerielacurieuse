@@ -47,35 +47,36 @@ function fabricationScroll() {
         parafs[count].style.zIndex = 5
     }
 
-    //a factoriser
-    function doEvent(is) {
+
+    function defileControl(next) {
+
+        //suivant ou non ?
+        //si length-1 alors oui, sinon precedent ?
+        //si >0 alors oui 
 
         lastcount = count
+        count += (next && count < maxcount - 1 ? 1 : (count > 0 ? -1 : 0))
 
-        if (is === "next" && count < maxcount - 1) {
-            count += 1
-            imgscroll()
-            descScroll()
-        }
-        else if (is === "previous" && count > 0) {
-            count -= 1
-            imgscroll()
-            descScroll()
-        }
+        imgscroll()
+        descScroll()
     }
 
-    //events
+ 
+    //défile auto par defaut
+    let autoDefil = setInterval(function() {
+        defileControl(true)
+    }, 8000)
 
     allimgs.forEach((item, index) => {
 
         item.onclick = function() {
 
-            if (this.nextElementSibling && this.nextElementSibling.className === "focused") {
-                doEvent('previous') 
-            }
-            else {
-                doEvent('next')
-            }
+                clearInterval(autoDefil)
+
+            
+            document.querySelector('#timer .inner').style.opacity = "0";
+            
+            (this.nextElementSibling && this.nextElementSibling.className === "focused" ? defileControl() : defileControl(true))
         }
     })
 
