@@ -12,16 +12,27 @@ body {
         position: fixed;
         display: flex;
         flex-direction: row-reverse;
-    
+        mix-blend-mode: difference;
+        z-index: 2;
+
         button {
+            color: #fff;
             font-weight: bold;
+        }
+
+        &.header {
+            button {
+                color: #111;
+            }
         }
     }
 }
 
+
+
 .main-menu {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #111;
     display: flex;
 
@@ -68,10 +79,9 @@ button {
     cursor: pointer;
 }
 
-
-
-
 main {
+
+    $titresize: 10vw;
 
     .accueil {
 
@@ -93,16 +103,17 @@ main {
 
             color: white;
             font-weight: bold;
+            font-size: $titresize;
 
             h1 {
-                font-size: 150px;
+                font-size: 1em;
                 line-height: .8em;
                 margin: 0;
             }
 
             p {
                 margin-top: 10px;
-                font-size: 50px;
+                font-size: .3em;
             }
 
         }
@@ -130,7 +141,8 @@ main {
     .page {
 
         min-height: calc(100vh - 10em);
-        padding: 5em;
+        max-width: 1400px;
+        padding: 3em 2em;
 
         h2 {
             font-size: 70px;
@@ -149,6 +161,11 @@ main {
         .semi-titre {
             white-space: nowrap;
             position: relative;
+
+            h2 {
+                font-size: 70px;
+                margin: 0 0 50px 0;
+            }
 
             .ballon {
                 position: absolute;
@@ -185,13 +202,14 @@ main {
 
             overflow: hidden;
 
-            .introduction {
+            .sap-description {
                 max-width: 700px;
+                margin: 3em auto;
             }
 
             .deux-colonnes {
 
-                margin-top: 5em;
+                flex-wrap: wrap;
                 align-items: flex-start;
                 justify-content: space-around;
 
@@ -213,11 +231,11 @@ main {
     
                     #imgwrap {
                         display: flex;
+                        height: 300px;
                         transition: transform .5s;
     
                         img {
                             width: 60%;
-                            height: 60%;
                             margin: 0 3%;
                             transition: all .5s;
                             filter: grayscale(1);
@@ -298,7 +316,7 @@ main {
 
                     position: relative;
                     max-width: 400px;
-                    margin: 0 2em;
+                    margin-left: 4em;
 
                     .grosseballe {
                         position: absolute;
@@ -309,10 +327,86 @@ main {
                         border-radius: 25em;
                         z-index: -1;
                     }
-                } 
+                }
+            }  
+        }
+
+        &.quatre {
+
+            padding: 5em;
+
+            .deux-colonnes {
+
+                align-items: flex-start;
+                margin: 2em 0 6em 0;
+
+                h3 {
+                    max-width: 350px;
+                }
+
+                .item {
+
+                    max-width: 350px;
+
+                    h4 {margin-bottom: 0}
+                    p {margin: 0}
+
+                    &.contact {
+                        background: #FEF4B8;
+                        border-radius: 4em;
+                        margin: 2em 0 0 2em;
+                        padding: 1em;
+                        font-weight: bold;
+
+                        p {
+                            margin-left: -3em;
+                        }
+                    }
+                }
             }
 
-            
+            .calendrier {
+
+                display: flex;
+                width: calc(100% - 4em);
+                overflow-y: hidden;
+                overflow-x: scroll;
+                padding: 2em;
+
+                .item {
+
+                    min-width: 300px;
+                    padding: 0 2em;
+
+                    h3 {
+                        display: inline-block;
+                        margin: 0;
+                        transform: rotate(-90deg) translate(-1.5em, -2em);
+                    }
+
+                    p {
+                        margin: 0;
+                    }
+                }
+
+                
+            }
         }
+    }
+}
+
+
+$breakpoint-smallscreen: 1100px;
+
+@media (max-width: $breakpoint-smallscreen) {
+
+    main {
+        .accueil {
+            .titre {
+                font-size: 10vw
+            } 
+        }
+            
+            
     }
 }

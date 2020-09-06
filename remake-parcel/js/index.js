@@ -1,6 +1,8 @@
 
-import fabricationScroll from "./fabrication"
+import fabricationScroll from "./fabrication";
 
 window.onload = function() {
-    fabricationScroll()
+    
+    if (window.location.pathname === "/page-02.html")
+        fabricationScroll()
 }

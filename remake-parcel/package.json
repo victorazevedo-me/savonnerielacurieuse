@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel ./index.html --open",
+    "build": "parcel build ./index.html"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "typescript": "^4.0.2"
   },
   "dependencies": {
     "@dogstudio/highway": "^2.2.1",
