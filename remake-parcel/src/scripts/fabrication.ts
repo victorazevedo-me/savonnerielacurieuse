@@ -56,7 +56,7 @@ function fabricationScroll() {
         //si >0 alors oui 
 
         lastcount = count
-        count += (next && count < maxcount - 1 ? 1 : (count > 0 ? -1 : 0))
+        count += (next && count < (maxcount - 1) ? 1 : (!next && count > 0 ? -1 : 0))
 
         imgscroll()
         descScroll()
