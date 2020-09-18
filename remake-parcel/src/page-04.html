@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Page 04</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.scss" />
-    <title>Page 04</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./scripts/disponible.ts" defer></script>
 </head>
 <body>
 
@@ -26,61 +28,29 @@
 
                     <h3>Les Boutiques</h3>
                     
-                    <div class="item">
-                        <h4>Henne Indigo & Compagnie</h4>
-                        <p>Place de l'Eglise 63120 Vollore-Ville</p>
-                        <p>09 67 15 02 16</p>
+                    <div id="vue-boutiques">
+                        <boutique-item
+                            v-for="item in boutiques"
+                            :nom="item.nom"
+                            :adresse="item.adresse"
+                        ></boutique-item>
                     </div>
-                    
-                    <div class="item">
-                        <h4>Henne Indigo & Compagnie</h4>
-                        <p>Place de l'Eglise 63120 Vollore-Ville</p>
-                        <p>09 67 15 02 16</p>
-                    </div>
-                    
-                    <div class="item">
-                        <h4>Henne Indigo & Compagnie</h4>
-                        <p>Place de l'Eglise 63120 Vollore-Ville</p>
-                        <p>09 67 15 02 16</p>
-                    </div>
-                    
-                    <div class="item">
-                        <h4>Henne Indigo & Compagnie</h4>
-                        <p>Place de l'Eglise 63120 Vollore-Ville</p>
-                        <p>09 67 15 02 16</p>
-                    </div>
-                    
-                    <div class="item">
-                        <h4>Henne Indigo & Compagnie</h4>
-                        <p>Place de l'Eglise 63120 Vollore-Ville</p>
-                        <p>09 67 15 02 16</p>
-                    </div>
-                    
-                    <div class="item">
-                        <h4>Henne Indigo & Compagnie</h4>
-                        <p>Place de l'Eglise 63120 Vollore-Ville</p>
-                        <p>09 67 15 02 16</p>
-                    </div>
+
                 </div>
 
                 <div class="right">
 
                     <div>
                         <h3>Les marchés</h3>
-                    
-                        <div class="item">
-                            <h4>Billom</h4>
-                            <p>Place de la Halle, un lundi sur deux</p>
-                        </div>
-                        
-                        <div class="item">
-                            <h4>Billom</h4>
-                            <p>Place de la Halle, un lundi sur deux</p>
-                        </div>
-                        
-                        <div class="item">
-                            <h4>Billom</h4>
-                            <p>Place de la Halle, un lundi sur deux</p>
+
+                        <div id="vue-marches">
+                            <marche-item
+                                v-for="item in marches"
+                                :nom="item.nom"
+                                :coord="item.coord"
+                                :activite="item.activite"
+                                :note="item.note"
+                            ></marche-item>
                         </div>
                     </div>
 
