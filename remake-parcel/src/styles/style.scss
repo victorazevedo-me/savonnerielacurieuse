@@ -29,11 +29,11 @@ body {
 }
 
 
-
 .main-menu {
     width: 100%;
     min-height: 100vh;
     background-color: #111;
+    position: absolute;
     display: flex;
 
     button {
@@ -66,8 +66,6 @@ body {
             }
         }
     }
-
-    
 }
 
 button {

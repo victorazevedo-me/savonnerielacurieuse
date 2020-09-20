@@ -9,8 +9,14 @@
 </head>
 <body>
 
-    <nav>
-        <a href="./menu.html"><button>menu</button></a>
+    <nav id="nav">
+        <a href="#">
+            <button
+             id="menu-button"
+             v-on:click="display"
+             >menu</button>
+        </a>
+        <main-menu></main-menu>
     </nav>
 
     <main>

@@ -1,8 +1,13 @@
 
-import fabricationScroll from "./fabrication";
+import fabricationScroll from './fabrication';
+import './disponible';
+import './mainmenu';
 
 window.onload = function() {
+
+    const page = window.location.pathname
     
-    if (window.location.pathname === "/page-02.html")
+    if (page === "/page-02.html") {
         fabricationScroll()
+    }
 }
