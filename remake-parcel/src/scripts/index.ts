@@ -1,13 +1,14 @@
 
 import fabricationScroll from './fabrication';
-import './disponible';
-import './mainmenu';
 
-window.onload = function() {
+const page = window.location.pathname
+document.body.addEventListener('wheel', function(ev: any) {
 
-    const page = window.location.pathname
-    
-    if (page === "/page-02.html") {
-        fabricationScroll()
+    if (ev.wheelDelta < 0) {
+        console.log('transition')
     }
-}
+
+})
+    
+if (page === "/page-02.html")
+    fabricationScroll()
