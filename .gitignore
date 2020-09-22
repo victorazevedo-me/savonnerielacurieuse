@@ -1,7 +1,3 @@
-
-# Package is enough
-package-lock.json
-
 # Logs
 logs
 *.log
