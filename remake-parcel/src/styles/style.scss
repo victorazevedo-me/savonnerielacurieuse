@@ -138,8 +138,7 @@ main {
 
     .page {
 
-        min-height: calc(100vh - 10em);
-        max-width: 1400px;
+        min-height: 100vh;
         padding: 3em 2em;
 
         h2 {
@@ -179,7 +178,7 @@ main {
         &.un {
 
             .deux-colonnes {
-                min-height: calc(100vh - 10em);
+                min-height: 100vh;
             }
 
             .slc-description {
@@ -390,9 +389,62 @@ main {
                 
             }
         }
-    }
+    } 
 }
 
+footer {
+    color: white;
+    background-color: #111;
+    padding: 5em 2em;
+    display: flex;
+    justify-content: space-evenly;
+
+    .navigation {
+
+        display: flex;
+
+        li {
+            padding: .1em 1em;
+            list-style: none;
+
+            button {
+                color: white;
+            }
+        }
+
+        .parent {
+            opacity: .5;
+        }
+
+        .child {
+            visibility: hidden;
+        }
+    }
+
+    .contact {
+
+        p {
+            font-size: 1.5em;
+            margin: 0;
+            opacity: .4;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .adresse {
+
+            margin-top: 1em;
+            font-size: 1em;
+            
+
+            span {
+                display: block;
+            }
+        }
+    }
+}
 
 $breakpoint-smallscreen: 1100px;
 
