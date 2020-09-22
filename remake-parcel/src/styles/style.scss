@@ -328,6 +328,93 @@ main {
             }  
         }
 
+        &.trois {
+
+            padding: 0;
+
+            .sav-card {
+
+                display: inline-block;
+
+                img {
+                    width: 20vw;
+                }
+
+                h3, p {
+                    margin: 0;
+                    text-align: center;
+                }
+            }
+
+            .savons-doux,
+            .savon-menager,
+            .en-parlent {
+                min-height: 100vh;
+                padding: 5em 5em 0 5em;
+            }
+
+            .savons-doux {
+                color: #111;
+            }
+
+            .savon-menager {
+
+                position: relative;
+                overflow: hidden;
+
+                .deux-colonnes {
+                    margin-top: 5em;
+                    justify-content: space-evenly;
+                }
+
+                .recette-lessive {
+                    max-width: 450px;
+                }
+
+                .grosseballe {
+                    position: absolute;
+                    bottom: 7em;
+                    right: -12em;
+                    padding: 16em;
+                    background: #FFECC5;
+                    border-radius: 25em;
+                    z-index: -1;
+                }
+            }
+
+            .en-parlent {
+
+                position: relative;
+                overflow: hidden;
+
+                .liste {
+
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+
+                    .citation {
+                        width: calc(33% - 4em);
+                        max-width: 450px;
+                        min-width: 250px;
+                        padding: 2em;
+                        padding-left: 0;
+                        padding-right: 4em;
+                    }
+                }
+
+                .grosseballe {
+                    position: absolute;
+                    bottom: -13em;
+                    left: -12em;
+                    padding: 25em;
+                    background: #FBCD9A;
+                    border-radius: 25em;
+                    z-index: -1;
+                }
+            }
+        }
+
         &.quatre {
 
             padding: 5em;
