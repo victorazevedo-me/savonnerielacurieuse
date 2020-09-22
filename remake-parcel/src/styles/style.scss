@@ -35,6 +35,7 @@ body {
     background-color: #111;
     position: absolute;
     display: flex;
+    z-index: 100;
 
     button {
         position: absolute;
@@ -81,21 +82,51 @@ main {
 
     $titresize: 10vw;
 
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position-y: bottom;
+
+        @keyframes SlideRight {
+            from {left: -100%}
+            to {left: 0%}
+        }
+
+        @keyframes SlideLeft {
+            from {left: 100%}
+            to {left: 0%}
+        }
+
+        &.current {
+            z-index: 1;
+        }
+
+        &.aside {
+            z-index: 2;
+        }
+        
+    }
+
+    .background.un {background-image: url('../images/accueil/louis-hoang.jpg')}
+    .background.deux {background-image: url('../images/accueil/louise-knight.jpg')}
+    .background.trois {background-image: url('../images/accueil/ritvik-singh.jpg')}
+    .background.quatre {background-image: url('../images/accueil/anshu.jpg')}
+    
+
     .accueil {
 
+        position: absolute;
         width: 90vw;
         padding: 0 5vw;
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-size: cover;
-        background-position-y: bottom;
-
-        &.un {background-image: url('../images/accueil/louis-hoang.jpg')}
-        &.deux {background-image: url('../images/accueil/louise-knight.jpg')}
-        &.trois {background-image: url('../images/accueil/ritvik-singh.jpg')}
-        &.quatre {background-image: url('../images/accueil/anshu.jpg')}
+        z-index: 9;
 
         .titre {
 
@@ -115,7 +146,6 @@ main {
             }
 
         }
-
 
         nav {
 
