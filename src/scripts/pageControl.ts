@@ -53,7 +53,7 @@ export function pageControl() {
 
     function moveDots(panLeft: boolean) {
 
-        const dotsDOM = document.querySelectorAll('.accueil nav button');
+        const dotsDOM = document.querySelectorAll('nav .dots button');
 
         dotsDOM[page.index].className = "active";
         dotsDOM[page.index + (panLeft ? -1 : 1)].className = "";
