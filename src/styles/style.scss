@@ -80,8 +80,6 @@ button {
 
 main {
 
-    $titresize: 10vw;
-
     .background {
         position: fixed;
         top: 0;
@@ -101,14 +99,8 @@ main {
             to {left: 0%}
         }
 
-        &.current {
-            z-index: 1;
-        }
-
-        &.aside {
-            z-index: 2;
-        }
-        
+        &.current {z-index: 1;}
+        &.aside {z-index: 2;}
     }
 
     .background.un {background-image: url('../images/accueil/louis-hoang.jpg')}
@@ -132,7 +124,12 @@ main {
 
             color: white;
             font-weight: bold;
-            font-size: $titresize;
+            font-size: 8vw;
+            transition: opacity .3s;
+
+            &.animating {
+                opacity: 0;
+            }
 
             h1 {
                 font-size: 1em;
@@ -149,14 +146,18 @@ main {
 
         nav {
 
+            position: fixed;
+            bottom: 3em;
+            right: 3em;
             white-space: nowrap;
 
             button {
-                width: 1px;
+                width: 20px;
                 padding: .5em;
                 margin: 0 .3em;
                 background-color: white;
                 border-radius: .5em;
+                transition: width .5s;
 
                 &.active {
                     width: 60px;
