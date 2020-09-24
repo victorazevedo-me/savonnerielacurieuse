@@ -6,12 +6,25 @@ body {
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
     font-size: 20px;
+    // cursor: none;
+
+    #cursor {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 8px;
+        border: 2px solid white;
+        border-radius: 20px;
+        z-index: 15;
+    }
 
     > nav {
 
         position: fixed;
         top: 60px;
-        right: 60px;
+        left: 60px;
+        width: calc(100% - 120px);
         z-index: 10;
 
         button {
@@ -22,18 +35,18 @@ body {
         .minimal {
 
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: flex-end;
+            justify-content: space-between;
 
             .dots {
 
-                margin-top: 10px;
                 white-space: nowrap;
 
                 button {
 
                     width: 20px;
-                    padding: 6px;
+                    padding: 8px;
                     margin: 0 5px;
                     border: 2px solid white;
                     border-radius: 10px;
@@ -56,6 +69,7 @@ body {
 
 
 .main-menu {
+
     width: 100%;
     min-height: 100vh;
     background-color: #111;
@@ -107,6 +121,7 @@ button {
 main {
 
     .background {
+        
         position: fixed;
         top: 0;
         left: 0;
@@ -114,7 +129,7 @@ main {
         height: 100vh;
         background-size: cover;
         background-position-y: bottom;
-        filter: brightness(.5);
+        filter: brightness(.9);
 
         @keyframes SlideRight {
             from {left: -100%}
@@ -128,19 +143,17 @@ main {
 
         &.current {z-index: 1;}
         &.aside {z-index: 2;}
-    }
 
-    .background.un {background-image: url('../images/accueil/louis-hoang.jpg')}
-    .background.deux {background-image: url('../images/accueil/louise-knight.jpg')}
-    .background.trois {background-image: url('../images/accueil/ritvik-singh.jpg')}
-    .background.quatre {background-image: url('../images/accueil/anshu.jpg')}
-    
+        &.un {background-image: url('../images/accueil/louis-hoang.jpg')}
+        &.deux {background-image: url('../images/accueil/louise-knight.jpg')}
+        &.trois {background-image: url('../images/accueil/ritvik-singh.jpg')}
+        &.quatre {background-image: url('../images/accueil/anshu.jpg')}
+    }
 
     .accueil {
 
         position: absolute;
-        width: 90vw;
-        padding: 0 5vw;
+        width: 100%;
         height: 100vh;
         display: flex;
         align-items: center;
@@ -152,6 +165,7 @@ main {
             color: white;
             font-weight: bold;
             font-size: 8vw;
+            padding-left: 5vw;
             transition: opacity .3s;
 
             &.animating {
@@ -174,27 +188,37 @@ main {
 }
 
 footer {
-    color: white;
-    background-color: #111;
-    padding: 5em 2em;
-    display: flex;
-    justify-content: space-evenly;
+    
+    cursor: default;
+    color: #111;
+
+    hr {
+        width: 50%;
+        min-width: 200px;
+        max-width: 500px;
+        border: none;
+        border-top: 1px solid #ccc;
+    }
+
+    .wrapper {
+        margin: auto;
+        max-width: 900px;
+        padding: 5em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 
     .navigation {
 
         display: flex;
 
         li {
-            padding: .1em 1em;
             list-style: none;
 
             button {
-                color: white;
+                color: #111;
             }
-        }
-
-        .parent {
-            opacity: .5;
         }
 
         .child {
@@ -207,11 +231,6 @@ footer {
         p {
             font-size: 1.5em;
             margin: 0;
-            opacity: .4;
-
-            &:hover {
-                opacity: 1;
-            }
         }
 
         .adresse {
