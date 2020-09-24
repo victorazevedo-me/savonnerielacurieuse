@@ -23,17 +23,18 @@ body main .page {
         position: relative;
 
         h2 {
+            margin: 0;
             font-size: 70px;
-            margin: 0 0 50px 0;
+            margin-bottom: 70px;
         }
 
         .ballon {
             position: absolute;
             top: -15px;
-            left: -40px;
+            left: -60px;
             padding: 60px;
             border-radius: 60px;
-            background-color: sandybrown;
+            background-color: #ffcc80;
             z-index: -1;
         }
     }
@@ -41,7 +42,7 @@ body main .page {
     &.un {
 
         .deux-colonnes {
-            min-height: 100vh;
+            min-height: calc(100vh - 5em);
         }
 
         .slc-description {
