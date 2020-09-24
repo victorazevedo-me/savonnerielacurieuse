@@ -8,6 +8,7 @@ body {
     font-style: italic;
     font-size: 20px;
     line-height: 1.5;
+    overflow-x: hidden;
     // cursor: none;
 
     #cursor {
@@ -190,7 +191,7 @@ main {
 }
 
 footer {
-    
+
     cursor: default;
     color: #111;
 
@@ -199,13 +200,14 @@ footer {
         min-width: 200px;
         max-width: 500px;
         border: none;
-        border-top: 1px solid #ccc;
+        border-top: 1px solid #111;
+        opacity: .2;
     }
 
     .wrapper {
         margin: auto;
         max-width: 900px;
-        padding: 5em;
+        padding: 4em;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;

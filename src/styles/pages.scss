@@ -61,7 +61,7 @@ body main .page {
 
     &.deux {
 
-        overflow: hidden;
+        padding-bottom: 30vh;
 
         .sap-description {
             max-width: 700px;
@@ -123,7 +123,7 @@ body main .page {
                     width: 20%;
                     height: 7px;
                     margin: 15px auto;
-                    background: #eee;
+                    background: rgba(17,17,17,.1);
                     border-radius: 7px;
                     overflow: hidden;
 
@@ -139,11 +139,15 @@ body main .page {
                         left: 0;
                         width: 0px;
                         height: 7px;
-                        background: #bbb;
+                        background: rgba(17,17,17,.2);
 
                         animation: timer 8s linear;
                         animation-iteration-count: 12;
                         transition: opacity .5s;
+
+                        &.hidden {
+                            opacity: 0;
+                        }
                     }
                 }
 
@@ -175,17 +179,15 @@ body main .page {
 
             .expliquation {
 
-                position: relative;
                 max-width: 400px;
                 margin-left: 4em;
 
                 .grosseballe {
                     position: absolute;
-                    bottom: -25em;
-                    right: -25em;
-                    padding: 25em;
+                    right: -20em;
+                    padding: 22em;
+                    border-radius: 22em;
                     background: #FEF4B8;
-                    border-radius: 25em;
                     z-index: -1;
                 }
             }
