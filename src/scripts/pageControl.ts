@@ -6,66 +6,65 @@ export function pageControl() {
 
         // init vals
         const wrapper = document.querySelector('.backgrounds-wrapper')!;
+        const aside = wrapper.querySelector('.aside')!;
         const current = wrapper.querySelector('.current')!;
-        const aside = document.createElement("div");
-        const bckgs = ['un', 'deux', 'trois', 'quatre']
+        const bckgs = ['un', 'deux', 'trois', 'quatre'];
 
-        const params = (page.lastIndex < page.index ? {
-            pos: "100%",
-            anim: "SlideLeft 1s"
-        } : {
-            pos: "-100%",
-            anim: "SlideRight 1s"
-        })
-
-        aside.style.position = params.pos
-        aside.style.animation = params.anim;
-        aside.className = `background aside ${bckgs[page.index]}`
-
-        wrapper.insertBefore(aside, current);
+        aside.classList.add(bckgs[page.index]);
+        current.classList.add('fadeout')
 
         // reset animation control
         setTimeout(() => {
-            current.remove()
-            aside.className = `background current ${bckgs[page.index]}`
-            page.isMoving = false
-        }, 1000)
+            current.classList.remove('fadeout');
+            current.classList.remove(bckgs[page.lastIndex]);
+            
+            current.classList.replace('current', "aside");
+            aside.classList.replace('aside', 'current');
+        }, 1200)
+
     }
 
     function updateTitle() {
 
         const texts = [
-            {titre: "Savonnerie<br />La Curieuse", soustitre: "création de savons écologiques"},
-            {titre: "la saponification<br />à froid", soustitre: ""},
-            {titre: "César et les<br />savons doux", soustitre: ""},
-            {titre: "Où les<br />trouver ?", soustitre: ""}
+            {titre: ["Savonnerie", "La Curieuse"], soustitre: "création de savons écologiques"},
+            {titre: ["la saponification", "à froid"], soustitre: ""},
+            {titre: ["César et les", "savons doux"], soustitre: ""},
+            {titre: ["Où les", "trouver ?"], soustitre: ""}
         ];
 
-        const titreDOM = document.querySelector('.titre ')!;
-        const elems = {
-            titre: titreDOM.querySelector('h1')!,
-            soustitre: titreDOM.querySelector('p')!
+        const titre = document.querySelectorAll('.big div span')!;
+        const soustitre = document.querySelector('.small div span')!;
+        const spans = document.querySelectorAll('.titre span')!;
+        
+        const swipeAnim = (dom: Element) => {
+
+            const duration = 1200;
+            const animname = (page.lastIndex > page.index ? 'swipedRight' : 'swipedLeft');
+
+            dom.classList.add(animname)
+
+            setTimeout(() => {
+                dom.classList.remove(animname)
+            }, duration)
         }
+    
+        spans.forEach(span => {
+            
+            swipeAnim(span)
 
-        titreDOM.className = "titre animating";
+            setTimeout(() => {
+                titre.forEach((span, i) => {span.innerHTML = texts[page.index].titre[i]})
+                soustitre.innerHTML = texts[page.index].soustitre
+            }, 600)
+        })
 
-        setTimeout(() => {
-            elems.titre.innerHTML = texts[page.index].titre
-            elems.soustitre.innerHTML = texts[page.index].soustitre
-            titreDOM.className = "titre"
-        }, 800)
-    }
-
-    function moveDots() {
-
-        const dotsDOM = document.querySelectorAll('nav .dots button');
-
-        dotsDOM[page.index].className = "active";
-        dotsDOM[page.lastIndex].className = "";
+        
     }
 
     let page = {
 
+        noSwipe: false,
         isMoving: false,
         index: 0,
         lastIndex: 0,
@@ -76,19 +75,18 @@ export function pageControl() {
             page.isMoving = true
 
             moveBackgrounds()
-            moveDots()
             updateTitle()
+
+            setTimeout(() => {page.isMoving = false; page.noSwipe = false}, 1200)
         }
     }
 
-    //dots menu buttons
-    const dots = document.querySelectorAll('nav .dots button');
-    dots.forEach((elem, i) => {
+    document.querySelectorAll('nav .mini-nav li').forEach((elem, i) => {
 
         elem.addEventListener('click', function() {
 
             if (!page.isMoving && page.index !== i) {
-                let panLeft = (page.index < i)
+                page.noSwipe = true
                 page.move(i)
             }
         })

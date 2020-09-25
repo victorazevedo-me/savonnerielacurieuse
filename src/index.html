@@ -1,54 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="./styles/style.scss" />
-    <script src="./scripts/index.ts" defer></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Homepage</title>
+        <link rel="stylesheet" href="./styles/style.scss"/>
+        <script src="./scripts/index.ts" defer></script>
+    </head>
+    <body>
 
-    <div id="cursor"></div>
+        <div id="cursor"></div>
 
-    <nav>
-        <div class="minimal">
-            <div></div>
-            
-            <div class="dots">
-                <button class="active"></button>
-                <button class></button>
-                <button class></button>
-                <button class></button>
-            </div>
+        <nav>
+            <div class="minimal">
 
-            <div>
-                <button>menu</button>
-            </div>
-        </div>
-        
-        <div class="extended"></div>
-    </nav>
+                <div>
 
-    <main>
-        <section>
+                </div>
 
-            <div class="backgrounds-wrapper">
-                <div class="background current un"></div>
-            </div>
+                <div class="center">
 
-            <div class="accueil">
+                    <div class="mini-nav">
+                        <li class="active">la savonnerie</li>
+                        <li>la saponification</li>
+                        <li>les savons</li>
+                        <li>où les trouver</li>
+                    </div>
 
-                <div class="titre">
-                    <h1>Savonnerie<br />La Curieuse</h1>
-                    <p>création de savons écologiques</p>
+                    <!-- <div class="dots">
+                        <button class="active"></button>
+                        <button class></button>
+                        <button class></button>
+                        <button class></button>
+                    </div> -->
+                </div>
+
+                <div>
+                    <button>menu</button>
                 </div>
             </div>
+            
+            <div class="extended"></div>
+        </nav>
+        
+        <main>
 
-            <div class="defile">
-                <div ></div>
-            </div>
-        </section>
-    </main>
-</body>
+            <section>
+
+                <div class="backgrounds-wrapper">
+                    <div class="background aside deux"></div>
+                    <div class="background current un"></div>
+                </div>
+            
+                <div class="accueil">
+            
+                    <div class="titre">
+            
+                        <div class="big">
+                            <div>
+                                <span>Savonnerie</span>
+                            </div>
+                            <div>
+                                <span>La Curieuse</span>
+                            </div>
+                        </div>
+            
+                        <div class="small">
+                            <div>
+                                <span>création de savons écologiques</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
 </html>

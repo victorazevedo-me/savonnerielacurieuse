@@ -1,18 +1,30 @@
 import pageControl from './pageControl';
 import fabricationScroll from './fabrication';
 
-/*
- *
- * Function Cemetary
- *
-*/
+
 
 function openmenu() {
 
-    // const page = window.location.pathname
+    // let isPageExpanded = false
+    // const main = document.querySelector('main')!;
+
     // document.body.addEventListener('wheel', function(ev: any) {
 
-    //     if (ev.wheelDelta < 0) {
+    //     if (!isPageExpanded && ev.wheelDelta < 0) {
+
+    //         fetch("./pages/01.html").then((response) => {
+    //             response.text().then((data) => {
+
+    //                 const section = document.createElement('section');
+
+    //                 section.className = 'class un';
+    //                 section.innerHTML = data
+                    
+    //                 main.appendChild(section)
+    //                 console.log(data)
+    //             })
+    //         })
+    //         isPageExpanded = true
     //         console.log('transition')
     //     }
 
@@ -47,8 +59,10 @@ function overlayPosition(overlay: string, targetElem: string, posY: number):void
 
 window.onload = function() {
 
-    if (window.location.pathname === "/index.html") {
+    if (window.location.pathname === "/index.html" ||
+    window.location.pathname === "/") {
         pageControl()
+        openmenu()
         //customCursor()
     }
     else if (window.location.pathname === "/page-02.html") {
