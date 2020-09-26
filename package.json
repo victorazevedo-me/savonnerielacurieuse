@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/hammerjs": "^2.0.36",
+    "@types/vue": "^2.0.0",
     "@vue/component-compiler-utils": "^3.2.0",
     "cssnano": "^4.1.10",
     "sass": "^1.26.10",
@@ -17,11 +19,11 @@
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
-    "@types/hammerjs": "^2.0.36",
-    "@types/vue": "^2.0.0",
-    "gsap": "^3.5.1",
     "hammerjs": "^2.0.8",
     "vue": "^2.6.12",
     "vue-hot-reload-api": "^2.3.4"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.esm.js"
   }
 }
