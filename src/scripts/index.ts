@@ -57,6 +57,14 @@ function overlayPosition(overlay: string, targetElem: string, posY: number):void
     overlayDOM.style.top = `${(elemTop - bodyTop) + (posY - overlayDOM.offsetHeight / 2)}px`
 }
 
+function menuClick() {
+    const hamburger = document.querySelector('.hamburger')!;
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('clicked')
+    })
+}
+
 window.onload = function() {
 
     let isPageExpanded = false
@@ -65,6 +73,7 @@ window.onload = function() {
     // window.location.pathname === "/") {
 
         acceuilControl()
+        menuClick()
 
         document.body.addEventListener('wheel', function(ev: any) {
 

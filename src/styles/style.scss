@@ -29,61 +29,33 @@ body {
         left: 60px;
         width: calc(100% - 120px);
         z-index: 10;
-
-        button {
-            color: #fff;
-            font-weight: bold;
-        }
+        color: white;
         
         .minimal {
 
             display: flex;
             flex-direction: row;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
 
             .center {
+
                 display: flex;
                 flex-direction: column;
                 align-items: center;
 
-                .dots {
-
-                    white-space: nowrap;
-                    margin-top: 1.5em;
-                    display: flex;
-                    width: 100%;
-                    justify-content: center;
-    
-                    button {
-    
-                        width: 12px;
-                        padding: 6px;
-                        margin: 0 12px;
-                        background-color: #fff;
-                        // border: 2px solid white;
-                        border-radius: 8px;
-                        transition: all .5s;
-                        opacity: .4;
-    
-                        &.active {
-                            opacity: 1;
-                            // width: 60px;
-                            transform: scale(2);
-                        }
-                    }
-                }
-    
-                .mini-nav {
+                ul {
     
                     display: flex;
                     justify-items: center;
                     width: 100%;
                     white-space: nowrap;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
             
                     li {
                         margin: 0 1em;
-                        color: white;
                         list-style: none;
                         font-weight: bold;
                         opacity: .7;
@@ -94,14 +66,61 @@ body {
                         }
                     }
                 }
+
             }
 
+            .hamburger {
             
+                width: 20px;
+                height: 16px;
+                padding: .5em;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                cursor: pointer;
+    
+                span {
+                    width: 100%;
+                    padding: 1px;
+                    background-color: #fff;
+                    border-radius: 10px;
+                    transition: transform .5s;
+                }
+
+                &.clicked {
+                    span:nth-child(1) {
+                        transform: rotate(-45deg) translateY(10px);
+                    }
+                    span:nth-child(2) {
+                        transform: scale(0);
+                    }
+                    span:nth-child(3) {
+                        transform: rotate(45deg) translateY(-10px);
+                    }
+                }
+            }
+        }
+
+        .logo {
+            p {
+                margin: 0;
+                cursor: pointer;
+                visibility: hidden;
+            }
         }
 
         &.header {
-            button {
-                color: #111;
+
+            color: #111;
+
+            .logo {
+                p {
+                    visibility: visible;
+                }
+            }
+
+            .hamburger span {
+                background-color: rgba($color: #111, $alpha: .5);
             }
         }
     }
