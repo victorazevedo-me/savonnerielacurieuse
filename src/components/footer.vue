@@ -7,16 +7,16 @@
                 <div class="navigation">
                     <div class="parent">
                         <li>
-                            <button>Accueil</button>
+                            <span>Accueil</span>
                         </li>
                         <li>
-                            <button>la saponification à froid</button>
+                            <span>la saponification à froid</span>
                         </li>
                         <li>
-                            <button>César et les savons doux</button>
+                            <span>César et les savons doux</span>
                         </li>
                         <li>
-                            <button>où les trouver</button>
+                            <span>où les trouver</span>
                         </li>
                     </div>
                     <div class="child">

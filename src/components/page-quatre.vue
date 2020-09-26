@@ -1,5 +1,5 @@
 <template>
-    <section id="app" class="page quatre">
+    <section id="contenu-page" class="page quatre">
 
         <div class="semi-titre">
             <div class="ballon"></div>

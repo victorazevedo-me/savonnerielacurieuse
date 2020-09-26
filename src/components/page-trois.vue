@@ -1,5 +1,5 @@
 <template>
-    <section id="app" class="page trois">
+    <section id="contenu-page" class="page trois">
 
         <div id="savons-doux" class="savons-doux">
             <div class="semi-titre">

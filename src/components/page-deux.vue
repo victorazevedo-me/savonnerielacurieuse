@@ -1,5 +1,5 @@
 <template>
-    <section id="app" class="page deux">
+    <section id="contenu-page" class="page deux">
 
         <div class="sap-description">
             <div class="semi-titre">

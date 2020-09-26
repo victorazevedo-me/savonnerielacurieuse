@@ -1,5 +1,5 @@
 <template>
-<section id="app" class="page un">
+<section id="contenu-page" class="page un">
     <div class="deux-colonnes">
         <div class="slc-description">
             <div class="semi-titre">
