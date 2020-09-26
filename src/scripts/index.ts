@@ -1,34 +1,34 @@
 import pageControl from './pageControl';
 import fabricationScroll from './fabrication';
-
+import Vue from '../../node_modules/vue/dist/vue.common.dev.js';
+import Page01 from '../components/page.vue';
+Vue.config.productionTip = false
 
 
 function openmenu() {
 
-    // let isPageExpanded = false
-    // const main = document.querySelector('main')!;
+    let isPageExpanded = false
+    const main = document.querySelector('main')!;
 
-    // document.body.addEventListener('wheel', function(ev: any) {
+    document.body.addEventListener('wheel', function(ev: any) {
 
-    //     if (!isPageExpanded && ev.wheelDelta < 0) {
+        if (!isPageExpanded && ev.wheelDelta < 0) {
 
-    //         fetch("./pages/01.html").then((response) => {
-    //             response.text().then((data) => {
+            isPageExpanded = true
+            document.querySelector('#transition-overlay')?.classList.add('animate');
 
-    //                 const section = document.createElement('section');
+            setTimeout(() => {
+                new Vue({
+                    el: "#contenu-page",
+                    template: '<Page01/>',
+                    components: { Page01 }
+                })
 
-    //                 section.className = 'class un';
-    //                 section.innerHTML = data
-                    
-    //                 main.appendChild(section)
-    //                 console.log(data)
-    //             })
-    //         })
-    //         isPageExpanded = true
-    //         console.log('transition')
-    //     }
+                document.body.style.overflowY = "auto"
+            }, 1000)
+        }
 
-    // })
+    })
 
 }
 

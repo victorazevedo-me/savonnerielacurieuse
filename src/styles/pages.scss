@@ -1,9 +1,11 @@
 body main .page {
 
-    display: none;
+    position: relative;
+    background-color: white;
     cursor: default;
     min-height: 100vh;
     padding: 3em 2em;
+    z-index: 3;
 
     h2 {
         font-size: 70px;
@@ -27,6 +29,7 @@ body main .page {
             margin: 0;
             font-size: 70px;
             margin-bottom: 70px;
+            position: relative;
         }
 
         .ballon {
@@ -36,7 +39,6 @@ body main .page {
             padding: 60px;
             border-radius: 60px;
             background-color: #ffcc80;
-            z-index: -1;
         }
     }
 

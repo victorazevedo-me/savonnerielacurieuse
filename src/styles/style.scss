@@ -8,7 +8,7 @@ body {
     font-style: italic;
     font-size: 20px;
     line-height: 1.5;
-    overflow-x: hidden;
+    overflow: hidden;
     // cursor: none;
 
     #cursor {
@@ -172,12 +172,13 @@ main {
         left: 0;
         width: 100%;
         height: 100vh;
+        z-index: -1;
         background-size: cover;
         background-position-y: bottom;
         transition: opacity 1s;
         filter: brightness(.9);
 
-        &.current {z-index: 1;}
+        &.current {z-index: 0;}
         &.aside {z-index: -1;}
         &.fadeout {opacity: 0;}
 
@@ -189,7 +190,7 @@ main {
 
     .accueil {
 
-        position: absolute;
+        position: relative;
         width: 100%;
         height: 100vh;
         display: flex;
@@ -259,62 +260,77 @@ main {
         }
     }
 
-    footer {
+    #transition-overlay {
+        position: fixed;
+        top: 100vh;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        transition: top 1s;
+        z-index: 2;
 
-        cursor: default;
-        color: #111;
-    
-        hr {
-            width: 50%;
-            min-width: 200px;
-            max-width: 500px;
-            border: none;
-            border-top: 1px solid #111;
-            opacity: .2;
+        &.animate {
+            top: 0;
         }
-    
-        .wrapper {
-            margin: auto;
-            max-width: 900px;
-            padding: 4em;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+    }
+}
+
+section footer {
+
+    cursor: default;
+    color: #111;
+
+    hr {
+        width: 50%;
+        min-width: 200px;
+        max-width: 500px;
+        border: none;
+        border-top: 1px solid #111;
+        opacity: .2;
+    }
+
+    .wrapper {
+        margin: auto;
+        max-width: 900px;
+        padding: 4em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .navigation {
+
+        display: flex;
+
+        li {
+            list-style: none;
+
+            button {
+                color: #111;
+            }
         }
-    
-        .navigation {
-    
-            display: flex;
-    
-            li {
-                list-style: none;
-    
-                button {
-                    color: #111;
-                }
-            }
-    
-            .child {
-                visibility: hidden;
-            }
+
+        .child {
+            visibility: hidden;
         }
-    
-        .contact {
-    
-            p {
-                font-size: 1.5em;
-                margin: 0;
-            }
-    
-            .adresse {
-    
-                margin-top: 1em;
-                font-size: 1em;
-                
-    
-                span {
-                    display: block;
-                }
+    }
+
+    .contact {
+
+        p {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .adresse {
+
+            margin-top: 1em;
+            font-size: 1em;
+            
+
+            span {
+                display: block;
             }
         }
     }
