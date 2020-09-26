@@ -1,6 +1,11 @@
-import Hammer from 'hammerjs';
+type Accueil = {
+    noSwipe: boolean,
+    isMoving: boolean,
+    index: number,
+    lastIndex: number
+}
 
-export function accueilControl() {
+export function accueilControl(page: Accueil) {
 
     function moveBackgrounds(): void {
 
@@ -58,60 +63,10 @@ export function accueilControl() {
                 soustitre.innerHTML = texts[page.index].soustitre
             }, 600)
         })
-
-        
     }
 
-    let page = {
-
-        noSwipe: false,
-        isMoving: false,
-        index: 0,
-        lastIndex: 0,
-
-        move: (newIndex: number) => {
-            page.lastIndex = page.index;
-            page.index = newIndex;
-            page.isMoving = true
-
-            moveBackgrounds()
-            updateTitle()
-
-            setTimeout(() => {page.isMoving = false; page.noSwipe = false}, 1200)
-        }
-    }
-
-    document.querySelectorAll('nav .mini-nav li').forEach((elem, i) => {
-
-        elem.addEventListener('click', function() {
-
-            if (!page.isMoving && page.index !== i) {
-                page.noSwipe = true
-                page.move(i)
-            }
-        })
-    }) 
-
-    //panning events
-    const emcee = new Hammer(document.body!);
-    const swipes = ["panleft", "panright"];
-
-    swipes.forEach(pan => {
-
-        emcee.on(pan, () => {
-
-            if (!page.isMoving) {
-
-                if (pan === "panleft" && page.index < 3) {
-                    page.move(page.index + 1)
-                }
-
-                if (pan === "panright" && page.index > 0) {
-                    page.move(page.index - 1)
-                }
-            }
-        })
-    })
+    moveBackgrounds();
+    updateTitle();
 }
 
 export default accueilControl

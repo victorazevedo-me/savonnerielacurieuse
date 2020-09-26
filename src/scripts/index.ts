@@ -1,41 +1,7 @@
 import Vue from 'vue';
+import Hammer from 'hammerjs';
+import { openPage, PageEventOrigin } from './pageControl';
 import acceuilControl from './accueilControl';
-import fabricationScroll from './fabrication';
-
-import Page01 from '../components/page-un.vue';
-import Page02 from '../components/page-deux.vue';
-import Page03 from '../components/page-trois.vue';
-import Page04 from '../components/page-quatre.vue';
-
-function openPage(which: number) {
-
-    const params = [
-        {url: "/la-savonnerie", title: "La savonnerie"},
-        {url: "/la-saponification", title: "La saponifiaction"},
-        {url: "/les-savons", title: "Les savons"},
-        {url: "/ou-les-trouver", title: "Où les trouver"},
-    ]
-
-    const main = document.querySelector('main')!;
-    document.querySelector('#transition-overlay')?.classList.add('animate');
-
-    setTimeout(() => {
-
-        window.history.pushState("localhost:1234", params[which].title, params[which].url);
-
-        if (which === 0) {
-            new Vue({el: "#contenu-page", template: '<Page01 />', components: { Page01 }})
-        } else if (which === 1) {
-            new Vue({el: "#contenu-page", template: '<Page02 />', components: { Page02 }})
-        } else if (which === 2) {
-            new Vue({el: "#contenu-page", template: '<Page03 />', components: { Page03 }})
-        } else if (which === 3) {
-            new Vue({el: "#contenu-page", template: '<Page04 />', components: { Page04 }})
-        }
-
-        document.body.style.overflowY = "auto"
-    }, 1000)
-}
 
 function customCursor() {
     
@@ -47,47 +13,126 @@ function customCursor() {
     // })
 }
 
-function overlayPosition(overlay: string, targetElem: string, posY: number):void {
-
-    const bodyTop = document.body.getBoundingClientRect().top;
-    const elemTop = document.querySelector(targetElem)!.getBoundingClientRect().top;
-    const overlayDOM = (<HTMLElement>document.querySelector(overlay));
-
-    overlayDOM.style.top = `${(elemTop - bodyTop) + (posY - overlayDOM.offsetHeight / 2)}px`
-}
-
-function menuClick() {
-    const hamburger = document.querySelector('.hamburger')!;
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('clicked')
-    })
-}
 
 window.onload = function() {
 
-    let isPageExpanded = false
+    //Object
+    const Accueil = {
 
-    // if (window.location.pathname === "/index.html" ||
-    // window.location.pathname === "/") {
+        hasLeft: false,
+        noSwipe: false,
+        isMoving: false,
+        index: 0,
+        lastIndex: 0,
 
-        acceuilControl()
-        menuClick()
+        leave: (origin: PageEventOrigin.homeScrollDown) => {
+            Accueil.hasLeft = true
+            openPage(origin, Accueil.index)
+        },
 
-        document.body.addEventListener('wheel', function(ev: any) {
+        arrive: (origin: PageEventOrigin.pageScrollUp | PageEventOrigin.headerLogo) => {
+            Accueil.hasLeft = false
+            openPage(origin)
+            Accueil.swipes(Accueil.index)
+        },
 
-            if (!isPageExpanded && ev.wheelDelta < 0) {
-                isPageExpanded = true
-                openPage(3)
+        swipes: (newIndex: number) => {
+
+            if (!Accueil.isMoving) {
+
+                Accueil.isMoving = true;
+                Accueil.lastIndex = Accueil.index;
+                Accueil.index = newIndex;
+
+                acceuilControl(Accueil)
+        
+                setTimeout(() => {Accueil.isMoving = false; Accueil.noSwipe = false}, 1200)
+            }
+        }
+    }
+
+    //Object
+    const Nav = {
+
+        dom: document.querySelector('body > nav')!,
+        centerLis: document.querySelectorAll('nav .center li'),
+    
+        show: () => Nav.dom.classList.add('show'),
+        hide: () => Nav.dom.classList.remove('show'),
+
+        changeCenterFocus: (i?: number) => {
+            Nav.centerLis[Accueil.lastIndex].classList.remove('active');
+            Nav.centerLis[i ? i : Accueil.index].classList.add('active');
+        }
+    }
+
+    //scroll events
+    document.body.addEventListener('wheel', function(ev: any) {
+
+        if (ev.wheelDelta < 0) {
+
+            if (!Accueil.hasLeft) {
+                Accueil.leave(PageEventOrigin.homeScrollDown)
+            } else {
+                Nav.hide()
+            }
+        }
+        else if (Accueil.hasLeft && ev.wheelDelta > 0) {
+            Nav.show()
+        }
+    })
+
+    //nav buttons event
+    Nav.centerLis.forEach((elem, i) => {
+
+        elem.addEventListener('click', function() {
+
+            if (Accueil.index !== i) {
+
+                Accueil.noSwipe = true
+                Accueil.swipes(i)
+                Nav.changeCenterFocus(i);
             }
         })
-        
-    // }
-    if (window.location.pathname === "/la-saponification") {
-        fabricationScroll()
-        overlayPosition('.grosseballe', '.expliquation', 500)
-    }
-    else if (window.location.pathname === "/la-savonnerie") {
-        openPage(3)
-    }
+    })
+
+    //panning events
+    const emcee = new Hammer(document.body!);
+    const swipes = ["panleft", "panright"];
+    
+    swipes.forEach(pan => {
+        emcee.on(pan, () => {
+
+            //deplace l'accueil droite et gauche
+            if (pan === "panleft" && Accueil.index < 3) {
+                Accueil.swipes(Accueil.index + 1)
+            }
+
+            if (pan === "panright" && Accueil.index > 0) {
+                Accueil.swipes(Accueil.index - 1)
+            }
+
+            Nav.changeCenterFocus(Accueil.index);
+        })
+    });
+
+    //menu events
+    const hamburger = document.querySelector('.hamburger')!;
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('clicked')
+    })
+
+
+    //logo event
+    const logo = document.querySelector('nav .logo')!;
+    logo.addEventListener('click', () => {
+        Accueil.arrive(PageEventOrigin.headerLogo)
+    })
+
+
+    // directories control
+    openPage(PageEventOrigin.initialisation)
+    window.addEventListener('locationchange', function(){
+        openPage(PageEventOrigin.initialisation)
+    })
 }
