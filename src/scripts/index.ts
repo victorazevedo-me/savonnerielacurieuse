@@ -1,12 +1,11 @@
+import Vue from 'vue';
 import acceuilControl from './accueilControl';
 import fabricationScroll from './fabrication';
-import Vue from 'vue';
-import Page01 from '../components/page-un.vue';
-import Page02 from '../components/page-deux.vue';
-import Page03 from '../components/page-trois.vue';
-import Page04 from '../components/page-quatre.vue';
-Vue.config.productionTip = false
 
+import Page01 from '**/page-un.vue';
+import Page02 from '**/page-deux.vue';
+import Page03 from '**/page-trois.vue';
+import Page04 from '**/page-quatre.vue';
 
 function openPage(which: number) {
 
@@ -79,7 +78,7 @@ window.onload = function() {
 
             if (!isPageExpanded && ev.wheelDelta < 0) {
                 isPageExpanded = true
-                openPage(2)
+                openPage(3)
             }
         })
         
@@ -89,6 +88,6 @@ window.onload = function() {
         overlayPosition('.grosseballe', '.expliquation', 500)
     }
     else if (window.location.pathname === "/la-savonnerie") {
-        openPage(2)
+        openPage(3)
     }
 }
