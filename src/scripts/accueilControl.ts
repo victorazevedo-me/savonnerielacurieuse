@@ -1,6 +1,6 @@
 import Hammer from 'hammerjs';
 
-export function pageControl() {
+export function accueilControl() {
 
     function moveBackgrounds(): void {
 
@@ -114,4 +114,4 @@ export function pageControl() {
     })
 }
 
-export default pageControl
+export default accueilControl
