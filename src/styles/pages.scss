@@ -64,11 +64,9 @@ body main .page {
 
     &.deux {
 
-        padding-bottom: 30vh;
-
         .sap-description {
             max-width: 700px;
-            margin: 3em auto;
+            margin: 10em auto;
         }
 
         .deux-colonnes {
@@ -194,7 +192,11 @@ body main .page {
                     z-index: -1;
                 }
             }
-        }  
+        }
+
+        footer {
+            padding-top: 30vh;
+        }
     }
 
     &.trois {
