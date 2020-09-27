@@ -93,6 +93,7 @@ body > nav {
     &.header {
 
         color: #111;
+        transition: color .5s .5s;
 
         .logo {
             p {

@@ -16,6 +16,20 @@ function customCursor() {
 
 window.onload = function() {
 
+    const paths = [{
+        url: "/la-savonnerie",
+        title: "La savonnerie"
+    },{
+        url: "/la-saponification",
+        title: "La saponification"
+    },{
+        url: "/les-savons",
+        title: "Les savons"
+    },{
+        url: "/ou-les-trouver",
+        title: "Où les trouver"
+    }];
+
     //Object
     const Accueil = {
 
@@ -43,6 +57,8 @@ window.onload = function() {
                 Accueil.isMoving = true;
                 Accueil.lastIndex = Accueil.index;
                 Accueil.index = newIndex;
+
+                window.history.pushState("localhost:1234", paths[Accueil.index].title, paths[Accueil.index].url)
 
                 acceuilControl(Accueil)
         
@@ -132,6 +148,7 @@ window.onload = function() {
 
     // directories control
     openPage(PageEventOrigin.initialisation)
+    
     window.addEventListener('locationchange', function(){
         openPage(PageEventOrigin.initialisation)
     })
