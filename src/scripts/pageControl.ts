@@ -53,22 +53,12 @@ export function openPage(which: PageEventOrigin, index?: number) {
 
     const appendPage = (i?: number) => {
 
-        const pushUrl = (title: string, url: string) => (
-            window.history.pushState("localhost:1234", title, url)
-        );
-
-        const modifyDOM = () => {
-
-            //body scroll
-            document.body.style.overflowY = (i ? "auto" : "hidden");
-
-            //nav animation
-            const navClass = document.querySelector('body > nav')?.classList;
-            (navClass?.contains('header') ? navClass.remove('header', 'show') : navClass?.add('header'))
-        };
+        // const pushUrl = (title: string, url: string) => (
+        //     window.history.pushState("localhost:1234", title, url)
+        // );
 
         //are pages
-        if (i) {
+        if (typeof(i) === 'number') {
 
             //append vue pages
             if (i === 0) {
@@ -85,45 +75,67 @@ export function openPage(which: PageEventOrigin, index?: number) {
             if (path.pages[i].funcs && path.pages[i].funcs?.length > 0) {
                 path.pages[i].funcs.forEach(fcn => fcn())
             }
-
-            pushUrl(path.pages[i].title, path.pages[i].url)
-            modifyDOM()
         }
 
         //is homepage
-        else {
-
-            pushUrl(path.homepage.title, path.homepage.url)
-            modifyDOM()
-            
+        else {        
             new Vue({el: "#contenu-page", template: '<Index />', components: { Index }})
         }
     }
 
+    const changeStyle = { 
+
+        bodyOverflow: (y: boolean) => (
+            document.body.style.overflowY = (y ? "auto" : "hidden")
+        ),
+            
+        nav: {
+            isHeader: (y: boolean) => ((y ? 
+                document.querySelector('body > nav')!.classList.add('header') :
+                document.querySelector('body > nav')!.classList.remove('header')
+            )),
+        },
+
+        transition: {
+            in: () => (document.querySelector('#transition-overlay')!.classList.add('animate')),
+            out: () => (document.querySelector('#transition-overlay')!.classList.remove('animate'))
+        }
+    }
 
     if (which === PageEventOrigin.initialisation) {
 
+        let noPathMatch = true
+
         path.pages.forEach((p, i) => {
             if (window.location.pathname === p.url) {
+
+                noPathMatch = false
                 appendPage(i)
-            } else {
-                appendPage()
+
+                changeStyle.bodyOverflow(true)
+                changeStyle.nav.isHeader(true)
             }
         })
+
+        if (noPathMatch) appendPage()
     }
+
     else if (which === PageEventOrigin.homeScrollDown) {
 
-        document.querySelector('#transition-overlay')?.classList.add('animate');
-        setTimeout(() => {appendPage(index)}, 1000);
+        changeStyle.bodyOverflow(true)
+        changeStyle.nav.isHeader(true)
+        changeStyle.transition.in()
 
+        setTimeout(() => {appendPage(index)}, 1000)
     }
+
     else if (which === PageEventOrigin.headerLogo) {
 
-        document.body.style.overflowY = "hidden";
-        document.querySelector('#transition-overlay')?.classList.remove('animate');
+        changeStyle.bodyOverflow(false)
+        changeStyle.nav.isHeader(false)
+        changeStyle.transition.out()
         appendPage()
     }
-
 }
 
 export default openPage
