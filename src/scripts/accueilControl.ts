@@ -1,32 +1,26 @@
-type Accueil = {
-    noSwipe: boolean,
-    isMoving: boolean,
-    index: number,
-    lastIndex: number
-}
 
-export function accueilControl(page: Accueil) {
+export function accueilSwipe(u: string, i: number, lasti: number) {
+
+    let url = u.replace('/', '');
 
     function moveBackgrounds(): void {
 
         // init vals
-        const wrapper = document.querySelector('.backgrounds-wrapper')!;
-        const aside = wrapper.querySelector('.aside')!;
-        const current = wrapper.querySelector('.current')!;
-        const bckgs = ['un', 'deux', 'trois', 'quatre'];
+        const wrapper = document.querySelector('.background-wrapper')!;
+        const current = wrapper.querySelector('.background-wrapper div')!;
+        const next = document.createElement('div');
+    
+        next.classList.add('background', url);
+        current.classList.add('fadeout');
+        wrapper.appendChild(next);
 
-        aside.classList.add(bckgs[page.index]);
-        current.classList.add('fadeout')
+        document.body.style.overflowY = 'none';
 
-        // reset animation control
         setTimeout(() => {
-            current.classList.remove('fadeout');
-            current.classList.remove(bckgs[page.lastIndex]);
-            
-            current.classList.replace('current', "aside");
-            aside.classList.replace('aside', 'current');
+            current.remove()
+            next.classList.add('front');
+            document.body.style.overflowY = 'scroll';
         }, 1200)
-
     }
 
     function updateTitle() {
@@ -45,7 +39,7 @@ export function accueilControl(page: Accueil) {
         const swipeAnim = (dom: Element) => {
 
             const duration = 1200;
-            const animname = (page.lastIndex > page.index ? 'swipedRight' : 'swipedLeft');
+            const animname = (lasti > i ? 'swipedRight' : 'swipedLeft');
 
             dom.classList.add(animname)
 
@@ -59,8 +53,8 @@ export function accueilControl(page: Accueil) {
             swipeAnim(span)
 
             setTimeout(() => {
-                titre.forEach((span, i) => {span.innerHTML = texts[page.index].titre[i]})
-                soustitre.innerHTML = texts[page.index].soustitre
+                titre.forEach((span, j) => {span.innerHTML = texts[i].titre[j]})
+                soustitre.innerHTML = texts[i].soustitre
             }, 600)
         })
     }
@@ -69,4 +63,4 @@ export function accueilControl(page: Accueil) {
     updateTitle();
 }
 
-export default accueilControl
+export default accueilSwipe

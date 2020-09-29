@@ -1,8 +1,8 @@
 <template>
-    <section id="contenu-page">
-        <div class="backgrounds-wrapper">
-            <div class="background aside deux"></div>
-            <div class="background current un"></div>
+    <section id="contenu-accueil">
+
+        <div class="background-wrapper">
+            <div class="background la-savonnerie front"></div>
         </div>
 
         <div class="accueil">
