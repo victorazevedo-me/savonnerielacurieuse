@@ -10,7 +10,7 @@ import accueilSwipe from './accueilControl';
 
 function overlayPosition(overlay: string, targetElem: string, posY: number):void {
 
-    const bodyTop = document.body.getBoundingClientRect().top;
+    const bodyTop = document.querySelector('#contenu-page')!.getBoundingClientRect().top;
     const elemTop = document.querySelector(targetElem)!.getBoundingClientRect().top;
     const overlayDOM = (<HTMLElement>document.querySelector(overlay));
 
@@ -100,20 +100,34 @@ function events() {
     //panning events
     const emcee = new Hammer(document.body!);
     const swipes = ["panleft", "panright"];
+    let swipeMoves = {
+        max: 100,
+        now: 0
+    }
     
     swipes.forEach(pan => {
+
         emcee.on(pan, () => {
 
-            //deplace l'accueil droite et gauche
-            if (pan === "panleft" && Accueil.index < 3) {
-                Accueil.swipes(Accueil.index + 1)
-            }
+            //pour eviter de swipe n'importe quand
+            //à corriger en définissant finishposX - startposX
+            if (swipeMoves.now < swipeMoves.max) {
+                swipeMoves.now += 1
+            } else {
 
-            if (pan === "panright" && Accueil.index > 0) {
-                Accueil.swipes(Accueil.index - 1)
-            }
+                swipeMoves.now = 0
 
-            Nav.changeCenterFocus(Accueil.index);
+                //deplace l'accueil droite et gauche
+                if (pan === "panleft" && Accueil.index < 3) {
+                    Accueil.swipes(Accueil.index + 1)
+                }
+
+                if (pan === "panright" && Accueil.index > 0) {
+                    Accueil.swipes(Accueil.index - 1)
+                }
+
+                Nav.changeCenterFocus(Accueil.index);
+            }
         })
     });
 
@@ -160,7 +174,7 @@ export function openPage(which: PageEventOrigin, index?: number) {
             url: "/les-savons",
             title: "Les savons",
             funcs: [
-                () => overlayPosition('.grosseballe', '.en-parlent', 500)
+                () => overlayPosition('.en-parlent .grosseballe', '.en-parlent', 1000)
             ]
         },{
             url: "/ou-les-trouver",
