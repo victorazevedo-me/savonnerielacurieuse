@@ -5,6 +5,30 @@
             <div class="background la-savonnerie front"></div>
         </div>
 
+        <nav class="minimal">
+
+            <div class="logo">
+                <p>Curieuse</p>
+            </div>
+
+            <div class="center">
+
+                <ul>
+                    <li>la savonnerie</li>
+                    <li>la saponification</li>
+                    <li>les savons</li>
+                    <li>où les trouver</li>
+                </ul>
+
+            </div>
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
         <div class="accueil">
 
             <div class="titre">

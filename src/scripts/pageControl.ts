@@ -5,6 +5,8 @@ import Page02 from '../components/page-deux.vue';
 import Page03 from '../components/page-trois.vue';
 import Page04 from '../components/page-quatre.vue';
 import fabricationScroll from './fabrication';
+import Hammer from 'hammerjs';
+import accueilSwipe from './accueilControl';
 
 function overlayPosition(overlay: string, targetElem: string, posY: number):void {
 
@@ -15,7 +17,129 @@ function overlayPosition(overlay: string, targetElem: string, posY: number):void
     overlayDOM.style.top = `${(elemTop - bodyTop) + (posY - overlayDOM.offsetHeight / 2)}px`
 }
 
-export enum PageEventOrigin { initialisation, homeScrollDown, pageScrollUp, headerLogo }
+function events() {
+
+    const paths = [{
+        url: "/la-savonnerie",
+        title: "La savonnerie"
+    },{
+        url: "/la-saponification",
+        title: "La saponification"
+    },{
+        url: "/les-savons",
+        title: "Les savons"
+    },{
+        url: "/ou-les-trouver",
+        title: "Où les trouver"
+    }];
+
+    //Object
+    const Accueil = {
+
+        hasLeft: false,
+        noSwipe: false,
+        isMoving: false,
+        index: 0,
+        lastIndex: 0,
+
+        swipes: (newIndex: number) => {
+
+            if (!Accueil.isMoving) {
+
+                Accueil.isMoving = true;
+                Accueil.lastIndex = Accueil.index;
+                Accueil.index = newIndex;
+
+                window.history.pushState("localhost:1234", paths[Accueil.index].title, paths[Accueil.index].url);
+
+                accueilSwipe(paths[Accueil.index].url, Accueil.index, Accueil.lastIndex);
+                openPage(PageEventOrigin.homepageScroll, Accueil.index);
+        
+                setTimeout(() => {Accueil.isMoving = false; Accueil.noSwipe = false}, 1200)
+            }
+        }
+    }
+
+    //Object
+    const Nav = {
+
+        dom: document.querySelector('body > nav')!,
+        centerLis: document.querySelectorAll('nav .center li'),
+
+        changeCenterFocus: (i?: number) => {
+            Nav.centerLis[Accueil.lastIndex].classList.remove('active');
+            Nav.centerLis[i ? i : Accueil.index].classList.add('active');
+        }
+    }
+
+
+
+      //scroll events
+      document.body.addEventListener('wheel', function(ev: any) {
+
+        if (ev.wheelDelta < 0) {
+        }
+        else if (Accueil.hasLeft && ev.wheelDelta > 0) {
+        }
+    })
+
+    //nav buttons event
+    Nav.centerLis.forEach((elem, i) => {
+
+        elem.addEventListener('click', function() {
+
+            if (Accueil.index !== i) {
+
+                Accueil.noSwipe = true
+                Accueil.swipes(i)
+                Nav.changeCenterFocus(i);
+            }
+        })
+    })
+
+    //panning events
+    const emcee = new Hammer(document.body!);
+    const swipes = ["panleft", "panright"];
+    
+    swipes.forEach(pan => {
+        emcee.on(pan, () => {
+
+            //deplace l'accueil droite et gauche
+            if (pan === "panleft" && Accueil.index < 3) {
+                Accueil.swipes(Accueil.index + 1)
+            }
+
+            if (pan === "panright" && Accueil.index > 0) {
+                Accueil.swipes(Accueil.index - 1)
+            }
+
+            Nav.changeCenterFocus(Accueil.index);
+        })
+    });
+
+    //menu events
+    const hamburger = document.querySelector('.hamburger')!;
+    hamburger.addEventListener('click', () => {
+
+        if (hamburger.classList.contains('clicked')) {
+            //document.getElementById('#extended-nav-content')?.innerHTML = "";
+            hamburger.classList.remove('clicked')
+        } else {
+            //new Vue({el: "#extended-nav-content", template: '<ExtendedNav />', components: { ExtendedNav }})
+            hamburger.classList.add('clicked')
+        }
+        
+    })
+
+
+    //logo event
+    const logo = document.querySelector('nav .logo')!;
+    logo.addEventListener('click', () => {
+        //Accueil.arrive(PageEventOrigin.headerLogo)
+    })
+}
+
+export enum PageEventOrigin { initialisation, homepageScroll, headerLogo }
 
 export function openPage(which: PageEventOrigin, index?: number) {
 
@@ -75,32 +199,26 @@ export function openPage(which: PageEventOrigin, index?: number) {
 
         //is homepage
         else {        
-            new Vue({el: "#contenu-accueil", template: '<Index />', components: { Index }})
+            new Vue({el: "#contenu-accueil", template: '<Index />', components: { Index }});
+            events()
         }
     }
 
     if (which === PageEventOrigin.initialisation) {
 
-        let noPathMatch = true
-
         path.pages.forEach((p, i) => {
             if (window.location.pathname === p.url) {
-
-                noPathMatch = false
                 appendPage(i)
-
-                //changeStyle.bodyOverflow(true)
-                //changeStyle.nav.isHeader(true)
             }
         })
 
-        if (noPathMatch) appendPage()
+        appendPage()
     }
-    else if (which === PageEventOrigin.homeScrollDown) {
+    else if (which === PageEventOrigin.homepageScroll) {
         appendPage(index)
     }
     else if (which === PageEventOrigin.headerLogo) {
-        appendPage()
+        //appendPage()
     }
 }
 
