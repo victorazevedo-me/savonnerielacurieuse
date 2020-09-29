@@ -53,10 +53,6 @@ export function openPage(which: PageEventOrigin, index?: number) {
 
     const appendPage = (i?: number) => {
 
-        // const pushUrl = (title: string, url: string) => (
-        //     window.history.pushState("localhost:1234", title, url)
-        // );
-
         //are pages
         if (typeof(i) === 'number') {
 
@@ -79,26 +75,7 @@ export function openPage(which: PageEventOrigin, index?: number) {
 
         //is homepage
         else {        
-            new Vue({el: "#contenu-page", template: '<Index />', components: { Index }})
-        }
-    }
-
-    const changeStyle = { 
-
-        bodyOverflow: (y: boolean) => (
-            document.body.style.overflowY = (y ? "auto" : "hidden")
-        ),
-            
-        nav: {
-            isHeader: (y: boolean) => ((y ? 
-                document.querySelector('body > nav')!.classList.add('header') :
-                document.querySelector('body > nav')!.classList.remove('header')
-            )),
-        },
-
-        transition: {
-            in: () => (document.querySelector('#transition-overlay')!.classList.add('animate')),
-            out: () => (document.querySelector('#transition-overlay')!.classList.remove('animate'))
+            new Vue({el: "#contenu-accueil", template: '<Index />', components: { Index }})
         }
     }
 
@@ -112,28 +89,17 @@ export function openPage(which: PageEventOrigin, index?: number) {
                 noPathMatch = false
                 appendPage(i)
 
-                changeStyle.bodyOverflow(true)
-                changeStyle.nav.isHeader(true)
+                //changeStyle.bodyOverflow(true)
+                //changeStyle.nav.isHeader(true)
             }
         })
 
         if (noPathMatch) appendPage()
     }
-
     else if (which === PageEventOrigin.homeScrollDown) {
-
-        changeStyle.bodyOverflow(true)
-        changeStyle.nav.isHeader(true)
-        changeStyle.transition.in()
-
-        setTimeout(() => {appendPage(index)}, 1000)
+        appendPage(index)
     }
-
     else if (which === PageEventOrigin.headerLogo) {
-
-        changeStyle.bodyOverflow(false)
-        changeStyle.nav.isHeader(false)
-        changeStyle.transition.out()
         appendPage()
     }
 }

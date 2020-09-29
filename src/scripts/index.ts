@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Hammer from 'hammerjs';
 import { openPage, PageEventOrigin } from './pageControl';
-import acceuilControl from './accueilControl';
+import accueilSwipe from './accueilControl';
+import ExtendedNav from '../components/extended-nav.vue';
 
 function customCursor() {
     
@@ -58,9 +59,10 @@ window.onload = function() {
                 Accueil.lastIndex = Accueil.index;
                 Accueil.index = newIndex;
 
-                window.history.pushState("localhost:1234", paths[Accueil.index].title, paths[Accueil.index].url)
+                window.history.pushState("localhost:1234", paths[Accueil.index].title, paths[Accueil.index].url);
 
-                acceuilControl(Accueil)
+                accueilSwipe(paths[Accueil.index].url, Accueil.index, Accueil.lastIndex);
+                openPage(PageEventOrigin.initialisation, Accueil.index);
         
                 setTimeout(() => {Accueil.isMoving = false; Accueil.noSwipe = false}, 1200)
             }
@@ -87,14 +89,14 @@ window.onload = function() {
 
         if (ev.wheelDelta < 0) {
 
-            if (!Accueil.hasLeft) {
-                Accueil.leave(PageEventOrigin.homeScrollDown)
-            } else {
-                Nav.hide()
-            }
+            // if (!Accueil.hasLeft) {
+            //     Accueil.leave(PageEventOrigin.homeScrollDown)
+            // } else {
+            //     Nav.hide()
+            // }
         }
         else if (Accueil.hasLeft && ev.wheelDelta > 0) {
-            Nav.show()
+            //Nav.show()
         }
     })
 
@@ -135,7 +137,15 @@ window.onload = function() {
     //menu events
     const hamburger = document.querySelector('.hamburger')!;
     hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('clicked')
+
+        if (hamburger.classList.contains('clicked')) {
+            //document.getElementById('#extended-nav-content')?.innerHTML = "";
+            hamburger.classList.remove('clicked')
+        } else {
+            //new Vue({el: "#extended-nav-content", template: '<ExtendedNav />', components: { ExtendedNav }})
+            hamburger.classList.add('clicked')
+        }
+        
     })
 
 
