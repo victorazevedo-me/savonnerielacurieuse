@@ -65,54 +65,11 @@
             </div>
 
             <div class="liste">
-                <div class="citation">
-                    <p class="contenu">"J'ai complètement abandonné les
-                        flacons et autre produits conventionnels
-                        je trouve le savon César super efficace 
-                        pour faire la vaisselle !"</p>
-                    <p class="nom">Valérie, Fontainebleau</p>
-                </div>
-                <div class="citation">
-                    <p class="contenu">"J'ai complètement abandonné les
-                        flacons et autre produits conventionnels
-                        je trouve le savon César super efficace 
-                        pour faire la vaisselle !"</p>
-                    <p class="nom">Valérie, Fontainebleau</p>
-                </div>
-                <div class="citation">
-                    <p class="contenu">"J'ai complètement abandonné les
-                        flacons et autre produits conventionnels
-                        je trouve le savon César super efficace 
-                        pour faire la vaisselle !"</p>
-                    <p class="nom">Valérie, Fontainebleau</p>
-                </div>
-                <div class="citation">
-                    <p class="contenu">"J'ai complètement abandonné les
-                        flacons et autre produits conventionnels
-                        je trouve le savon César super efficace 
-                        pour faire la vaisselle !"</p>
-                    <p class="nom">Valérie, Fontainebleau</p>
-                </div>
-                <div class="citation">
-                    <p class="contenu">"J'ai complètement abandonné les
-                        flacons et autre produits conventionnels
-                        je trouve le savon César super efficace 
-                        pour faire la vaisselle !"</p>
-                    <p class="nom">Valérie, Fontainebleau</p>
-                </div>
-                <div class="citation">
-                    <p class="contenu">"J'ai complètement abandonné les
-                        flacons et autre produits conventionnels
-                        je trouve le savon César super efficace 
-                        pour faire la vaisselle !"</p>
-                    <p class="nom">Valérie, Fontainebleau</p>
-                </div>
-                <div class="citation">
-                    <p class="contenu">"J'ai complètement abandonné les
-                        flacons et autre produits conventionnels
-                        je trouve le savon César super efficace 
-                        pour faire la vaisselle !"</p>
-                    <p class="nom">Valérie, Fontainebleau</p>
+                <div class="citation"
+                    v-bind:key='item.nom'
+                    v-for='item in temoignages'>
+                    <p class="contenu">"{{ item.citation }}"</p>
+                    <p class="nom">{{ item.credit }}</p>
                 </div>
             </div>
 
@@ -126,9 +83,13 @@
 
     import Vue from 'vue';
     import VueFooter from './footer.vue';
+    import json from '../scripts/database';
 
     export default Vue.extend({
         template: '<VueFooter/>',
-        components: { VueFooter }
+        components: { VueFooter },
+        data: () => ({
+            temoignages: json.temoignages
+        })
     })
 </script>

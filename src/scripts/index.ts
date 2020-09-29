@@ -1,7 +1,4 @@
-
 import { openPage, PageEventOrigin } from './pageControl';
-import accueilSwipe from './accueilControl';
-
 
 function customCursor() {
     
