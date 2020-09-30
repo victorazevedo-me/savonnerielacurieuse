@@ -1,4 +1,14 @@
 
+function customCursor() {
+    
+    // const cursor = document.querySelector('#cursor')!;
+    // const width = cursor.scrollWidth;
+
+    // document.addEventListener('mousemove', (e) => {
+    //     cursor.setAttribute('style', `top: ${e.pageY - width / 2}px; left: ${e.pageX - width / 2}px`)
+    // })
+}
+
 export function accueilSwipe(u: string, i: number, lasti?: number) {
 
     let url = u.replace('/', '');
@@ -35,18 +45,20 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
         const soustitre = document.querySelector('.small div span')!;
         const spans = document.querySelectorAll('.titre span')!;
         
-        const swipeAnim = (dom: Element) => {
+        const swipeAnim = (dom: Element, duration: number) => {
 
-            const duration = 1200;
             const animname = (typeof(lasti) !== "number" ? 'init' : (lasti > i ? 'swipedRight' : 'swipedLeft'));
-
             dom.classList.add(animname)
-            setTimeout(() => {
-                dom.classList.remove(animname)
-            }, duration)
-        }
+        
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    dom.classList.remove(animname)
+                    resolve(true)
+                }, duration);
+            });
+        }        
 
-        const addText = (): void => {
+        function addText(): void {
 
             document.querySelectorAll('.big div span')!.forEach((span, j) => {
                 span.innerHTML = texts[i].titre[j]
@@ -57,10 +69,10 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
         spans.forEach(span => {
 
             if (typeof(lasti) === 'number') {
-                swipeAnim(span)
+                swipeAnim(span, 1200).then((r) => console.log(r))
                 setTimeout(addText, 600)
             } else {
-                swipeAnim(span)
+                swipeAnim(span, 600)
                 addText()
             }
         })
@@ -69,5 +81,3 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
     moveBackgrounds();
     updateTitle();
 }
-
-export default accueilSwipe
