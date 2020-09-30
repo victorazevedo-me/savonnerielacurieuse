@@ -36,12 +36,17 @@ button {
 main {
 
     .background {
-        
+
         @keyframes FadeIn {
-            from {opacity: 0%}
-            to {opacity: 100%}
+            from {
+                opacity: 0%
+            }
+
+            to {
+                opacity: 100%
+            }
         }
-        
+
         position: fixed;
         top: 0;
         left: 0;
@@ -54,13 +59,29 @@ main {
         transition: opacity 1s;
         filter: brightness(.9);
 
-        &.front {z-index: 1;}
-        &.fadeout {opacity: 0;}
+        &.front {
+            z-index: 1;
+        }
 
-        &.la-savonnerie {background-image: url('../images/accueil/louis-hoang.jpg')}
-        &.la-saponification {background-image: url('../images/accueil/louise-knight.jpg')}
-        &.les-savons {background-image: url('../images/accueil/ritvik-singh.jpg')}
-        &.ou-les-trouver {background-image: url('../images/accueil/anshu.jpg')}
+        &.fadeout {
+            opacity: 0;
+        }
+
+        &.la-savonnerie {
+            background-image: url('../images/accueil/louis-hoang.jpg')
+        }
+
+        &.la-saponification {
+            background-image: url('../images/accueil/louise-knight.jpg')
+        }
+
+        &.les-savons {
+            background-image: url('../images/accueil/ritvik-singh.jpg')
+        }
+
+        &.ou-les-trouver {
+            background-image: url('../images/accueil/anshu.jpg')
+        }
     }
 
     .accueil {
@@ -78,10 +99,10 @@ main {
 
             color: white;
             font-weight: bold;
-            font-size: 8vw;
+            font-size: 120px;
             margin: 0 auto;
 
-            > div {
+            >div {
 
                 margin: 0;
 
@@ -89,7 +110,7 @@ main {
                     line-height: 1em;
                     font-size: 1em;
                 }
-    
+
                 &.small {
                     margin-top: 10px;
                     font-size: .3em;
@@ -99,33 +120,76 @@ main {
                     overflow: hidden;
 
                     @keyframes SwipedLeft {
-                        0% {transform: translate(0, 0)}
-                        48% {transform: translate(-100%, 0)}
-                        52% {opacity: 0; transform: translate(100%, 0)}
-                        54% {opacity: 1}
-                        100% {transform: translate(0, 0)}
+                        0% {
+                            transform: translate(0, 0)
+                        }
+
+                        48% {
+                            transform: translate(-100%, 0)
+                        }
+
+                        52% {
+                            opacity: 0;
+                            transform: translate(100%, 0)
+                        }
+
+                        54% {
+                            opacity: 1
+                        }
+
+                        100% {
+                            transform: translate(0, 0)
+                        }
                     }
 
                     @keyframes SwipedRight {
-                        0% {transform: translate(0, 0)}
-                        48% {transform: translate(100%, 0)}
-                        52% {opacity: 0; transform: translate(-100%, 0)}
-                        54% {opacity: 1}
-                        100% {transform: translate(0, 0)}
+                        0% {
+                            transform: translate(0, 0)
+                        }
+
+                        48% {
+                            transform: translate(100%, 0)
+                        }
+
+                        52% {
+                            opacity: 0;
+                            transform: translate(-100%, 0)
+                        }
+
+                        54% {
+                            opacity: 1
+                        }
+
+                        100% {
+                            transform: translate(0, 0)
+                        }
                     }
 
                     @keyframes Init {
-                        0% {transform: translate(0, -100%)}
-                        100% {transform: translate(0, 0)}
+                        0% {
+                            transform: translate(0, -100%)
+                        }
+
+                        100% {
+                            transform: translate(0, 0)
+                        }
                     }
 
                     span {
                         display: block;
                         transition: transform .5s;
 
-                        &.swipedRight {animation: SwipedRight 1.2s}
-                        &.swipedLeft {animation: SwipedLeft 1.2s}
-                        &.init {animation: Init 1s ease-out}
+                        &.swipedRight {
+                            animation: SwipedRight 1.2s
+                        }
+
+                        &.swipedLeft {
+                            animation: SwipedLeft 1.2s
+                        }
+
+                        &.init {
+                            animation: Init 1s ease-out
+                        }
                     }
                 }
             }
@@ -199,7 +263,7 @@ section footer {
 
             margin-top: 1em;
             font-size: 1em;
-            
+
 
             span {
                 display: block;
