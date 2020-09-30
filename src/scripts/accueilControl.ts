@@ -1,5 +1,5 @@
 
-export function accueilSwipe(u: string, i: number, lasti: number) {
+export function accueilSwipe(u: string, i: number, lasti?: number) {
 
     let url = u.replace('/', '');
 
@@ -32,30 +32,37 @@ export function accueilSwipe(u: string, i: number, lasti: number) {
             {titre: ["Où les", "trouver ?"], soustitre: ""}
         ];
 
-        const titre = document.querySelectorAll('.big div span')!;
         const soustitre = document.querySelector('.small div span')!;
         const spans = document.querySelectorAll('.titre span')!;
         
         const swipeAnim = (dom: Element) => {
 
             const duration = 1200;
-            const animname = (lasti > i ? 'swipedRight' : 'swipedLeft');
+            const animname = (typeof(lasti) !== "number" ? 'init' : (lasti > i ? 'swipedRight' : 'swipedLeft'));
 
             dom.classList.add(animname)
-
             setTimeout(() => {
                 dom.classList.remove(animname)
             }, duration)
         }
+
+        const addText = (): void => {
+
+            document.querySelectorAll('.big div span')!.forEach((span, j) => {
+                span.innerHTML = texts[i].titre[j]
+            })
+            soustitre.innerHTML = texts[i].soustitre
+        }
     
         spans.forEach(span => {
-            
-            swipeAnim(span)
 
-            setTimeout(() => {
-                titre.forEach((span, j) => {span.innerHTML = texts[i].titre[j]})
-                soustitre.innerHTML = texts[i].soustitre
-            }, 600)
+            if (typeof(lasti) === 'number') {
+                swipeAnim(span)
+                setTimeout(addText, 600)
+            } else {
+                swipeAnim(span)
+                addText()
+            }
         })
     }
 

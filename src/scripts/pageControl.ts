@@ -11,18 +11,18 @@ import accueilSwipe from './accueilControl';
 export enum PageEventOrigin { initialisation, homepageScroll, headerLogo }
 
 const SITEMAP = [{
-    pathname: "/la-savonnerie",
-    titre: "La savonnerie"
-},{
-    pathname: "/la-saponification",
-    titre: "La saponification"
-},{
-    pathname: "/les-savons",
-    titre: "Les savons"
-},{
-    pathname: "/ou-les-trouver",
-    titre: "Où les trouver"
-}
+        pathname: "/la-savonnerie",
+        titre: "La savonnerie"
+    },{
+        pathname: "/la-saponification",
+        titre: "La saponification"
+    },{
+        pathname: "/les-savons",
+        titre: "Les savons"
+    },{
+        pathname: "/ou-les-trouver",
+        titre: "Où les trouver"
+    }
 ];
 
 function overlayPosition(overlay: string, targetElem: string, posY: number):void {
@@ -46,7 +46,8 @@ const getPageIndex = (): number => {
     })
 
     if (result < 0) {
-        throw Error('URL not in the list')
+        console.warn(Error('URL not in the list'))
+        return 0
     } else {
         return result
     }
@@ -177,80 +178,48 @@ function events() {
 
 export function openPage(which: PageEventOrigin, index?: number) {
 
-    const path = {
-        
-        pages: [{
-            url: "/la-savonnerie",
-            title: "La savonnerie",
-            funcs: []
-        },{
-            url: "/la-saponification",
-            title: "La saponification",
-            funcs: [
-                fabricationScroll,
-                () => overlayPosition('.grosseballe', '.expliquation', 500)
-            ]
-        },{
-            url: "/les-savons",
-            title: "Les savons",
-            funcs: [
-                () => overlayPosition('.en-parlent .grosseballe', '.en-parlent', 1000)
-            ]
-        },{
-            url: "/ou-les-trouver",
-            title: "Où les trouver",
-            funcs: []
-        }],
-
-        homepage: {
-            url: "/#",
-            title: "Homepage",
-            funcs: []
-        }
-    }
-
     const appendPage = (i?: number) => {
 
         //are pages
         if (typeof(i) === 'number') {
 
-
-            
-
             //append vue pages
             if (i === 0) {
                 new Vue({el: "#contenu-page", template: '<Page01 />', components: { Page01 }})
+
             } else if (i === 1) {
+
                 new Vue({el: "#contenu-page", template: '<Page02 />', components: { Page02 }})
+                fabricationScroll()
+                overlayPosition(
+                    '.grosseballe', 
+                    '.expliquation', 
+                    500)
+
             } else if (i === 2) {
+
                 new Vue({el: "#contenu-page", template: '<Page03 />', components: { Page03 }})
+                overlayPosition(
+                    '.en-parlent .grosseballe',
+                    '.en-parlent',
+                    1000)
+
             } else if (i === 3) {
                 new Vue({el: "#contenu-page", template: '<Page04 />', components: { Page04 }})
             }
-            
-            //call opening functions
-            if (path.pages[i].funcs && path.pages[i].funcs?.length > 0) {
-                path.pages[i].funcs.forEach(fcn => fcn())
-            }
-        }
-
-        //is homepage
-        else {        
-            new Vue({el: "#contenu-accueil", template: '<Index />', components: { Index }});
-            //accueilSwipe()
-            events()
         }
     }
 
     if (which === PageEventOrigin.initialisation) {
 
-        path.pages.forEach((p, i) => {
-            if (window.location.pathname === p.url) {
-                appendPage(i)
-            }
-        })
+        new Vue({el: "#contenu-accueil", template: '<Index />', components: { Index }});
+        events();
 
-        appendPage()
+        if (window.location.pathname.length > 1) {
+            const i = getPageIndex();
+            accueilSwipe(SITEMAP[i].pathname, i);
+            appendPage(i)
+        }
     }
     else if (which === PageEventOrigin.homepageScroll) {
         appendPage(index)

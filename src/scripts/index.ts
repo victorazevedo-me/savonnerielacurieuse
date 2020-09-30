@@ -15,8 +15,4 @@ window.onload = function() {
 
     // directories control
     openPage(PageEventOrigin.initialisation)
-    
-    window.addEventListener('locationchange', function(){
-        openPage(PageEventOrigin.initialisation)
-    })
 }

@@ -114,11 +114,8 @@ main {
                         100% {transform: translate(0, 0)}
                     }
 
-                    @keyframes NoSwipes {
-                        0% {transform: translate(0, 0)}
-                        48% {transform: translate(0, -100%)}
-                        52% {opacity: 0; transform: translate(0, 100%)}
-                        54% {opacity: 1}
+                    @keyframes Init {
+                        0% {transform: translate(0, -100%)}
                         100% {transform: translate(0, 0)}
                     }
 
@@ -128,7 +125,7 @@ main {
 
                         &.swipedRight {animation: SwipedRight 1.2s}
                         &.swipedLeft {animation: SwipedLeft 1.2s}
-                        &.notSwiped {animation: NoSwipes 1.2s}
+                        &.init {animation: Init 1s ease-out}
                     }
                 }
             }
