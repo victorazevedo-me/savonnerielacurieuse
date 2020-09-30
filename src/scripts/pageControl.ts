@@ -8,6 +8,23 @@ import fabricationScroll from './fabrication';
 import Hammer from 'hammerjs';
 import accueilSwipe from './accueilControl';
 
+export enum PageEventOrigin { initialisation, homepageScroll, headerLogo }
+
+const SITEMAP = [{
+    pathname: "/la-savonnerie",
+    titre: "La savonnerie"
+},{
+    pathname: "/la-saponification",
+    titre: "La saponification"
+},{
+    pathname: "/les-savons",
+    titre: "Les savons"
+},{
+    pathname: "/ou-les-trouver",
+    titre: "Où les trouver"
+}
+];
+
 function overlayPosition(overlay: string, targetElem: string, posY: number):void {
 
     const bodyTop = document.querySelector('#contenu-page')!.getBoundingClientRect().top;
@@ -17,21 +34,30 @@ function overlayPosition(overlay: string, targetElem: string, posY: number):void
     overlayDOM.style.top = `${(elemTop - bodyTop) + (posY - overlayDOM.offsetHeight / 2)}px`
 }
 
-function events() {
 
-    const paths = [{
-        url: "/la-savonnerie",
-        title: "La savonnerie"
-    },{
-        url: "/la-saponification",
-        title: "La saponification"
-    },{
-        url: "/les-savons",
-        title: "Les savons"
-    },{
-        url: "/ou-les-trouver",
-        title: "Où les trouver"
-    }];
+
+
+const getPageIndex = (): number => {
+
+    let result = -1;
+
+    SITEMAP.forEach((u, i) => {
+        if (u.pathname === window.location.pathname) result = i
+    })
+
+    if (result < 0) {
+        throw Error('URL not in the list')
+    } else {
+        return result
+    }
+}
+
+
+
+
+
+
+function events() {
 
     //Object
     const Accueil = {
@@ -39,23 +65,20 @@ function events() {
         hasLeft: false,
         noSwipe: false,
         isMoving: false,
-        index: 0,
-        lastIndex: 0,
 
-        swipes: (newIndex: number) => {
+        swipes: (index: number) => {
 
             if (!Accueil.isMoving) {
 
                 Accueil.isMoving = true;
-                Accueil.lastIndex = Accueil.index;
-                Accueil.index = newIndex;
+                const lastIndex = getPageIndex()
 
-                window.history.pushState("localhost:1234", paths[Accueil.index].title, paths[Accueil.index].url);
+                window.history.pushState("localhost:1234", SITEMAP[index].titre, SITEMAP[index].pathname);
 
-                accueilSwipe(paths[Accueil.index].url, Accueil.index, Accueil.lastIndex);
-                openPage(PageEventOrigin.homepageScroll, Accueil.index);
+                accueilSwipe(SITEMAP[index].pathname, index, lastIndex);
+                openPage(PageEventOrigin.homepageScroll, index);
         
-                setTimeout(() => {Accueil.isMoving = false; Accueil.noSwipe = false}, 1200)
+                setTimeout(() => Accueil.isMoving = false, 1200)
             }
         }
     }
@@ -66,9 +89,9 @@ function events() {
         dom: document.querySelector('body > nav')!,
         centerLis: document.querySelectorAll('nav .center li'),
 
-        changeCenterFocus: (i?: number) => {
-            Nav.centerLis[Accueil.lastIndex].classList.remove('active');
-            Nav.centerLis[i ? i : Accueil.index].classList.add('active');
+        changeCenterFocus: (i: number) => {  
+            Nav.centerLis.forEach(n => n.classList.remove('active'))
+            Nav.centerLis[i].classList.add('active')
         }
     }
 
@@ -77,10 +100,8 @@ function events() {
       //scroll events
       document.body.addEventListener('wheel', function(ev: any) {
 
-        if (ev.wheelDelta < 0) {
-        }
-        else if (Accueil.hasLeft && ev.wheelDelta > 0) {
-        }
+        if (ev.wheelDelta < 0) {}
+        else if (Accueil.hasLeft && ev.wheelDelta > 0) {}
     })
 
     //nav buttons event
@@ -88,10 +109,10 @@ function events() {
 
         elem.addEventListener('click', function() {
 
-            if (Accueil.index !== i) {
+            const currentPage = getPageIndex()
 
-                Accueil.noSwipe = true
-                Accueil.swipes(i)
+            if (currentPage !== i) {
+                Accueil.swipes(i);
                 Nav.changeCenterFocus(i);
             }
         })
@@ -109,6 +130,8 @@ function events() {
 
         emcee.on(pan, () => {
 
+            const currentIndex = getPageIndex()
+
             //pour eviter de swipe n'importe quand
             //à corriger en définissant finishposX - startposX
             if (swipeMoves.now < swipeMoves.max) {
@@ -118,15 +141,15 @@ function events() {
                 swipeMoves.now = 0
 
                 //deplace l'accueil droite et gauche
-                if (pan === "panleft" && Accueil.index < 3) {
-                    Accueil.swipes(Accueil.index + 1)
+                if (pan === "panleft" && currentIndex < 3) {
+                    Accueil.swipes(currentIndex + 1)
                 }
 
-                if (pan === "panright" && Accueil.index > 0) {
-                    Accueil.swipes(Accueil.index - 1)
+                if (pan === "panright" && currentIndex > 0) {
+                    Accueil.swipes(currentIndex - 1)
                 }
 
-                Nav.changeCenterFocus(Accueil.index);
+                Nav.changeCenterFocus(currentIndex);
             }
         })
     });
@@ -136,7 +159,6 @@ function events() {
     hamburger.addEventListener('click', () => {
 
         if (hamburger.classList.contains('clicked')) {
-            //document.getElementById('#extended-nav-content')?.innerHTML = "";
             hamburger.classList.remove('clicked')
         } else {
             //new Vue({el: "#extended-nav-content", template: '<ExtendedNav />', components: { ExtendedNav }})
@@ -152,8 +174,6 @@ function events() {
         //Accueil.arrive(PageEventOrigin.headerLogo)
     })
 }
-
-export enum PageEventOrigin { initialisation, homepageScroll, headerLogo }
 
 export function openPage(which: PageEventOrigin, index?: number) {
 
@@ -194,6 +214,9 @@ export function openPage(which: PageEventOrigin, index?: number) {
         //are pages
         if (typeof(i) === 'number') {
 
+
+            
+
             //append vue pages
             if (i === 0) {
                 new Vue({el: "#contenu-page", template: '<Page01 />', components: { Page01 }})
@@ -214,6 +237,7 @@ export function openPage(which: PageEventOrigin, index?: number) {
         //is homepage
         else {        
             new Vue({el: "#contenu-accueil", template: '<Index />', components: { Index }});
+            //accueilSwipe()
             events()
         }
     }
@@ -236,4 +260,3 @@ export function openPage(which: PageEventOrigin, index?: number) {
     }
 }
 
-export default openPage
