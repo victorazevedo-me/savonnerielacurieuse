@@ -1,11 +1,3 @@
-function customCursor() {
-	// const cursor = document.querySelector('#cursor')!;
-	// const width = cursor.scrollWidth;
-	// document.addEventListener('mousemove', (e) => {
-	//     cursor.setAttribute('style', `top: ${e.pageY - width / 2}px; left: ${e.pageX - width / 2}px`)
-	// })
-}
-
 export function accueilSwipe(u: string, i: number, lasti?: number) {
 	let url = u.replace('/', '')
 

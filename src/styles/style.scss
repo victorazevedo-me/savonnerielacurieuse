@@ -10,27 +10,26 @@ body {
     font-size: 20px;
     line-height: 1.5;
     overflow-x: hidden;
-    // cursor: none;
+    //cursor: none;
 
     #cursor {
         display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding: 8px;
+        position: absolute;
+        padding: 4px;
+        background-color: white;
         border: 2px solid white;
         border-radius: 20px;
         z-index: 15;
+        transition-timing-function: ease-out;
     }
 }
 
 button {
     border: none;
     background-color: transparent;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Amiri', serif;
     font-style: italic;
     font-size: 20px;
-    cursor: pointer;
 }
 
 main {
