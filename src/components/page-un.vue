@@ -14,7 +14,7 @@
         </div>
 
         <div>
-            <img src="../images/accueil/louise-knight.jpg">
+            <img class="pres-img" src="../images/accueil/louise-knight.jpg">
         </div>
     </div>
 
