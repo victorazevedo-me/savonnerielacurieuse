@@ -1,22 +1,20 @@
 {
   "name": "savonnerielacurieuse",
   "version": "1.0.0",
-  "description": "",
+  "description": "Site web de présentation pour la Savonnerie La Curieuse",
   "main": "index.ts",
   "scripts": {
-    "start": "parcel ./src/index.html",
-    "build": "parcel build . ./src/index.html"
+    "start": "",
+    "build": ""
   },
-  "author": "",
+  "author": "Victor Azevedo",
   "license": "ISC",
   "devDependencies": {
     "@types/hammerjs": "^2.0.36",
     "@types/scrollreveal": "0.0.6",
     "@types/vue": "^2.0.0",
     "@vue/component-compiler-utils": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "parcel-bundler": "^1.12.4",
-    "sass": "^1.26.10",
+    "sass": "^1.26.12",
     "typescript": "^4.0.2",
     "vue-template-compiler": "^2.6.12"
   },
