@@ -1,8 +1,6 @@
 import { openPage } from './pageControl'
 import { accueilSwipe } from './accueilControl'
 import Index from '../components/index.vue'
-import SimpleParallax from 'simple-parallax-js'
-
 import Hammer from 'hammerjs'
 import Vue from 'vue'
 
@@ -90,7 +88,9 @@ function accueilEvents() {
 	}
 
 	const panningScroll = () => {
-		const emcee = new Hammer(document.querySelector('.accueil')!)
+		const emcee = new Hammer(
+			<HTMLScriptElement>document.querySelector('.accueil')!
+		)
 		const swipes = ['panleft', 'panright']
 
 		//pour eviter de swipe n'importe quand
@@ -180,6 +180,8 @@ function redirection(which: PageEventOrigin, index?: number) {
 			const i = getPageIndex()
 			accueilSwipe(SITEMAP[i].pathname, i)
 			openPage(i)
+		} else {
+			openPage(0)
 		}
 	} else if (
 		which === PageEventOrigin.homepageScroll &&

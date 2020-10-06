@@ -209,18 +209,25 @@ body main .page {
 
         padding: 0;
 
-        .sav-card {
+        .grid {
 
-            display: inline-block;
+            display: flex;
+            flex-wrap: wrap;
 
-            img {
-                width: 20vw;
-            }
+            .sav-card {
 
-            h3,
-            p {
-                margin: 0;
-                text-align: center;
+                padding: 1em;
+
+
+                img {
+                    width: 200px;
+                }
+
+                h3,
+                p {
+                    line-height: 1em;
+                    margin: 0;
+                }
             }
         }
 
