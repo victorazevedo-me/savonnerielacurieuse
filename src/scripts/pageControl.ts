@@ -60,16 +60,11 @@ function page03() {
 	const parallaxOptions = {
 		delay: 0.6,
 		scale: 1.6,
+		transition: 'cubic-bezier(0.19, 1, 0.22, 1)',
 		overflow: true
 	}
 
-	const shadow = {
-		delay: 0.2,
-		scale: 1.3,
-		overflow: true
-	}
-
-	new SimpleParallax(dom('.full-card .shadow')!, shadow)
+	new SimpleParallax(dom('.full-card .shadow')!, parallaxOptions)
 	new SimpleParallax(dom('.savon-menager .grosseballe')!, parallaxOptions)
 	new SimpleParallax(dom('.en-parlent .grosseballe')!, parallaxOptions)
 }

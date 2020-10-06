@@ -6,7 +6,12 @@
 				<h2>Les savons doux</h2>
 			</div>
 
-			<div class="grid">
+			<div class="deux-colonnes">
+				<div class="liste-savons">
+					<h3 v-bind:key="item.nom" v-for="item in savons">
+						{{ item.title }}
+					</h3>
+				</div>
 				<div class="full-card">
 					<div class="nom">
 						<h3>Délice</h3>
@@ -118,6 +123,7 @@ export default Vue.extend({
 	components: { VueFooter },
 	data: () => ({
 		temoignages: json.temoignages,
+		savons: json.savons,
 	}),
 })
 </script>

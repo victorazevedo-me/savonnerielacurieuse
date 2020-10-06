@@ -209,15 +209,37 @@ body main .page {
 
         padding: 0;
 
-        .grid {
+        .deux-colonnes {
 
             display: flex;
             flex-wrap: wrap;
 
+            .liste-savons {
+                h3 {
+                    opacity: .5;
+                    padding: 10px 0;
+                    margin: 0;
+                    cursor: pointer;
+                    user-select: none;
+                    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+
+                    &:hover {
+                        opacity: 1;
+                        transform: translateX(20px);
+                    }
+
+                    &:active,
+                    &.selected {
+                        transform: translateX(60px);
+                        opacity: 0;
+                    }
+
+                }
+            }
+
             .full-card {
                 margin: auto;
                 padding-top: 5em;
-                min-height: 100vh;
                 font-style: normal;
 
                 .nom {
@@ -231,7 +253,7 @@ body main .page {
                         left: -0px;
                         margin: 0;
                         font-size: 260px;
-                        opacity: .07;
+                        opacity: .1;
                         z-index: -1;
                     }
 
