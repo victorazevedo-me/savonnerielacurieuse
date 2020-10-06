@@ -98,7 +98,7 @@ nav {
 
     &.visible {
         visibility: visible;
-        z-index: 9999;
+        z-index: 999;
     }
 
     #extended-nav-content {
@@ -182,15 +182,20 @@ nav {
             }
         }
 
-
-
-
         li {
 
             list-style: none;
-            margin: 4em 0;
-            opacity: .5;
-            transition: opacity .5s ease-out;
+            margin: 5vh 0;
+
+            a {
+                text-decoration: none;
+                color: white;
+                transition: opacity .5s ease-out;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
 
             h3,
             p {
@@ -202,16 +207,22 @@ nav {
             h3 {
                 font-size: 45px;
                 margin-bottom: 10px;
+
+                a {
+                    opacity: .5;
+                }
             }
 
             p {
-                margin-left: 1em;
-                font-size: 20px;
+                margin: .5vh 1vh;
+                font-size: 25px;
+
+                a {
+                    opacity: .3;
+                }
             }
 
-            &:hover {
-                opacity: 1;
-            }
+
         }
     }
 }

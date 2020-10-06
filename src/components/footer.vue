@@ -5,9 +5,9 @@
 		<div class="wrapper">
 			<div class="navigation">
 				<a href="/">Accueil</a>
-				<a href="/la-saponification">La saponification à froid</a>
-				<a href="/les-savons">César et les savons doux</a>
-				<a href="/ou-les-trouver">Où les trouver</a>
+				<a href="/saponification">La saponification à froid</a>
+				<a href="/savons">César et les savons doux</a>
+				<a href="/disponible">Où les trouver</a>
 			</div>
 			<div>
 				<div class="contact">

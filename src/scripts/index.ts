@@ -8,19 +8,19 @@ import Vue from 'vue'
 
 const SITEMAP = [
 	{
-		pathname: '/la-savonnerie',
+		pathname: '/savonnerie',
 		titre: 'La savonnerie'
 	},
 	{
-		pathname: '/la-saponification',
+		pathname: '/saponification',
 		titre: 'La saponification'
 	},
 	{
-		pathname: '/les-savons',
+		pathname: '/savons',
 		titre: 'Les savons'
 	},
 	{
-		pathname: '/ou-les-trouver',
+		pathname: '/disponible',
 		titre: 'Où les trouver'
 	}
 ]
@@ -124,22 +124,25 @@ function accueilEvents() {
 	}
 
 	const hamburger = () => {
+		const extendedDom = document.querySelector('#extended-nav')!
 		const hamburger = document.querySelector('.hamburger')!
+
+		//tres pas beau
 		hamburger.addEventListener('click', () => {
-			if (hamburger.classList.contains('clicked')) {
-				hamburger.classList.remove('clicked')
-			} else {
+			if (
+				extendedDom.innerHTML === '' &&
+				!hamburger.classList.contains('clicked')
+			) {
 				new Vue({
 					el: '#extended-nav',
 					template: '<ExtendedNav />',
 					components: { ExtendedNav }
 				})
-				document
-					.querySelector('#extended-nav')
-					?.classList.toggle('visible')
-				hamburger.classList.add('clicked')
+
 				navDisplayedImage()
 			}
+
+			hamburger.classList.toggle('clicked')
 		})
 	}
 

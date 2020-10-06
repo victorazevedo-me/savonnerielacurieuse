@@ -1,6 +1,6 @@
 <template>
     
-    <div id="extended-nav">
+    <div id="extended-nav" class="visible">
 
         <div id="extended-nav-content">
     
@@ -29,26 +29,27 @@
 
             <div class="nav-liste">
                 <li>
-                    <h3>Accueil</h3>
-                    <p>la savonnerie</p>
+                    <h3><a href="/">Accueil</a></h3>
+                    <p><a href="/a-propos/">la savonnerie</a></p>
                 </li>
                 <li>
-                    <h3>Saponification</h3>
-                    <p>la saponification à froid</p>
+                    <h3><a href="/saponification/">Saponification</a></h3>
+                    <p><a href="/saponification/creation">Création du savon Fanny</a></p>
+                    <p><a href="/saponification/sap">La saponification</a></p>
                 </li>
                 <li>
-                    <h3>Savons</h3>
-                    <p>les savons doux</p>
-                    <p>le savon ménager César</p>
+                    <h3><a href="/savons/">Savons</a></h3>
+                    <p><a href="/savons/doux/">les savons doux</a></p>
+                    <p><a href="/savons/menager/">le savon ménager César</a></p>
                 </li>
                 <li>
-                    <h3>Disponible</h3>
-                    <p>Boutiques, marchés & autre</p>
-                    <p>Evenements</p>
+                    <h3><a href="/disponible/">Disponible</a></h3>
+                    <p><a href="/disponible/boutiques">Boutiques, marchés & autre</a></p>
+                    <p><a href="/disponible/evenements">Evenements</a></p>
                 </li>
-                <li>
+                <!-- <li>
                     <h3>Contact</h3>
-                </li>
+                </li> -->
             </div>
     </div>
 </template>
