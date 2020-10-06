@@ -1,6 +1,8 @@
 import { openPage } from './pageControl'
 import { accueilSwipe } from './accueilControl'
+import { navDisplayedImage } from './extended-nav'
 import Index from '../components/index.vue'
+import ExtendedNav from '../components/nav.vue'
 import Hammer from 'hammerjs'
 import Vue from 'vue'
 
@@ -127,8 +129,16 @@ function accueilEvents() {
 			if (hamburger.classList.contains('clicked')) {
 				hamburger.classList.remove('clicked')
 			} else {
-				//new Vue({el: "#extended-nav-content", template: '<ExtendedNav />', components: { ExtendedNav }})
+				new Vue({
+					el: '#extended-nav',
+					template: '<ExtendedNav />',
+					components: { ExtendedNav }
+				})
+				document
+					.querySelector('#extended-nav')
+					?.classList.toggle('visible')
 				hamburger.classList.add('clicked')
+				navDisplayedImage()
 			}
 		})
 	}

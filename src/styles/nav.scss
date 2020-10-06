@@ -6,7 +6,7 @@ nav {
     width: calc(100% - 120px);
     z-index: 10;
     color: white;
-    
+
     &.minimal {
 
         display: flex;
@@ -34,7 +34,7 @@ nav {
                 list-style: none;
                 padding: 0;
                 margin: 0;
-        
+
                 li {
                     margin: 0 1em;
                     list-style: none;
@@ -42,7 +42,7 @@ nav {
                     opacity: .7;
                     transition: opacity .5s;
                     cursor: pointer;
-    
+
                     &.active {
                         opacity: 1;
                     }
@@ -52,7 +52,7 @@ nav {
         }
 
         .hamburger {
-        
+
             width: 20px;
             height: 16px;
             padding: .5em;
@@ -73,9 +73,11 @@ nav {
                 span:nth-child(1) {
                     transform: rotate(-45deg) translateY(10px);
                 }
+
                 span:nth-child(2) {
                     transform: scale(0);
                 }
+
                 span:nth-child(3) {
                     transform: rotate(45deg) translateY(-10px);
                 }
@@ -83,50 +85,132 @@ nav {
         }
     }
 
-    
+}
 
-    &.header {
+#extended-nav {
 
-        color: #111;
-        transition: color .5s .5s;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    visibility: hidden;
 
-        .logo {
-            p {
-                visibility: visible;
-            }
-        }
-
-        .minimal {
-
-            .logo {
-                overflow: hidden;
-
-                p {
-                    transform: translateY(100%);
-                    transition: transform .5s;
-                }
-            }
-
-            .center {
-                
-                overflow: hidden;
-
-                ul {
-                    transform: translateY(100%);
-                    transition: transform .5s;
-                }
-            }
-
-            .hamburger span {
-                background-color: rgba($color: #111, $alpha: .8);
-            }
-        }
+    &.visible {
+        visibility: visible;
+        z-index: 9999;
     }
 
-    &.show {
-        .minimal {
-            .logo {
-                p {transform: translateY(0)}
+    #extended-nav-content {
+
+        width: 80vw;
+        height: 100vh;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .left-display {
+
+            >div {
+                display: block;
+                width: 400px;
+            }
+
+            &.presente {
+                .presentation-images {
+                    display: block
+                }
+
+                .contact-infos {
+                    display: none
+                }
+            }
+
+            &.contacte {
+                .presentation-images {
+                    display: none
+                }
+
+                .contact-infos {
+                    display: block
+                }
+            }
+
+            .presentation-images {
+
+                img {
+
+                    width: 100%;
+                    opacity: 0;
+                    transform: translateY(-50px);
+                    transition: opacity .5s, transform .5s;
+
+                    &.out {
+                        transform: translateY(50px);
+                        opacity: 0;
+                        transition: opacity .5s, transform .5s;
+                    }
+
+                    &.in {
+                        transform: translateY(0px);
+                        opacity: 1;
+                        transition: opacity .5s, transform .5s;
+                    }
+                }
+            }
+
+            .contact-infos {
+                display: none;
+
+                >div {
+                    overflow: hidden;
+
+                    p {
+                        font-size: 30px;
+                        display: block;
+                        transform: translateY(-100%);
+                        transition: transform .5s;
+                        margin: 0;
+                        line-height: 1em;
+
+                        &.in {
+                            transform: translateY(0%);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+        li {
+
+            list-style: none;
+            margin: 4em 0;
+            opacity: .5;
+            transition: opacity .5s ease-out;
+
+            h3,
+            p {
+                margin: 0;
+                cursor: pointer;
+                line-height: 1em;
+            }
+
+            h3 {
+                font-size: 45px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                margin-left: 1em;
+                font-size: 20px;
+            }
+
+            &:hover {
+                opacity: 1;
             }
         }
     }
