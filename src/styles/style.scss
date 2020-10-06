@@ -237,17 +237,21 @@ section footer {
     .navigation {
 
         display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-        li {
-            list-style: none;
+        a {
+            color: #111;
+            text-decoration: none;
+            white-space: nowrap;
+            width: 0px;
+            background-color: wheat;
+            transition: width 1s;
 
-            button {
-                color: #111;
+            &:hover {
+                width: 100px;
+                background-color: wheat
             }
-        }
-
-        .child {
-            visibility: hidden;
         }
     }
 
