@@ -214,19 +214,51 @@ body main .page {
             display: flex;
             flex-wrap: wrap;
 
-            .sav-card {
+            .full-card {
+                margin: auto;
+                padding-top: 5em;
+                min-height: 100vh;
+                font-style: normal;
 
-                padding: 1em;
+                .nom {
 
+                    font-size: 30px;
+                    position: relative;
 
-                img {
-                    width: 200px;
+                    .shadow {
+                        position: absolute;
+                        top: -130px;
+                        left: -0px;
+                        margin: 0;
+                        font-size: 260px;
+                        opacity: .07;
+                        z-index: -1;
+                    }
+
+                    h3 {
+                        font-size: 80px;
+                        margin: 0;
+                        line-height: 1em;
+                    }
                 }
 
-                h3,
-                p {
-                    line-height: 1em;
-                    margin: 0;
+                .slideshow {
+
+                    img {
+                        width: 256px;
+                        margin: 8px;
+                    }
+                }
+
+                .bottom {
+                    margin: auto;
+                    width: 80%;
+                    max-width: 700px;
+                    min-width: 300px;
+
+                    .composition {
+                        opacity: .8;
+                    }
                 }
             }
         }

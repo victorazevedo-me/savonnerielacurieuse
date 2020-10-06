@@ -55,12 +55,7 @@ function page02() {
 }
 
 function page03() {
-	const balle = dom('.en-parlent .grosseballe')!
-	const firstTop = overlayPosition(
-		'.en-parlent .grosseballe',
-		'.en-parlent',
-		1000
-	)
+	overlayPosition('.en-parlent .grosseballe', '.en-parlent', 1000)
 
 	const parallaxOptions = {
 		delay: 0.6,
@@ -68,6 +63,13 @@ function page03() {
 		overflow: true
 	}
 
+	const shadow = {
+		delay: 0.2,
+		scale: 1.3,
+		overflow: true
+	}
+
+	new SimpleParallax(dom('.full-card .shadow')!, shadow)
 	new SimpleParallax(dom('.savon-menager .grosseballe')!, parallaxOptions)
 	new SimpleParallax(dom('.en-parlent .grosseballe')!, parallaxOptions)
 }

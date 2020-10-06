@@ -7,14 +7,34 @@
 			</div>
 
 			<div class="grid">
-				<div class="sav-card">
-					<div>
+				<div class="full-card">
+					<div class="nom">
+						<h3>Délice</h3>
+						<p class="shadow">Délice</p>
+					</div>
+					<div class="slideshow">
+						<img
+							src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
+						/>
+						<img
+							src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
+						/>
 						<img
 							src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
 						/>
 					</div>
-					<h3>Savon</h3>
-					<p>Sous-titre savon</p>
+					<div class="bottom">
+						<p class="description">
+							5 huiles végétales, de la glycérine, du cacao, de
+							l'eau et c'est tout ! Délice ne contient pas
+							d'huiles essentielles. Hypoallergénique. Surgras 8%
+						</p>
+						<p class="composition">
+							Composition: huile d'olive, huile de coco, beurre de
+							karité, huile de tournesol partiellement saponifiés,
+							eau, glycérine, beurre de cacao
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
