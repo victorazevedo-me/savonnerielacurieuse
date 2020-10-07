@@ -68,7 +68,8 @@ body main .page {
 
         .sap-description {
             max-width: 700px;
-            margin: 10em auto;
+            margin: 0 auto;
+            padding: 6em 0;
         }
 
         .deux-colonnes {
@@ -135,17 +136,6 @@ body main .page {
                         opacity: 0;
                     }
 
-                    @keyframes timer {
-
-                        from {
-                            width: 0px;
-                        }
-
-                        to {
-                            width: 100%;
-                        }
-                    }
-
                     .inner {
                         position: absolute;
                         top: 0;
@@ -153,8 +143,6 @@ body main .page {
                         width: 0px;
                         height: 7px;
                         background: rgba(17, 17, 17, .2);
-                        animation: timer 8s linear;
-                        animation-iteration-count: 12;
                     }
                 }
 

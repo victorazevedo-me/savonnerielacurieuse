@@ -1,3 +1,16 @@
+const dom = (query: string) => document.querySelector(query)
+
+function isScrolledIntoView(query: string) {
+	const element = document.querySelector(query)
+
+	if (element) {
+		const rect = element.getBoundingClientRect()
+		return rect.top >= 0 && rect.bottom <= window.innerHeight
+	} else {
+		throw Error(query + ' not found')
+	}
+}
+
 export function fabricationScroll() {
 	//init consts
 	const etapdesc = document.getElementById('etape-desc')!
@@ -6,26 +19,31 @@ export function fabricationScroll() {
 	let wait = false
 
 	function scroll(count: number) {
-		const imgwrap = document.getElementById('imgwrap')!
-		let width = imgwrap.children[0].clientWidth
-		let margin = 40
-		let toscroll = (width + margin) * count
+		const imgwrap = document.getElementById('imgwrap')
 
-		//scroll
-		imgwrap.style.transform = `translateX(${-toscroll}px)`
+		if (imgwrap) {
+			let width = imgwrap.children[0].clientWidth
+			let margin = 40
+			let toscroll = (width + margin) * count
 
-		//focus
-		imgwrap.children[count].className = 'focused'
-		imgwrap.children[lastcount].className = ''
+			//scroll
+			imgwrap.style.transform = `translateX(${-toscroll}px)`
 
-		//description
-		const parafs = etapdesc.querySelectorAll('p')
-		parafs[lastcount].setAttribute('style', 'opacity: 0; z-index: 4')
-		parafs[count].setAttribute('style', 'opacity: 1; z-index: 5')
+			//focus
+			imgwrap.children[count].className = 'focused'
+			imgwrap.children[lastcount].className = ''
 
-		//
-		lastcount = count
-		setTimeout(() => (wait = false), 1000)
+			//description
+			const parafs = etapdesc.querySelectorAll('p')
+			parafs[lastcount].setAttribute('style', 'opacity: 0; z-index: 4')
+			parafs[count].setAttribute('style', 'opacity: 1; z-index: 5')
+
+			//
+			lastcount = count
+			setTimeout(() => (wait = false), 1000)
+		} else {
+			autoDefil.kill()
+		}
 	}
 
 	function setMaxDescHeight() {
@@ -40,20 +58,30 @@ export function fabricationScroll() {
 
 	const autoDefil = {
 		id: 0,
+		time: 8000,
 
 		start: () => {
+			//apply .inner animation
+			dom('#timer .inner')?.animate(
+				[{ width: '0px' }, { width: '100%' }],
+				{
+					duration: autoDefil.time,
+					easing: 'linear',
+					iterations: allimgs.length
+				}
+			)
+
+			//then scroll with interval
 			autoDefil.id = setInterval(function() {
 				if (lastcount < allimgs.length - 1) {
 					scroll(lastcount + 1)
-				} else {
-					autoDefil.kill()
 				}
-			}, 8000)
+			}, autoDefil.time)
 		},
 
 		kill: () => {
 			clearInterval(autoDefil.id)
-			document.querySelector('#timer')?.classList.add('hidden')
+			dom('#timer')?.classList.add('hidden')
 		}
 	}
 
@@ -61,7 +89,13 @@ export function fabricationScroll() {
 	setMaxDescHeight()
 
 	//défile auto par defaut
-	autoDefil.start()
+	let stopScroll = false
+	dom('#contenu-page.deux')?.addEventListener('wheel', () => {
+		if (isScrolledIntoView('#imgwrap') && !stopScroll) {
+			autoDefil.start()
+			stopScroll = true
+		}
+	})
 
 	//click events
 	allimgs.forEach((item, i) => {
