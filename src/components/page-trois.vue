@@ -8,14 +8,18 @@
 
 			<div class="deux-colonnes">
 				<div class="liste-savons">
-					<h3 v-bind:key="item.nom" v-for="item in savons">
+					<h3
+						v-bind:key="item.title"
+						v-for="item in savons"
+						v-on:click="(e) => apply(item, e)"
+					>
 						{{ item.title }}
 					</h3>
 				</div>
 				<div class="full-card">
 					<div class="nom">
-						<h3>Délice</h3>
-						<p class="shadow">Délice</p>
+						<h3>{{ savonToDisplay.title }}</h3>
+						<p class="shadow">{{ savonToDisplay.title }}</p>
 					</div>
 					<div class="slideshow">
 						<img
@@ -29,15 +33,9 @@
 						/>
 					</div>
 					<div class="bottom">
-						<p class="description">
-							5 huiles végétales, de la glycérine, du cacao, de
-							l'eau et c'est tout ! Délice ne contient pas
-							d'huiles essentielles. Hypoallergénique. Surgras 8%
-						</p>
+						<p class="description">{{ savonToDisplay.desc }}</p>
 						<p class="composition">
-							Composition: huile d'olive, huile de coco, beurre de
-							karité, huile de tournesol partiellement saponifiés,
-							eau, glycérine, beurre de cacao
+							Composition: {{ savonToDisplay.compo }}
 						</p>
 					</div>
 				</div>
@@ -117,6 +115,8 @@
 import Vue from 'vue'
 import VueFooter from './footer.vue'
 import json from '../scripts/database'
+import ScrollReveal from 'scrollreveal'
+import SimpleParallax from 'simple-parallax-js'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
@@ -124,6 +124,37 @@ export default Vue.extend({
 	data: () => ({
 		temoignages: json.temoignages,
 		savons: json.savons,
+		savonToDisplay: json.savons.muesli,
+		lastSavon: document.querySelector('.liste-savons h3'),
 	}),
+
+	methods: {
+		apply: function (item: JSON, e: any) {
+			//class toggle
+			if (this.lastSavon) {
+				this.lastSavon.classList.toggle('selected')
+			}
+			e.target.classList.toggle('selected')
+			this.$data.lastSavon = e.target
+
+			//change display
+			this.$data.savonToDisplay = item
+		},
+	},
+
+	created: function () {
+		const dom = (u: string) => document.querySelector(u)
+
+		const parallaxOptions = {
+			delay: 0.6,
+			scale: 1.6,
+			transition: 'cubic-bezier(0.19, 1, 0.22, 1)',
+			overflow: true,
+		}
+
+		new SimpleParallax(dom('.full-card .shadow')!, parallaxOptions)
+		new SimpleParallax(dom('.savon-menager .grosseballe')!, parallaxOptions)
+		new SimpleParallax(dom('.en-parlent .grosseballe')!, parallaxOptions)
+	},
 })
 </script>
