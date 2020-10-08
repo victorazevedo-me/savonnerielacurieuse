@@ -1,8 +1,10 @@
-import { openPage } from './pageControl'
 import { accueilSwipe } from './accueilControl'
-import { navDisplayedImage } from './extended-nav'
 import Index from '../components/index.vue'
 import ExtendedNav from '../components/nav.vue'
+import Page01 from '../components/page-un.vue'
+import Page02 from '../components/page-deux.vue'
+import Page03 from '../components/page-trois.vue'
+import Page04 from '../components/page-quatre.vue'
 import Hammer from 'hammerjs'
 import Vue from 'vue'
 
@@ -138,8 +140,6 @@ function accueilEvents() {
 					template: '<ExtendedNav />',
 					components: { ExtendedNav }
 				})
-
-				navDisplayedImage()
 			}
 
 			hamburger.classList.toggle('clicked')
@@ -181,6 +181,17 @@ function accueilEvents() {
 }
 
 function redirection(which: PageEventOrigin, index?: number) {
+	function openPage(i: number) {
+		const pages = [Page01, Page02, Page03, Page04]
+		const IndexedPage = pages[i]
+
+		new Vue({
+			el: '#contenu-page',
+			template: '<IndexedPage />',
+			components: { IndexedPage }
+		})
+	}
+
 	if (which === PageEventOrigin.initialisation) {
 		new Vue({
 			el: '#contenu-accueil',

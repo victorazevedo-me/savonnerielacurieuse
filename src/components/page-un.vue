@@ -40,7 +40,7 @@ import ScrollReveal from 'scrollreveal'
 export default Vue.extend({
 	template: '<VueFooter/>',
 	components: { VueFooter },
-	created: function () {
+	mounted: function () {
 		ScrollReveal().reveal('.slc-description p', {
 			duration: 1000,
 			delay: 100,

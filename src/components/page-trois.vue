@@ -117,6 +117,11 @@ import VueFooter from './footer.vue'
 import json from '../scripts/database'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
+import {
+	dom,
+	isScrolledIntoView,
+	overlayPosition,
+} from '../scripts/pageControl'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
@@ -142,8 +147,8 @@ export default Vue.extend({
 		},
 	},
 
-	created: function () {
-		const dom = (u: string) => document.querySelector(u)
+	mounted: function () {
+		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 1200)
 
 		const parallaxOptions = {
 			delay: 0.6,

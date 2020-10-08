@@ -1,52 +1,37 @@
-import Vue from 'vue'
-import Page01 from '../components/page-un.vue'
-import Page02 from '../components/page-deux.vue'
-import Page03 from '../components/page-trois.vue'
-import Page04 from '../components/page-quatre.vue'
+export function dom(query: string) {
+	return document.querySelector(query)
+}
 
-// function overlayPosition(
-// 	overlay: string,
-// 	targetElem: string,
-// 	posY: number
-// ): number {
-// 	const bodyTop = document
-// 		.querySelector('#contenu-page')!
-// 		.getBoundingClientRect().top
-// 	const elemTop = document.querySelector(targetElem)!.getBoundingClientRect()
-// 		.top
-// 	const overlayDOM = <HTMLElement>document.querySelector(overlay)
+export function bound(elem: Element) {
+	return elem.getBoundingClientRect()
+}
 
-// 	const result = elemTop - bodyTop + (posY - overlayDOM.offsetHeight / 2)
-// 	overlayDOM.style.top = `${result}px`
+export function isScrolledIntoView(query: string) {
+	const element = document.querySelector(query)
 
-// 	return result
-// }
+	if (element) {
+		return (
+			bound(element).top >= 0 &&
+			bound(element).bottom <= window.innerHeight
+		)
+	} else {
+		throw Error(query + ' not found')
+	}
+}
 
-export function openPage(i: number) {
-	//append vue pages
-	if (i === 0) {
-		new Vue({
-			el: '#contenu-page',
-			template: '<Page01 />',
-			components: { Page01 }
-		})
-	} else if (i === 1) {
-		new Vue({
-			el: '#contenu-page',
-			template: '<Page02 />',
-			components: { Page02 }
-		})
-	} else if (i === 2) {
-		new Vue({
-			el: '#contenu-page',
-			template: '<Page03 />',
-			components: { Page03 }
-		})
-	} else if (i === 3) {
-		new Vue({
-			el: '#contenu-page',
-			template: '<Page04 />',
-			components: { Page04 }
-		})
+export function overlayPosition(overlay: string, target: string, posY: number) {
+	const contenuElem = document.querySelector('#contenu-page')!
+	const targetElem = document.querySelector(target)
+	const overlayElem = <HTMLElement>document.querySelector(overlay)
+
+	if (targetElem && overlayElem) {
+		const result =
+			bound(targetElem).top -
+			bound(contenuElem).top +
+			(posY - overlayElem.offsetHeight / 2)
+		overlayElem.style.top = `${result}px`
+		return result
+	} else {
+		throw Error('Target or Overlay not found')
 	}
 }
