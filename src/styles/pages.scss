@@ -381,6 +381,22 @@ body main .page {
                 }
             }
         }
+        .filters {
+            display: flex;
+            justify-content: space-evenly;
+
+            button {
+                transition: opacity .5s;
+                opacity: .4;
+                cursor: pointer;
+                outline: none!important;
+
+                &:hover,
+                &.selected {
+                    opacity: 1;
+                }
+            }
+        }
 
         .calendrier {
 

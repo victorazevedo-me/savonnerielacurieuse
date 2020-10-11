@@ -67,14 +67,18 @@
                 <h2 id="evenements">Evénements</h2>
             </div>
 
-            <div class="calendrier">
+            <div class="filters">
+                <button v-bind:key='mois.indexOf(m)'
+                v-for='m in mois' v-on:click='showMonths(mois.indexOf(m), m)'>{{ m }}</button>
+            </div>
+
+            <div class="calendrier" v-if='shouldShowMonths'>
 
                 <div
                     class="item"
                     v-bind:key='item.nom'
                     v-for='item in events'>
 
-                    <h3>{{ item.mois }}</h3>
                     <p>{{ item.date }}</p>
                     <p>{{ item.horaire }}</p>
                     <p><strong>{{ item.nom }}</strong></p>
@@ -100,11 +104,59 @@
         components: { VueFooter },
 
         data: () => ({
+            shouldShowMonths: false,
             boutiques: json.disponible.boutique,
             marches: json.disponible.marche,
-            events: json.events,
-            contact: json.contact
-        })
+            events: [{}],
+            contact: json.contact,
+            mois: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre']
+        }),
+
+        methods: {
+
+            setActiveButton: (index: number) => {
+                const buttons = document.querySelectorAll('.filters button')
+                
+                buttons.forEach((button, i) => {
+
+                    if (i === index) {
+                        button.classList.add('selected')
+                    } else {
+                        button.classList.remove('selected')
+                    }
+                })
+            },
+
+            showMonths: function(index: number, m: string) {
+
+                this.setActiveButton(index)
+
+                let eventsToShow = []
+
+                for (let event of json.events) {
+                    if (event.mois === m.toLowerCase()) {
+                        eventsToShow.push(event)
+                    }
+                }
+                
+                if (eventsToShow.length > 0) {
+                    this.events = eventsToShow
+                    this.shouldShowMonths = true
+                } else {
+                    this.shouldShowMonths = false
+                }
+
+                console.log(this.shouldShowMonths)
+            }
+        },
+
+        mounted: function() {
+            //init clickable months
+
+            const d = new Date
+            this.setActiveButton(d.getMonth())
+
+        }
     })
 
 </script>
