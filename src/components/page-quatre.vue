@@ -83,11 +83,11 @@
                     v-bind:key='item.nom'
                     v-for='item in events'>
 
+                    <p>{{ item.note }}</p>
+                    <p><strong>{{ item.nom }}</strong></p>
                     <p>{{ item.date }}</p>
                     <p>{{ item.horaire }}</p>
-                    <p><strong>{{ item.nom }}</strong></p>
-                    <p class="cal-coord">{{ item.coord }}</p>
-                    <p>{{ item.note }}</p>
+                    <p>{{ item.coord }}</p>
                 </div>
             </div>
         </div>

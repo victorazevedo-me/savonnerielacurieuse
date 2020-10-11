@@ -368,59 +368,42 @@ body main .page {
 		.filters {
 			display: grid;
 			max-width: 900px;
-			margin: auto;
+			margin: -1em auto;
 			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+			gap: 10px;
 			justify-content: space-evenly;
-			padding: 1em 0 2em 0;
+			padding: 0 0 2em 0;
 
 			button {
 				position: relative;
-				font-size: 29px;
-				transition: opacity 0.5s;
-				opacity: 0.2;
-				cursor: pointer;
+				font-size: 30px;
+				line-height: 1.5em;
+				border-radius: 1.5em;
+				padding: 0 20px;
+				transition: background-color 0.2s linear;
 				outline: none !important;
+				cursor: pointer;
 
 				&.hasEvents {
-					opacity: 0.6;
+					background-color: #fce68644;
 				}
 
-				&:hover {
-					opacity: 0.8;
-					&:after {
-						transform: scale(2);
-					}
-				}
-
+				&:hover,
 				&.selected {
-					opacity: 1;
-					&::after {
-						transform: scale(1);
-					}
-				}
-
-				&:after {
-					content: '';
-					position: absolute;
-					left: 40%;
-					top: 0.5em;
-					padding: 10%;
-					border-radius: 5em;
-					background-color: #ffcc8088;
-					z-index: -1;
-					transition: transform 0.5s;
-					transform: scale(0);
+					background-color: #fce686;
 				}
 			}
 		}
 
 		.calendrier {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
 			.item {
+				width: calc(50% - 4em);
 				min-width: 200px;
 				padding: 2em;
+				padding-bottom: 0;
 
 				h3 {
 					display: inline-block;
