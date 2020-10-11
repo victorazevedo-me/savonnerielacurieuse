@@ -68,12 +68,16 @@
             </div>
 
             <div class="filters">
-                <button v-bind:key='mois.indexOf(m)'
-                v-for='m in mois' v-on:click='showMonths(mois.indexOf(m), m)'>{{ m }}</button>
+                    <button 
+                        v-bind:key='mois.indexOf(m)'
+                        v-for='m in mois'
+                        v-on:click='showMonth(mois.indexOf(m))'>
+                        {{ m }}
+                    </button>
             </div>
 
+        
             <div class="calendrier" v-if='shouldShowMonths'>
-
                 <div
                     class="item"
                     v-bind:key='item.nom'
@@ -82,7 +86,7 @@
                     <p>{{ item.date }}</p>
                     <p>{{ item.horaire }}</p>
                     <p><strong>{{ item.nom }}</strong></p>
-                    <p>{{ item.coord }}</p>
+                    <p class="cal-coord">{{ item.coord }}</p>
                     <p>{{ item.note }}</p>
                 </div>
             </div>
@@ -109,53 +113,57 @@
             marches: json.disponible.marche,
             events: [{}],
             contact: json.contact,
-            mois: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre']
+            mois: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'decembre']
         }),
 
         methods: {
 
             setActiveButton: (index: number) => {
-                const buttons = document.querySelectorAll('.filters button')
-                
-                buttons.forEach((button, i) => {
+                //toggles off all, on only one
 
-                    if (i === index) {
-                        button.classList.add('selected')
-                    } else {
-                        button.classList.remove('selected')
-                    }
-                })
+                document.querySelectorAll('.filters button')
+                .forEach((button, i) => (i === index ?
+                    button.classList.add('selected') :
+                    button.classList.remove('selected')))
             },
 
-            showMonths: function(index: number, m: string) {
+            showMonth: function(index: number) {
 
                 this.setActiveButton(index)
-
                 let eventsToShow = []
+                const m = this.$data.mois[index]
 
-                for (let event of json.events) {
-                    if (event.mois === m.toLowerCase()) {
-                        eventsToShow.push(event)
-                    }
-                }
-                
+                //add events if month corresponds
+                for (let event of json.events)
+                    event.mois === m ? eventsToShow.push(event) : ''
+
                 if (eventsToShow.length > 0) {
                     this.events = eventsToShow
-                    this.shouldShowMonths = true
                 } else {
-                    this.shouldShowMonths = false
+
+                    if (m === 'janvier' || m === 'février') {
+                        this.events = [{nom: "La savonniere se repose en " + m}]
+                    } else {
+                        this.events = [{nom: "Pas d'événements en " + m, coord: "seulement les marchés habituels"}]
+                    }
                 }
 
-                console.log(this.shouldShowMonths)
+                this.shouldShowMonths = true
             }
         },
 
         mounted: function() {
-            //init clickable months
+            //set default month to be shown
+            const index = (new Date).getMonth()
+            this.setActiveButton(index)
+            this.showMonth(index)
 
-            const d = new Date
-            this.setActiveButton(d.getMonth())
-
+            //accentuates months with events
+            document.querySelectorAll('.filters button')
+            .forEach((button, i) => {
+                for (let event of json.events)
+                    event.mois !== this.$data.mois[i] ? '' : button.classList.add('hasEvents')
+            })
         }
     })
 
