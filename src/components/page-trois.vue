@@ -59,9 +59,6 @@
 						<img
 							src="https://savonnerielacurieuse.com/images/savons/cesar.jpg"
 						/>
-						<img
-							src="https://savonnerielacurieuse.com/images/savons/cesar.jpg"
-						/>
 					</div>
 					<div class="bottom">
 						<p class="description">{{ savons.cesar.desc }}</p>

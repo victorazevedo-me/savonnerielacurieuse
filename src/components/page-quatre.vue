@@ -11,7 +11,7 @@
 
                 <div class="left">
 
-                    <h3>Les Boutiques</h3>
+                    <h3>Boutiques</h3>
                     
                     <div id="vue-boutiques">
                         <div class="item"
@@ -27,7 +27,7 @@
                 <div class="right">
 
                     <div>
-                        <h3>Les marchés</h3>
+                        <h3>Marchés</h3>
 
                         <div id="vue-marches">
                             <div 
@@ -37,24 +37,24 @@
 
                                 <h4>{{ item.nom }}</h4>
                                 <p>{{ item.coord }}, {{ item.activite }}</p>
-                                <p><small>{{ item.note }}</small></p>
+                                <p>{{ item.note }}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div>
-                        <h3>Directement à la savonnerie</h3>
+                    <div id="vue-savonnerie">
+                        <h3>A la savonnerie</h3>
                     
                         <div class="item">
-                            <p>assurez vous de la disponibilité de la savonnerie 24h à l'avance</p>
+                            <h4>Assurez vous de la disponibilité de la savonnière 24h à l'avance</h4>
                         </div>
                     
-                        <div class="item contact">
+                        <!-- <div class="item contact">
                             <p>Valérie Cartailler</p>
                             <p>{{ contact.adresse }}</p>
                             <p>{{ contact.email }}</p>
                             <p>{{ contact.telephone }}</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -101,6 +101,8 @@
     import Vue from 'vue';
     import VueFooter from './footer.vue';
     import json from '../scripts/database';
+    import ScrollReveal from 'scrollreveal'
+    import SimpleParallax from 'simple-parallax-js'
 
     export default Vue.extend({
 
@@ -164,6 +166,13 @@
                 for (let event of json.events)
                     event.mois !== this.$data.mois[i] ? '' : button.classList.add('hasEvents')
             })
+
+            //animation + transitions
+            const revealOptions = {duration: 2000, interval: 100}
+            ScrollReveal().reveal('#vue-boutiques .item', revealOptions)
+            ScrollReveal().reveal('#vue-marches .item', revealOptions)
+            ScrollReveal().reveal('#vue-savonnerie .item', revealOptions)
+            ScrollReveal().reveal('.filters button', revealOptions)
         }
     })
 

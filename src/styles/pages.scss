@@ -333,26 +333,51 @@ body main .page {
 
 	&.quatre {
 		> div {
-			padding: 5em;
+			padding: 2em 3em;
 		}
 
 		.deux-colonnes {
 			align-items: flex-start;
-			margin: 2em 0 6em 0;
+			margin: 2em 0;
+
+			> div {
+				margin-right: 2em;
+			}
 
 			h3 {
-				max-width: 350px;
+				text-align: center;
+			}
+
+			#vue-boutiques .item {
+				background-color: #8eae4f;
+			}
+
+			#vue-marches .item {
+				background-color: #c9bd61;
+			}
+
+			#vue-savonnerie .item {
+				background-color: #6ea477;
 			}
 
 			.item {
-				max-width: 350px;
+				padding: 1em;
+				margin: 0.5em 0;
+				max-width: 450px;
+				border-radius: 10px;
+				color: white;
 
 				h4 {
-					margin-bottom: 0;
+					font-size: 30px;
+					line-height: 30px;
+					margin: 0;
+					margin-bottom: 10px;
 				}
 
 				p {
 					margin: 0;
+					font-size: 20px;
+					line-height: 25px;
 				}
 
 				&.contact {
