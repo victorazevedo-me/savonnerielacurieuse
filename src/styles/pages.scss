@@ -190,75 +190,79 @@ body main .page {
 	&.trois {
 		padding: 0;
 
-		.deux-colonnes {
+		.liste-savons {
 			display: flex;
 			flex-wrap: wrap;
+			justify-content: center;
 
-			.liste-savons {
-				h3 {
-					opacity: 0.5;
-					padding: 10px 0;
+			h3 {
+				border-radius: 1.5em;
+				padding: 5px 20px;
+				margin: 10px;
+				cursor: pointer;
+				transition: all 0.2s linear;
+
+				&:hover {
+					background-color: #ffdbbd;
+				}
+
+				&:active {
+					background-color: #f8c499;
+				}
+
+				&.selected {
+					color: white;
+					background-color: #fda761;
+				}
+
+				&:last-child {
+					display: none;
+				}
+			}
+		}
+
+		.full-card {
+			margin: auto;
+			padding-top: 5em;
+			font-style: normal;
+
+			.nom {
+				font-size: 30px;
+				position: relative;
+
+				.shadow {
+					position: absolute;
+					top: -130px;
+					left: -130px;
 					margin: 0;
-					cursor: pointer;
-					user-select: none;
-					transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+					font-size: 260px;
+					white-space: nowrap;
+					opacity: 0.1;
+					z-index: -1;
+				}
 
-					&:hover {
-						opacity: 1;
-						transform: translateX(20px);
-					}
-
-					&:active,
-					&.selected {
-						transform: translateX(60px);
-						opacity: 0;
-					}
+				h3 {
+					font-size: 80px;
+					margin: 0;
+					line-height: 1em;
 				}
 			}
 
-			.full-card {
+			.slideshow {
+				img {
+					width: 256px;
+					margin: 8px;
+				}
+			}
+
+			.bottom {
 				margin: auto;
-				padding-top: 5em;
-				font-style: normal;
+				width: 80%;
+				max-width: 700px;
+				min-width: 300px;
 
-				.nom {
-					font-size: 30px;
-					position: relative;
-
-					.shadow {
-						position: absolute;
-						top: -130px;
-						left: -0px;
-						margin: 0;
-						font-size: 260px;
-						white-space: nowrap;
-						opacity: 0.1;
-						z-index: -1;
-					}
-
-					h3 {
-						font-size: 80px;
-						margin: 0;
-						line-height: 1em;
-					}
-				}
-
-				.slideshow {
-					img {
-						width: 256px;
-						margin: 8px;
-					}
-				}
-
-				.bottom {
-					margin: auto;
-					width: 80%;
-					max-width: 700px;
-					min-width: 300px;
-
-					.composition {
-						opacity: 0.8;
-					}
+				.composition {
+					opacity: 0.8;
 				}
 			}
 		}
@@ -272,6 +276,9 @@ body main .page {
 
 		.savons-doux {
 			color: #111;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
 		}
 
 		.savon-menager {
@@ -279,8 +286,8 @@ body main .page {
 			overflow: hidden;
 
 			.deux-colonnes {
-				margin-top: 5em;
 				justify-content: space-evenly;
+				flex-wrap: wrap;
 			}
 
 			.recette-lessive {
@@ -299,16 +306,13 @@ body main .page {
 		}
 
 		.en-parlent {
-			padding-bottom: 30vh;
-
 			.liste {
 				display: flex;
-				flex-wrap: wrap;
 				justify-content: flex-start;
+				flex-wrap: wrap;
 
 				.citation {
-					width: calc(33% - 4em);
-					max-width: 450px;
+					width: calc(50% - 4em);
 					min-width: 250px;
 					padding: 2em;
 					padding-left: 0;

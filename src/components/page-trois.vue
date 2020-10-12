@@ -1,62 +1,74 @@
 <template>
 	<section id="contenu-page" class="page trois">
 		<div id="savons-doux" class="savons-doux">
-			<div class="semi-titre">
-				<!-- <div class="ballon"></div> -->
+			<!-- <div class="semi-titre">
+				<div class="ballon"></div>
 				<h2>Les savons doux</h2>
-			</div>
+			</div> -->
 
-			<div class="deux-colonnes">
-				<div class="liste-savons">
-					<h3
-						v-bind:key="item.title"
-						v-for="item in savons"
-						v-on:click="(e) => apply(item, e)"
-					>
-						{{ item.title }}
-					</h3>
+			<div class="liste-savons">
+				<h3
+					v-bind:key="item.title"
+					v-for="item in savons"
+					v-on:click="(e) => apply(item, e)"
+				>
+					{{ item.title }}
+				</h3>
+			</div>
+			<div class="full-card">
+				<div class="nom">
+					<h3>{{ savonToDisplay.title }}</h3>
+					<p class="shadow">{{ savonToDisplay.title }}</p>
 				</div>
-				<div class="full-card">
-					<div class="nom">
-						<h3>{{ savonToDisplay.title }}</h3>
-						<p class="shadow">{{ savonToDisplay.title }}</p>
-					</div>
-					<div class="slideshow">
-						<img
-							src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
-						/>
-						<img
-							src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
-						/>
-						<img
-							src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
-						/>
-					</div>
-					<div class="bottom">
-						<p class="description">{{ savonToDisplay.desc }}</p>
-						<p class="composition">
-							Composition: {{ savonToDisplay.compo }}
-						</p>
-					</div>
+				<div class="slideshow">
+					<img
+						src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
+					/>
+					<img
+						src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
+					/>
+					<img
+						src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
+					/>
+				</div>
+				<div class="bottom">
+					<p class="description">{{ savonToDisplay.desc }}</p>
+					<p class="composition">
+						Composition: {{ savonToDisplay.compo }}
+					</p>
 				</div>
 			</div>
 		</div>
 
 		<div id="savon-menager" class="savon-menager">
-			<div class="semi-titre">
-				<!-- <div class="ballon"></div> -->
+			<!-- <div class="semi-titre">
+				<div class="ballon"></div>
 				<h2>Le savon ménager César</h2>
-			</div>
+			</div> -->
 
 			<div class="deux-colonnes">
-				<div class="sav-card">
-					<div>
+				<div class="full-card">
+					<div class="nom">
+						<h3>César</h3>
+						<p class="shadow">César</p>
+					</div>
+					<div class="slideshow">
 						<img
-							src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
+							src="https://savonnerielacurieuse.com/images/savons/cesar.jpg"
+						/>
+						<img
+							src="https://savonnerielacurieuse.com/images/savons/cesar.jpg"
+						/>
+						<img
+							src="https://savonnerielacurieuse.com/images/savons/cesar.jpg"
 						/>
 					</div>
-					<h3>Savon</h3>
-					<p>Sous-titre savon</p>
+					<div class="bottom">
+						<p class="description">{{ savons.cesar.desc }}</p>
+						<p class="composition">
+							Composition: {{ savons.cesar.compo }}
+						</p>
+					</div>
 				</div>
 
 				<div class="recette-lessive">
@@ -91,6 +103,7 @@
 
 		<div id="en-parlent" class="en-parlent">
 			<div class="semi-titre">
+				<div class="ballon"></div>
 				<h2>Les savonnés en parlent</h2>
 			</div>
 
@@ -157,7 +170,8 @@ export default Vue.extend({
 			overflow: true,
 		}
 
-		new SimpleParallax(dom('.full-card .shadow')!, parallaxOptions)
+		new SimpleParallax(dom('.savons-doux .full-card .shadow')!, parallaxOptions)
+		new SimpleParallax(dom('.savon-menager .full-card .shadow')!, parallaxOptions)
 		new SimpleParallax(dom('.savon-menager .grosseballe')!, parallaxOptions)
 		new SimpleParallax(dom('.en-parlent .grosseballe')!, parallaxOptions)
 	},
