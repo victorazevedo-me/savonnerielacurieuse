@@ -24,12 +24,22 @@ body {
 	}
 }
 
+input,
 button {
 	border: none;
 	background-color: transparent;
 	font-family: 'Amiri', serif;
 	font-style: italic;
-	font-size: 20px;
+	font-size: 30px;
+	line-height: 1.5em;
+	transition: background-color 0.2s linear;
+	outline: none !important;
+}
+
+button {
+	border-radius: 1.5em;
+	padding: 0 20px;
+	cursor: pointer;
 }
 
 main {
@@ -211,19 +221,12 @@ section footer {
 	cursor: default;
 	color: #111;
 
-	hr {
-		width: 50%;
-		min-width: 200px;
-		max-width: 500px;
-		border: none;
-		border-top: 1px solid #111;
-		opacity: 0.2;
-	}
-
 	.wrapper {
 		margin: auto;
 		max-width: 900px;
-		padding: 4em;
+		padding: 2em;
+		border-radius: 1em;
+		background-color: #ffcc80;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;

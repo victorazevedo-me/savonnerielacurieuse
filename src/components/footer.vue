@@ -1,7 +1,5 @@
 <template>
 	<footer id="footer">
-		<hr />
-
 		<div class="wrapper">
 			<div class="navigation">
 				<a href="/">Accueil</a>

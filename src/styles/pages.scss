@@ -188,8 +188,6 @@ body main .page {
 	}
 
 	&.trois {
-		padding: 0;
-
 		.liste-savons {
 			display: flex;
 			flex-wrap: wrap;
@@ -357,7 +355,7 @@ body main .page {
 			}
 
 			#vue-savonnerie .item {
-				background-color: #6ea477;
+				background-color: #499d4d;
 			}
 
 			.item {
@@ -404,14 +402,6 @@ body main .page {
 			padding: 0 0 2em 0;
 
 			button {
-				position: relative;
-				font-size: 30px;
-				line-height: 1.5em;
-				border-radius: 1.5em;
-				padding: 0 20px;
-				transition: background-color 0.2s linear;
-				outline: none !important;
-				cursor: pointer;
 
 				&.hasEvents {
 					background-color: #fce68644;
@@ -428,6 +418,8 @@ body main .page {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: center;
+			min-height: 300px;
+
 			.item {
 				width: calc(50% - 4em);
 				min-width: 200px;
