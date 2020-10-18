@@ -28,7 +28,8 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
 			},
 			{ titre: ['la saponification', 'à froid'], soustitre: '' },
 			{ titre: ['César et les', 'savons doux'], soustitre: '' },
-			{ titre: ['Où les', 'trouver ?'], soustitre: '' }
+			{ titre: ['Où les', 'trouver ?'], soustitre: '' },
+			{ titre: ['Contact', '& faq'], soustitre: '' }
 		]
 
 		const soustitre = document.querySelector('.small div span')!

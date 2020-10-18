@@ -237,14 +237,6 @@ export default {
         {
            "citation": "J'ai complètement abandonné les flacons et autre produits conventionnels je trouve le savon César super efficace pour faire la vaisselle !",
            "credit":"Broski Dude, Dudski City"
-        },
-        {
-           "citation": "J'ai complètement abandonné les flacons et autre produits conventionnels je trouve le savon César super efficace pour faire la vaisselle !",
-           "credit":"Broski Dude, Dudski City"
-        },
-        {
-           "citation": "J'ai complètement abandonné les flacons et autre produits conventionnels je trouve le savon César super efficace pour faire la vaisselle !",
-           "credit":"Broski Dude, Dudski City"
         }
     ]
  }

@@ -5,6 +5,7 @@ import Page01 from '../components/un.vue'
 import Page02 from '../components/deux.vue'
 import Page03 from '../components/trois.vue'
 import Page04 from '../components/quatre.vue'
+import Page05 from '../components/cinq.vue'
 import Hammer from 'hammerjs'
 import Vue from 'vue'
 
@@ -24,6 +25,10 @@ const SITEMAP = [
 	{
 		pathname: '/disponible',
 		titre: 'Où les trouver'
+	},
+	{
+		pathname: '/contact',
+		titre: 'Contacter la savonnière'
 	}
 ]
 
@@ -113,7 +118,7 @@ function accueilEvents() {
 					}
 
 					//deplace l'accueil droite et gauche
-					if (pan === 'panleft' && currentIndex < 3) {
+					if (pan === 'panleft' && currentIndex < SITEMAP.length) {
 						applyPan(currentIndex + 1)
 					}
 
@@ -182,7 +187,7 @@ function accueilEvents() {
 
 function redirection(which: PageEventOrigin, index?: number) {
 	function openPage(i: number) {
-		const pages = [Page01, Page02, Page03, Page04]
+		const pages = [Page01, Page02, Page03, Page04, Page05]
 		const IndexedPage = pages[i]
 
 		new Vue({
