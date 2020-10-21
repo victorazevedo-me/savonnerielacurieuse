@@ -5,25 +5,8 @@
         <div id="extended-nav-content">
     
             <div class="left-display">
-
                 <div class="presentation-images">
                     <img class="in" src="../images/nav/suggestion.jpg">
-                </div>
-
-                <div class="contact-infos">
-                    <div>
-                        <p>savonnerielacurieuse@gmail.com</p>
-                    </div>
-                    <div>
-                        <p>06 86 59 49 12</p>
-                    </div>
-                    <br />
-                    <div>
-                        <p>Rue du Château</p>
-                    </div>
-                    <div>
-                        <p>63000 Clermont-Ferrand</p>
-                    </div>
                 </div>
             </div>
 
@@ -47,9 +30,11 @@
                     <p><a href="/disponible/boutiques">Boutiques, marchés & autre</a></p>
                     <p><a href="/disponible/evenements">Evenements</a></p>
                 </li>
-                <!-- <li>
-                    <h3>Contact</h3>
-                </li> -->
+                <li>
+                    <h3><a href="/contact/">Contact</a></h3>
+                    <p><a href="/contact/#">Contacter la savonnière</a></p>
+                    <p><a href="/faq">Foire aux Questions</a></p>
+                </li>
             </div>
     </div>
 </template>
@@ -76,6 +61,7 @@ export default Vue.extend({
 
 		navliste.forEach((li, i) => {
 			li.addEventListener('mouseover', () => {
+				
 				if (lastHover !== i && images.length > i) {
 					if (waitForAnimation) {
 						clearTimeout(hoverTimeout)
@@ -98,21 +84,6 @@ export default Vue.extend({
 						waitForAnimation = false
 
 						setTimeout(() => newPoster.classList.add('in'), 50)
-					}, 500)
-				} else if (lastHover !== i && i === 4) {
-					lastHover = i
-					presentation
-						.querySelector('img')!
-						.classList.replace('in', 'out')
-
-					setTimeout(() => {
-						leftDisplay.className = 'left-display contacte'
-
-						document
-							.querySelectorAll('.contact-infos div p')
-							.forEach((p) =>
-								setTimeout(() => p.classList.add('in'), 200)
-							)
 					}, 500)
 				}
 			})

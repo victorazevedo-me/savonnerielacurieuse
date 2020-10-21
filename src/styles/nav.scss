@@ -1,6 +1,6 @@
 nav {
 
-    position: absolute;
+    position: fixed;
     top: 60px;
     left: 60px;
     width: calc(100% - 120px);
@@ -12,44 +12,7 @@ nav {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-
-        .logo {
-            display: none;
-        }
-
-        .center {
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-
-            ul {
-
-                display: flex;
-                justify-items: center;
-                width: 100%;
-                white-space: nowrap;
-                list-style: none;
-                padding: 0;
-                margin: 0;
-
-                li {
-                    margin: 0 1em;
-                    list-style: none;
-                    font-weight: bold;
-                    opacity: .7;
-                    transition: opacity .5s;
-                    cursor: pointer;
-
-                    &.active {
-                        opacity: 1;
-                    }
-                }
-            }
-
-        }
+        justify-content: center;
 
         .hamburger {
 
@@ -61,10 +24,11 @@ nav {
             flex-direction: column;
             cursor: pointer;
 
+
             span {
                 width: 100%;
                 padding: 1px;
-                background-color: #fff;
+                background-color: #111;
                 border-radius: 10px;
                 transition: transform .5s;
             }

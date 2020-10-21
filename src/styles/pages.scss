@@ -42,8 +42,11 @@ body main .page {
 	}
 
 	&.un {
+
+		min-height: 0;
+
 		.deux-colonnes {
-			min-height: 100vh;
+			min-height: calc(100vh - 6em);
 		}
 
 		.slc-description {
@@ -59,6 +62,10 @@ body main .page {
 			height: 40vw;
 			max-width: 600px;
 			max-height: 600px;
+		}
+
+		footer {
+			display: none;
 		}
 	}
 

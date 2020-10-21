@@ -9,7 +9,8 @@ body {
 	font-style: italic;
 	font-size: 25px;
 	line-height: 1.5;
-	overflow-x: hidden;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 	//cursor: none;
 
 	#cursor {
@@ -43,6 +44,7 @@ button {
 }
 
 main {
+
 	.background {
 		@keyframes FadeIn {
 			from {
@@ -55,10 +57,10 @@ main {
 		}
 
 		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100vh;
+		top: 15vh;
+		left: 15vw;
+		width: 70vw;
+		height: 70vh;
 		opacity: 1;
 		z-index: -1;
 		background-size: cover;
@@ -91,7 +93,7 @@ main {
 		}
 
 		&.contact {
-			background-image: url('../images/nav/chignore.jpg');
+			background-image: url('../images/accueil/robert.jpg');
 		}
 	}
 
@@ -101,106 +103,28 @@ main {
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		justify-content: center;
 		z-index: 5;
 
 		.titre {
-			color: white;
-			font-weight: bold;
-			font-size: 120px;
-			margin: 0 auto;
+			color: #111;
+            font-weight: bold;
+            font-size: 90px;
+			margin: 1.5em;
 
-			> div {
-				margin: 0;
+            h1 {
+                line-height: .8em;
+                font-size: 1em;
+                margin: 0;
 
-				&.big {
-					line-height: 1em;
-					font-size: 1em;
-				}
+                span {display: block;}
+            }
 
-				&.small {
-					margin-top: 10px;
-					font-size: 0.3em;
-				}
-
-				div {
-					overflow: hidden;
-
-					@keyframes SwipedLeft {
-						0% {
-							transform: translate(0, 0);
-						}
-
-						48% {
-							transform: translate(-100%, 0);
-						}
-
-						52% {
-							opacity: 0;
-							transform: translate(100%, 0);
-						}
-
-						54% {
-							opacity: 1;
-						}
-
-						100% {
-							transform: translate(0, 0);
-						}
-					}
-
-					@keyframes SwipedRight {
-						0% {
-							transform: translate(0, 0);
-						}
-
-						48% {
-							transform: translate(100%, 0);
-						}
-
-						52% {
-							opacity: 0;
-							transform: translate(-100%, 0);
-						}
-
-						54% {
-							opacity: 1;
-						}
-
-						100% {
-							transform: translate(0, 0);
-						}
-					}
-
-					@keyframes Init {
-						0% {
-							transform: translate(0, -100%);
-						}
-
-						100% {
-							transform: translate(0, 0);
-						}
-					}
-
-					span {
-						display: block;
-						transition: transform 0.5s;
-
-						&.swipedRight {
-							animation: SwipedRight 1.2s;
-						}
-
-						&.swipedLeft {
-							animation: SwipedLeft 1.2s;
-						}
-
-						&.init {
-							animation: Init 1s ease-out;
-						}
-					}
-				}
-			}
+            p {
+                line-height: .8em;
+                font-size: .4em;
+                margin-top: 10px;
+            }
 		}
 	}
 
@@ -229,8 +153,7 @@ section footer {
 		margin: auto;
 		max-width: 900px;
 		padding: 2em;
-		border-radius: 1em;
-		background-color: #ffcc80;
+		background-color: #ffcc80aa;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;

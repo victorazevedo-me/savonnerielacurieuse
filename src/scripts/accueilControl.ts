@@ -1,3 +1,7 @@
+import SimpleParallax from 'simple-parallax-js'
+import Reveal from 'scrollreveal'
+import { dom } from '../scripts/pageControl'
+
 export function accueilSwipe(u: string, i: number, lasti?: number) {
 	let url = u.replace('/', '')
 
@@ -32,39 +36,23 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
 			{ titre: ['Contact', '& faq'], soustitre: '' }
 		]
 
-		const soustitre = document.querySelector('.small div span')!
-		const spans = document.querySelectorAll('.titre span')!
-
-		const swipeAnim = (dom: Element, duration: number) => {
-			const animname =
-				typeof lasti !== 'number'
-					? 'init'
-					: lasti > i
-					? 'swipedRight'
-					: 'swipedLeft'
-			dom.classList.add(animname)
-
-			setTimeout(() => {
-				dom.classList.remove(animname)
-			}, duration)
-		}
+		const soustitre = document.querySelector('.titre p')!
 
 		function addText(): void {
-			document.querySelectorAll('.big div span')!.forEach((span, j) => {
+			document.querySelectorAll('.titre h1 span')!.forEach((span, j) => {
 				span.innerHTML = texts[i].titre[j]
 			})
-			soustitre.innerHTML = texts[i].soustitre
+			soustitre.innerHTML = (texts[i].soustitre ? texts[i].soustitre : '')
 		}
 
-		spans.forEach(span => {
-			if (typeof lasti === 'number') {
-				swipeAnim(span, 1200)
-				setTimeout(addText, 600)
-			} else {
-				swipeAnim(span, 1200)
-				addText()
-			}
+		Reveal().reveal('.titre', {
+			origin: (lasti && lasti < i ? 'left' : 'right'),
+			duration: 600,
+			easing: 'ease-out',
+			distance: '-100px'
 		})
+
+		addText()
 	}
 
 	moveBackgrounds()

@@ -5,19 +5,6 @@
 		</div>
 
 		<nav class="minimal">
-			<div class="logo">
-				<p>Curieuse</p>
-			</div>
-
-			<div class="center">
-				<ul>
-					<li>la savonnerie</li>
-					<li>la saponification</li>
-					<li>les savons</li>
-					<li>où les trouver</li>
-				</ul>
-			</div>
-
 			<div class="hamburger">
 				<span></span>
 				<span></span>
@@ -27,20 +14,11 @@
 
 		<div class="accueil">
 			<div class="titre">
-				<div class="big">
-					<div>
-						<span>Savonnerie</span>
-					</div>
-					<div>
-						<span>La Curieuse</span>
-					</div>
-				</div>
-
-				<div class="small">
-					<div>
-						<span>création de savons écologiques</span>
-					</div>
-				</div>
+				<h1>
+					<span>Savonnerie</span>
+					<span>La Curieuse</span>
+				</h1>
+				<p>création de savons écologiques</p>
 			</div>
 		</div>
 	</section>

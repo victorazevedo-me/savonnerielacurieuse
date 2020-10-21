@@ -69,33 +69,6 @@ function accueilEvents() {
 		}
 	}
 
-	//Object
-	const Nav = {
-		dom: document.querySelector('body > nav')!,
-		centerLis: document.querySelectorAll('nav .center li'),
-
-		changeCenterFocus: (i: number) => {
-			Nav.centerLis.forEach(n => n.classList.remove('active'))
-			Nav.centerLis[i].classList.add('active')
-		}
-	}
-
-	const navButtons = () => {
-		Nav.centerLis.forEach((elem, i) => {
-			elem.addEventListener('click', function() {
-				//only do animation if not playing
-
-				const currentPage = getPageIndex()
-
-				if (anim.state === AnimationIs.Finished && currentPage !== i) {
-					anim.wait()
-					redirection(PageEventOrigin.homepageScroll, i)
-					Nav.changeCenterFocus(i)
-				}
-			})
-		})
-	}
-
 	const panningScroll = () => {
 		const emcee = new Hammer(
 			<HTMLScriptElement>document.querySelector('.accueil')!
@@ -114,11 +87,10 @@ function accueilEvents() {
 					const applyPan = (i: number) => {
 						anim.wait()
 						redirection(PageEventOrigin.homepageScroll, i)
-						Nav.changeCenterFocus(i)
 					}
 
 					//deplace l'accueil droite et gauche
-					if (pan === 'panleft' && currentIndex < SITEMAP.length) {
+					if (pan === 'panleft' && currentIndex < SITEMAP.length - 1) {
 						applyPan(currentIndex + 1)
 					}
 
@@ -179,7 +151,6 @@ function accueilEvents() {
 
 	//customCursor()
 	//verticalScroll()
-	navButtons()
 	panningScroll()
 	hamburger()
 	//headerLogo()

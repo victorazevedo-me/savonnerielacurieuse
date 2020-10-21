@@ -40,16 +40,23 @@ import ScrollReveal from 'scrollreveal'
 export default Vue.extend({
 	template: '<VueFooter/>',
 	components: { VueFooter },
-	mounted: function () {
+	mounted: function() {
 		ScrollReveal().reveal('.slc-description p', {
 			duration: 1000,
-			delay: 100,
+			delay: 100
 		})
 		ScrollReveal().reveal('.pres-img', {
 			duration: 1000,
 			delay: 1000,
 			distance: '-20px',
+			afterReveal: () => {
+				document.querySelector('footer')!.style.display = 'block'
+				ScrollReveal().reveal('footer', {
+					duration: 1000,
+					delay: 1000
+				})
+			}
 		})
-	},
+	}
 })
 </script>
