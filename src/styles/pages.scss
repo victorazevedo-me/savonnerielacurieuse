@@ -448,4 +448,31 @@ body main .page {
 			}
 		}
 	}
+
+	&.cinq {
+
+		.faq {
+			text-align: center;
+
+			.semi-titre {
+				display: inline-block;
+			}
+		}
+
+		.faq-liste {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			text-align: left;
+		
+			> div {
+				max-width: 500px;
+				padding: 50px;
+
+				h3 {
+					line-height: 1em;
+				}
+			}
+		}
+	}
 }

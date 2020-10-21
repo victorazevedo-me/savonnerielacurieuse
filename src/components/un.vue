@@ -53,7 +53,7 @@ export default Vue.extend({
 				document.querySelector('footer')!.style.display = 'block'
 				ScrollReveal().reveal('footer', {
 					duration: 1000,
-					delay: 1000
+					delay: 200
 				})
 			}
 		})
