@@ -14,10 +14,7 @@
 
 		<div class="accueil">
 			<div class="titre">
-				<h1>
-					<span>Savonnerie</span>
-					<span>La Curieuse</span>
-				</h1>
+				<h1>Savonnerie<br />La Curieuse</h1>
 				<p>création de savons écologiques</p>
 			</div>
 			<div class="suivant">

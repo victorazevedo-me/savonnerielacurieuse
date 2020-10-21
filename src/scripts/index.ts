@@ -8,6 +8,7 @@ import Page04 from '../components/quatre.vue'
 import Page05 from '../components/cinq.vue'
 import Hammer from 'hammerjs'
 import Vue from 'vue'
+import { dom } from './pageControl'
 
 const SITEMAP = [
 	{
@@ -118,17 +119,15 @@ function accueilEvents() {
 				new Vue({
 					el: '#extended-nav',
 					template: '<ExtendedNav />',
-					components: { ExtendedNav }
+					components: { ExtendedNav },
+					mounted: () => {
+						setTimeout(() => {
+							dom('#extended-nav')!.classList.add('visible')
+						}, 100)
+					}
 				})
-				setTimeout(() => {
-					document
-						.querySelector('#extended-nav')!
-						.classList.add('visible')
-				}, 100)
 			} else {
-				document
-					.querySelector('#extended-nav')!
-					.classList.remove('visible')
+				dom('#extended-nav')!.classList.remove('visible')
 			}
 
 			hamburger.classList.toggle('clicked')

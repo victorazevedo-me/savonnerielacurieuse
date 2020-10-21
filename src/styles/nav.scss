@@ -7,6 +7,7 @@ nav {
     padding-top: 60px;
     width: 100%;
     z-index: 10;
+    mix-blend-mode: difference;
 
     display: flex;
     flex-direction: column;
@@ -29,7 +30,7 @@ nav {
             span {
                 width: 100%;
                 padding: 1px;
-                background-color: #111;
+                background-color: white;
                 border-radius: 10px;
                 transition: transform .5s;
             }
@@ -63,26 +64,12 @@ nav {
     height: 100vh;
     background-color: black;
     color: white;
-    visibility: hidden;
-
-    @keyframes showExtended {
-        0% {
-            visibility: hidden;
-        }
-        1% {
-            opacity: 0;
-            visibility: visible;
-            z-index: 9;
-        }
-        100% {
-            opacity: 1;
-            visibility: visible;
-            z-index: 9;
-        }
-    }
+    opacity: 0;
+    z-index: 9;
+    transition: opacity .5s;
 
     &.visible {
-        animation: showExtended .5s forwards;
+        opacity: 1;
     }
 
     #extended-nav-content {

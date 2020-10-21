@@ -26,24 +26,19 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
 
 	function updateTitle() {
 		const texts = [
-			{
-				titre: ['Savonnerie', 'La Curieuse'],
-				soustitre: 'création de savons écologiques'
-			},
-			{ titre: ['la saponification', 'à froid'], soustitre: '' },
-			{ titre: ['César et les', 'savons doux'], soustitre: '' },
-			{ titre: ['Où les', 'trouver ?'], soustitre: '' },
-			{ titre: ['Contact', '& faq'], soustitre: '' }
+			[['Savonnerie', 'La Curieuse'], ['création de savons écologiques']],
+			[['la saponification', 'à froid'], ['']],
+			[['César et les', 'savons doux'], ['']],
+			[['Où les', 'trouver ?'], ['']],
+			[['Contact', '& faq'], ['']]
 		]
 
-		const soustitre = document.querySelector('.titre p')!
-
-		function addText(): void {
-			document.querySelectorAll('.titre h1 span')!.forEach((span, j) => {
-				span.innerHTML = texts[i].titre[j]
-			})
-			soustitre.innerHTML = texts[i].soustitre ? texts[i].soustitre : ''
-		}
+		//for 'above' & 'below' titles
+		//add title & subtitle
+		dom('.titre h1')!.innerHTML = texts[i][0].reduce(
+			(a, b) => `${a}<br />${b}` //add line break
+		)
+		dom('.titre p')!.innerHTML = texts[i][1][0]
 
 		Reveal().reveal('.titre', {
 			origin: lasti && lasti < i ? 'left' : 'right',
@@ -51,8 +46,6 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
 			easing: 'ease-out',
 			distance: '-100px'
 		})
-
-		addText()
 	}
 
 	moveBackgrounds()
