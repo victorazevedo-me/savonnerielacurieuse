@@ -90,7 +90,10 @@ function accueilEvents() {
 					}
 
 					//deplace l'accueil droite et gauche
-					if (pan === 'panleft' && currentIndex < SITEMAP.length - 1) {
+					if (
+						pan === 'panleft' &&
+						currentIndex < SITEMAP.length - 1
+					) {
 						applyPan(currentIndex + 1)
 					}
 
@@ -117,6 +120,15 @@ function accueilEvents() {
 					template: '<ExtendedNav />',
 					components: { ExtendedNav }
 				})
+				setTimeout(() => {
+					document
+						.querySelector('#extended-nav')!
+						.classList.add('visible')
+				}, 100)
+			} else {
+				document
+					.querySelector('#extended-nav')!
+					.classList.remove('visible')
 			}
 
 			hamburger.classList.toggle('clicked')

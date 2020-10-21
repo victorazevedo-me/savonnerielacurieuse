@@ -1,18 +1,18 @@
+
 nav {
 
     position: fixed;
-    top: 60px;
-    left: 60px;
-    width: calc(100% - 120px);
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+    width: 100%;
     z-index: 10;
-    color: white;
 
-    &.minimal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
 
         .hamburger {
 
@@ -23,6 +23,7 @@ nav {
             justify-content: space-between;
             flex-direction: column;
             cursor: pointer;
+            transition: transform .5s;
 
 
             span {
@@ -34,21 +35,25 @@ nav {
             }
 
             &.clicked {
-                span:nth-child(1) {
-                    transform: rotate(-45deg) translateY(10px);
-                }
 
-                span:nth-child(2) {
-                    transform: scale(0);
-                }
+                transform: translateX(-5px);
 
-                span:nth-child(3) {
-                    transform: rotate(45deg) translateY(-10px);
+                span {
+                    background-color: white;
+
+                    &:nth-child(1) {
+                        transform: rotate(-45deg) translateY(10px);
+                    }
+                    &:nth-child(2) {
+                        transform: scale(0);
+                    }
+    
+                    &:nth-child(3) {
+                        transform: rotate(45deg) translateY(-10px);
+                    }
                 }
             }
         }
-    }
-
 }
 
 #extended-nav {
@@ -60,9 +65,24 @@ nav {
     color: white;
     visibility: hidden;
 
+    @keyframes showExtended {
+        0% {
+            visibility: hidden;
+        }
+        1% {
+            opacity: 0;
+            visibility: visible;
+            z-index: 9;
+        }
+        100% {
+            opacity: 1;
+            visibility: visible;
+            z-index: 9;
+        }
+    }
+
     &.visible {
-        visibility: visible;
-        z-index: 999;
+        animation: showExtended .5s forwards;
     }
 
     #extended-nav-content {
@@ -146,10 +166,24 @@ nav {
             }
         }
 
+        .nav-liste {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
         li {
 
+            border: 2px solid transparent;
             list-style: none;
-            margin: 5vh 0;
+            padding: 3vh;
+            margin: 2vh;
+            transition: border .5s cubic-bezier(0.19, 1, 0.22, 1);
+
+            &.selected {
+                background-color: #fff1;
+                border-color: #444;
+                border-radius: 4px;
+            }
 
             a {
                 text-decoration: none;

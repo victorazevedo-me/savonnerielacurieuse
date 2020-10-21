@@ -42,11 +42,11 @@ export function accueilSwipe(u: string, i: number, lasti?: number) {
 			document.querySelectorAll('.titre h1 span')!.forEach((span, j) => {
 				span.innerHTML = texts[i].titre[j]
 			})
-			soustitre.innerHTML = (texts[i].soustitre ? texts[i].soustitre : '')
+			soustitre.innerHTML = texts[i].soustitre ? texts[i].soustitre : ''
 		}
 
 		Reveal().reveal('.titre', {
-			origin: (lasti && lasti < i ? 'left' : 'right'),
+			origin: lasti && lasti < i ? 'left' : 'right',
 			duration: 600,
 			easing: 'ease-out',
 			distance: '-100px'
