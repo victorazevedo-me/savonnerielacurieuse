@@ -102,8 +102,8 @@ main {
 		width: 100%;
 		height: 100vh;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		align-items: center;
+		justify-content: space-between;
 		z-index: 5;
 
 		.titre {
@@ -125,6 +125,12 @@ main {
                 font-size: .4em;
                 margin-top: 10px;
             }
+		}
+
+		.suivant {
+			p {
+				margin: 0;
+			}
 		}
 	}
 
