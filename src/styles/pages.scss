@@ -451,6 +451,49 @@ body main .page {
 
 	&.cinq {
 
+		$mapSize: 650px;
+
+		.contact-infos {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10em 5em;
+
+			.infos {
+
+				position: relative;
+
+				.gelule {
+					position: absolute;
+					top: 10%;
+					left: -10%;
+					width: 100%;
+					height: 10em;
+					border-radius: 5em;
+					background-color: wheat;
+					z-index: -1;
+					visibility: hidden;
+				}
+
+				p {
+					font-size: 25px;
+					line-height: 1.2em;
+					margin: 0;
+				}
+			}
+
+		}
+
+		#map {
+			width: $mapSize;
+			height: 75vh;
+
+			.leaflet-control-container {
+				visibility: hidden;
+			}
+		}
+
+
 		.faq {
 			text-align: center;
 
