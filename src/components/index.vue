@@ -17,7 +17,7 @@
 				<h1>Savonnerie<br />La Curieuse</h1>
 				<p>création de savons écologiques</p>
 			</div>
-			<div class="suivant">
+			<!-- <div class="suivant">
 				<svg
 					fill="none"
 					viewBox="0 0 24 24"
@@ -34,7 +34,7 @@
 					></path>
 				</svg>
 				<p>vers la saponification</p>
-			</div>
+			</div> -->
 		</div>
 	</section>
 </template>

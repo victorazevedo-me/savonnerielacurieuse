@@ -127,7 +127,12 @@ function accueilEvents() {
 					}
 				})
 			} else {
-				dom('#extended-nav')!.classList.remove('visible')
+				//puts nav behind after fadeout
+				const nav = dom('#extended-nav')!
+				nav.classList.remove('visible')
+				setTimeout(() => {
+					nav.setAttribute('style', 'z-index: -1')
+				}, 500)
 			}
 
 			hamburger.classList.toggle('clicked')
