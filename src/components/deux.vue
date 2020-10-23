@@ -17,7 +17,7 @@
 
 		<div class="deux-colonnes">
 			<div class="fabrication">
-				<h3>Création du savon Fanny</h3>
+				<h3 id="creation-savon">Création du savon Fanny</h3>
 
 				<div id="imgwrap">
 					<img
@@ -120,7 +120,7 @@
 
 			<div class="expliquation">
 				<div>
-					<h3>La saponification</h3>
+					<h3 id="la-saponification">La saponification</h3>
 					<p>
 						La saponification est la réaction chimique qui
 						transforme : huile + soude => savon + glycérine Il ne

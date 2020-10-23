@@ -4,7 +4,7 @@
 			<div>
 				<div class="semi-titre">
 					<div class="ballon"></div>
-					<h2>Contact</h2>
+					<h2 id="contact">Contact</h2>
 				</div>
 
 				<div class="infos">
@@ -24,10 +24,10 @@
 			<div id="map"></div>
 		</div>
 
-		<div id="foire-aux-questions" class="faq">
+		<div class="faq">
 			<div class="semi-titre">
 				<div class="ballon"></div>
-				<h2>Foire aux Questions</h2>
+				<h2 id="foire-aux-questions">Foire aux Questions</h2>
 			</div>
 
 			<div class="faq-liste">

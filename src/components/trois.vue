@@ -10,7 +10,7 @@
 				<h3
 					v-bind:key="item.title"
 					v-for="item in savons"
-					v-on:click="(e) => apply(item, e)"
+					v-on:click="e => apply(item, e)"
 				>
 					{{ item.title }}
 				</h3>
@@ -101,7 +101,7 @@
 		<div id="en-parlent" class="en-parlent">
 			<div class="semi-titre">
 				<div class="ballon"></div>
-				<h2>Les savonnés en parlent</h2>
+				<h2 id="temoignages">Les savonnés en parlent</h2>
 			</div>
 
 			<div class="liste">
@@ -130,7 +130,7 @@ import SimpleParallax from 'simple-parallax-js'
 import {
 	dom,
 	isScrolledIntoView,
-	overlayPosition,
+	overlayPosition
 } from '../scripts/pageControl'
 
 export default Vue.extend({
@@ -140,11 +140,11 @@ export default Vue.extend({
 		temoignages: json.temoignages,
 		savons: json.savons,
 		savonToDisplay: json.savons.muesli,
-		lastSavon: document.querySelector('.liste-savons h3'),
+		lastSavon: document.querySelector('.liste-savons h3')
 	}),
 
 	methods: {
-		apply: function (item: JSON, e: any) {
+		apply: function(item: JSON, e: any) {
 			//class toggle
 			if (this.lastSavon) {
 				this.lastSavon.classList.toggle('selected')
@@ -154,23 +154,29 @@ export default Vue.extend({
 
 			//change display
 			this.$data.savonToDisplay = item
-		},
+		}
 	},
 
-	mounted: function () {
+	mounted: function() {
 		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 1200)
 
 		const parallaxOptions = {
 			delay: 0.6,
 			scale: 1.6,
 			transition: 'cubic-bezier(0.19, 1, 0.22, 1)',
-			overflow: true,
+			overflow: true
 		}
 
-		new SimpleParallax(dom('.savons-doux .full-card .shadow')!, parallaxOptions)
-		new SimpleParallax(dom('.savon-menager .full-card .shadow')!, parallaxOptions)
+		new SimpleParallax(
+			dom('.savons-doux .full-card .shadow')!,
+			parallaxOptions
+		)
+		new SimpleParallax(
+			dom('.savon-menager .full-card .shadow')!,
+			parallaxOptions
+		)
 		new SimpleParallax(dom('.savon-menager .grosseballe')!, parallaxOptions)
 		new SimpleParallax(dom('.en-parlent .grosseballe')!, parallaxOptions)
-	},
+	}
 })
 </script>

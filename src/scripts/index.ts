@@ -8,13 +8,13 @@ import Page04 from '../components/quatre.vue'
 import Page05 from '../components/cinq.vue'
 import Hammer from 'hammerjs'
 import Vue from 'vue'
-import { dom } from './pageControl'
+import { dom, bound } from './pageControl'
 
 export const SITEMAP = {
 	data: [
-		['', 'la-savonnerie'],
+		['/', 'la-savonnerie'],
 		['saponification', 'creation-savon', 'la-saponification'],
-		['savons', 'savons-doux', 'savons-menager', 'temoignages'],
+		['savons', 'savons-doux', 'savon-menager', 'temoignages'],
 		['ou-les-trouver', 'boutiques-marches', 'evenements'],
 		['contact-faq', 'contact', 'foire-aux-questions']
 	],
@@ -45,7 +45,8 @@ export const SITEMAP = {
 
 export enum PageEventOrigin {
 	initialisation,
-	homepageScroll
+	homepageScroll,
+	navSubCategory
 }
 
 export const extendedNav = {
@@ -103,8 +104,6 @@ function accueilEvents() {
 						redirection(PageEventOrigin.homepageScroll, i)
 					}
 
-					console.log(main)
-
 					//deplace l'accueil droite et gauche
 					if (pan === 'panleft' && main < SITEMAP.len() - 1) {
 						applyPan(main + 1)
@@ -147,8 +146,12 @@ function accueilEvents() {
 	hamburger()
 }
 
-export function redirection(which: PageEventOrigin, newIndex?: number) {
-	function openPage(i?: number) {
+export function redirection(
+	which: PageEventOrigin,
+	newIndex: number = 0,
+	newInner: number = 0
+) {
+	function openPage(i?: number, mountCallback: Function = () => {}) {
 		if (i === undefined) {
 			new Vue({
 				el: '#contenu-accueil',
@@ -166,7 +169,8 @@ export function redirection(which: PageEventOrigin, newIndex?: number) {
 			new Vue({
 				el: '#contenu-page',
 				template: '<IndexedPage />',
-				components: { IndexedPage }
+				components: { IndexedPage },
+				mounted: () => mountCallback()
 			})
 		}
 	}
@@ -176,18 +180,22 @@ export function redirection(which: PageEventOrigin, newIndex?: number) {
 	if (which === PageEventOrigin.initialisation) {
 		openPage()
 		openPage(main)
-	} else if (
-		which === PageEventOrigin.homepageScroll &&
-		typeof newIndex === 'number'
-	) {
-		const oldIndex = main
-		SITEMAP.pushState([newIndex, 0])
-		accueilSwipe(newIndex, oldIndex)
-		openPage(newIndex)
+	} else {
+		SITEMAP.pushState([newIndex, newInner])
+		accueilSwipe(newIndex, main)
+		openPage(newIndex, () => {
+			window.scrollTo(0, 0)
+
+			//si c'est un sous-titre, scroll jusqu'a
+			if (which === PageEventOrigin.navSubCategory) {
+				const innerTitre = dom('#' + SITEMAP.data[newIndex][newInner])
+				const scroll = bound(innerTitre!).y || 0
+				window.scrollTo(0, scroll - 100)
+			}
+		})
 	}
 }
 
 window.onload = function() {
-	// directories control
 	redirection(PageEventOrigin.initialisation)
 }

@@ -3,7 +3,7 @@
 		<div>
 			<div class="semi-titre">
 				<div class="ballon"></div>
-				<h2>Boutiques, marchés & autre</h2>
+				<h2 id="boutiques-marches">Boutiques, marchés & autre</h2>
 			</div>
 
 			<div class="deux-colonnes">

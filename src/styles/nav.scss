@@ -172,9 +172,11 @@ nav {
                 border-radius: 4px;
             }
 
-            a {
-                text-decoration: none;
-                color: white;
+            h3,
+            p {
+                margin: 0;
+                cursor: pointer;
+                line-height: 1em;
                 transition: opacity .5s ease-out;
 
                 &:hover {
@@ -182,32 +184,17 @@ nav {
                 }
             }
 
-            h3,
-            p {
-                margin: 0;
-                cursor: pointer;
-                line-height: 1em;
-            }
-
             h3 {
                 font-size: 45px;
                 margin-bottom: 10px;
-
-                a {
-                    opacity: .5;
-                }
+                opacity: .7;
             }
 
             p {
                 margin: .5vh 1vh;
                 font-size: 25px;
-
-                a {
-                    opacity: .3;
-                }
+                opacity: .5;
             }
-
-
         }
     }
 }

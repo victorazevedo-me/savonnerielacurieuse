@@ -4,7 +4,7 @@
 			<div class="slc-description">
 				<div class="semi-titre">
 					<div class="ballon"></div>
-					<h2>La savonnerie</h2>
+					<h2 id="la-savonnerie">La savonnerie</h2>
 				</div>
 
 				<div>

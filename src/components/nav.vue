@@ -49,7 +49,6 @@ import {
 export default Vue.extend({
 	mounted: () => {
 		//A changer (evidemment)
-
 		const baseUrl =
 			'https://raw.githubusercontent.com/victorazevedo-me/savonnerielacurieuse/master/src/images/nav/'
 		const images = [
@@ -66,13 +65,42 @@ export default Vue.extend({
 		let lastHover = 0
 		let hoverTimeout = 0
 
+		function selectionCategorie(li: Element, i: number) {
+			if (lastHover !== i && images.length > i) {
+				//
+				//borders pour li
+				li.classList.add('selected')
+				navliste[lastHover].classList.remove('selected')
+
+				//change anim, change last
+				if (waitForAnimation) clearTimeout(hoverTimeout)
+				lastHover = i
+				waitForAnimation = true
+
+				//changement de poster
+				const currentPoster = presentation.querySelector('img')!
+				const newPoster = document.createElement('img')!
+				newPoster.src = baseUrl + images[i]
+				currentPoster.classList.replace('in', 'out')
+
+				hoverTimeout = setTimeout(() => {
+					leftDisplay.className = 'left-display presente'
+
+					currentPoster.remove()
+					presentation.appendChild(newPoster)
+					waitForAnimation = false
+
+					setTimeout(() => newPoster.classList.add('in'), 50)
+				}, 500)
+			}
+		}
+
+		//initialisation des categories
+		selectionCategorie(navliste[SITEMAP.indexes()[0]], SITEMAP.indexes()[0])
+
 		//les clicks des titres
 		document.querySelectorAll('.nav-liste h3').forEach((a, i) =>
 			a.addEventListener('click', e => {
-				//
-				//
-				console.log(e)
-
 				//redirige
 				redirection(PageEventOrigin.homepageScroll, i)
 
@@ -83,37 +111,26 @@ export default Vue.extend({
 
 		//events de li
 		navliste.forEach((li, i) => {
+			li.querySelectorAll('p').forEach(p => {
+				p.addEventListener('click', e => {
+					let elem: any = p
+					let counter = 0
+
+					while (elem.tagName !== 'H3') {
+						elem = elem.previousElementSibling
+						counter += 1
+					}
+
+					//redirige
+					redirection(PageEventOrigin.navSubCategory, i, counter)
+
+					//quitte le nav extended
+					extendedNav.hide()
+				})
+			})
+
 			li.addEventListener('mouseover', () => {
-				if (lastHover !== i && images.length > i) {
-					//
-					//borders pour li
-					li.classList.add('selected')
-					navliste[lastHover].classList.remove('selected')
-
-					//
-					//attend les anim, change last
-					if (waitForAnimation) clearTimeout(hoverTimeout)
-					lastHover = i
-					waitForAnimation = true
-
-					//
-					//changement de poster
-					const currentPoster = presentation.querySelector('img')!
-					const newPoster = document.createElement('img')!
-					newPoster.src = baseUrl + images[i]
-
-					currentPoster.classList.replace('in', 'out')
-
-					hoverTimeout = setTimeout(() => {
-						leftDisplay.className = 'left-display presente'
-
-						currentPoster.remove()
-						presentation.appendChild(newPoster)
-						waitForAnimation = false
-
-						setTimeout(() => newPoster.classList.add('in'), 50)
-					}, 500)
-				}
+				selectionCategorie(li, i)
 			})
 		})
 	}
