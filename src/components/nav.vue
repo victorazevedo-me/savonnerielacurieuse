@@ -9,40 +9,29 @@
 
 			<div class="nav-liste">
 				<li>
-					<h3><a href="/">Accueil</a></h3>
-					<p><a href="/a-propos/">la savonnerie</a></p>
+					<h3>Accueil</h3>
+					<p>la savonnerie</p>
 				</li>
 				<li>
-					<h3><a href="/saponification/">Saponification</a></h3>
-					<p>
-						<a href="/saponification/creation"
-							>Création du savon Fanny</a
-						>
-					</p>
-					<p>
-						<a href="/saponification/sap">La saponification</a>
-					</p>
+					<h3>Saponification</h3>
+					<p>Création du savon Fanny</p>
+					<p>La saponification</p>
 				</li>
 				<li>
-					<h3><a href="/savons/">Savons</a></h3>
-					<p><a href="/savons/doux/">les savons doux</a></p>
-					<p>
-						<a href="/savons/menager/">le savon ménager César</a>
-					</p>
+					<h3>Savons</h3>
+					<p>les savons doux</p>
+					<p>le savon ménager César</p>
+					<p>témoignages</p>
 				</li>
 				<li>
-					<h3><a href="/disponible/">Disponible</a></h3>
-					<p>
-						<a href="/disponible/boutiques"
-							>Boutiques, marchés & autre</a
-						>
-					</p>
-					<p><a href="/disponible/evenements">Evenements</a></p>
+					<h3>Disponible</h3>
+					<p>Boutiques, marchés & autre</p>
+					<p>Evenements</p>
 				</li>
 				<li>
-					<h3><a href="/contact/">Contact</a></h3>
-					<p><a href="/contact/#">Contacter la savonnière</a></p>
-					<p><a href="/faq">Foire aux Questions</a></p>
+					<h3>Contact</h3>
+					<p>Contacter la savonnière</p>
+					<p>Foire aux Questions</p>
 				</li>
 			</div>
 		</div>
@@ -50,6 +39,13 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { accueilSwipe } from '../scripts/accueilControl'
+import {
+	PageEventOrigin,
+	SITEMAP,
+	extendedNav,
+	redirection
+} from '../scripts/index'
 export default Vue.extend({
 	mounted: () => {
 		//A changer (evidemment)
@@ -70,6 +66,22 @@ export default Vue.extend({
 		let lastHover = 0
 		let hoverTimeout = 0
 
+		//les clicks des titres
+		document.querySelectorAll('.nav-liste h3').forEach((a, i) =>
+			a.addEventListener('click', e => {
+				//
+				//
+				console.log(e)
+
+				//redirige
+				redirection(PageEventOrigin.homepageScroll, i)
+
+				//quitte le nav extended
+				extendedNav.hide()
+			})
+		)
+
+		//events de li
 		navliste.forEach((li, i) => {
 			li.addEventListener('mouseover', () => {
 				if (lastHover !== i && images.length > i) {

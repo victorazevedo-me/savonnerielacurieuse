@@ -24,7 +24,7 @@
 			<div id="map"></div>
 		</div>
 
-		<div class="faq">
+		<div id="foire-aux-questions" class="faq">
 			<div class="semi-titre">
 				<div class="ballon"></div>
 				<h2>Foire aux Questions</h2>

@@ -89,7 +89,7 @@ main {
 			width: 70vw;
 			height: 70vh;
 			opacity: 1;
-			z-index: -1;
+			z-index: 0;
 			overflow: hidden;
 			background-size: cover;
 			background-position-y: bottom;
@@ -103,23 +103,23 @@ main {
 				opacity: 0;
 			}
 	
-			&.savonnerie {
+			&.bg0 {
 				background-image: url('../images/accueil/louis-hoang.jpg');
 			}
 	
-			&.saponification {
+			&.bg1 {
 				background-image: url('../images/accueil/louise-knight.jpg');
 			}
 	
-			&.savons {
+			&.bg2 {
 				background-image: url('../images/accueil/ritvik-singh.jpg');
 			}
 	
-			&.disponible {
+			&.bg3 {
 				background-image: url('../images/accueil/anshu.jpg');
 			}
 	
-			&.contact {
+			&.bg4 {
 				background-image: url('../images/accueil/robert.jpg');
 			}
 		}

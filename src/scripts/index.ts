@@ -10,47 +10,59 @@ import Hammer from 'hammerjs'
 import Vue from 'vue'
 import { dom } from './pageControl'
 
-const SITEMAP = [
-	{
-		pathname: '/savonnerie',
-		titre: 'La savonnerie'
-	},
-	{
-		pathname: '/saponification',
-		titre: 'La saponification'
-	},
-	{
-		pathname: '/savons',
-		titre: 'Les savons'
-	},
-	{
-		pathname: '/disponible',
-		titre: 'Où les trouver'
-	},
-	{
-		pathname: '/contact',
-		titre: 'Contacter la savonnière'
-	}
-]
+export const SITEMAP = {
+	data: [
+		['', 'la-savonnerie'],
+		['saponification', 'creation-savon', 'la-saponification'],
+		['savons', 'savons-doux', 'savons-menager', 'temoignages'],
+		['ou-les-trouver', 'boutiques-marches', 'evenements'],
+		['contact-faq', 'contact', 'foire-aux-questions']
+	],
 
-enum PageEventOrigin {
-	initialisation,
-	homepageScroll,
-	headerLogo
+	len: () => SITEMAP.data.length,
+
+	indexes: () => {
+		const path = window.location.pathname.replace('/', '')
+		let result = [0, 0]
+
+		SITEMAP.data.forEach((row, i) => {
+			for (let j in row) {
+				if (path.includes(row[+j])) result = [i, +j]
+			}
+		})
+
+		return result
+	},
+
+	pushState: (pathArray: number[]) => {
+		window.history.replaceState(
+			{},
+			'',
+			SITEMAP.data[pathArray[0]][pathArray[1]]
+		)
+	}
 }
 
-function getPageIndex(): number {
-	let result = -1
+export enum PageEventOrigin {
+	initialisation,
+	homepageScroll
+}
 
-	SITEMAP.forEach((u, i) => {
-		if (u.pathname === window.location.pathname) result = i
-	})
+export const extendedNav = {
+	show: () => {
+		const ext = dom('#extended-nav')!
+		const hamburger = dom('.hamburger')!
 
-	if (result < 0) {
-		console.warn('getPageIndex defaulted to 0')
-		return 0
-	} else {
-		return result
+		ext.classList.add('visible')
+		ext.setAttribute('style', 'z-index: 9')
+		dom('.hamburger')!.classList.add('clicked')
+	},
+
+	hide: () => {
+		const ext = dom('#extended-nav')!
+		ext.classList.remove('visible')
+		setTimeout(() => ext.setAttribute('style', 'z-index: -1'), 500)
+		dom('.hamburger')!.classList.remove('clicked')
 	}
 }
 
@@ -59,6 +71,7 @@ function accueilEvents() {
 		Playing,
 		Finished
 	}
+
 	const anim = {
 		state: AnimationIs.Finished,
 
@@ -71,10 +84,10 @@ function accueilEvents() {
 	}
 
 	const panningScroll = () => {
+		const swipes = ['panleft', 'panright']
 		const emcee = new Hammer(
 			<HTMLScriptElement>document.querySelector('.accueil')!
 		)
-		const swipes = ['panleft', 'panright']
 
 		//pour eviter de swipe n'importe quand
 		//à corriger en définissant finishposX - startposX
@@ -83,23 +96,22 @@ function accueilEvents() {
 			emcee.on(pan, () => {
 				//only do animation if not playing
 				if (anim.state === AnimationIs.Finished) {
-					const currentIndex = getPageIndex()
+					const [main, innerI] = SITEMAP.indexes()
 
 					const applyPan = (i: number) => {
 						anim.wait()
 						redirection(PageEventOrigin.homepageScroll, i)
 					}
 
+					console.log(main)
+
 					//deplace l'accueil droite et gauche
-					if (
-						pan === 'panleft' &&
-						currentIndex < SITEMAP.length - 1
-					) {
-						applyPan(currentIndex + 1)
+					if (pan === 'panleft' && main < SITEMAP.len() - 1) {
+						applyPan(main + 1)
 					}
 
-					if (pan === 'panright' && currentIndex > 0) {
-						applyPan(currentIndex - 1)
+					if (pan === 'panright' && main > 0) {
+						applyPan(main - 1)
 					}
 				}
 			})
@@ -121,97 +133,57 @@ function accueilEvents() {
 					template: '<ExtendedNav />',
 					components: { ExtendedNav },
 					mounted: () => {
-						setTimeout(() => {
-							dom('#extended-nav')!.classList.add('visible')
-						}, 100)
+						setTimeout(() => extendedNav.show(), 100)
 					}
 				})
 			} else {
 				//puts nav behind after fadeout
-				const nav = dom('#extended-nav')!
-				nav.classList.remove('visible')
-				setTimeout(() => {
-					nav.setAttribute('style', 'z-index: -1')
-				}, 500)
-			}
-
-			hamburger.classList.toggle('clicked')
-		})
-	}
-
-	const verticalScroll = () => {
-		document.body.addEventListener('wheel', function(ev: any) {
-			if (ev.wheelDelta < 0) {
-			} else if (ev.wheelDelta > 0) {
+				extendedNav.hide()
 			}
 		})
 	}
 
-	const headerLogo = () => {
-		const logo = document.querySelector('nav .logo')!
-		logo.addEventListener('click', () => {
-			//Accueil.arrive(PageEventOrigin.headerLogo)
-		})
-	}
-
-	const customCursor = () => {
-		const cursor = document.querySelector('#cursor')!
-		const width = cursor.scrollWidth
-		document.addEventListener('mousemove', e => {
-			cursor.setAttribute(
-				'style',
-				`top: ${e.pageY - width / 2}px; left: ${e.pageX - width / 2}px`
-			)
-		})
-	}
-
-	//customCursor()
-	//verticalScroll()
 	panningScroll()
 	hamburger()
-	//headerLogo()
 }
 
-function redirection(which: PageEventOrigin, index?: number) {
-	function openPage(i: number) {
-		const pages = [Page01, Page02, Page03, Page04, Page05]
-		const IndexedPage = pages[i]
+export function redirection(which: PageEventOrigin, newIndex?: number) {
+	function openPage(i?: number) {
+		if (i === undefined) {
+			new Vue({
+				el: '#contenu-accueil',
+				template: '<Index />',
+				components: { Index },
+				mounted: () => {
+					accueilEvents()
+					accueilSwipe(main)
+				}
+			})
+		} else {
+			const pages = [Page01, Page02, Page03, Page04, Page05]
+			const IndexedPage = pages[i]
 
-		new Vue({
-			el: '#contenu-page',
-			template: '<IndexedPage />',
-			components: { IndexedPage }
-		})
+			new Vue({
+				el: '#contenu-page',
+				template: '<IndexedPage />',
+				components: { IndexedPage }
+			})
+		}
 	}
 
-	if (which === PageEventOrigin.initialisation) {
-		new Vue({
-			el: '#contenu-accueil',
-			template: '<Index />',
-			components: { Index }
-		})
-		accueilEvents()
+	const [main, inner] = SITEMAP.indexes()
 
-		if (window.location.pathname.length > 1) {
-			const i = getPageIndex()
-			accueilSwipe(SITEMAP[i].pathname, i)
-			openPage(i)
-		} else {
-			openPage(0)
-		}
+	if (which === PageEventOrigin.initialisation) {
+		openPage()
+		openPage(main)
 	} else if (
 		which === PageEventOrigin.homepageScroll &&
-		typeof index === 'number'
+		typeof newIndex === 'number'
 	) {
-		const lastIndex = getPageIndex()
-		window.history.pushState(
-			'localhost:1234',
-			SITEMAP[index].titre,
-			SITEMAP[index].pathname
-		)
-		accueilSwipe(SITEMAP[index].pathname, index, lastIndex)
-		openPage(index)
-	} else if (which === PageEventOrigin.headerLogo) {
+		const oldIndex = main
+		SITEMAP.pushState([newIndex, 0])
+		accueilSwipe(newIndex, oldIndex)
+		openPage(newIndex)
 	}
 }
 

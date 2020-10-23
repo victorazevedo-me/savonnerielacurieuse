@@ -1,17 +1,14 @@
-import SimpleParallax from 'simple-parallax-js'
 import Reveal from 'scrollreveal'
 import { dom } from '../scripts/pageControl'
 
-export function accueilSwipe(u: string, i: number, lasti?: number) {
-	let url = u.replace('/', '')
-
+export function accueilSwipe(i: number, lasti?: number) {
 	function moveBackgrounds() {
 		// init vals
 		const wrapper = document.querySelector('.background-wrapper')!
 		const current = wrapper.querySelector('.background-wrapper div')!
 		const next = document.createElement('div')
 
-		next.classList.add('background', url)
+		next.classList.add('background', 'bg' + i)
 		current.classList.add('fadeout')
 		wrapper.appendChild(next)
 
