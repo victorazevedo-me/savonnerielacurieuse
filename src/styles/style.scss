@@ -25,6 +25,10 @@ body {
 	}
 }
 
+img {
+	background-color: wheat;
+}
+
 input,
 button {
 	border: none;
@@ -91,6 +95,7 @@ main {
 			opacity: 1;
 			z-index: 0;
 			overflow: hidden;
+			background-color: wheat;
 			background-size: cover;
 			background-position-y: bottom;
 			transition: opacity 1s;

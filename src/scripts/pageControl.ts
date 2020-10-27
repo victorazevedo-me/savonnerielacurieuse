@@ -3,7 +3,11 @@ export function dom(query: string) {
 }
 
 export function bound(elem: Element) {
-	return elem.getBoundingClientRect()
+	if (elem) {
+		return elem.getBoundingClientRect()
+	} else {
+		throw Error(elem + ' does not exist')
+	}
 }
 
 export function isScrolledIntoView(query: string) {

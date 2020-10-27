@@ -107,8 +107,15 @@
 			<div class="liste">
 				<div
 					class="citation"
-					v-bind:key="item.nom"
-					v-for="item in temoignages"
+					v-bind:key="i"
+					v-for="(item, i) in temoignages"
+					@contextmenu.prevent="
+						log({
+							key: i,
+							item: item,
+							liste: temoignages
+						})
+					"
 				>
 					<p class="contenu">"{{ item.citation }}"</p>
 					<p class="nom">{{ item.credit }}</p>
@@ -118,11 +125,13 @@
 			<div class="grosseballe"></div>
 		</div>
 
-		<VueFooter />
+		<VueFooter></VueFooter>
+		<div id="editor-wrapper"></div>
 	</section>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import VueEditor from './editor.vue'
 import VueFooter from './footer.vue'
 import json from '../scripts/database'
 import ScrollReveal from 'scrollreveal'
@@ -134,7 +143,6 @@ import {
 } from '../scripts/pageControl'
 
 export default Vue.extend({
-	template: '<VueFooter/>',
 	components: { VueFooter },
 	data: () => ({
 		temoignages: json.temoignages,
@@ -154,6 +162,17 @@ export default Vue.extend({
 
 			//change display
 			this.$data.savonToDisplay = item
+		},
+
+		log: (args: any) => {
+			new Vue({
+				el: '#editor-wrapper',
+				template: '<VueEditor v-bind:test="args" />',
+				components: { VueEditor },
+				data: () => ({
+					args: args
+				})
+			})
 		}
 	},
 
