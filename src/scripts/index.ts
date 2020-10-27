@@ -148,7 +148,7 @@ function accueilEvents() {
 
 export function redirection(
 	which: PageEventOrigin,
-	newIndex: number = 0,
+	newMain: number = 0,
 	newInner: number = 0
 ) {
 	function openPage(i?: number, mountCallback: Function = () => {}) {
@@ -175,22 +175,29 @@ export function redirection(
 		}
 	}
 
+	function subCat() {
+		const dataI = isInit ? [main, inner] : [newMain, newInner]
+		const innerTitre = dom('#' + SITEMAP.data[dataI[0]][dataI[1]])
+		const scroll = bound(innerTitre!).y || 0
+
+		window.scrollTo(0, 0)
+		window.scrollTo(0, scroll - 100)
+	}
+
 	const [main, inner] = SITEMAP.indexes()
+	const isInit = which === PageEventOrigin.initialisation
 
-	if (which === PageEventOrigin.initialisation) {
+	if (isInit) {
 		openPage()
-		openPage(main)
+		openPage(main, subCat)
 	} else {
-		SITEMAP.pushState([newIndex, newInner])
-		accueilSwipe(newIndex, main)
-		openPage(newIndex, () => {
+		SITEMAP.pushState([newMain, newInner])
+		accueilSwipe(newMain, main)
+		openPage(newMain, () => {
 			window.scrollTo(0, 0)
-
 			//si c'est un sous-titre, scroll jusqu'a
 			if (which === PageEventOrigin.navSubCategory) {
-				const innerTitre = dom('#' + SITEMAP.data[newIndex][newInner])
-				const scroll = bound(innerTitre!).y || 0
-				window.scrollTo(0, scroll - 100)
+				subCat()
 			}
 		})
 	}
