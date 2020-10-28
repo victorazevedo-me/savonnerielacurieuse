@@ -170,7 +170,9 @@ export function redirection(
 				el: '#contenu-page',
 				template: '<IndexedPage />',
 				components: { IndexedPage },
-				mounted: () => mountCallback()
+				mounted: () => {
+					mountCallback()
+				}
 			})
 		}
 	}
@@ -179,13 +181,16 @@ export function redirection(
 		window.scrollTo(0, 0)
 
 		const dir =
-			SITEMAP.data[PageEventOrigin.initialisation ? main : newMain][
-				PageEventOrigin.initialisation ? inner : newInner
-			]
+			SITEMAP.data[
+				which === PageEventOrigin.initialisation ? main : newMain
+			][which === PageEventOrigin.initialisation ? inner : newInner]
 
 		if (dir.length > 2) {
-			const scroll = bound(dom(`#${dir}`)!).y
-			window.scrollTo(0, scroll - 100)
+			const ok = dom(`#${dir}`)!
+			const scroll = bound(ok).y
+			window.scrollBy({ left: 0, top: scroll - 100, behavior: 'smooth' })
+
+			console.log(scroll)
 		}
 	}
 
