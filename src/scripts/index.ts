@@ -176,18 +176,22 @@ export function redirection(
 	}
 
 	function subCat() {
-		const dataI = isInit ? [main, inner] : [newMain, newInner]
-		const innerTitre = dom('#' + SITEMAP.data[dataI[0]][dataI[1]])
-		const scroll = bound(innerTitre!).y || 0
-
 		window.scrollTo(0, 0)
-		window.scrollTo(0, scroll - 100)
+
+		const dir =
+			SITEMAP.data[PageEventOrigin.initialisation ? main : newMain][
+				PageEventOrigin.initialisation ? inner : newInner
+			]
+
+		if (dir.length > 2) {
+			const scroll = bound(dom(`#${dir}`)!).y
+			window.scrollTo(0, scroll - 100)
+		}
 	}
 
 	const [main, inner] = SITEMAP.indexes()
-	const isInit = which === PageEventOrigin.initialisation
 
-	if (isInit) {
+	if (which === PageEventOrigin.initialisation) {
 		openPage()
 		openPage(main, subCat)
 	} else {
