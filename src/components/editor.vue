@@ -1,23 +1,24 @@
 <template>
 	<div id="editor">
 		<div class="window">
-			<div>
-				<button>&times;</button>
+			<div class="fermer">
+				<button @click="cancelAndReset">&times;</button>
 			</div>
 
 			<div class="inputs">
 				<input
 					v-for="(elem, i) in test.item"
 					:key="i"
+					ref="inputs"
 					type="text"
-					placeholder="Texte à écrire"
+					:placeholder="i"
 					v-model="listeItem[i]"
 				/>
 			</div>
 
 			<div class="options">
 				<button class="suppr">supprimer</button>
-				<button class="modif">mettre à jour</button>
+				<button class="modif" @click="submit">mettre à jour</button>
 			</div>
 		</div>
 	</div>
@@ -28,13 +29,33 @@ import Vue from 'vue'
 export default Vue.extend({
 	props: ['test'],
 
-	data: function() {
+	data() {
 		return {
+			backup: {},
 			listeItem: this.test.item
 		}
 	},
 
-	methods: {}
+	created() {
+		this.backup = { ...this.listeItem }
+	},
+
+	methods: {
+		closeEditor() {
+			document
+				.querySelector('#editor')!
+				.setAttribute('style', 'display: none')
+		},
+
+		cancelAndReset: function() {
+			Object.assign(this.listeItem, this.backup)
+			this.closeEditor()
+		},
+
+		submit() {
+			this.closeEditor()
+		}
+	}
 })
 </script>
 
@@ -49,7 +70,7 @@ export default Vue.extend({
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	backdrop-filter: brightness(0.4);
+	backdrop-filter: brightness(0.3);
 
 	input,
 	button {
@@ -64,7 +85,15 @@ export default Vue.extend({
 		align-items: center;
 		background: white;
 		border-radius: 20px;
-		padding: 2em;
+		padding: 1em;
+
+		.fermer {
+			width: 100%;
+			text-align: right;
+			button {
+				font-size: 30px;
+			}
+		}
 
 		.inputs {
 			display: flex;
@@ -81,6 +110,8 @@ export default Vue.extend({
 		}
 
 		.options {
+			padding: 1em;
+
 			button {
 				margin: 0 1em;
 				padding: 5px;
@@ -92,6 +123,8 @@ export default Vue.extend({
 					border: 1px solid hsl(357, 75%, 51%);
 				}
 				&.modif {
+					color: hsl(128, 71%, 34%);
+					border: 1px solid hsl(128, 71%, 34%);
 				}
 			}
 		}

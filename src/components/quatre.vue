@@ -13,8 +13,15 @@
 					<div id="vue-boutiques">
 						<div
 							class="item"
-							v-bind:key="item.nom"
-							v-for="item in boutiques"
+							v-bind:key="i"
+							v-for="(item, i) in boutiques"
+							@contextmenu.prevent="
+								editing({
+									key: i,
+									item: item,
+									liste: boutiques
+								})
+							"
 						>
 							<h4>{{ item.nom }}</h4>
 							<p>{{ item.adresse }}</p>
@@ -29,8 +36,15 @@
 						<div id="vue-marches">
 							<div
 								class="item"
-								v-bind:key="item.nom"
-								v-for="item in marches"
+								v-bind:key="i"
+								v-for="(item, i) in marches"
+								@contextmenu.prevent="
+									editing({
+										key: i,
+										item: item,
+										liste: marches
+									})
+								"
 							>
 								<h4>{{ item.nom }}</h4>
 								<p>{{ item.coord }}, {{ item.activite }}</p>
@@ -88,6 +102,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import VueFooter from './footer.vue'
+import VueEditor from './editor.vue'
 import json from '../scripts/database'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
@@ -119,6 +134,21 @@ export default Vue.extend({
 	}),
 
 	methods: {
+		editing: (args: any) => {
+			const div = document.createElement('div')
+			div.id = 'editor'
+			document.querySelector('section')!.appendChild(div)
+
+			new Vue({
+				el: '#editor',
+				template: '<VueEditor :test="args" />',
+				components: { VueEditor },
+				data: () => ({
+					args: args
+				})
+			})
+		},
+
 		setActiveButton: (index: number) => {
 			//toggles off all, on only one
 

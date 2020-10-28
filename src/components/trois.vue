@@ -107,10 +107,10 @@
 			<div class="liste">
 				<div
 					class="citation"
-					v-bind:key="i"
+					:key="i"
 					v-for="(item, i) in temoignages"
 					@contextmenu.prevent="
-						log({
+						editing({
 							key: i,
 							item: item,
 							liste: temoignages
@@ -126,7 +126,7 @@
 		</div>
 
 		<VueFooter></VueFooter>
-		<div id="editor-wrapper"></div>
+		<div id="editor"></div>
 	</section>
 </template>
 <script lang="ts">
@@ -164,10 +164,10 @@ export default Vue.extend({
 			this.$data.savonToDisplay = item
 		},
 
-		log: (args: any) => {
+		editing: (args: any) => {
 			new Vue({
-				el: '#editor-wrapper',
-				template: '<VueEditor v-bind:test="args" />',
+				el: '#editor',
+				template: '<VueEditor :test="args" />',
 				components: { VueEditor },
 				data: () => ({
 					args: args
