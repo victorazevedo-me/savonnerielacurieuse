@@ -180,17 +180,14 @@ export function redirection(
 	function subCat() {
 		window.scrollTo(0, 0)
 
-		const dir =
-			SITEMAP.data[
-				which === PageEventOrigin.initialisation ? main : newMain
-			][which === PageEventOrigin.initialisation ? inner : newInner]
+		const out = which === PageEventOrigin.initialisation ? main : newMain
+		const inn = which === PageEventOrigin.initialisation ? inner : newInner
+		const dir = SITEMAP.data[out][inn]
 
-		if (dir.length > 2) {
-			const ok = dom(`#${dir}`)!
-			const scroll = bound(ok).y
+		if (inn > 0) {
+			const titre = dom(`#` + SITEMAP.data[out][inn])!
+			const scroll = bound(titre).y
 			window.scrollBy({ left: 0, top: scroll - 100, behavior: 'smooth' })
-
-			console.log(scroll)
 		}
 	}
 
