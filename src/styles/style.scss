@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
 @import './pages';
-@import './queries';
 @import './nav';
+@import './queries';
 
 body {
 	margin: 0;
 	font-family: 'Amiri', serif;
-	font-style: italic;
 	font-size: 25px;
 	line-height: 1.5;
     overflow-x: hidden;
@@ -56,10 +56,10 @@ main {
 
 		.titre {
 			position: relative;
-			color: #111;
+			color: white;
 			font-weight: bold;
-			font-size: 90px;
-			margin: 1.5em;
+			font-size: 120px;
+			margin: 150px;
 
 			h1 {
 				line-height: .8em;
@@ -88,13 +88,14 @@ main {
 			}
 	
 			position: fixed;
-			top: 15vh;
-			left: 15vw;
-			width: 70vw;
-			height: 70vh;
+			top: 100px;
+			left: 100px;
+			width: calc(100vw - 200px);
+			height: calc(100vh - 200px);
 			opacity: 1;
 			z-index: 0;
 			overflow: hidden;
+			filter: brightness(.9);
 			background-color: wheat;
 			background-size: cover;
 			background-position-y: bottom;
@@ -167,6 +168,7 @@ section footer {
 	padding-top: 5em;
 	cursor: default;
 	color: #111;
+	overflow: hidden;
 
 	.wrapper {
 		margin: auto;
@@ -179,7 +181,7 @@ section footer {
 	}
 
 	.navigation {
-		display: flex;
+		display: none;
 		flex-direction: column;
 		justify-content: center;
 

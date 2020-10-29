@@ -1,11 +1,13 @@
 
-body main .page {
+
+.page {
 	position: relative;
 	background-color: white;
 	cursor: default;
 	min-height: 100vh;
 	padding: 3em 2em;
 	z-index: 3;
+	text-align: justify;
 
 	h2 {
 		font-size: 70px;
@@ -22,8 +24,8 @@ body main .page {
 	}
 
 	.semi-titre {
-		white-space: nowrap;
 		position: relative;
+		white-space: nowrap;
 
 		h2 {
 			margin: 0;
@@ -48,21 +50,23 @@ body main .page {
 
 		.deux-colonnes {
 			min-height: calc(100vh - 6em);
-		}
 
-		.slc-description {
-			max-width: 400px;
-
-			p {
-				font-size: 25px;
+			> div {
+				margin: 1em;
+				
+				&.slc-description {
+					max-width: 450px;
+				}
 			}
 		}
 
 		img {
-			width: 40vw;
-			height: 40vw;
+			width: 45vw;
+			height: 45vw;
 			max-width: 600px;
 			max-height: 600px;
+			min-width: 300px;
+			min-height: 300px;
 		}
 
 		footer {
@@ -72,14 +76,12 @@ body main .page {
 
 	&.deux {
 		.sap-description {
-			max-width: 700px;
+			max-width: 750px;
 			margin: 0 auto;
 			padding: 6em 0;
 		}
 
 		.deux-colonnes {
-			flex-wrap: wrap;
-			align-items: flex-start;
 			justify-content: space-around;
 
 			.fabrication {
@@ -197,7 +199,7 @@ body main .page {
 
 	&.trois {
 
-		padding: 5em 0 5em 2em;
+		padding: 5em 0;
 
 		.liste-savons {
 			display: flex;
@@ -231,22 +233,25 @@ body main .page {
 		}
 
 		.full-card {
+			
 			margin: auto;
 			padding-top: 5em;
-			font-style: normal;
 
 			.nom {
 				font-size: 30px;
 				position: relative;
 
 				.shadow {
+
+					$shadowsize: 150px;
+
 					position: absolute;
-					top: -130px;
-					left: -130px;
+					top: -$shadowsize / 2;
+					left: -$shadowsize / 2;
 					margin: 0;
-					font-size: 260px;
+					font-size: $shadowsize;
 					white-space: nowrap;
-					opacity: 0.1;
+					opacity: 00;
 					z-index: -1;
 				}
 
@@ -258,6 +263,11 @@ body main .page {
 			}
 
 			.slideshow {
+
+				display: flex;
+				max-width: 90vw;
+				margin: auto;
+
 				img {
 					width: 256px;
 					margin: 8px;
@@ -280,7 +290,6 @@ body main .page {
 		.savon-menager,
 		.en-parlent {
 			min-height: 100vh;
-			padding: 5em 5em 0 5em;
 		}
 
 		.savons-doux {
@@ -294,9 +303,15 @@ body main .page {
 			position: relative;
 			overflow: hidden;
 
-			.deux-colonnes {
-				justify-content: space-evenly;
-				flex-wrap: wrap;
+			.full-card {
+				margin: 0;
+				padding-top: 0;
+
+				.bottom {
+					margin: 0;
+					width: 100%;
+					max-width: 550px;
+				}
 			}
 
 			.recette-lessive {
@@ -315,6 +330,14 @@ body main .page {
 		}
 
 		.en-parlent {
+
+			padding: 0 5em;
+			text-align: center;
+
+			.semi-titre {
+				display: inline-block;
+			}
+
 			.liste {
 				display: flex;
 				justify-content: flex-start;
@@ -324,8 +347,6 @@ body main .page {
 					width: calc(50% - 4em);
 					min-width: 250px;
 					padding: 2em;
-					padding-left: 0;
-					padding-right: 4em;
 				}
 			}
 
@@ -350,7 +371,7 @@ body main .page {
 			margin: 2em 0;
 
 			> div {
-				margin-right: 2em;
+				margin: 1em;
 			}
 
 			h3 {
@@ -494,6 +515,10 @@ body main .page {
 
 			.leaflet-control-container {
 				visibility: hidden;
+			}
+
+			img {
+				background-color: transparent;
 			}
 		}
 

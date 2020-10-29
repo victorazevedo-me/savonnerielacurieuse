@@ -74,7 +74,7 @@ nav {
 
     #extended-nav-content {
 
-        width: 80vw;
+        max-width: 1600px;
         height: 100vh;
         margin: auto;
         display: flex;
@@ -86,6 +86,7 @@ nav {
             >div {
                 display: block;
                 width: 400px;
+                max-width: 30vw;
             }
 
             &.presente {
@@ -155,7 +156,7 @@ nav {
 
         .nav-liste {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 400px 400px;
         }
 
         li {
@@ -163,7 +164,7 @@ nav {
             border: 2px solid transparent;
             list-style: none;
             padding: 3vh;
-            margin: 2vh;
+            margin: 1vh;
             transition: border .5s cubic-bezier(0.19, 1, 0.22, 1);
 
             &.selected {

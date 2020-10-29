@@ -177,7 +177,7 @@ export default Vue.extend({
 	},
 
 	mounted: function() {
-		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 1200)
+		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 900)
 
 		const parallaxOptions = {
 			delay: 0.6,
