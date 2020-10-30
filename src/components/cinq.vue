@@ -8,12 +8,14 @@
 				</div>
 
 				<div class="infos">
+					<h4>Adresse</h4>
 					<p>Valérie Cartailler</p>
 					<p>{{ contact.adresse[0] }}</p>
 					<p>{{ contact.adresse[1] }}, {{ contact.adresse[2] }}</p>
 
 					<br />
 
+					<h4>Mail & tel</h4>
 					<p>{{ contact.email }}</p>
 					<p>{{ contact.telephone }}</p>
 

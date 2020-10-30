@@ -135,9 +135,8 @@
     }
 
     nav {
-        width: calc(100% - 60px);
-        padding: 30px;
-        align-items: flex-end;
+        width: 100%;
+        padding-top: 20px;
     }
 
     #extended-nav {
@@ -264,6 +263,7 @@
             }
 
             .deux-colonnes {
+                align-items: center;
                 flex-direction: column;
                 margin-bottom: 10em;
 
@@ -313,6 +313,18 @@
                     p {
                         text-align: justify;
                     }
+                }
+            }
+        }
+
+        footer {
+            .wrapper {
+                margin: 3vw;
+                padding: 6vw;
+
+                .contact {
+                    font-size: 4vw;
+                    line-height: 6vw;
                 }
             }
         }

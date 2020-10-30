@@ -123,8 +123,12 @@
 					<h3 id="la-saponification">La saponification</h3>
 					<p>
 						La saponification est la réaction chimique qui
-						transforme : huile + soude => savon + glycérine Il ne
-						reste aucune trace de soude dans un savon "fini".
+						transforme :
+						<span
+							>huile &#43; soude &#8594; savon &#43;
+							glycérine</span
+						>
+						Il ne reste aucune trace de soude dans un savon "fini".
 					</p>
 				</div>
 
