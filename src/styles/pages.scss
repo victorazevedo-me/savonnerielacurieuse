@@ -50,7 +50,6 @@ $titrepetit: 1.25em;
 	}
 
 	&.un {
-
 		min-height: 0;
 
 		.deux-colonnes {
@@ -58,7 +57,7 @@ $titrepetit: 1.25em;
 
 			> div {
 				margin: 1em;
-				
+
 				&.slc-description {
 					max-width: 450px;
 				}
@@ -183,7 +182,6 @@ $titrepetit: 1.25em;
 			}
 
 			.expliquation {
-
 				max-width: 400px;
 				margin-left: 4em;
 
@@ -214,7 +212,6 @@ $titrepetit: 1.25em;
 	}
 
 	&.trois {
-
 		padding: 5em 0;
 
 		.liste-savons {
@@ -249,7 +246,6 @@ $titrepetit: 1.25em;
 		}
 
 		.full-card {
-			
 			margin: auto;
 			padding-top: 5em;
 
@@ -258,7 +254,6 @@ $titrepetit: 1.25em;
 				position: relative;
 
 				.shadow {
-
 					$shadowsize: 150px;
 
 					position: absolute;
@@ -279,7 +274,6 @@ $titrepetit: 1.25em;
 			}
 
 			.slideshow {
-
 				display: flex;
 				max-width: 90vw;
 				margin: auto;
@@ -346,7 +340,6 @@ $titrepetit: 1.25em;
 		}
 
 		.en-parlent {
-
 			padding: 0 5em;
 			text-align: center;
 
@@ -451,10 +444,9 @@ $titrepetit: 1.25em;
 			padding: 0 0 2em 0;
 
 			button {
-
-				&.hasEvents {
-					background-color: #fce68644;
-				}
+				// &.hasEvents {
+				// 	background-color: #fce68644;
+				// }
 
 				&:hover,
 				&.selected {
@@ -492,7 +484,6 @@ $titrepetit: 1.25em;
 	}
 
 	&.cinq {
-
 		$mapSize: 650px;
 
 		.contact-infos {
@@ -502,7 +493,6 @@ $titrepetit: 1.25em;
 			padding: 10em 5em;
 
 			.infos {
-
 				position: relative;
 
 				.gelule {
@@ -523,7 +513,6 @@ $titrepetit: 1.25em;
 					margin: 0;
 				}
 			}
-
 		}
 
 		#map {
@@ -539,7 +528,6 @@ $titrepetit: 1.25em;
 			}
 		}
 
-
 		.faq {
 			text-align: center;
 
@@ -553,7 +541,7 @@ $titrepetit: 1.25em;
 			flex-wrap: wrap;
 			justify-content: center;
 			text-align: left;
-		
+
 			> div {
 				max-width: 500px;
 				padding: 50px;
