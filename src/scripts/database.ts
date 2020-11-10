@@ -2,7 +2,7 @@ export default {
 	contact: {
 		adresse: ['Rue du Château', '63120 Vollore-Ville', 'Puy-de-Dôme'],
 		email: 'savonnerielacurieuse@gmail.com',
-		telephone: '06 43 69 39 67'
+		telephone: '+33 6 43 69 39 67'
 	},
 	savons: {
 		muesli: {

@@ -8,64 +8,13 @@ import Page04 from '../components/quatre.vue'
 import Page05 from '../components/cinq.vue'
 import Hammer from 'hammerjs'
 import Vue from 'vue'
-import { dom, bound } from './pageControl'
-
-export const SITEMAP = {
-	data: [
-		['/', 'la-savonnerie'],
-		['saponification', 'creation-savon', 'la-saponification'],
-		['savons', 'savons-doux', 'savon-menager', 'temoignages'],
-		['ou-les-trouver', 'boutiques-marches', 'evenements'],
-		['contact-faq', 'contact', 'foire-aux-questions']
-	],
-
-	len: () => SITEMAP.data.length,
-
-	indexes: () => {
-		const path = window.location.pathname.replace('/', '')
-		let result = [0, 0]
-
-		SITEMAP.data.forEach((row, i) => {
-			for (let j in row) {
-				if (path.includes(row[+j])) result = [i, +j]
-			}
-		})
-
-		return result
-	},
-
-	pushState: (pathArray: number[]) => {
-		window.history.replaceState(
-			{},
-			'',
-			SITEMAP.data[pathArray[0]][pathArray[1]]
-		)
-	}
-}
-
-export enum PageEventOrigin {
-	initialisation,
-	homepageScroll,
-	navSubCategory
-}
-
-export const extendedNav = {
-	show: () => {
-		const ext = dom('#extended-nav')!
-		const hamburger = dom('.hamburger')!
-
-		ext.classList.add('visible')
-		ext.setAttribute('style', 'z-index: 9')
-		dom('.hamburger')!.classList.add('clicked')
-	},
-
-	hide: () => {
-		const ext = dom('#extended-nav')!
-		ext.classList.remove('visible')
-		setTimeout(() => ext.setAttribute('style', 'z-index: -1'), 500)
-		dom('.hamburger')!.classList.remove('clicked')
-	}
-}
+import {
+	dom,
+	bound,
+	SITEMAP,
+	PageEventOrigin,
+	extendedNav
+} from './pageControl'
 
 function accueilEvents() {
 	enum AnimationIs {
@@ -89,9 +38,6 @@ function accueilEvents() {
 		const emcee = new Hammer(
 			<HTMLScriptElement>document.querySelector('.accueil')!
 		)
-
-		//pour eviter de swipe n'importe quand
-		//à corriger en définissant finishposX - startposX
 
 		swipes.forEach(pan => {
 			emcee.on(pan, () => {
