@@ -484,27 +484,35 @@ $titrepetit: 1.25em;
 	}
 
 	&.cinq {
-		$mapSize: 650px;
-
 		.contact-infos {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			padding: 10em 5em;
+			padding: 10em 0;
+			max-width: 1100px;
+			margin: auto;
+
+			.semi-titre h2 {
+				margin-bottom: 1em;
+			}
 
 			.infos {
 				position: relative;
 
+				> div:not(.gelule) {
+					margin: 2em 0;
+					font-weight: 600;
+				}
+
 				.gelule {
 					position: absolute;
-					top: 10%;
-					left: -10%;
-					width: 100%;
-					height: 10em;
-					border-radius: 5em;
+					top: -1em;
+					left: -19em;
+					width: 25em;
+					height: 11em;
+					border-radius: 10em;
 					background-color: wheat;
 					z-index: -1;
-					visibility: hidden;
 				}
 
 				p {
@@ -516,8 +524,14 @@ $titrepetit: 1.25em;
 		}
 
 		#map {
-			width: $mapSize;
-			height: 75vh;
+			width: 50vh;
+			height: 50vh;
+			transition: box-shadow 1s 0.5s;
+			box-shadow: 0 0 0 0 wheat;
+
+			&.loaded {
+				box-shadow: 20px 20px 0px 0px wheat;
+			}
 
 			.leaflet-control-container {
 				visibility: hidden;

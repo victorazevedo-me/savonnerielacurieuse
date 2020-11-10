@@ -3,7 +3,6 @@
 		<div class="contact-infos">
 			<div>
 				<div class="semi-titre">
-					<div class="ballon"></div>
 					<h2 id="contact">Contact</h2>
 				</div>
 
@@ -13,16 +12,19 @@
 						editing({ key: 0, item: contact, liste: contact })
 					"
 				>
-					<h4>Adresse</h4>
-					<p>Valérie Cartailler</p>
-					<p>{{ contact.adresse[0] }}</p>
-					<p>{{ contact.adresse[1] }}, {{ contact.adresse[2] }}</p>
+					<div>
+						<p>Valérie Cartailler</p>
+						<p>{{ contact.adresse[0] }}</p>
+						<p>
+							{{ contact.adresse[1] }}
+							<!-- , {{ contact.adresse[2] }} -->
+						</p>
+					</div>
 
-					<br />
-
-					<h4>Mail & tel</h4>
-					<p>{{ contact.email }}</p>
-					<p>{{ contact.telephone }}</p>
+					<div>
+						<p>{{ contact.email }}</p>
+						<p>{{ contact.telephone }}</p>
+					</div>
 
 					<div class="gelule"></div>
 				</div>
@@ -61,6 +63,9 @@ import VueFooter from './footer.vue'
 import VueEditor from './editor.vue'
 import json from '../scripts/database'
 import Leaflet from 'leaflet'
+import ScrollReveal from 'scrollreveal'
+import SimpleParallax from 'simple-parallax-js'
+import { dom } from '../scripts/pageControl'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
@@ -73,50 +78,45 @@ export default Vue.extend({
 
 	methods: {
 		editing: (args: any) => {
-			const div = document.createElement('div')
-			div.id = 'editor'
-			document.querySelector('#contenu-page')!.appendChild(div)
+			if (false) {
+				const div = document.createElement('div')
+				div.id = 'editor'
+				document.querySelector('#contenu-page')!.appendChild(div)
 
-			new Vue({
-				el: '#editor',
-				template: '<VueEditor :test="args" />',
-				components: { VueEditor },
-				data: () => ({
-					args: args
+				new Vue({
+					el: '#editor',
+					template: '<VueEditor :test="args" />',
+					components: { VueEditor },
+					data: () => ({
+						args: args
+					})
 				})
-			})
+			}
 		}
 	},
 
 	mounted: () => {
-		const parallaxOptions = {
-			scale: 1.5,
-			transition: 'linear'
+		function displayMap() {
+			let mymap = Leaflet.map('map').setView([45.785593, 3.59944], 16)
+			let marker = Leaflet.marker([45.785593, 3.59944]).addTo(mymap)
+			Leaflet.tileLayer(
+				'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+				{
+					attribution: '',
+					maxZoom: 20,
+					tileSize: 512,
+					zoomOffset: -1,
+					id: 'fugiquafos/ckgkje6ab06v61amqvp5f6l0q',
+					accessToken:
+						'pk.eyJ1IjoiZnVnaXF1YWZvcyIsImEiOiJja2draXZ0dWgwN3V4MnRwY2p5dm14cGNtIn0.0YVwfkWa_dJMOzib6PhG8w'
+				}
+			).addTo(mymap)
+
+			dom('#map')?.classList.add('loaded')
 		}
+		displayMap()
 
-		document.querySelectorAll('.faq-liste > div')!.forEach((div, i) => {
-			if (i % 2) {
-				//marche pas
-				//new SimpleParallax(div, parallaxOptions)
-			}
-		})
-
-		let mymap = Leaflet.map('map').setView([45.785593, 3.59944], 16)
-
-		Leaflet.tileLayer(
-			'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
-			{
-				attribution: '',
-				maxZoom: 20,
-				tileSize: 512,
-				zoomOffset: -1,
-				id: 'fugiquafos/ckgkje6ab06v61amqvp5f6l0q',
-				accessToken:
-					'pk.eyJ1IjoiZnVnaXF1YWZvcyIsImEiOiJja2draXZ0dWgwN3V4MnRwY2p5dm14cGNtIn0.0YVwfkWa_dJMOzib6PhG8w'
-			}
-		).addTo(mymap)
-
-		let marker = Leaflet.marker([45.785593, 3.59944]).addTo(mymap)
+		//new SimpleParallax(dom('.infos .gelule')!, {})
 	}
 })
 </script>
