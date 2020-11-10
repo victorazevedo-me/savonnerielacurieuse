@@ -84,7 +84,14 @@
 			</div>
 
 			<div class="calendrier" v-if="shouldShowMonths">
-				<div class="item" v-bind:key="item.nom" v-for="item in events">
+				<div
+					class="item"
+					v-bind:key="i"
+					v-for="(item, i) in events"
+					@contextmenu.prevent="
+						editing({ key: i, item: item, liste: events })
+					"
+				>
 					<p>{{ item.note }}</p>
 					<p>
 						<strong>{{ item.nom }}</strong>
@@ -97,6 +104,7 @@
 		</div>
 
 		<VueFooter />
+		<div id="editor" />
 	</section>
 </template>
 <script lang="ts">
@@ -106,6 +114,7 @@ import VueEditor from './editor.vue'
 import json from '../scripts/database'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
+import { editing } from '../scripts/editor'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
@@ -134,10 +143,10 @@ export default Vue.extend({
 	}),
 
 	methods: {
-		editing: (args: any) => {
+		editing(args: any) {
 			const div = document.createElement('div')
 			div.id = 'editor'
-			document.querySelector('section')!.appendChild(div)
+			document.querySelector('#contenu-page')!.appendChild(div)
 
 			new Vue({
 				el: '#editor',
@@ -204,7 +213,7 @@ export default Vue.extend({
 		})
 
 		//animation + transitions
-		const revealOptions = { duration: 1400, interval: 100 }
+		const revealOptions = { duration: 1000, interval: 50 }
 		ScrollReveal().reveal('#vue-boutiques .item', revealOptions)
 		ScrollReveal().reveal('#vue-marches .item', revealOptions)
 		ScrollReveal().reveal('#vue-savonnerie .item', revealOptions)

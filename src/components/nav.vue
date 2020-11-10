@@ -40,12 +40,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { accueilSwipe } from '../scripts/accueilControl'
-import {
-	PageEventOrigin,
-	SITEMAP,
-	extendedNav,
-	redirection
-} from '../scripts/index'
+import { redirection } from '../scripts/index'
+import { PageEventOrigin, SITEMAP, extendedNav } from '../scripts/pageControl'
 export default Vue.extend({
 	mounted: () => {
 		//A changer (evidemment)
@@ -77,21 +73,28 @@ export default Vue.extend({
 				lastHover = i
 				waitForAnimation = true
 
-				//changement de poster
-				const currentPoster = presentation.querySelector('img')!
-				const newPoster = document.createElement('img')!
-				newPoster.src = baseUrl + images[i]
-				currentPoster.classList.replace('in', 'out')
+				//si pas mobile
+				if (
+					!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+						navigator.userAgent
+					)
+				) {
+					//changement de poster
+					const currentPoster = presentation.querySelector('img')!
+					const newPoster = document.createElement('img')!
+					newPoster.src = baseUrl + images[i]
+					currentPoster.classList.replace('in', 'out')
 
-				hoverTimeout = setTimeout(() => {
-					leftDisplay.className = 'left-display presente'
+					hoverTimeout = setTimeout(() => {
+						leftDisplay.className = 'left-display presente'
 
-					currentPoster.remove()
-					presentation.appendChild(newPoster)
-					waitForAnimation = false
+						currentPoster.remove()
+						presentation.appendChild(newPoster)
+						waitForAnimation = false
 
-					setTimeout(() => newPoster.classList.add('in'), 50)
-				}, 500)
+						setTimeout(() => newPoster.classList.add('in'), 50)
+					}, 500)
+				}
 			}
 		}
 

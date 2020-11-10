@@ -7,7 +7,12 @@
 					<h2 id="contact">Contact</h2>
 				</div>
 
-				<div class="infos">
+				<div
+					class="infos"
+					@contextmenu.prevent="
+						editing({ key: 0, item: contact, liste: contact })
+					"
+				>
 					<h4>Adresse</h4>
 					<p>Valérie Cartailler</p>
 					<p>{{ contact.adresse[0] }}</p>
@@ -33,7 +38,13 @@
 			</div>
 
 			<div class="faq-liste">
-				<div v-for="(bloc, i) in faqs" :key="i">
+				<div
+					v-for="(bloc, i) in faqs"
+					:key="i"
+					@contextmenu.prevent="
+						editing({ key: i, item: bloc, liste: faqs })
+					"
+				>
 					<h3>{{ bloc.question }}</h3>
 					<p>{{ bloc.reponse }}</p>
 				</div>
@@ -47,11 +58,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import VueFooter from './footer.vue'
+import VueEditor from './editor.vue'
 import json from '../scripts/database'
 import Leaflet from 'leaflet'
-
-// import ScrollReveal from 'scrollreveal'
-// import SimpleParallax from 'simple-parallax-js'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
@@ -61,6 +70,23 @@ export default Vue.extend({
 		contact: json.contact,
 		faqs: json.faq
 	}),
+
+	methods: {
+		editing: (args: any) => {
+			const div = document.createElement('div')
+			div.id = 'editor'
+			document.querySelector('#contenu-page')!.appendChild(div)
+
+			new Vue({
+				el: '#editor',
+				template: '<VueEditor :test="args" />',
+				components: { VueEditor },
+				data: () => ({
+					args: args
+				})
+			})
+		}
+	},
 
 	mounted: () => {
 		const parallaxOptions = {

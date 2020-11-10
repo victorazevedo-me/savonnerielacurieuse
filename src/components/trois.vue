@@ -110,11 +110,7 @@
 					:key="i"
 					v-for="(item, i) in temoignages"
 					@contextmenu.prevent="
-						editing({
-							key: i,
-							item: item,
-							liste: temoignages
-						})
+						editing({ key: i, item: item, liste: temoignages })
 					"
 				>
 					<p class="contenu">"{{ item.citation }}"</p>
@@ -125,8 +121,7 @@
 			<div class="grosseballe"></div>
 		</div>
 
-		<VueFooter></VueFooter>
-		<div id="editor"></div>
+		<VueFooter />
 	</section>
 </template>
 <script lang="ts">
@@ -165,6 +160,10 @@ export default Vue.extend({
 		},
 
 		editing: (args: any) => {
+			const div = document.createElement('div')
+			div.id = 'editor'
+			document.querySelector('#contenu-page')!.appendChild(div)
+
 			new Vue({
 				el: '#editor',
 				template: '<VueEditor :test="args" />',
