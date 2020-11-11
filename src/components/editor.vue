@@ -5,15 +5,15 @@
 				<button @click="cancelAndReset">&times;</button>
 			</div>
 
-			<div class="inputs">
-				<input
-					v-for="(elem, i) in test.item"
-					:key="i"
-					ref="inputs"
-					type="text"
-					:placeholder="i"
-					v-model="listeItem[i]"
-				/>
+			<div
+				class="inputs"
+				v-for="(elem, i) in test.item"
+				:key="i"
+				ref="inputs"
+				:placeholder="i"
+			>
+				<h4>{{ i }}</h4>
+				<textarea v-model="listeItem[i]"></textarea>
 			</div>
 
 			<div class="options">
@@ -101,11 +101,18 @@ export default Vue.extend({
 			margin: 1em;
 			width: 80%;
 
-			input {
+			h4 {
+				margin: 0;
+				text-transform: capitalize;
+			}
+
+			textarea {
+				font-size: 16px;
+				resize: vertical;
 				border: 1px solid #ddd;
 				border-radius: 1em;
-				padding: 5px 20px;
-				margin: 1em 0;
+				padding: 10px;
+				margin-top: 1em;
 			}
 		}
 

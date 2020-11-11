@@ -76,7 +76,7 @@ export default Vue.extend({
 			window.addEventListener('scroll', function(ev) {
 				const windowY = document.body.getBoundingClientRect().y * -1
 
-				console.log(ev)
+				//console.log(ev)
 				if (windowY > 200) {
 					data.isHidden = true
 				} else {

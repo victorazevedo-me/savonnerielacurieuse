@@ -42,13 +42,6 @@
 @media (max-width: 1000px) {
 	main {
 		#contenu-accueil {
-			.background {
-				left: 30px;
-				top: 30px;
-				width: calc(100vw - (30px * 2) - 15px);
-				height: calc(100vh - (30px * 2));
-			}
-
 			.titre {
 				font-size: 10vw;
 			}
@@ -129,8 +122,17 @@
 	}
 
 	#extended-nav {
+		top: -100vh;
+		border-radius: 50vw;
+		padding: 0vw;
+		opacity: 1;
+		overflow: hidden;
+		transition: padding 1s;
+
 		#extended-nav-content {
 			height: 100vh;
+			margin: 100vh auto 50vw auto;
+			transition: margin 1s;
 			overflow-y: auto;
 
 			.left-display {
@@ -157,17 +159,20 @@
 				}
 			}
 		}
+
+		&.visible {
+			padding: 100vh 0 50vw 0;
+			transition: padding 2s;
+
+			#extended-nav-content {
+				margin: 0vw auto;
+				transition: margin 2s;
+			}
+		}
 	}
 
 	main {
 		#contenu-accueil {
-			.background {
-				left: 0px;
-				top: 0px;
-				width: calc(100vw - (0px * 2));
-				height: calc(100vh - (0px) * 2);
-			}
-
 			.titre {
 				margin: auto;
 			}
@@ -286,11 +291,18 @@
 				.infos {
 					text-align: center;
 					padding: 2em 0;
+
+					.gelule {
+						top: -8em;
+						left: 7em;
+						width: 20em;
+						height: 20em;
+					}
 				}
 
 				#map {
-					width: 90vw;
-					height: 200px;
+					width: 70vw;
+					height: 70vw;
 				}
 			}
 
@@ -313,8 +325,12 @@
 				padding: 6vw;
 
 				.contact {
-					font-size: 4vw;
+					font-size: 3vw;
 					line-height: 6vw;
+
+					.adresse {
+						line-height: 4vw;
+					}
 				}
 			}
 		}

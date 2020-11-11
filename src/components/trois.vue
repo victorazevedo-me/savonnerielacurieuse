@@ -1,70 +1,85 @@
 <template>
 	<section id="contenu-page" class="page trois">
 		<div id="savons-doux" class="savons-doux">
-			<!-- <div class="semi-titre">
+			<div class="semi-titre">
 				<div class="ballon"></div>
 				<h2>Les savons doux</h2>
-			</div> -->
-
-			<div class="liste-savons">
-				<h3
-					v-bind:key="item.title"
-					v-for="item in savons"
-					v-on:click="e => apply(item, e)"
-				>
-					{{ item.title }}
-				</h3>
 			</div>
-			<div class="full-card">
-				<div class="nom">
-					<h3>{{ savonToDisplay.title }}</h3>
-					<p class="shadow">{{ savonToDisplay.title }}</p>
+
+			<div class="savons-wrapper">
+				<div class="liste-savons">
+					<div
+						v-bind:key="item.title"
+						v-for="item in savons"
+						v-on:click="open(item)"
+					>
+						<img
+							src="../images/icons/apple-touch-icon.png"
+							alt="temp-icon"
+						/>
+						<h4>{{ item.title }}</h4>
+					</div>
 				</div>
-				<div class="slideshow">
-					<img
-						src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
-					/>
-					<img
-						src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
-					/>
-					<img
-						src="https://savonnerielacurieuse.com/images/savons/theromarin.jpg"
-					/>
-				</div>
-				<div class="bottom">
-					<p class="description">{{ savonToDisplay.desc }}</p>
-					<p class="composition">
-						Composition: {{ savonToDisplay.compo }}
-					</p>
+				<div class="full-card">
+					<div class="close" @click="close()">
+						&times;
+					</div>
+
+					<div class="nom">
+						<h3>{{ savonToDisplay.title }}</h3>
+					</div>
+
+					<div class="images-desc">
+						<div class="images">
+							<img
+								src="../images/icons/apple-touch-icon.png"
+								alt="temp-icon"
+							/>
+							<img
+								src="../images/icons/apple-touch-icon.png"
+								alt="temp-icon"
+							/>
+						</div>
+
+						<div class="desc">
+							<p>{{ savonToDisplay.desc }}</p>
+						</div>
+					</div>
+
+					<div class="compo">
+						<p>Composition: {{ savonToDisplay.compo }}</p>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div id="savon-menager" class="savon-menager">
-			<!-- <div class="semi-titre">
+			<div class="semi-titre">
 				<div class="ballon"></div>
 				<h2>Le savon ménager César</h2>
-			</div> -->
+			</div>
 
 			<div class="deux-colonnes">
 				<div class="full-card">
-					<div class="nom">
-						<h3>César</h3>
-						<p class="shadow">César</p>
+					<div class="images-desc">
+						<div class="images">
+							<img
+								src="../images/icons/apple-touch-icon.png"
+								alt="temp-icon"
+							/>
+							<img
+								src="../images/icons/apple-touch-icon.png"
+								alt="temp-icon"
+							/>
+						</div>
+
+						<div class="desc">
+							<p>{{ savons.cesar.desc }}</p>
+						</div>
 					</div>
-					<div class="slideshow">
-						<img
-							src="https://savonnerielacurieuse.com/images/savons/cesar.jpg"
-						/>
-						<img
-							src="https://savonnerielacurieuse.com/images/savons/cesar.jpg"
-						/>
-					</div>
-					<div class="bottom">
-						<p class="description">{{ savons.cesar.desc }}</p>
-						<p class="composition">
-							Composition: {{ savons.cesar.compo }}
-						</p>
+
+					<div class="compo">
+						<p>Composition: {{ savons.cesar.compo }}</p>
 					</div>
 				</div>
 
@@ -142,21 +157,17 @@ export default Vue.extend({
 	data: () => ({
 		temoignages: json.temoignages,
 		savons: json.savons,
-		savonToDisplay: json.savons.muesli,
-		lastSavon: document.querySelector('.liste-savons h3')
+		savonToDisplay: json.savons.muesli
 	}),
 
 	methods: {
-		apply: function(item: JSON, e: any) {
-			//class toggle
-			if (this.lastSavon) {
-				this.lastSavon.classList.toggle('selected')
-			}
-			e.target.classList.toggle('selected')
-			this.$data.lastSavon = e.target
-
-			//change display
+		open(item: JSON) {
+			dom('.savons-wrapper')!.classList.toggle('selected')
 			this.$data.savonToDisplay = item
+		},
+
+		close() {
+			dom('.savons-wrapper')!.classList.toggle('selected')
 		},
 
 		editing: (args: any) => {

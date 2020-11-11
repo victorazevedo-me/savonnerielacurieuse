@@ -78,20 +78,18 @@ export default Vue.extend({
 
 	methods: {
 		editing: (args: any) => {
-			if (false) {
-				const div = document.createElement('div')
-				div.id = 'editor'
-				document.querySelector('#contenu-page')!.appendChild(div)
+			const div = document.createElement('div')
+			div.id = 'editor'
+			document.querySelector('#contenu-page')!.appendChild(div)
 
-				new Vue({
-					el: '#editor',
-					template: '<VueEditor :test="args" />',
-					components: { VueEditor },
-					data: () => ({
-						args: args
-					})
+			new Vue({
+				el: '#editor',
+				template: '<VueEditor :test="args" />',
+				components: { VueEditor },
+				data: () => ({
+					args: args
 				})
-			}
+			})
 		}
 	},
 

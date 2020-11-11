@@ -92,7 +92,7 @@ export const extendedNav = {
 	hide: () => {
 		const ext = dom('#extended-nav')!
 		ext.classList.remove('visible')
-		setTimeout(() => ext.setAttribute('style', 'z-index: -1'), 500)
+		setTimeout(() => ext.setAttribute('style', 'z-index: -1'), 2000)
 		dom('.hamburger')!.classList.remove('clicked')
 	}
 }

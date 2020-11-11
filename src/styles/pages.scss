@@ -214,91 +214,107 @@ $titrepetit: 1.25em;
 	&.trois {
 		padding: 5em 0;
 
-		.liste-savons {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
+		.savons-wrapper {
+			text-align: center;
 
-			h3 {
-				border-radius: 1.5em;
-				padding: 5px 20px;
-				margin: 10px;
+			&.selected {
+				.liste-savons {
+					display: none;
+				}
+				.full-card {
+					display: flex;
+				}
+			}
+		}
+
+		.liste-savons {
+			display: inline-grid;
+			grid-template-columns: 300px 300px 300px;
+			margin: auto;
+
+			> div {
+				margin: 30px;
+				transition: transform 0.2s;
 				cursor: pointer;
-				transition: all 0.2s linear;
 
 				&:hover {
-					background-color: #ffdbbd;
+					transform: scale(0.95);
 				}
 
 				&:active {
-					background-color: #f8c499;
+					transform: scale(0.85);
 				}
 
-				&.selected {
-					color: white;
-					background-color: #fda761;
+				img {
+					width: 100%;
+					border: 2px solid #111;
 				}
 
-				&:last-child {
-					display: none;
+				h4 {
+					text-align: center;
+					margin: 0;
 				}
 			}
 		}
 
 		.full-card {
+			$borderSize: 50px;
+			padding: $borderSize;
+
+			display: none;
+			position: relative;
+			flex-direction: column;
+			align-items: center;
+			max-width: 1150px;
 			margin: auto;
-			padding-top: 5em;
+			border: 2px solid #111;
 
-			.nom {
-				font-size: 30px;
-				position: relative;
-
-				.shadow {
-					$shadowsize: 150px;
-
-					position: absolute;
-					top: -$shadowsize / 2;
-					left: -$shadowsize / 2;
-					margin: 0;
-					font-size: $shadowsize;
-					white-space: nowrap;
-					opacity: 00;
-					z-index: -1;
-				}
-
-				h3 {
-					font-size: 80px;
-					margin: 0;
-					line-height: 1em;
-				}
+			.close {
+				position: absolute;
+				top: $borderSize;
+				right: $borderSize;
+				font-size: 35px;
+				line-height: 70px;
+				width: 70px;
+				cursor: pointer;
 			}
 
-			.slideshow {
+			.nom h3 {
+				font-size: 70px;
+				margin-top: 0;
+			}
+
+			.images-desc {
 				display: flex;
-				max-width: 90vw;
+				text-align: left;
+				align-items: center;
 				margin: auto;
 
-				img {
-					width: 256px;
-					margin: 8px;
+				.images img {
+					width: 247px;
+					filter: brightness(0.95);
+					margin: 1em;
+				}
+
+				.desc {
+					width: 50%;
+					max-width: 400px;
+					padding-left: 2em;
+					font-size: larger;
+					font-weight: bold;
 				}
 			}
 
-			.bottom {
-				margin: auto;
-				width: 80%;
-				max-width: 700px;
-				min-width: 300px;
-
-				.composition {
-					opacity: 0.8;
-				}
+			.compo {
+				text-align: left;
+				width: 60%;
 			}
 		}
 
 		.savons-doux,
 		.savon-menager,
 		.en-parlent {
+			padding: 5em;
 			min-height: 100vh;
 		}
 
@@ -314,6 +330,7 @@ $titrepetit: 1.25em;
 			overflow: hidden;
 
 			.full-card {
+				display: flex;
 				margin: 0;
 				padding-top: 0;
 
@@ -507,8 +524,8 @@ $titrepetit: 1.25em;
 				.gelule {
 					position: absolute;
 					top: -1em;
-					left: -19em;
-					width: 25em;
+					left: -10em;
+					width: 15em;
 					height: 11em;
 					border-radius: 10em;
 					background-color: wheat;

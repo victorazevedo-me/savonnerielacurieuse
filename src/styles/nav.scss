@@ -65,12 +65,15 @@ nav {
 
 #extended-nav {
 	position: fixed;
-	width: 100%;
+	top: 0;
+	width: 100vw;
 	height: 100vh;
+	z-index: -1;
+	opacity: 0;
 	background-color: black;
 	color: white;
-	opacity: 0;
-	z-index: -1;
+	overflow: hidden;
+
 	transition: opacity 0.5s;
 
 	&.visible {
