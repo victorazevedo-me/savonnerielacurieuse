@@ -142,7 +142,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import anime from 'animejs'
+import anime, { AnimeAnimParams, AnimeCallBack } from 'animejs'
 import VueEditor from './editor.vue'
 import VueFooter from './footer.vue'
 import json from '../scripts/database'
@@ -184,13 +184,17 @@ export default Vue.extend({
 	},
 
 	mounted: function() {
-		const playAnimation = (open: boolean) =>
-			open ? liste.play() : full.play()
+		//
+		//etape découpe l'anim en 4
+		//1 toggle vers full-card
+		//2 fait rien
+		//3 toggle vers liste-savons
+		//4 reset le compteur
+
+		let etapes = 0
 
 		const toggler = () =>
 			dom('.savons-wrapper')!.classList.toggle('selected')
-
-		let etapes = 0
 
 		const liste = anime({
 			targets: '.liste-savons div',
@@ -199,7 +203,7 @@ export default Vue.extend({
 			delay: anime.stagger(50),
 			duration: 300,
 			opacity: 0,
-			changeComplete(anim: any) {
+			changeComplete(anim: AnimeAnimParams) {
 				etapes++
 				anim.pause()
 
@@ -221,7 +225,7 @@ export default Vue.extend({
 			easing: 'easeInOutCubic',
 			duration: 500,
 			delay: 100,
-			changeComplete(anim: any) {
+			changeComplete(anim: AnimeAnimParams) {
 				etapes++
 				anim.pause()
 
@@ -232,16 +236,19 @@ export default Vue.extend({
 			}
 		})
 
+		//init anim
 		liste.pause()
 		full.pause()
 
-		document
-			.querySelectorAll('.liste-savons > div')
-			.forEach(el => (el.onclick = () => playAnimation(true)))
+		//clic la liste, lance anim part I
+		document.querySelectorAll('.liste-savons > div').forEach(el => {
+			if (el instanceof HTMLElement) el.onclick = () => liste.play()
+		})
 
-		document.querySelector('.full-card .close')!.onclick = function() {
-			playAnimation(false)
-		}
+		//clic la croix, lance anim part II
+		document
+			.querySelector('.full-card .close')!
+			.addEventListener('click', () => full.play())
 
 		const parallaxOptions = {
 			delay: 0.6,
