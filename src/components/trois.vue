@@ -11,17 +11,18 @@
 					<div
 						v-bind:key="item.title"
 						v-for="item in savons"
-						v-on:click="open(item)"
+						@click="changeCardContent(item)"
 					>
 						<img
 							src="../images/icons/apple-touch-icon.png"
 							alt="temp-icon"
+							draggable="false"
 						/>
 						<h4>{{ item.title }}</h4>
 					</div>
 				</div>
 				<div class="full-card">
-					<div class="close" @click="close()">
+					<div class="close">
 						&times;
 					</div>
 
@@ -141,6 +142,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import anime from 'animejs'
 import VueEditor from './editor.vue'
 import VueFooter from './footer.vue'
 import json from '../scripts/database'
@@ -161,13 +163,8 @@ export default Vue.extend({
 	}),
 
 	methods: {
-		open(item: JSON) {
-			dom('.savons-wrapper')!.classList.toggle('selected')
+		changeCardContent(item: JSON) {
 			this.$data.savonToDisplay = item
-		},
-
-		close() {
-			dom('.savons-wrapper')!.classList.toggle('selected')
 		},
 
 		editing: (args: any) => {
@@ -187,7 +184,64 @@ export default Vue.extend({
 	},
 
 	mounted: function() {
-		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 900)
+		const playAnimation = (open: boolean) =>
+			open ? liste.play() : full.play()
+
+		const toggler = () =>
+			dom('.savons-wrapper')!.classList.toggle('selected')
+
+		let etapes = 0
+
+		const liste = anime({
+			targets: '.liste-savons div',
+			easing: 'linear',
+			direction: 'alternate',
+			delay: anime.stagger(50),
+			duration: 300,
+			opacity: 0,
+			changeComplete(anim: any) {
+				etapes++
+				anim.pause()
+
+				if (etapes === 1) {
+					full.restart()
+					toggler()
+				}
+
+				if (etapes === 4) {
+					etapes = 0
+				}
+			}
+		})
+		const full = anime({
+			targets: '.savons-wrapper .full-card',
+			translateY: '-25px',
+			opacity: 1,
+			direction: 'alternate',
+			easing: 'easeInOutCubic',
+			duration: 500,
+			delay: 100,
+			changeComplete(anim: any) {
+				etapes++
+				anim.pause()
+
+				if (etapes === 3) {
+					toggler()
+					liste.play()
+				}
+			}
+		})
+
+		liste.pause()
+		full.pause()
+
+		document
+			.querySelectorAll('.liste-savons > div')
+			.forEach(el => (el.onclick = () => playAnimation(true)))
+
+		document.querySelector('.full-card .close')!.onclick = function() {
+			playAnimation(false)
+		}
 
 		const parallaxOptions = {
 			delay: 0.6,
@@ -196,14 +250,7 @@ export default Vue.extend({
 			overflow: true
 		}
 
-		new SimpleParallax(
-			dom('.savons-doux .full-card .shadow')!,
-			parallaxOptions
-		)
-		new SimpleParallax(
-			dom('.savon-menager .full-card .shadow')!,
-			parallaxOptions
-		)
+		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 900)
 		new SimpleParallax(dom('.savon-menager .grosseballe')!, parallaxOptions)
 		new SimpleParallax(dom('.en-parlent .grosseballe')!, parallaxOptions)
 	}
