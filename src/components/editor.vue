@@ -17,7 +17,8 @@
 			</div>
 
 			<div class="options">
-				<button class="suppr">supprimer</button>
+				<button class="suppr" @click="suppr">supprimer</button>
+				<button class="new" @click="newElement">nouveau</button>
 				<button class="modif" @click="submit">mettre à jour</button>
 			</div>
 		</div>
@@ -32,7 +33,8 @@ export default Vue.extend({
 	data() {
 		return {
 			backup: {},
-			listeItem: this.test.item
+			listeItem: this.test.item,
+			parent: this.test.liste
 		}
 	},
 
@@ -52,6 +54,16 @@ export default Vue.extend({
 
 		submit() {
 			this.closeEditor()
+		},
+
+		suppr() {
+			console.log()
+			this.$data.parent.pop(this.listeItem)
+		},
+
+		newElement() {
+			this.$data.parent.push(this.listeItem)
+			console.log(this.$data)
 		}
 	}
 })

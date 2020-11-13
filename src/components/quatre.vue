@@ -92,13 +92,13 @@
 						editing({ key: i, item: item, liste: events })
 					"
 				>
-					<p>{{ item.note }}</p>
-					<p>
+					<p class="titre-event">
 						<strong>{{ item.nom }}</strong>
 					</p>
 					<p>{{ item.date }}</p>
 					<p>{{ item.horaire }}</p>
 					<p>{{ item.coord }}</p>
+					<p>{{ item.note }}</p>
 				</div>
 			</div>
 		</div>
@@ -114,7 +114,6 @@ import VueEditor from './editor.vue'
 import json from '../scripts/database'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
-import { editing } from '../scripts/editor'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
