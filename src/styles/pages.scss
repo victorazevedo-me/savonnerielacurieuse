@@ -212,7 +212,9 @@ $titrepetit: 1.25em;
 	}
 
 	&.trois {
-		padding-bottom: 8em;
+		.semi-titre {
+			margin: auto;
+		}
 
 		.savons-wrapper {
 			text-align: center;
@@ -247,7 +249,7 @@ $titrepetit: 1.25em;
 
 				img {
 					width: 100%;
-					border: 2px solid #111;
+					filter: brightness(0.95);
 				}
 
 				h4 {
@@ -281,7 +283,7 @@ $titrepetit: 1.25em;
 			}
 
 			.nom h3 {
-				font-size: 70px;
+				font-size: 2.8em;
 				margin-top: 0;
 			}
 
@@ -292,13 +294,12 @@ $titrepetit: 1.25em;
 				margin: auto;
 
 				.images img {
-					width: 247px;
+					width: 250px;
 					filter: brightness(0.95);
 					margin: 1em;
 				}
 
 				.desc {
-					width: 50%;
 					max-width: 400px;
 					padding-left: 2em;
 					font-size: larger;
@@ -310,13 +311,6 @@ $titrepetit: 1.25em;
 				text-align: left;
 				width: 60%;
 			}
-		}
-
-		.savons-doux,
-		.savon-menager,
-		.en-parlent {
-			padding: 0 5em 5em 5em;
-			min-height: 100vh;
 		}
 
 		.savons-doux {
@@ -524,9 +518,9 @@ $titrepetit: 1.25em;
 				.gelule {
 					position: absolute;
 					top: -1em;
-					left: -10em;
-					width: 15em;
-					height: 11em;
+					left: -5em;
+					width: 10em;
+					height: 10em;
 					border-radius: 10em;
 					background-color: wheat;
 					z-index: -1;

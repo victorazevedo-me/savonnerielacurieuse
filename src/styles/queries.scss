@@ -36,6 +36,27 @@
 				}
 			}
 		}
+
+		&.trois {
+			.full-card {
+				.nom h3 {
+					margin-bottom: 0;
+				}
+
+				.images-desc {
+					flex-direction: column;
+					.desc {
+						padding-left: 0;
+						max-width: 80%;
+						margin: auto;
+					}
+				}
+
+				.compo {
+					width: 80%;
+				}
+			}
+		}
 	}
 }
 
@@ -98,6 +119,17 @@
 			.deux-colonnes {
 				flex-direction: column;
 			}
+			.liste-savons {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			.full-card {
+				padding: 20px;
+				.images-desc .images img {
+					width: 220px;
+				}
+			}
 		}
 
 		&.quatre {
@@ -105,6 +137,21 @@
 
 			> div {
 				padding: 0;
+			}
+		}
+
+		&.cinq {
+			.contact-infos {
+				flex-direction: column;
+				> div {
+					padding: 2em 0;
+				}
+			}
+
+			.faq-liste {
+				> div {
+					padding: 25px 0 0 0;
+				}
 			}
 		}
 	}
@@ -237,6 +284,49 @@
 					.grosseballe {
 						padding: 18em;
 					}
+				}
+			}
+		}
+
+		&.trois {
+			.liste-savons {
+				> div {
+					width: calc(50% - 20px);
+					max-width: 200px;
+					margin: 20px 10px;
+				}
+			}
+			.full-card {
+				border: none;
+				padding: 0;
+
+				.close {
+					position: initial;
+					font-size: 25px;
+					width: 100%;
+					cursor: pointer;
+					text-align: center;
+				}
+
+				.nom h3 {
+					font-size: 40px;
+				}
+
+				.images-desc {
+					.images img {
+						width: calc(50% - 15px);
+						margin: 5px;
+					}
+					.desc {
+						text-align: justify;
+						max-width: 100%;
+						margin: 0;
+					}
+				}
+
+				.compo {
+					text-align: justify;
+					width: 100%;
 				}
 			}
 		}

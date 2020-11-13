@@ -42,9 +42,7 @@ export default Vue.extend({
 
 	methods: {
 		closeEditor() {
-			document
-				.querySelector('#editor')!
-				.setAttribute('style', 'display: none')
+			document.querySelector('#editor')!.remove()
 		},
 
 		cancelAndReset: function() {
