@@ -40,8 +40,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { accueilSwipe } from '../scripts/accueilControl'
-import { redirection } from '../scripts/index'
-import { PageEventOrigin, SITEMAP, extendedNav } from '../scripts/pageControl'
+import { PageEventOrigin, SITEMAP, redirection } from '../scripts/pageControl'
 export default Vue.extend({
 	mounted: () => {
 		//A changer (evidemment)
@@ -108,7 +107,7 @@ export default Vue.extend({
 				redirection(PageEventOrigin.homepageScroll, i)
 
 				//quitte le nav extended
-				extendedNav.hide()
+				//extendedNav.hide()
 			})
 		)
 
@@ -128,7 +127,7 @@ export default Vue.extend({
 					redirection(PageEventOrigin.navSubCategory, i, counter)
 
 					//quitte le nav extended
-					extendedNav.hide()
+					//extendedNav.hide()
 				})
 			})
 

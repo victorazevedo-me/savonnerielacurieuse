@@ -158,11 +158,7 @@ import VueFooter from './footer.vue'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
 import fabrication from '../scripts/fabrication'
-import {
-	dom,
-	isScrolledIntoView,
-	overlayPosition
-} from '../scripts/pageControl'
+import { $, isScrolledIntoView, overlayPosition } from '../scripts/pageControl'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
@@ -171,7 +167,7 @@ export default Vue.extend({
 	mounted: function() {
 		overlayPosition('.grosseballe', '.expliquation', 500)
 
-		new SimpleParallax(dom('.grosseballe')!, {
+		new SimpleParallax($('.grosseballe')!, {
 			delay: 0.6,
 			scale: 1.6,
 			transition: 'cubic-bezier(0.19, 1, 0.22, 1)',

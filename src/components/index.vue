@@ -59,7 +59,10 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import Nav from './nav.vue'
 import SimpleParallax from 'simple-parallax-js'
+import { $, $$, bound } from '../scripts/pageControl'
+
 export default Vue.extend({
 	data: () => ({
 		isHidden: false,
@@ -87,6 +90,51 @@ export default Vue.extend({
 	},
 
 	mounted() {
+		const extendedNav = {
+			show: () => {
+				const ext = $('#extended-nav')!
+				const hamburger = $('.hamburger')!
+
+				ext.classList.add('visible')
+				ext.setAttribute('style', 'z-index: 9')
+				$('.hamburger')!.classList.add('clicked')
+			},
+
+			hide: () => {
+				const ext = $('#extended-nav')!
+				ext.classList.remove('visible')
+				setTimeout(() => ext.setAttribute('style', 'z-index: -1'), 2000)
+				$('.hamburger')!.classList.remove('clicked')
+			}
+		}
+
+		const hamburger = () => {
+			const extendedDom = document.querySelector('#extended-nav')!
+			const hamburger = document.querySelector('.hamburger')!
+
+			//tres pas beau
+			hamburger.addEventListener('click', () => {
+				if (
+					extendedDom.innerHTML === '' &&
+					!hamburger.classList.contains('clicked')
+				) {
+					new Vue({
+						el: '#extended-nav',
+						template: '<Nav />',
+						components: { Nav },
+						mounted: () => {
+							setTimeout(() => extendedNav.show(), 100)
+						}
+					})
+				} else {
+					//puts nav behind after fadeout
+					extendedNav.hide()
+				}
+			})
+		}
+
+		hamburger()
+
 		this.hideNavOnScroll()
 
 		function backgroundParallax() {

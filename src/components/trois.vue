@@ -148,11 +148,7 @@ import VueFooter from './footer.vue'
 import json from '../scripts/database'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
-import {
-	dom,
-	isScrolledIntoView,
-	overlayPosition
-} from '../scripts/pageControl'
+import { $, isScrolledIntoView, overlayPosition } from '../scripts/pageControl'
 
 export default Vue.extend({
 	components: { VueFooter },
@@ -193,8 +189,7 @@ export default Vue.extend({
 
 		let etapes = 0
 
-		const toggler = () =>
-			dom('.savons-wrapper')!.classList.toggle('selected')
+		const toggler = () => $('.savons-wrapper')!.classList.toggle('selected')
 
 		const liste = anime({
 			targets: '.liste-savons div',
@@ -258,8 +253,8 @@ export default Vue.extend({
 		}
 
 		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 900)
-		new SimpleParallax(dom('.savon-menager .grosseballe')!, parallaxOptions)
-		new SimpleParallax(dom('.en-parlent .grosseballe')!, parallaxOptions)
+		new SimpleParallax($('.savon-menager .grosseballe')!, parallaxOptions)
+		new SimpleParallax($('.en-parlent .grosseballe')!, parallaxOptions)
 	}
 })
 </script>

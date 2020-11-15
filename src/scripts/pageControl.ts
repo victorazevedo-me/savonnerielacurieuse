@@ -1,6 +1,14 @@
-export function dom(query: string) {
-	return document.querySelector(query)
-}
+import Index from '../components/index.vue'
+import Page01 from '../components/un.vue'
+import Page02 from '../components/deux.vue'
+import Page03 from '../components/trois.vue'
+import Page04 from '../components/quatre.vue'
+import Page05 from '../components/cinq.vue'
+import { accueilSwipe } from './accueilControl'
+import Vue from 'vue'
+
+export const $ = (g: string) => document.querySelector(g)
+export const $$ = (g: string) => document.querySelectorAll(g)
 
 export function bound(elem: Element) {
 	if (elem) {
@@ -79,20 +87,64 @@ export enum PageEventOrigin {
 	navSubCategory
 }
 
-export const extendedNav = {
-	show: () => {
-		const ext = dom('#extended-nav')!
-		const hamburger = dom('.hamburger')!
+export function redirection(
+	which: PageEventOrigin,
+	newMain: number = 0,
+	newInner: number = 0
+) {
+	function openPage(i?: number, mountCallback: Function = () => {}) {
+		if (i === undefined) {
+			new Vue({
+				el: '#contenu-accueil',
+				template: '<Index />',
+				components: { Index },
+				mounted: () => {
+					accueilSwipe(main)
+				}
+			})
+		} else {
+			const pages = [Page01, Page02, Page03, Page04, Page05]
+			const IndexedPage = pages[i]
 
-		ext.classList.add('visible')
-		ext.setAttribute('style', 'z-index: 9')
-		dom('.hamburger')!.classList.add('clicked')
-	},
+			new Vue({
+				el: '#contenu-page',
+				template: '<IndexedPage />',
+				components: { IndexedPage },
+				mounted: () => {
+					mountCallback()
+				}
+			})
+		}
+	}
 
-	hide: () => {
-		const ext = dom('#extended-nav')!
-		ext.classList.remove('visible')
-		setTimeout(() => ext.setAttribute('style', 'z-index: -1'), 2000)
-		dom('.hamburger')!.classList.remove('clicked')
+	function subCat() {
+		window.scrollTo(0, 0)
+
+		const out = which === PageEventOrigin.initialisation ? main : newMain
+		const inn = which === PageEventOrigin.initialisation ? inner : newInner
+		const dir = SITEMAP.data[out][inn]
+
+		if (inn > 0) {
+			const titre = $(`#` + SITEMAP.data[out][inn])!
+			const scroll = bound(titre).y
+			window.scrollBy({ left: 0, top: scroll - 100, behavior: 'smooth' })
+		}
+	}
+
+	const [main, inner] = SITEMAP.indexes()
+
+	if (which === PageEventOrigin.initialisation) {
+		openPage()
+		openPage(main, subCat)
+	} else {
+		SITEMAP.pushState([newMain, newInner])
+		accueilSwipe(newMain, main)
+		openPage(newMain, () => {
+			window.scrollTo(0, 0)
+			//si c'est un sous-titre, scroll jusqu'a
+			if (which === PageEventOrigin.navSubCategory) {
+				subCat()
+			}
+		})
 	}
 }

@@ -65,7 +65,7 @@ import json from '../scripts/database'
 import Leaflet from 'leaflet'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
-import { dom } from '../scripts/pageControl'
+import { $, $$ } from '../scripts/pageControl'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
@@ -110,7 +110,7 @@ export default Vue.extend({
 				}
 			).addTo(mymap)
 
-			dom('#map')?.classList.add('loaded')
+			$('#map')?.classList.add('loaded')
 		}
 		displayMap()
 
