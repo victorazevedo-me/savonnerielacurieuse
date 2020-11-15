@@ -10,6 +10,9 @@ import Vue from 'vue'
 export const $ = (g: string) => document.querySelector(g)
 export const $$ = (g: string) => document.querySelectorAll(g)
 
+export const setCss = (dom: Element, attr: string) =>
+	dom.setAttribute('style', attr)
+
 export function bound(elem: Element) {
 	if (elem) {
 		return elem.getBoundingClientRect()

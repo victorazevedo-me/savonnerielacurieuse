@@ -266,11 +266,10 @@
 			.deux-colonnes {
 				.fabrication {
 					max-width: 100%;
-					#imgwrap {
-						height: 300px;
-						img {
-							width: 300px;
-						}
+					#imgwrap img {
+						max-width: 300px;
+						width: 65vw;
+						margin: 0 5px;
 					}
 					.fabr-text > div {
 						margin: 0;
@@ -280,6 +279,7 @@
 				.expliquation {
 					> div:not(.grosseballe) {
 						padding: 1em 0;
+						min-width: 0;
 					}
 					.grosseballe {
 						padding: 18em;

@@ -39,7 +39,6 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { accueilSwipe } from '../scripts/accueilControl'
 import { PageEventOrigin, SITEMAP, redirection } from '../scripts/pageControl'
 export default Vue.extend({
 	mounted: () => {

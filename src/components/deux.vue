@@ -157,12 +157,132 @@ import Vue from 'vue'
 import VueFooter from './footer.vue'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
-import fabrication from '../scripts/fabrication'
-import { $, isScrolledIntoView, overlayPosition } from '../scripts/pageControl'
+import {
+	$,
+	$$,
+	bound,
+	setCss,
+	isScrolledIntoView,
+	overlayPosition
+} from '../scripts/pageControl'
 
 export default Vue.extend({
 	template: '<VueFooter/>',
 	components: { VueFooter },
+
+	methods: {
+		fabrication() {
+			//init consts
+			const imgwrap = $('#imgwrap')!
+			const allimgs = $$('#imgwrap img')!
+			const firstChild = imgwrap.children[0]
+			let stopScroll = false
+			let wait = false
+			let lastcount = 0
+
+			function scroll(count: number) {
+				if (imgwrap) {
+					//scroll
+					const margin =
+						parseInt(
+							window.getComputedStyle(firstChild).marginRight
+						) * 2
+					const toscroll = (firstChild.clientWidth + margin) * count
+					setCss(imgwrap, `transform: translateX(${-toscroll}px)`)
+
+					//focus
+					imgwrap.children[count].className = 'focused'
+					imgwrap.children[lastcount].className = ''
+
+					//description
+					const parafs = $$(' #etape-desc p')
+					setCss(parafs[lastcount], 'opacity: 0; z-index: 4')
+					setCss(parafs[count], 'opacity: 1; z-index: 5')
+
+					//count
+					lastcount = count
+					setTimeout(() => (wait = false), 1000)
+				} else {
+					autoDefil.kill()
+				}
+			}
+
+			function setMaxDescHeight() {
+				let heights = [0]
+
+				$$('#etape-desc p').forEach(item =>
+					heights.push(+item.clientHeight)
+				)
+				setCss($('#etape-desc')!, `height: ${Math.max(...heights)}px`)
+			}
+
+			function firstChildMargin() {
+				const fab = $('.fabrication')!
+				const margin = (fab.clientWidth - firstChild.clientWidth) / 2
+				setCss(firstChild, `margin-left: ${margin}px`)
+			}
+
+			const autoDefil = {
+				id: 0,
+				time: 8000,
+
+				start: () => {
+					//apply .inner animation
+					$('#timer .inner')?.animate(
+						[{ width: '0px' }, { width: '100%' }],
+						{
+							duration: autoDefil.time,
+							easing: 'linear',
+							iterations: allimgs.length
+						}
+					)
+
+					//then scroll with interval
+					autoDefil.id = setInterval(function() {
+						if (lastcount < allimgs.length - 1) {
+							scroll(lastcount + 1)
+						}
+					}, autoDefil.time)
+				},
+
+				kill: () => {
+					clearInterval(autoDefil.id)
+					$('#timer')?.classList.add('hidden')
+				}
+			}
+
+			//initial functions
+			setMaxDescHeight()
+			firstChildMargin()
+
+			//défile auto par defaut
+			$('#contenu-page.deux')?.addEventListener(
+				'wheel',
+				() => {
+					if (isScrolledIntoView('#imgwrap') && !stopScroll) {
+						autoDefil.start()
+						stopScroll = true
+					}
+				},
+				{ passive: true }
+			)
+
+			//click events
+			allimgs.forEach((item, i) => {
+				item.addEventListener('click', function() {
+					autoDefil.kill()
+
+					//anim wait
+					//& upper bound
+					if (!wait && i < allimgs.length - 1) {
+						//appuie sur image principale = avance
+						scroll(lastcount === i ? i + 1 : i)
+						wait = true
+					}
+				})
+			})
+		}
+	},
 
 	mounted: function() {
 		overlayPosition('.grosseballe', '.expliquation', 500)
@@ -179,7 +299,17 @@ export default Vue.extend({
 			scale: 0.8
 		})
 
-		fabrication()
+		ScrollReveal().reveal('.introduction', {
+			duration: 2000,
+			delay: 500
+		})
+
+		ScrollReveal().reveal('.fabrication', {
+			duration: 2000,
+			delay: 0
+		})
+
+		this.fabrication()
 	}
 })
 </script>
