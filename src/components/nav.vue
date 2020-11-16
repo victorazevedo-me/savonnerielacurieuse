@@ -1,138 +1,206 @@
 <template>
-	<div id="extended-nav">
-		<div id="extended-nav-content">
-			<div class="left-display">
-				<div class="presentation-images">
-					<img class="in" src="../images/nav/suggestion.jpg" />
-				</div>
-			</div>
-
-			<div class="nav-liste">
-				<li>
-					<h3>Accueil</h3>
-					<p>la savonnerie</p>
+	<nav id="nav">
+		<div id="simple">
+			<ul class="quicknav">
+				<li
+					v-for="(titre, i) in this.quickNav"
+					:key="i"
+					@click="redirect(i)"
+				>
+					{{ titre }}
 				</li>
-				<li>
-					<h3>Saponification</h3>
-					<p>Création du savon Fanny</p>
-					<p>La saponification</p>
-				</li>
-				<li>
-					<h3>Savons</h3>
-					<p>les savons doux</p>
-					<p>le savon ménager César</p>
-					<p>témoignages</p>
-				</li>
-				<li>
-					<h3>Disponible</h3>
-					<p>Boutiques, marchés & autre</p>
-					<p>Evenements</p>
-				</li>
-				<li>
-					<h3>Contact</h3>
-					<p>Contacter la savonnière</p>
-					<p>Foire aux Questions</p>
-				</li>
+			</ul>
+			<div class="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
 			</div>
 		</div>
-	</div>
+
+		<div id="extended">
+			<div id="extended-nav-content">
+				<div class="left-display">
+					<div class="presentation-images">
+						<img class="in" src="../images/nav/suggestion.jpg" />
+					</div>
+				</div>
+
+				<div class="nav-liste">
+					<li>
+						<h3>Accueil</h3>
+						<p>la savonnerie</p>
+					</li>
+					<li>
+						<h3>Saponification</h3>
+						<p>Création du savon Fanny</p>
+						<p>La saponification</p>
+					</li>
+					<li>
+						<h3>Savons</h3>
+						<p>les savons doux</p>
+						<p>le savon ménager César</p>
+						<p>témoignages</p>
+					</li>
+					<li>
+						<h3>Disponible</h3>
+						<p>Boutiques, marchés & autre</p>
+						<p>Evenements</p>
+					</li>
+					<li>
+						<h3>Contact</h3>
+						<p>Contacter la savonnière</p>
+						<p>Foire aux Questions</p>
+					</li>
+				</div>
+			</div>
+		</div>
+	</nav>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { PageEventOrigin, SITEMAP, redirection } from '../scripts/pageControl'
+import Vuex, { Store, mapActions } from 'vuex'
+import {
+	$,
+	$$,
+	setCss,
+	PageEventOrigin,
+	SITEMAP,
+	redirection
+} from '../scripts/pageControl'
 export default Vue.extend({
-	mounted: () => {
-		//A changer (evidemment)
-		const baseUrl =
-			'https://raw.githubusercontent.com/victorazevedo-me/savonnerielacurieuse/master/src/images/nav/'
-		const images = [
-			'suggestion.jpg',
-			'cure.jpg',
-			'feuilles.jpg',
-			'chignore.jpg',
-			'chignore.jpg'
+	data: () => ({
+		quickNav: [
+			'accueil',
+			'saponification',
+			'savons',
+			'disponible',
+			'contact'
 		]
-		const navliste = document.querySelectorAll('.nav-liste li')!
-		const presentation = document.querySelector('.presentation-images')!
-		const leftDisplay = document.querySelector('.left-display')!
-		let waitForAnimation = false
-		let lastHover = 0
-		let hoverTimeout = 0
+	}),
 
-		function selectionCategorie(li: Element, i: number) {
-			if (lastHover !== i && images.length > i) {
-				//
-				//borders pour li
-				li.classList.add('selected')
-				navliste[lastHover].classList.remove('selected')
+	methods: {
+		redirect(id: number, inner = 0) {
+			$('#nav')!.classList.remove('extended')
+			redirection(
+				inner === 0
+					? PageEventOrigin.homepageScroll
+					: PageEventOrigin.navSubCategory,
+				id,
+				inner
+			)
+		},
 
-				//change anim, change last
-				if (waitForAnimation) clearTimeout(hoverTimeout)
-				lastHover = i
-				waitForAnimation = true
+		quickNavScrollDisplay() {
+			window.addEventListener('scroll', function(ev) {
+				const dom = $('.quicknav')!
+				const currentScroll = window.pageYOffset
+				const top = currentScroll === 0
+				const bottom =
+					currentScroll + 100 >
+					document.body.clientHeight - window.innerHeight
 
-				//si pas mobile
-				if (
-					!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-						navigator.userAgent
-					)
-				) {
-					//changement de poster
-					const currentPoster = presentation.querySelector('img')!
-					const newPoster = document.createElement('img')!
-					newPoster.src = baseUrl + images[i]
-					currentPoster.classList.replace('in', 'out')
+				setCss(dom, 'opacity:' + (top || bottom ? 1 : 0))
+			})
+		},
 
-					hoverTimeout = setTimeout(() => {
-						leftDisplay.className = 'left-display presente'
+		extended() {
+			//A changer (evidemment)
+			const baseUrl =
+				'https://raw.githubusercontent.com/victorazevedo-me/savonnerielacurieuse/master/src/images/nav/'
+			const images = [
+				'suggestion.jpg',
+				'cure.jpg',
+				'feuilles.jpg',
+				'chignore.jpg',
+				'chignore.jpg'
+			]
+			const navliste = $$('.nav-liste li')!
+			const presentation = $('.presentation-images')!
+			const leftDisplay = $('.left-display')!
+			let waitForAnimation = false
+			let lastHover = 0
+			let hoverTimeout = 0
 
-						currentPoster.remove()
-						presentation.appendChild(newPoster)
-						waitForAnimation = false
+			function selectionCategorie(li: Element, i: number) {
+				if (lastHover !== i && images.length > i) {
+					//
+					//borders pour li
+					li.classList.add('selected')
+					navliste[lastHover].classList.remove('selected')
 
-						setTimeout(() => newPoster.classList.add('in'), 50)
-					}, 500)
+					//change anim, change last
+					if (waitForAnimation) clearTimeout(hoverTimeout)
+					lastHover = i
+					waitForAnimation = true
+
+					//si pas mobile
+					if (
+						!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+							navigator.userAgent
+						)
+					) {
+						//changement de poster
+						const currentPoster = presentation.querySelector('img')!
+						const newPoster = document.createElement('img')!
+						newPoster.src = baseUrl + images[i]
+						currentPoster.classList.replace('in', 'out')
+
+						hoverTimeout = setTimeout(() => {
+							leftDisplay.className = 'left-display presente'
+
+							currentPoster.remove()
+							presentation.appendChild(newPoster)
+							waitForAnimation = false
+
+							setTimeout(() => newPoster.classList.add('in'), 50)
+						}, 500)
+					}
 				}
 			}
-		}
 
-		//initialisation des categories
-		selectionCategorie(navliste[SITEMAP.indexes()[0]], SITEMAP.indexes()[0])
+			//initialisation des categories
+			selectionCategorie(
+				navliste[SITEMAP.indexes()[0]],
+				SITEMAP.indexes()[0]
+			)
 
-		//les clicks des titres
-		document.querySelectorAll('.nav-liste h3').forEach((a, i) =>
-			a.addEventListener('click', e => {
-				//redirige
-				redirection(PageEventOrigin.homepageScroll, i)
+			//les clicks des titres
+			$$('.nav-liste h3').forEach((a, i) =>
+				a.addEventListener('click', e => {
+					this.redirect(i)
+				})
+			)
 
-				//quitte le nav extended
-				//extendedNav.hide()
-			})
-		)
+			//events de li
+			navliste.forEach((li, i) => {
+				li.querySelectorAll('p').forEach(p => {
+					p.addEventListener('click', e => {
+						let elem: any = p
+						let counter = 0
 
-		//events de li
-		navliste.forEach((li, i) => {
-			li.querySelectorAll('p').forEach(p => {
-				p.addEventListener('click', e => {
-					let elem: any = p
-					let counter = 0
+						while (elem.tagName !== 'H3') {
+							elem = elem.previousElementSibling
+							counter += 1
+						}
 
-					while (elem.tagName !== 'H3') {
-						elem = elem.previousElementSibling
-						counter += 1
-					}
+						//redirige
+						this.redirect(i, counter)
+					})
+				})
 
-					//redirige
-					redirection(PageEventOrigin.navSubCategory, i, counter)
-
-					//quitte le nav extended
-					//extendedNav.hide()
+				li.addEventListener('mouseover', () => {
+					selectionCategorie(li, i)
 				})
 			})
+		}
+	},
 
-			li.addEventListener('mouseover', () => {
-				selectionCategorie(li, i)
-			})
+	mounted() {
+		this.quickNavScrollDisplay()
+		this.extended()
+
+		$('.hamburger')!.addEventListener('click', e => {
+			$('nav')!.classList.toggle('extended')
 		})
 	}
 })

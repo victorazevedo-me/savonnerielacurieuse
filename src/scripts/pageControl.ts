@@ -1,10 +1,11 @@
+import { accueilSwipe } from '../scripts/accueilControl'
+import Nav from '../components/nav.vue'
 import Index from '../components/index.vue'
 import Page01 from '../components/un.vue'
 import Page02 from '../components/deux.vue'
 import Page03 from '../components/trois.vue'
 import Page04 from '../components/quatre.vue'
 import Page05 from '../components/cinq.vue'
-import { accueilSwipe } from './accueilControl'
 import Vue from 'vue'
 
 export const $ = (g: string) => document.querySelector(g)
@@ -75,12 +76,8 @@ export const SITEMAP = {
 		return result
 	},
 
-	pushState: (pathArray: number[]) => {
-		window.history.replaceState(
-			{},
-			'',
-			SITEMAP.data[pathArray[0]][pathArray[1]]
-		)
+	pushState: (arr: number[]) => {
+		window.history.pushState({}, '', SITEMAP.data[arr[0]][arr[1]])
 	}
 }
 
@@ -100,10 +97,12 @@ export function redirection(
 			new Vue({
 				el: '#contenu-accueil',
 				template: '<Index />',
-				components: { Index },
-				mounted: () => {
-					accueilSwipe(main)
-				}
+				components: { Index }
+			})
+			new Vue({
+				el: '#nav',
+				template: '<Nav />',
+				components: { Nav }
 			})
 		} else {
 			const pages = [Page01, Page02, Page03, Page04, Page05]
@@ -125,10 +124,9 @@ export function redirection(
 
 		const out = which === PageEventOrigin.initialisation ? main : newMain
 		const inn = which === PageEventOrigin.initialisation ? inner : newInner
-		const dir = SITEMAP.data[out][inn]
 
 		if (inn > 0) {
-			const titre = $(`#` + SITEMAP.data[out][inn])!
+			const titre = $(`#${SITEMAP.data[out][inn]}`)!
 			const scroll = bound(titre).y
 			window.scrollBy({ left: 0, top: scroll - 100, behavior: 'smooth' })
 		}
@@ -141,10 +139,9 @@ export function redirection(
 		openPage(main, subCat)
 	} else {
 		SITEMAP.pushState([newMain, newInner])
-		accueilSwipe(newMain, main)
 		openPage(newMain, () => {
 			window.scrollTo(0, 0)
-			//si c'est un sous-titre, scroll jusqu'a
+			accueilSwipe(newMain)
 			if (which === PageEventOrigin.navSubCategory) {
 				subCat()
 			}

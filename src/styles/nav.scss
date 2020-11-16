@@ -1,48 +1,13 @@
 nav {
 	position: fixed;
-	display: flex;
-	top: 0;
-	left: 0;
 	width: 100%;
 	z-index: 10;
-	padding-top: 60px;
-	justify-content: space-evenly;
-	mix-blend-mode: difference;
 
-	.quicknav {
-		color: white;
-		display: flex;
-		align-items: center;
-		transition: opacity 0.5s;
-
-		&.hidden {
-			opacity: 0;
+	&.extended {
+		.quicknav {
+			visibility: hidden;
 		}
-
-		span {
-			margin: 0 20px;
-		}
-	}
-
-	.hamburger {
-		width: 20px;
-		height: 16px;
-		padding: 0.5em;
-		display: flex;
-		justify-content: space-between;
-		flex-direction: column;
-		cursor: pointer;
-		transition: transform 0.5s;
-
-		span {
-			width: 100%;
-			padding: 1px;
-			background-color: white;
-			border-radius: 10px;
-			transition: transform 0.5s;
-		}
-
-		&.clicked {
+		.hamburger {
 			transform: translateX(-5px);
 
 			span {
@@ -60,144 +25,194 @@ nav {
 				}
 			}
 		}
-	}
-}
-
-#extended-nav {
-	position: fixed;
-	top: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: -1;
-	opacity: 0;
-	background-color: black;
-	color: white;
-	overflow: hidden;
-
-	transition: opacity 0.5s;
-
-	&.visible {
-		opacity: 1;
+		#extended {
+			opacity: 1;
+			visibility: visible;
+		}
 	}
 
-	#extended-nav-content {
-		max-width: 1600px;
-		height: 100vh;
-		margin: auto;
+	#simple {
 		display: flex;
-		justify-content: space-around;
 		align-items: center;
+		justify-content: space-between;
+		margin: 2em 4em;
 
-		.left-display {
-			> div {
-				display: block;
-				width: 400px;
-				max-width: 30vw;
+		.quicknav {
+			color: white;
+			list-style: none;
+			display: flex;
+			justify-content: space-evenly;
+			padding: 0;
+			margin: 0 60px 0 0;
+			transition: opacity 0.5s;
+			transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+			li {
+				margin: 0 40px;
+				font-size: 20px;
+				font-weight: lighter;
+				cursor: pointer;
 			}
+		}
 
-			&.presente {
-				.presentation-images {
-					display: block;
-				}
+		.hamburger {
+			width: 20px;
+			height: 16px;
+			padding: 0.5em;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			cursor: pointer;
+			transition: transform 0.5s;
 
-				.contact-infos {
-					display: none;
-				}
+			span {
+				width: 100%;
+				padding: 1px;
+				background-color: white;
+				border-radius: 10px;
+				transition: transform 0.5s;
 			}
+		}
+	}
 
-			&.contacte {
-				.presentation-images {
-					display: none;
-				}
+	#extended {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: -1;
+		opacity: 0;
+		background-color: black;
+		color: white;
+		overflow: hidden;
+		visibility: hidden;
 
-				.contact-infos {
-					display: block;
-				}
-			}
+		transition: opacity 0.5s;
 
-			.presentation-images {
-				img {
-					width: 100%;
-					opacity: 0;
-					transform: translateY(-50px);
-					transition: opacity 0.5s, transform 0.5s;
+		&.visible {
+			opacity: 1;
+		}
 
-					&.out {
-						transform: translateY(50px);
-						opacity: 0;
-						transition: opacity 0.5s, transform 0.5s;
-					}
+		#extended-nav-content {
+			max-width: 1600px;
+			height: 100vh;
+			margin: auto;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
 
-					&.in {
-						transform: translateY(0px);
-						opacity: 1;
-						transition: opacity 0.5s, transform 0.5s;
-					}
-				}
-			}
-
-			.contact-infos {
-				display: none;
-
+			.left-display {
 				> div {
-					overflow: hidden;
+					display: block;
+					width: 400px;
+					max-width: 30vw;
+				}
 
-					p {
-						font-size: 30px;
+				&.presente {
+					.presentation-images {
 						display: block;
-						transform: translateY(-100%);
-						transition: transform 0.5s;
-						margin: 0;
-						line-height: 1em;
+					}
+
+					.contact-infos {
+						display: none;
+					}
+				}
+
+				&.contacte {
+					.presentation-images {
+						display: none;
+					}
+
+					.contact-infos {
+						display: block;
+					}
+				}
+
+				.presentation-images {
+					img {
+						width: 100%;
+						opacity: 0;
+						transform: translateY(-50px);
+						transition: opacity 0.5s, transform 0.5s;
+
+						&.out {
+							transform: translateY(50px);
+							opacity: 0;
+							transition: opacity 0.5s, transform 0.5s;
+						}
 
 						&.in {
-							transform: translateY(0%);
+							transform: translateY(0px);
+							opacity: 1;
+							transition: opacity 0.5s, transform 0.5s;
+						}
+					}
+				}
+
+				.contact-infos {
+					display: none;
+
+					> div {
+						overflow: hidden;
+
+						p {
+							font-size: 30px;
+							display: block;
+							transform: translateY(-100%);
+							transition: transform 0.5s;
+							margin: 0;
+							line-height: 1em;
+
+							&.in {
+								transform: translateY(0%);
+							}
 						}
 					}
 				}
 			}
-		}
 
-		.nav-liste {
-			display: grid;
-			grid-template-columns: 400px 400px;
-		}
-
-		li {
-			border: 2px solid transparent;
-			list-style: none;
-			padding: 3vh;
-			margin: 1vh;
-			transition: border 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-
-			&.selected {
-				background-color: #fff1;
-				border-color: #444;
-				border-radius: 4px;
+			.nav-liste {
+				display: grid;
+				grid-template-columns: 400px 400px;
 			}
 
-			h3,
-			p {
-				margin: 0;
-				cursor: pointer;
-				line-height: 1em;
-				transition: opacity 0.5s ease-out;
+			li {
+				border: 2px solid transparent;
+				list-style: none;
+				padding: 3vh;
+				margin: 1vh;
+				transition: border 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
-				&:hover {
-					opacity: 1;
+				&.selected {
+					background-color: #fff1;
+					border-color: #444;
+					border-radius: 4px;
 				}
-			}
 
-			h3 {
-				font-size: 45px;
-				margin-bottom: 10px;
-				opacity: 0.7;
-			}
+				h3,
+				p {
+					margin: 0;
+					cursor: pointer;
+					line-height: 1em;
+					transition: opacity 0.5s ease-out;
 
-			p {
-				margin: 0.5vh 1vh;
-				font-size: 25px;
-				opacity: 0.5;
+					&:hover {
+						opacity: 1;
+					}
+				}
+
+				h3 {
+					font-size: 45px;
+					margin-bottom: 10px;
+					opacity: 0.7;
+				}
+
+				p {
+					margin: 0.5vh 1vh;
+					font-size: 25px;
+					opacity: 0.5;
+				}
 			}
 		}
 	}
