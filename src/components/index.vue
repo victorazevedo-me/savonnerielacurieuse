@@ -14,11 +14,6 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import Reveal from 'scrollreveal'
-import SimpleParallax from 'simple-parallax-js'
-import { $, $$, bound } from '../scripts/pageControl'
-import { accueilSwipe } from '../scripts/accueilControl'
-
 export default Vue.extend({
 	methods: {
 		backgroundParallax() {
@@ -32,10 +27,6 @@ export default Vue.extend({
 				)
 			})
 		}
-	},
-
-	mounted() {
-		accueilSwipe(0)
 	}
 })
 </script>

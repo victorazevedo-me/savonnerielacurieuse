@@ -76,7 +76,7 @@ export default Vue.extend({
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	z-index: 8;
+	z-index: 12;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -94,7 +94,6 @@ export default Vue.extend({
 		flex-direction: column;
 		align-items: center;
 		background: white;
-		border-radius: 20px;
 		padding: 1em;
 
 		.fermer {
@@ -108,8 +107,8 @@ export default Vue.extend({
 		.inputs {
 			display: flex;
 			flex-direction: column;
-			margin: 1em;
-			width: 80%;
+			margin: 10px 40px;
+			width: calc(100% - 80px);
 
 			h4 {
 				margin: 0;
@@ -119,10 +118,8 @@ export default Vue.extend({
 			textarea {
 				font-size: 16px;
 				resize: vertical;
-				border: 1px solid #ddd;
-				border-radius: 1em;
+				border: none;
 				padding: 10px;
-				margin-top: 1em;
 			}
 		}
 
@@ -131,17 +128,20 @@ export default Vue.extend({
 
 			button {
 				margin: 0 1em;
-				padding: 5px;
-				min-width: 200px;
-				border: 1px solid #111;
+				padding: 5px 20px;
+				font-size: 16px;
 
 				&.suppr {
-					color: hsl(357, 75%, 51%);
-					border: 1px solid hsl(357, 75%, 51%);
+					background: hsl(357, 75%, 51%);
+					color: white;
+				}
+				&.new {
+					background: hsl(187, 71%, 34%);
+					color: white;
 				}
 				&.modif {
-					color: hsl(128, 71%, 34%);
-					border: 1px solid hsl(128, 71%, 34%);
+					background: hsl(128, 71%, 34%);
+					color: white;
 				}
 			}
 		}

@@ -35,23 +35,31 @@ nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin: 2em 4em;
+		margin: 1em 4em;
 
 		.quicknav {
+			position: relative;
 			color: white;
 			list-style: none;
 			display: flex;
 			justify-content: space-evenly;
-			padding: 0;
-			margin: 0 60px 0 0;
+			padding: 20px 10px;
+			margin-right: 60px;
 			transition: opacity 0.5s;
 			transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
 			li {
-				margin: 0 40px;
+				margin: 0 2vw;
 				font-size: 20px;
 				font-weight: lighter;
+				font-style: italic;
 				cursor: pointer;
+			}
+
+			&.bottom {
+				background-color: white;
+				overflow: hidden;
+				color: black;
 			}
 		}
 
@@ -70,7 +78,7 @@ nav {
 				padding: 1px;
 				background-color: white;
 				border-radius: 10px;
-				transition: transform 0.5s;
+				transition: transform 0.5s, background-color 0.2s;
 			}
 		}
 	}
@@ -109,26 +117,6 @@ nav {
 					max-width: 30vw;
 				}
 
-				&.presente {
-					.presentation-images {
-						display: block;
-					}
-
-					.contact-infos {
-						display: none;
-					}
-				}
-
-				&.contacte {
-					.presentation-images {
-						display: none;
-					}
-
-					.contact-infos {
-						display: block;
-					}
-				}
-
 				.presentation-images {
 					img {
 						width: 100%;
@@ -146,27 +134,6 @@ nav {
 							transform: translateY(0px);
 							opacity: 1;
 							transition: opacity 0.5s, transform 0.5s;
-						}
-					}
-				}
-
-				.contact-infos {
-					display: none;
-
-					> div {
-						overflow: hidden;
-
-						p {
-							font-size: 30px;
-							display: block;
-							transform: translateY(-100%);
-							transition: transform 0.5s;
-							margin: 0;
-							line-height: 1em;
-
-							&.in {
-								transform: translateY(0%);
-							}
 						}
 					}
 				}
@@ -203,14 +170,14 @@ nav {
 				}
 
 				h3 {
-					font-size: 45px;
+					font-size: 40px;
 					margin-bottom: 10px;
 					opacity: 0.7;
 				}
 
 				p {
 					margin: 0.5vh 1vh;
-					font-size: 25px;
+					font-size: 22px;
 					opacity: 0.5;
 				}
 			}

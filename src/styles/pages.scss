@@ -477,6 +477,8 @@ $titrepetit: 1.25em;
 				padding-bottom: 0;
 
 				.titre-event {
+					display: inline-block;
+					text-align: left;
 					padding: 10px 20px;
 					background-color: #fce686;
 					margin: 0 0 10px -20px;

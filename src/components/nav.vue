@@ -75,7 +75,9 @@ export default Vue.extend({
 			'savons',
 			'disponible',
 			'contact'
-		]
+		],
+		isExtended: false,
+		belowAccueil: false
 	}),
 
 	methods: {
@@ -90,17 +92,31 @@ export default Vue.extend({
 			)
 		},
 
-		quickNavScrollDisplay() {
-			window.addEventListener('scroll', function(ev) {
-				const dom = $('.quicknav')!
-				const currentScroll = window.pageYOffset
-				const top = currentScroll === 0
-				const bottom =
-					currentScroll + 100 >
-					document.body.clientHeight - window.innerHeight
+		changeHamburgerColor() {
+			const isExtended = this.$data.isExtended
+			const belowAccueil = this.$data.belowAccueil
+			const color = isExtended || !belowAccueil ? '#fff' : '#111'
 
-				setCss(dom, 'opacity:' + (top || bottom ? 1 : 0))
-			})
+			$$('.hamburger span')!.forEach(e =>
+				setCss(e, 'background-color:' + color)
+			)
+		},
+
+		quickNavScrollDisplay() {
+			const dom = $('.quicknav')!
+			const currentScroll = window.pageYOffset
+			const top = currentScroll === 0
+			const bottom =
+				currentScroll + 100 >
+				document.body.clientHeight - window.innerHeight
+
+			if (bottom) {
+				dom.classList.add('bottom')
+			} else {
+				dom.classList.remove('bottom')
+			}
+
+			setCss(dom, 'opacity:' + (top || bottom ? 1 : 0))
 		},
 
 		extended() {
@@ -196,10 +212,19 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.quickNavScrollDisplay()
 		this.extended()
 
+		window.addEventListener('scroll', e => {
+			this.belowAccueil =
+				$('#contenu-accueil')!.clientHeight < window.pageYOffset
+
+			this.changeHamburgerColor()
+			this.quickNavScrollDisplay()
+		})
+
 		$('.hamburger')!.addEventListener('click', e => {
+			this.isExtended = !this.isExtended
+			this.changeHamburgerColor()
 			$('nav')!.classList.toggle('extended')
 		})
 	}

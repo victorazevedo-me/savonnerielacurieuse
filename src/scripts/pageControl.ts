@@ -137,6 +137,7 @@ export function redirection(
 	if (which === PageEventOrigin.initialisation) {
 		openPage()
 		openPage(main, subCat)
+		accueilSwipe(main)
 	} else {
 		SITEMAP.pushState([newMain, newInner])
 		openPage(newMain, () => {

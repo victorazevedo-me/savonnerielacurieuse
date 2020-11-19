@@ -1,24 +1,4 @@
 @media (max-width: 1300px) {
-	#extended-nav {
-		#extended-nav-content {
-			.nav-liste {
-				grid-template-columns: 300px 300px;
-
-				li {
-					padding: 2vh;
-
-					h3 {
-						font-size: 35px;
-					}
-
-					p {
-						font-size: 20px;
-					}
-				}
-			}
-		}
-	}
-
 	.page {
 		&.deux {
 			.deux-colonnes {
