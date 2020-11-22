@@ -1,35 +1,33 @@
 {
-  "name": "savonnerielacurieuse",
-  "version": "1.0.0",
-  "description": "Site web de présentation pour la Savonnerie La Curieuse",
-  "main": "index.ts",
-  "scripts": {
-    "start": "",
-    "build": ""
-  },
-  "author": "Victor Azevedo",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/hammerjs": "^2.0.36",
-    "@types/scrollreveal": "0.0.6",
-    "@types/vue": "^2.0.0",
-    "@vue/component-compiler-utils": "^3.2.0",
-    "sass": "^1.26.12",
-    "typescript": "^4.0.2",
-    "vue-template-compiler": "^2.6.12"
-  },
-  "dependencies": {
-    "@types/animejs": "^3.1.2",
-    "@types/leaflet": "^1.5.19",
-    "animejs": "^3.2.1",
-    "hammerjs": "^2.0.8",
-    "leaflet": "^1.7.1",
-    "scrollreveal": "^4.0.7",
-    "simple-parallax-js": "^5.6.2",
-    "vue": "^2.6.12",
-    "vue-hot-reload-api": "^2.3.4"
-  },
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.esm.js"
-  }
+	"name": "savonnerielacurieuse",
+	"version": "1.0.0",
+	"description": "Site web de présentation pour la Savonnerie La Curieuse",
+	"main": "index.ts",
+	"scripts": {
+		"start": "",
+		"build": ""
+	},
+	"author": "Victor Azevedo",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/scrollreveal": "0.0.6",
+		"@types/vue": "^2.0.0",
+		"@vue/component-compiler-utils": "^3.2.0",
+		"sass": "^1.26.12",
+		"typescript": "^4.0.2",
+		"vue-template-compiler": "^2.6.12"
+	},
+	"dependencies": {
+		"@types/animejs": "^3.1.2",
+		"@types/leaflet": "^1.5.19",
+		"animejs": "^3.2.1",
+		"leaflet": "^1.7.1",
+		"scrollreveal": "^4.0.7",
+		"simple-parallax-js": "^5.6.2",
+		"vue": "^2.6.12",
+		"vue-hot-reload-api": "^2.3.4"
+	},
+	"alias": {
+		"vue": "./node_modules/vue/dist/vue.esm.js"
+	}
 }
