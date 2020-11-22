@@ -1,7 +1,27 @@
-import Reveal from 'scrollreveal'
+import anime from 'animejs'
 import { $, $$ } from '../scripts/pageControl'
 
-export function accueilSwipe(i: number, lasti?: number) {
+export function accueilSwipe(i: number) {
+	const texts = [
+		[['Savonnerie', 'La Curieuse'], ['création de savons écologiques']],
+		[['la saponification', 'à froid'], ['']],
+		[['César et les', 'savons doux'], ['']],
+		[['Où les', 'trouver ?'], ['']],
+		[['Contact', '& faq'], ['']]
+	]
+
+	function findLastIndex() {
+		const html = $('.titre h1')!.innerHTML
+		const stripped = html.replace(/<[^>]*>?/gm, ',')
+		const array = stripped?.split(',')
+
+		texts.map((t, i) => {
+			if (array[0] === t[0][0]) return i
+		})
+
+		return 0
+	}
+
 	function moveBackgrounds() {
 		// init vals
 		const wrapper = $('.background-wrapper')!
@@ -22,27 +42,47 @@ export function accueilSwipe(i: number, lasti?: number) {
 	}
 
 	function updateTitle() {
-		const texts = [
-			[['Savonnerie', 'La Curieuse'], ['création de savons écologiques']],
-			[['la saponification', 'à froid'], ['']],
-			[['César et les', 'savons doux'], ['']],
-			[['Où les', 'trouver ?'], ['']],
-			[['Contact', '& faq'], ['']]
-		]
+		const titre = document.createElement('h1')
+		const soustitre = document.createElement('p')
 
-		//for 'above' & 'below' titles
-		//add title & subtitle
-		$('.titre h1')!.innerHTML = texts[i][0].reduce(
+		//add text
+		titre.innerHTML = texts[i][0].reduce(
 			(a, b) => `${a}<br />${b}` //add line break
 		)
-		$('.titre p')!.innerHTML = texts[i][1][0]
+		soustitre.innerHTML = texts[i][1][0]
 
-		Reveal().reveal('.titre', {
-			origin: lasti && lasti < i ? 'left' : 'right',
-			duration: 600,
-			easing: 'ease-out',
-			distance: '-100px'
+		//add animations
+		anime({
+			targets: [titre, soustitre],
+			opacity: [
+				{ value: 0, duration: 0 },
+				{
+					value: 1,
+					duration: 500,
+					easing: 'linear'
+				}
+			],
+			translateX: [
+				{
+					value: findLastIndex() < i ? 50 : -50,
+					duration: 0,
+					delay: 0
+				},
+				{
+					value: 0,
+					duration: 2000,
+					easing: 'easeOutElastic'
+				}
+			],
+			delay: anime.stagger(500)
 		})
+
+		//set new elements
+		$('.titre h1')?.remove()
+		$('.titre p')?.remove()
+
+		$('.titre')?.appendChild(titre)
+		$('.titre')?.appendChild(soustitre)
 	}
 
 	moveBackgrounds()
