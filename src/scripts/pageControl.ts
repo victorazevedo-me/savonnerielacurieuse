@@ -8,6 +8,10 @@ import Page04 from '../components/quatre.vue'
 import Page05 from '../components/cinq.vue'
 import Vue from 'vue'
 
+/*
+ * DOM UTILITIES
+ */
+
 export const $ = (g: string) => document.querySelector(g)
 export const $$ = (g: string) => document.querySelectorAll(g)
 
@@ -52,6 +56,10 @@ export function overlayPosition(overlay: string, target: string, posY: number) {
 	}
 }
 
+/*
+ * PAGE REDIRECTION
+ */
+
 export const SITEMAP = {
 	data: [
 		['/', 'la-savonnerie'],
@@ -92,7 +100,7 @@ export function redirection(
 	newMain: number = 0,
 	newInner: number = 0
 ) {
-	function openPage(i?: number, mountCallback: Function = () => {}) {
+	function openPage(i?: number, mountCallback?: Function) {
 		if (i === undefined) {
 			new Vue({
 				el: '#contenu-accueil',
@@ -113,7 +121,7 @@ export function redirection(
 				template: '<IndexedPage />',
 				components: { IndexedPage },
 				mounted: () => {
-					mountCallback()
+					mountCallback ? mountCallback() : ''
 				}
 			})
 		}
