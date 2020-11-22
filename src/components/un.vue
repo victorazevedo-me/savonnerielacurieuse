@@ -24,7 +24,7 @@
 			<div>
 				<img
 					class="pres-img"
-					src="../images/accueil/louise-knight.jpg"
+					src="../images/accueil/saponification.jpg"
 				/>
 			</div>
 		</div>

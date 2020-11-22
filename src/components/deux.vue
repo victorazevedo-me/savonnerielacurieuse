@@ -21,55 +21,11 @@
 
 				<div id="imgwrap">
 					<img
-						src="../images/fabrication/bain_mari.jpg"
-						alt="bain mari"
-						draggable="false"
-						class="focused"
-					/>
-					<img
-						src="../images/fabrication/pesee.jpg"
-						alt="pesee"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/melange.jpg"
-						alt="melange"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/surgraissage.jpg"
-						alt="surgraissage"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/mixeur.jpg"
-						alt="mixeur"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/petales.jpg"
-						alt="petales"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/coulee.jpg"
-						alt="coulee"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/deco.jpg"
-						alt="deco"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/decoupe.jpg"
-						alt="decoupe"
-						draggable="false"
-					/>
-					<img
-						src="../images/fabrication/armoire.jpg"
-						alt="armoire"
-						draggable="false"
+						v-for="(img, i) in images"
+						:key="i"
+						:src="img"
+						:class="i === 0 ? 'focused' : ''"
+						defer
 					/>
 				</div>
 
@@ -157,6 +113,7 @@ import Vue from 'vue'
 import VueFooter from './footer.vue'
 import ScrollReveal from 'scrollreveal'
 import SimpleParallax from 'simple-parallax-js'
+import fabrImgs from '../images/fabrication/*.jpg'
 import {
 	$,
 	$$,
@@ -169,6 +126,21 @@ import {
 export default Vue.extend({
 	template: '<VueFooter/>',
 	components: { VueFooter },
+
+	data: () => ({
+		images: [
+			fabrImgs.bain_mari,
+			fabrImgs.pesee,
+			fabrImgs.melange,
+			fabrImgs.mixeur,
+			fabrImgs.surgraissage,
+			fabrImgs.petales,
+			fabrImgs.coulee,
+			fabrImgs.deco,
+			fabrImgs.decoupe,
+			fabrImgs.armoire
+		]
+	}),
 
 	methods: {
 		fabrication() {

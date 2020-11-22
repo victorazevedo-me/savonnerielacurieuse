@@ -58,7 +58,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import Vuex, { Store, mapActions } from 'vuex'
+import navImgs from '../images/nav/*.jpg'
 import {
 	$,
 	$$,
@@ -67,6 +67,7 @@ import {
 	SITEMAP,
 	redirection
 } from '../scripts/pageControl'
+
 export default Vue.extend({
 	data: () => ({
 		quickNav: [
@@ -77,19 +78,29 @@ export default Vue.extend({
 			'contact'
 		],
 		isExtended: false,
+		isAnimating: false,
 		belowAccueil: false
 	}),
 
 	methods: {
+		toggleAnimState(duration: number) {
+			this.$data.isAnimating = true
+			setTimeout(() => (this.$data.isAnimating = false), duration)
+		},
+
 		redirect(id: number, inner = 0) {
-			$('#nav')!.classList.remove('extended')
-			redirection(
-				inner === 0
-					? PageEventOrigin.homepageScroll
-					: PageEventOrigin.navSubCategory,
-				id,
-				inner
-			)
+			if (!this.isAnimating) {
+				$('#nav')!.classList.remove('extended')
+				redirection(
+					inner === 0
+						? PageEventOrigin.homepageScroll
+						: PageEventOrigin.navSubCategory,
+					id,
+					inner
+				)
+
+				this.toggleAnimState(1200)
+			}
 		},
 
 		changeHamburgerColor() {
@@ -121,14 +132,12 @@ export default Vue.extend({
 
 		extended() {
 			//A changer (evidemment)
-			const baseUrl =
-				'https://raw.githubusercontent.com/victorazevedo-me/savonnerielacurieuse/master/src/images/nav/'
 			const images = [
-				'suggestion.jpg',
-				'cure.jpg',
-				'feuilles.jpg',
-				'chignore.jpg',
-				'chignore.jpg'
+				navImgs.suggestion,
+				navImgs.cure,
+				navImgs.feuilles,
+				navImgs.chignore,
+				navImgs.chignore
 			]
 			const navliste = $$('.nav-liste li')!
 			const presentation = $('.presentation-images')!
@@ -158,7 +167,7 @@ export default Vue.extend({
 						//changement de poster
 						const currentPoster = presentation.querySelector('img')!
 						const newPoster = document.createElement('img')!
-						newPoster.src = baseUrl + images[i]
+						newPoster.src = images[i]
 						currentPoster.classList.replace('in', 'out')
 
 						hoverTimeout = setTimeout(() => {
@@ -216,7 +225,7 @@ export default Vue.extend({
 
 		window.addEventListener('scroll', e => {
 			this.belowAccueil =
-				$('#contenu-accueil')!.clientHeight < window.pageYOffset
+				$('#contenu-accueil')!.clientHeight - 100 < window.pageYOffset
 
 			this.changeHamburgerColor()
 			this.quickNavScrollDisplay()

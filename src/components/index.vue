@@ -6,8 +6,8 @@
 
 		<div class="accueil">
 			<div class="titre">
-				<h1>Savonnerie<br />La Curieuse</h1>
-				<p>création de savons écologiques</p>
+				<h1></h1>
+				<p></p>
 			</div>
 		</div>
 	</section>

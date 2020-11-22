@@ -95,34 +95,9 @@ main {
 			background-color: wheat;
 			background-size: cover;
 			background-position-y: bottom;
-			transition: opacity 1s;
 
 			&.front {
 				z-index: 1;
-			}
-
-			&.fadeout {
-				opacity: 0;
-			}
-
-			&.bg0 {
-				background-image: url('../images/accueil/louis-hoang.jpg');
-			}
-
-			&.bg1 {
-				background-image: url('../images/accueil/louise-knight.jpg');
-			}
-
-			&.bg2 {
-				background-image: url('../images/accueil/ritvik-singh.jpg');
-			}
-
-			&.bg3 {
-				background-image: url('../images/accueil/anshu.jpg');
-			}
-
-			&.bg4 {
-				background-image: url('../images/accueil/robert.jpg');
 			}
 		}
 
