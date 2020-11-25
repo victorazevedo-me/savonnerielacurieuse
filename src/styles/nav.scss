@@ -38,7 +38,6 @@ nav {
 		margin: 1em 4em;
 
 		.quicknav {
-			position: relative;
 			color: white;
 			list-style: none;
 			display: flex;
@@ -46,18 +45,29 @@ nav {
 			padding: 20px 10px;
 			margin-right: 60px;
 			user-select: none;
-			transition: opacity 0.5s;
-			transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+			transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
 
 			li {
-				margin: 0 2vw;
+				position: relative;
+				padding: 0 1vw;
+				margin: 0 1vw;
 				font-size: 20px;
 				font-weight: lighter;
 				font-style: italic;
 				cursor: pointer;
+				transition: all 0.2s;
+
+				&:hover {
+					opacity: 0.5;
+				}
+
+				&:active {
+					transform: scale(0.9);
+				}
 			}
 
 			&.bottom {
+				transition: all 0.2s;
 				background-color: white;
 				overflow: hidden;
 				color: black;
@@ -95,7 +105,6 @@ nav {
 		background-color: black;
 		color: white;
 		overflow: hidden;
-		visibility: hidden;
 
 		transition: opacity 0.5s;
 

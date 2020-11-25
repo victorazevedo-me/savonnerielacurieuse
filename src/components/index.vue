@@ -14,19 +14,5 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({
-	methods: {
-		backgroundParallax() {
-			window.addEventListener('scroll', function(ev) {
-				const bg = document.querySelector('.background.front')!
-				const windowY = document.body.getBoundingClientRect().y * -1
-
-				bg.setAttribute(
-					'style',
-					`transform: translateY(-${(windowY / 1.8).toFixed(1)}px)`
-				)
-			})
-		}
-	}
-})
+export default Vue.extend({})
 </script>

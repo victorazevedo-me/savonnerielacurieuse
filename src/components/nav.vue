@@ -79,7 +79,8 @@ export default Vue.extend({
 		],
 		isExtended: false,
 		isAnimating: false,
-		belowAccueil: false
+		belowAccueil: false,
+		navTimeout: 0
 	}),
 
 	methods: {
@@ -90,7 +91,6 @@ export default Vue.extend({
 
 		redirect(id: number, inner = 0) {
 			if (!this.isAnimating) {
-				$('#nav')!.classList.remove('extended')
 				redirection(
 					inner === 0
 						? PageEventOrigin.homepageScroll
@@ -98,7 +98,6 @@ export default Vue.extend({
 					id,
 					inner
 				)
-
 				this.toggleAnimState(1200)
 			}
 		},
@@ -121,13 +120,24 @@ export default Vue.extend({
 				currentScroll + 100 >
 				document.body.clientHeight - window.innerHeight
 
-			if (bottom) {
-				dom.classList.add('bottom')
-			} else {
-				dom.classList.remove('bottom')
-			}
-
+			dom.className = 'quicknav ' + (bottom ? 'bottom' : '')
 			setCss(dom, 'opacity:' + (top || bottom ? 1 : 0))
+		},
+
+		toggleExtended() {
+			const ext = $('#extended')!
+			const isExt = $('nav')!.classList.toggle('extended')
+
+			clearTimeout(this.$data.navTimeout)
+
+			this.$data.navTimeout = setTimeout(
+				() =>
+					setCss(ext, `visibility: ${isExt ? 'visible' : 'hidden'}`),
+				isExt ? 0 : 1000
+			)
+
+			this.isExtended = isExt
+			this.changeHamburgerColor()
 		},
 
 		extended() {
@@ -193,6 +203,7 @@ export default Vue.extend({
 			$$('.nav-liste h3').forEach((a, i) =>
 				a.addEventListener('click', e => {
 					this.redirect(i)
+					this.toggleExtended()
 				})
 			)
 
@@ -210,6 +221,7 @@ export default Vue.extend({
 
 						//redirige
 						this.redirect(i, counter)
+						this.toggleExtended()
 					})
 				})
 
@@ -232,9 +244,7 @@ export default Vue.extend({
 		})
 
 		$('.hamburger')!.addEventListener('click', e => {
-			this.isExtended = !this.isExtended
-			this.changeHamburgerColor()
-			$('nav')!.classList.toggle('extended')
+			this.toggleExtended()
 		})
 	}
 })

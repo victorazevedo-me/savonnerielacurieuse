@@ -1,6 +1,6 @@
 import images from '../images/accueil/*.jpg'
 import anime from 'animejs'
-import { $, $$, setCss } from '../scripts/pageControl'
+import { $, setCss } from '../scripts/pageControl'
 
 export function accueilSwipe(i: number) {
 	const texts = [
@@ -11,18 +11,9 @@ export function accueilSwipe(i: number) {
 		[['Contact', '& faq'], ['']]
 	]
 
-	function findLastIndex() {
-		const html = $('.titre h1')!.innerHTML
-		const stripped = html.replace(/<[^>]*>?/gm, ',')
-		const array = stripped?.split(',')
-
-		texts.map((t, i) => {
-			if (array[0] === t[0][0]) return i
-		})
-
-		return 0
-	}
-
+	const titreH1 = $('.titre h1')
+	const titreP = $('.titre p')
+	const titre = $('.titre')
 	const wrapper = $('.background-wrapper')!
 	const current = $('.background-wrapper div')!
 	const next = document.createElement('div')
@@ -55,39 +46,55 @@ export function accueilSwipe(i: number) {
 	img.src = imagesArray[i]
 	if (img.complete) img.addEventListener('load', () => {})
 
-	const titre = document.createElement('h1')
-	const soustitre = document.createElement('p')
+	const newtitre = document.createElement('h1')
+	const newsoustitre = document.createElement('p')
 
 	//add text
-	titre.innerHTML = texts[i][0].reduce(
-		(a, b) => `${a}<br />${b}` //add line break
-	)
-	soustitre.innerHTML = texts[i][1][0]
+	newtitre.innerHTML = texts[i][0].reduce((a, b) => `${a}<br />${b}`)
+	newsoustitre.innerHTML = texts[i][1][0]
 
 	//add animations
-	const dir = findLastIndex() < i ? 50 : -50
+	const getDirection = (): number => {
+		const html = titreH1!.innerHTML
+		const stripped = html.replace(/<[^>]*>?/gm, ',')
+		const array = stripped?.split(',')
+		let res = 0
+
+		for (let j in texts) {
+			if (array[0] === texts[j][0][0]) {
+				res = +j
+			}
+		}
+
+		return res > i ? 1 : -1
+	}
+	const direction = getDirection()
+	const moves = {
+		out: 100 * direction,
+		in: 100 * -direction
+	}
 
 	anime({
-		targets: ['.titre h1', '.titre p'],
+		targets: [titreH1, titreP],
 		opacity: [{ value: 0, duration: 400, easing: 'linear' }],
 		translateX: [
 			{
-				value: -50,
-				duration: 1200,
-				easing: 'easeOutCubic'
+				value: moves.out,
+				duration: 600,
+				easing: 'linear'
 			}
 		],
 
 		complete() {
 			//set new elements
-			$('.titre h1')?.remove()
-			$('.titre p')?.remove()
+			titreH1?.remove()
+			titreP?.remove()
 
-			$('.titre')?.appendChild(titre)
-			$('.titre')?.appendChild(soustitre)
+			titre?.appendChild(newtitre)
+			titre?.appendChild(newsoustitre)
 
 			anime({
-				targets: [titre, soustitre],
+				targets: [newtitre, newsoustitre],
 				opacity: [
 					{ value: 0, duration: 0, delay: 0 },
 					{
@@ -99,7 +106,7 @@ export function accueilSwipe(i: number) {
 				],
 				translateX: [
 					{
-						value: dir,
+						value: moves.in,
 						duration: 0,
 						delay: 0
 					},
