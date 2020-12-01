@@ -104,8 +104,6 @@
 				<div class="grosseballe"></div>
 			</div>
 		</div>
-
-		<VueFooter />
 	</section>
 </template>
 <script lang="ts">

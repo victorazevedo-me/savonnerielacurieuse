@@ -6,8 +6,8 @@ $titrepetit: 1.25em;
 	position: relative;
 	background-color: white;
 	cursor: default;
+	padding: 2em 0;
 	min-height: 100vh;
-	padding: 3em 2em;
 	z-index: 3;
 	text-align: justify;
 
@@ -32,10 +32,10 @@ $titrepetit: 1.25em;
 	.semi-titre {
 		position: relative;
 		white-space: nowrap;
+		margin: 3em 5em;
 
 		h2 {
 			margin: 0;
-			margin-bottom: $titremoyen;
 			position: relative;
 		}
 
@@ -53,13 +53,17 @@ $titrepetit: 1.25em;
 		min-height: 0;
 
 		.deux-colonnes {
-			min-height: calc(100vh - 6em);
+			min-height: 100vh;
 
 			> div {
 				margin: 1em;
 
 				&.slc-description {
 					max-width: 450px;
+
+					.semi-titre {
+						margin-left: 0;
+					}
 				}
 			}
 		}
@@ -80,9 +84,14 @@ $titrepetit: 1.25em;
 
 	&.deux {
 		.sap-description {
-			max-width: 750px;
-			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			padding: 6em 0;
+
+			.introduction {
+				max-width: 600px;
+			}
 		}
 
 		.deux-colonnes {
@@ -125,6 +134,10 @@ $titrepetit: 1.25em;
 						&.focused {
 							filter: grayscale(0);
 							transform: scale(1.1);
+						}
+
+						&:hover {
+							filter: grayscale(0) contrast(1.1);
 						}
 					}
 				}
@@ -183,6 +196,10 @@ $titrepetit: 1.25em;
 				max-width: 400px;
 				margin-left: 4em;
 
+				> div {
+					padding-bottom: 2em;
+				}
+
 				span {
 					display: block;
 					background-color: #fdddabbb;
@@ -210,10 +227,6 @@ $titrepetit: 1.25em;
 	}
 
 	&.trois {
-		.semi-titre {
-			margin: auto;
-		}
-
 		.savons-wrapper {
 			text-align: center;
 
@@ -321,11 +334,29 @@ $titrepetit: 1.25em;
 		.savon-menager {
 			position: relative;
 			overflow: hidden;
+			padding-top: 10em;
 
 			.full-card {
 				display: flex;
 				margin: 0;
 				padding-top: 0;
+				opacity: 1;
+				border: none;
+				max-width: 700px;
+
+				.images-desc {
+					flex-direction: column;
+					align-items: flex-start;
+
+					.desc {
+						padding-left: 0;
+						max-width: 100%;
+					}
+				}
+
+				.compo {
+					width: 100%;
+				}
 
 				.bottom {
 					margin: 0;
@@ -350,7 +381,7 @@ $titrepetit: 1.25em;
 		}
 
 		.en-parlent {
-			padding: 0 5em;
+			padding-top: 10em;
 			text-align: center;
 
 			.semi-titre {
@@ -502,7 +533,10 @@ $titrepetit: 1.25em;
 	}
 
 	&.cinq {
+		overflow: hidden;
+
 		.contact-infos {
+			position: relative;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -510,27 +544,25 @@ $titrepetit: 1.25em;
 			max-width: 1100px;
 			margin: auto;
 
+			.gelule {
+				position: absolute;
+				top: 20em;
+				left: -27em;
+				width: 40em;
+				height: 40em;
+				border-radius: 30em;
+				background-color: wheat;
+				z-index: -1;
+			}
+
 			.semi-titre h2 {
 				margin-bottom: 1em;
 			}
 
 			.infos {
-				position: relative;
-
-				> div:not(.gelule) {
+				> div {
 					margin: 2em 0;
 					font-weight: 600;
-				}
-
-				.gelule {
-					position: absolute;
-					top: -1em;
-					left: -5em;
-					width: 10em;
-					height: 10em;
-					border-radius: 10em;
-					background-color: wheat;
-					z-index: -1;
 				}
 
 				p {
@@ -545,11 +577,6 @@ $titrepetit: 1.25em;
 			width: 50vh;
 			height: 50vh;
 			transition: box-shadow 1s 0.5s;
-			box-shadow: 0 0 0 0 wheat;
-
-			&.loaded {
-				box-shadow: 20px 20px 0px 0px wheat;
-			}
 
 			.leaflet-control-container {
 				visibility: hidden;

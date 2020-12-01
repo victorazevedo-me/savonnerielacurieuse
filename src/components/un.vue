@@ -48,14 +48,7 @@ export default Vue.extend({
 		ScrollReveal().reveal('.pres-img', {
 			duration: 1000,
 			delay: 1000,
-			distance: '-20px',
-			afterReveal: () => {
-				document.querySelector('footer')!.style.display = 'block'
-				ScrollReveal().reveal('footer', {
-					duration: 1000,
-					delay: 200
-				})
-			}
+			distance: '-20px'
 		})
 	}
 })

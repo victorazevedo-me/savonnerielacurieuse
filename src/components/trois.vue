@@ -74,9 +74,7 @@
 							/>
 						</div>
 
-						<div class="desc">
-							<p>{{ savons.cesar.desc }}</p>
-						</div>
+						<p>{{ savons.cesar.desc }}</p>
 					</div>
 
 					<div class="compo">
@@ -136,8 +134,6 @@
 
 			<div class="grosseballe"></div>
 		</div>
-
-		<VueFooter />
 	</section>
 </template>
 <script lang="ts">
@@ -252,7 +248,7 @@ export default Vue.extend({
 			overflow: true
 		}
 
-		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 900)
+		overlayPosition('.en-parlent .grosseballe', '.en-parlent', 1200)
 		new SimpleParallax($('.savon-menager .grosseballe')!, parallaxOptions)
 		new SimpleParallax($('.en-parlent .grosseballe')!, parallaxOptions)
 	}

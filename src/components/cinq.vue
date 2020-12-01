@@ -2,6 +2,8 @@
 	<section id="contenu-page" class="page cinq">
 		<div class="contact-infos">
 			<div>
+				<div class="gelule"></div>
+
 				<div class="semi-titre">
 					<h2 id="contact">Contact</h2>
 				</div>
@@ -25,8 +27,6 @@
 						<p>{{ contact.email }}</p>
 						<p>{{ contact.telephone }}</p>
 					</div>
-
-					<div class="gelule"></div>
 				</div>
 			</div>
 
@@ -52,8 +52,6 @@
 				</div>
 			</div>
 		</div>
-
-		<VueFooter />
 	</section>
 </template>
 
