@@ -77,6 +77,7 @@ export default Vue.extend({
 			'disponible',
 			'contact'
 		],
+		selectedIndex: SITEMAP.indexes()[0],
 		isExtended: false,
 		isAnimating: false,
 		belowAccueil: false,
@@ -90,7 +91,7 @@ export default Vue.extend({
 		},
 
 		redirect(id: number, inner = 0) {
-			if (!this.isAnimating) {
+			if (!this.isAnimating && this.selectedIndex !== id) {
 				redirection(
 					inner === 0
 						? PageEventOrigin.homepageScroll
@@ -98,7 +99,9 @@ export default Vue.extend({
 					id,
 					inner
 				)
+				this.selectedIndex = id
 				this.toggleAnimState(1200)
+				this.quickNavSelectStyle(id)
 			}
 		},
 
@@ -110,6 +113,14 @@ export default Vue.extend({
 			$$('.hamburger span')!.forEach(e =>
 				setCss(e, 'background-color:' + color)
 			)
+		},
+
+		quickNavSelectStyle(id: number) {
+			const lis = $$('.quicknav li')!
+			lis.forEach((li, i) => {
+				if (i === id) li.classList.add('selected')
+				else li.classList.remove('selected')
+			})
 		},
 
 		quickNavScrollDisplay() {
@@ -241,6 +252,7 @@ export default Vue.extend({
 
 			this.changeHamburgerColor()
 			this.quickNavScrollDisplay()
+			this.quickNavSelectStyle(this.selectedIndex)
 		})
 
 		$('.hamburger')!.addEventListener('click', e => {

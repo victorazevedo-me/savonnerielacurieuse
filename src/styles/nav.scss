@@ -51,13 +51,14 @@ nav {
 				position: relative;
 				padding: 0 1vw;
 				margin: 0 1vw;
-				font-size: 20px;
-				font-weight: lighter;
+				font-size: 25px;
+				font-weight: bolder;
 				font-style: italic;
 				cursor: pointer;
 				transition: all 0.2s;
 
-				&:hover {
+				&:hover,
+				&.selected {
 					opacity: 0.5;
 				}
 
@@ -70,7 +71,8 @@ nav {
 				transition: all 0.2s;
 				background-color: white;
 				overflow: hidden;
-				color: black;
+				color: #111;
+				border: 2px solid #111;
 			}
 		}
 
